@@ -1848,3 +1848,7 @@ Codex proved an explicit fixed-momentum confinement region for the selected inst
 ## 2026-10-18 — OPS-032 control propagation
 
 Current parent README now records the completed 24-release float measurement packet while leaving continuous exact-solution hypotheses unestablished, and points to the full bounded variation index without an exhaustive ceiling/logarithmic authorization claim. The [weekly control receipt](../aaa-operations/evidence/ops-032-weekly-review-2026-10-18.md) preserves the source references, original observations, completion scope and remaining owner follow-ups. No scientific source or historical receipt is rewritten.
+
+## 2026-10-20 — Infinite-lattice arrival control integrated
+
+Saturday integrated four cross-geometry analyses dated 2026-10-20 into [manuscript Section 6](manuscript.md#6-infinite-populations-and-cancellation). Each was accepted by Codex (gpt-6.1-sol, high). They cover a light-cone condition for a fixed-past lattice field, its sharpness, weighted persistence of a lattice arrival, and a conditional transverse fold passage. The same passage records that the October 10 comparison's "twelve perturbed releases" are ten perturbed plus two unperturbed baselines; that file is pinned and left unchanged. No score change.

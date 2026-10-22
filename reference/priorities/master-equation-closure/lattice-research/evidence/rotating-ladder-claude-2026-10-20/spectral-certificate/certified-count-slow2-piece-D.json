@@ -1,0 +1,29 @@
+{
+ "tag": "D",
+ "s0": 0.03,
+ "corners": [
+  [
+   0.03,
+   1.2
+  ],
+  [
+   0.03,
+   0.5
+  ]
+ ],
+ "N_max": 6000,
+ "Ns": 20000,
+ "precompute_s": 25.199780225753784,
+ "arg_change": "2.408102463461290660860364350719897250533",
+ "err": "0.00005860257413344713711817434832962512635433",
+ "arg_over_pi": 0.7665228210632694,
+ "segments": 16,
+ "bisections": 2,
+ "failed": [],
+ "min_segment": 0.024999999999999967,
+ "evaluations": 35,
+ "real_axis_end_values": {},
+ "seconds": 125.20914387702942,
+ "module_sha256": "08768074feb8ac9ede6317e0b76b8c57c06b9632b367b49e7086f14102920e4f",
+ "driver_sha256": "5ce5348b0feaae1932e58f5f0544f3e999bef4be4801c38eb4434bf738babb2b"
+}

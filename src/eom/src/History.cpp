@@ -305,7 +305,24 @@ IntervalVector segment_hull(
   const double requested_lower = std::max(time.lower(), retained_start.lower());
   const double requested_upper = std::min(time.upper(), retained_end.upper());
   double cursor = requested_lower;
-  for (const auto& segment : history.segments()) {
+  // Start at the first segment the scan below can use. Before any segment is
+  // used, a segment whose outward end lies below requested_lower is skipped
+  // without changing the result or the cursor. Validated joins make segment
+  // end times strictly increasing, so the outward ends increase too: every
+  // segment before the first end reaching requested_lower is skipped.
+  // segment_index_at locates the nominal segment; the step back covers ends
+  // that reach requested_lower only through outward rounding.
+  std::size_t first_segment = history.segment_index_at(
+      std::min(std::max(requested_lower, history.t_start()), history.t_end()));
+  while (first_segment > 0U &&
+         history.segments().pin(first_segment - 1U)->t_end_interval().upper() >=
+             requested_lower) {
+    --first_segment;
+  }
+  for (std::size_t index = first_segment; index < history.segments().size();
+       ++index) {
+    const auto segment_pin = history.segments().pin(index);
+    const auto& segment = *segment_pin;
     const Interval& segment_start = segment.t_start_interval();
     const Interval& segment_end = segment.t_end_interval();
     const double lower = std::max(requested_lower, segment_start.lower());

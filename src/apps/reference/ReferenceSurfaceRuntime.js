@@ -13,7 +13,7 @@
 // directly from the working tree served by the local dev server.
 
 import { createStandaloneAppNavigationRuntime } from "../navigator/StandaloneAppNavigationRuntime.js";
-import { resolveResearchDocumentLink } from "../../documentation/ResearchSourceLocations.mjs";
+import { resolveResearchDocumentLink, recordedResearchLinkTarget } from "../../documentation/ResearchSourceLocations.mjs";
 
 const MANIFEST_PATH = "./content/generated/reference/reference-surface.v1.json";
 
@@ -261,8 +261,17 @@ export function createReferenceSurfaceRuntime({
     for (const anchor of container.querySelectorAll("a[href]")) {
       const href = anchor.getAttribute("href");
       if (!href || /^[a-z]+:/iu.test(href) || href.startsWith("#")) continue;
+      const recordedTarget = recordedResearchLinkTarget(documentPath, href);
+      if (recordedTarget?.startsWith(".local-data/")) {
+        anchor.removeAttribute("href");
+        anchor.title = `Historical citation to retained local evidence; not published: ${recordedTarget}`;
+        continue;
+      }
       const [rawPath, fragment] = href.split("#");
-      if (!rawPath.endsWith(".md")) continue;
+      if (!(recordedTarget ?? rawPath).endsWith(".md")) {
+        if (recordedTarget) anchor.setAttribute("href", `./${recordedTarget}`);
+        continue;
+      }
       const target = resolveResearchDocumentLink(documentPath, href);
       if (!target) continue;
       const resolved = target.path;
@@ -270,6 +279,7 @@ export function createReferenceSurfaceRuntime({
         anchor.setAttribute("href", `#/doc/${encodeURIComponent(resolved)}`);
         anchor.classList.add("reference-internal-link");
       } else {
+        if (recordedTarget) anchor.setAttribute("href", `./${resolved}`);
         anchor.classList.add("reference-external-link");
         anchor.title = `Outside the reference surface: ${resolved}${fragment ? `#${fragment}` : ""}`;
       }

@@ -59,6 +59,13 @@ function maskEventPhase(text) {
 // These are lexical contexts, not a claim to infer the meaning of arbitrary TeX.
 export function maskNonPolarityNotation(text) {
   let result = maskEventPhase(maskFractionalChangeRatios(text));
+  // An unbraced TeX exponent consumes one token: x^2E is x squared
+  // times E, not the inventory 2E. Mask only the digit within math.
+  for (const span of mathSpans(result)) {
+    if (/\\(?:text|textrm|textbf|mathrm|operatorname)\b/.test(span.body)) continue;
+    const body = span.body.replace(/\^([0-9])(?=[PE]\b)/g, "^ ");
+    result = result.slice(0, span.bodyStart) + body + result.slice(span.bodyEnd);
+  }
   // E/E+M names the two response laws. A bare E/E or E/P stays ambiguous.
   result = result.replace(/\bE[ \t]*\/[ \t]*E[ \t]*\+[ \t]*M\b/g, blank);
   // Explicit scalar enclosure prose distinguishes this use from inventories.

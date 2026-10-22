@@ -49,6 +49,8 @@ export function retainedHistories(record){
   const start=Number(record.request.interval.start),end=Number(record.results.at(-1).acceptedCoverage.end);
   return record.request.paths.map(p=>({pathId:p.pathId,charge:Number(p.charge),coverage:{start,end},segments:record.results.flatMap(r=>r.publishedExtensions.find(h=>h.pathId===p.pathId).segments.map(s=>({...s,startTime:s.start,endTime:s.end})))}));
 }
+// Display names only: positrinos p1, p2, … and electrinos e1, e2, … in request order. EOM pathIds are unchanged.
+export function architrinoLabels(paths){const counts={p:0,e:0};return new Map(paths.map(p=>{const k=Number(p.charge)>0?'p':'e';return [p.pathId,`${k}${++counts[k]}`];}));}
 export function evaluateSurfacePath(history,time){return evaluateEomCubicHistoryAtTime(history,time);}
 export function nearestSurfaceDiagnostic(record,pathId,time){
   const rows=record.results.flatMap(r=>r.surfaceDiagnostics ?? []).filter(r=>r.pathId===pathId);

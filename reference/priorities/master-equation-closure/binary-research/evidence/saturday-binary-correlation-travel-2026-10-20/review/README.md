@@ -1,0 +1,28 @@
+# review — retained records
+
+Navigation added during publication. The original files below retain their bytes, claim grades and review history. This index adds no scientific acceptance; consult the [owning account](../README.md) for dispositions and limitations.
+
+- [chunk1-reply-round1.md](chunk1-reply-round1.md)
+- [chunk1-reply-round2.md](chunk1-reply-round2.md)
+- [chunk1-reply-round3.md](chunk1-reply-round3.md)
+- [chunk1-request-round1.md](chunk1-request-round1.md)
+- [chunk1-request-round2.md](chunk1-request-round2.md)
+- [chunk1-request-round3.md](chunk1-request-round3.md)
+- [chunk1-response-round1.md](chunk1-response-round1.md)
+- [chunk1-response-round2.md](chunk1-response-round2.md)
+- [chunk2-reply-round1.md](chunk2-reply-round1.md)
+- [chunk2-reply-round2.md](chunk2-reply-round2.md)
+- [chunk2-reply-round3.md](chunk2-reply-round3.md)
+- [chunk2-request-round1.md](chunk2-request-round1.md)
+- [chunk2-request-round2.md](chunk2-request-round2.md)
+- [chunk2-request-round3.md](chunk2-request-round3.md)
+- [chunk2-response-round1.md](chunk2-response-round1.md)
+- [chunk2-response-round2.md](chunk2-response-round2.md)
+- [chunk3-reply-round1.md](chunk3-reply-round1.md)
+- [chunk3-reply-round2.md](chunk3-reply-round2.md)
+- [chunk3-reply-round3.md](chunk3-reply-round3.md)
+- [chunk3-request-round1.md](chunk3-request-round1.md)
+- [chunk3-request-round2.md](chunk3-request-round2.md)
+- [chunk3-request-round3.md](chunk3-request-round3.md)
+- [chunk3-response-round1.md](chunk3-response-round1.md)
+- [chunk3-response-round2.md](chunk3-response-round2.md)

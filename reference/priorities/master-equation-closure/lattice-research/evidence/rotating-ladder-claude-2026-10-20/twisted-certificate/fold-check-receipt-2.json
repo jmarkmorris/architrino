@@ -1,0 +1,67 @@
+{
+ "pieces": 218,
+ "pairs": 217,
+ "pairs_joined": 217,
+ "unjoined_pairs": [],
+ "chain_pieces": [
+  0,
+  217
+ ],
+ "chain_delta": [
+  "2.8699999999999998845",
+  "2.9245000000000003215"
+ ],
+ "krawczyk-alpha-0.878pi-lower.json": {
+  "on_chain_piece": [
+   "2.870375"
+  ]
+ },
+ "krawczyk-alpha-0.878pi-upper.json": {
+  "on_chain_piece": [
+   "2.924125"
+  ]
+ },
+ "fold-sign-below.json": {
+  "dalpha_ddelta": [
+   "-0.07781912821613034685425",
+   "-0.04012346592277796939068"
+  ],
+  "sign": "negative",
+  "on_chain_overlaps": [
+   "2.8706250000000004"
+  ]
+ },
+ "fold-sign-above.json": {
+  "dalpha_ddelta": [
+   "0.04079807153909441484722",
+   "0.07545021495842984293986"
+  ],
+  "sign": "positive",
+  "on_chain_overlaps": [
+   "2.923875",
+   "2.924125"
+  ]
+ },
+ "fold-sign-below-inner.json": {
+  "dalpha_ddelta": [
+   "-0.0320324538317660313177",
+   "-0.01700627183874361812357"
+  ],
+  "sign": "negative",
+  "on_chain_overlaps": [
+   "2.8858750000000004",
+   "2.886125"
+  ]
+ },
+ "fold-sign-above-inner.json": {
+  "dalpha_ddelta": [
+   "0.01639114411695372181899",
+   "0.03090215317512135685909"
+  ],
+  "sign": "positive",
+  "on_chain_overlaps": [
+   "2.9078749999999998",
+   "2.908125"
+  ]
+ }
+}

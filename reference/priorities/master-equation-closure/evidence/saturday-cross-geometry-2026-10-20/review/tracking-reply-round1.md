@@ -1,0 +1,41 @@
+**Overall disposition: ACCEPT AFTER CORRECTIONS.** The owner-status summary is substantially accurate. Corrections are needed to the evidence inventory, release count, attribution of requirements, and completeness of the Binary Outcome Gate summary. This disposition concerns the tracking note only.
+
+`shasum -a 256` and `wc -c` confirm the reviewed file matches the supplied digest and 14,229-byte size. I made no file edits.
+
+**What I read.** The complete tracking note; AGENTS.md and the applicable startup/review guidance; all ten listed live owners, covering the specified sections and work-log entries. I also read the cross-geometry comparison and review, both October 20 continuation notes, the staggered first-event subject and adjudication, and the October 18 binary review. For evidence classification, I inspected the earlier binary review and numerical-evidence passages, the cross-geometry evidence README, relevant integrator source, and retained release output. Canonical Master Equation passages covered causal roots, acceleration weights, self-history, finite-impulse treatment, regularization, and delayed evolution.
+
+The underlying App Solver acceptances were checked as recorded statuses; this review does not requalify their computations.
+
+| Claim | Assessment | Reason |
+|---|---|---|
+| §1 stationary repair and its limited authority | **Supported** | The manuscript, priorities and corrected fixture disposition agree: bounded engineering acceptance does not establish generic true-history inclusion or physical trajectories. |
+| §1 validated route, October 14 bridge and independent oracle | **Supported** | The closeout records conditional whole-step inclusion; priorities records subsequent O0–O4 completion at bounded interface/replay grade. Oracle production authority remains `none`. |
+| §1 EOM-007 next; EOM-006 deferred/blocked; Braid Program owns fate booking; six-path investigation closed | **Supported** | These match the live queue and six-path disposition. The “four acceptances” grouping is the note’s synthesis, rather than a named owner classification. |
+| §2 searches | **Supported at rerun scope** | At **21:23:55Z**, shell expansion plus `wc -l` counted **42 files**. `grep -l -w EOM` returned exactly the two named reviews; `grep -l 'src/eom\|Borg'` returned none. |
+| §2 historical count of 37 | **Not independently established** | The live tree cannot reconstruct that earlier census. The note appropriately dates it and acknowledges concurrent additions; growth alone is not grounds to call the historical count false. |
+| §2 no accepted result depends on EOM trajectories | **Supported as an inference** | The searches and inspected evidence descriptions support it, with the alias/search limitation already disclosed. It is not an exhaustive measured absence. |
+| §2 evidence kinds and “twelve perturbed” releases | **Needs correction** | The inventory omits other floating measurements, and the retained output contains ten nonzero perturbations plus two baseline runs. |
+| §3 domain qualification and independent evidence | **Supported conditionally** | Evidence must cover the geometry and claim actually used. However, mandatory joint histories and attribution of every listed item to App Solver owners overstate the sources. |
+| §3 Binary Outcome Gate | **Needs correction** | The summary omits restart convergence and important outcome-specific conditions. |
+| §3 finite-width routing versus unchanged sharp-law passage | **Supported** | The contract explicitly routes folds through finite-width calculation; that does not itself construct the sharp-law continuation left open by the comparison. |
+| §4 EOM-006 blocker discrepancy | **Supported** | Queue line 72 names EOM-003–005; work-log headings and removal entries at lines 19–57 record their September 2 completion. The proposed replacement blocker remains an inference. |
+| §4 unnamed qualification row and two inclusion scopes | **Supported** | The live task sections have no dedicated qualification row. Bounded validated inclusion and the fixture’s generic nonqualification are compatible statements. |
+| Read-only boundary, ownership and non-reopening | **Supported as the note’s scope** | Its recommendations do not change assignments or reopen either completed investigation. Historical author actions cannot be proved from the note alone. |
+
+**Actionable corrections** — ○ Not done:
+
+1. **[EVID] Correct §2’s purportedly exhaustive evidence inventory.** The live comparison explicitly records “**ledgers measured at 40 digits**” and “**endpoint signs measured in floating point … no roundoff enclosure**.” These are additional measured evidence beyond the release illustration. The earlier binary subject also records floating release calculations and sampled searches in its [instrument descriptions](/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/binary-research/analysis/saturday-two-member-subwake-periodicity-2026-10-10.md:290). Include these kinds, or label the list illustrative rather than exhaustive.
+
+2. **[COUNT] Replace “twelve perturbed mirror releases” with “twelve target runs, including ten perturbed releases and two unperturbed baselines.”** Direct enumeration of the [retained output](/Users/markmorris/vibe/architrino/.local-data/master-equation-closure/saturday-cross-geometry/release_population_target.out:7) shows each family has `epsilon=0` followed by five positive amplitudes. The comparison itself repeats “Twelve perturbed”; copying that wording faithfully does not resolve the numerical discrepancy.
+
+3. **[OWNER] Separate recorded solver obligations from inferred scientific requirements in §3.** The [closeout](/Users/markmorris/vibe/architrino/reference/priorities/app-solver/analysis/matched-pair-review-window-2-closeout-2026-10-12.md:29) says “**joint histories … remain outside this selected result**”; it does not require that representation for every close binary. Require a proved enclosure covering the relevant correlations, without prescribing joint histories universally. Likewise, infinite-population transfer and an existence argument for rigorous recurrence are downstream scientific proof obligations. Replace “Each item restates an obligation the owners already record” with an explicit distinction between contractual requirements and inferred dependencies.
+
+4. **[GATE] Make the Binary Outcome Gate summary explicitly abbreviated and retain its missing conditions.** The [live gate](/Users/markmorris/vibe/architrino/reference/priorities/app-solver/contracts/evolution-contract-v1.md:299) requires “**timestep, history-depth, precision, regulator, restart, and worker-count convergence appropriate to the claim**.” Add restart. Preserve its acceleration-weight/regulator and diagnostic-history requirements by linking the complete gate. For terminal circular states, retain the three limiting conditions and “**a stable return map under declared small perturbations**.” The note correctly states complete-history return for noncircular recurrence and correctly distinguishes numerical recurrence from rigorous existence.
+
+5. **[QUOTE] Preserve capitalization in literal owner quotations.** The live queue title is “**First binary and claim outcome gates**,” whereas §1 quotes lowercase “first.” The rules passage begins “**The remaining true-history, consumer and scientific acceptance obligations below**,” whereas §4 quotes lowercase “the.” Correct capitalization or present these as paraphrases.
+
+The claim grades and falsifiers are otherwise suitable for tracking: textual status is measured, dependency conclusions are inferred, sampled illustrations remain sampled, and lattice/fold conclusions remain conditional. The corrections above are checkable against the linked passages and retained output; contrary source wording or a different authenticated run census would overturn the affected finding.
+
+Next possible actions:
+
+1. ○ **Have the note’s author apply EVID–QUOTE, then request a focused re-review.** Recommended: these are bounded tracking corrections and require no App Solver implementation or queue changes.

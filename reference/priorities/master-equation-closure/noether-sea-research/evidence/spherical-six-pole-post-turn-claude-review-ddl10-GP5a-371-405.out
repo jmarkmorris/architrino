@@ -1,0 +1,62 @@
+PID 1101 ddl10 sha256 67a82d348edff01ebdbf0219d213c80910693f57d0aa92f1553161e34a3fc396
+PID 1101
+K1 table 324 exact resume-string joins 21 first-reading records [('w16-1', ['unlike']), ('w17-1', ['like']), ('ant-b3-13', ['antipode'])]
+K2 True ['0.401200769746683166266666996002', '0.401200799786666666666669670665'] negatives {'N1_dropped_remainder': True, 'N2_origin_uncertainty_dropped': True, 'N3_wrong_start_state': True, 'N4_wrong_start_acceleration': True, 'N5_gap': True, 'N6_uncertified': True, 'N7_beyond_coverage': True, 'N7b_window_read': True}
+K3 True 323 max endpoint difference 1.804e-8 | W2 shifted table detected on 322 of 322
+KD1 True KD2 True {'4.9': {'U': ('6.0e-23', '2.2e-23', '1.2006609'), 'L': ('9.3e-23', '9.2e-23', '0.89098756'), 'A': ('2.6e-27', '1.6e-27', '1.1071221')}, '5.1': {'U': ('7.7e-24', '1.9e-23', '1.2219361'), 'L': ('2.2e-22', '2.0e-22', '0.85764961'), 'A': ('4.1e-28', '1.2e-27', '1.1183649')}} WD True
+KO omission True {'U': '0.00237', 'L': '0.00129', 'A': '0.00377'}
+event controls {'E1_maximum_detected': True, 'E2_minimum_not_a_maximum': True, 'E3_zero_box_undecided_no_event': True, 'E4_bracket_spans_undecided_step': True, 'E5_no_classification_without_positive_qdot': True, 'E6_no_uniqueness_without_rate_sign': True, 'T1_wrong_boundaries_not_target2': True, 'T2_L_crossing_is_target2': True}
+K4' True fails 0 events 2.8067 [[192, 193]] as target 2: [] | W3 True
+KOE own end evaluation True {'s2w-192': ('0.05272767', '0.05297109', '1.0'), 's2w-193': ('0.05159090', '0.05183771', '1.0'), 's3w-213': ('0.02818654', '0.02849943', '1.0'), 's3w-214': ('0.02701745', '0.02733355', '1.0')} | WOE True
+H w17-1 ['like'] ap 0.00362297 0.00720005 | pre 0.00618453 0.00655674 in ap True meets True | post 0.00420498 0.00475218 in ap True meets True | classes ['like', 'unlike']
+H ant-b3-13 ['antipode'] ap 0.00468337 0.00751372 | pre 0.00565583 0.00651218 in ap True meets True | post 0.00560646 0.00648693 in ap True meets True | classes ['antipode', 'like', 'unlike']
+KR True True {'U': ('0.0', '0.007709', '0.1519'), 'L': ('3.08e-32', '0.02022', '0.1664'), 'A': ('4.62e-33', '0.01725', None)}
+ORACLE True True
+KOE2 True {'273': ('-0.0176394', '-0.0158465', '-0.019300', '-0.014530'), '274': ('-0.0173321', '-0.0155063', '-0.018989', '-0.014184')} WOE2 True
+event controls {'P1_path_turn_detected_not_speed_max': True, 'P2_reversed_crossing_reported_as_q_minimum': True, 'P3_zero_containing_w_undecided': True, 'S1_neg_to_pos_is_support_minimum': True, 'S2_pos_to_neg_is_support_maximum': True, 'S3_support_zero_not_a_turn': True, 'S4_zero_of_a_not_a_support_turn': True, 'S5_undecided_dl_undecided': True, 'S6_seam_one_sided': True}
+JET exact True {'U': '1.08e-32', 'L': '4.62e-33', 'A': '6.16e-33'} numerical True {'4.9': {'U': '2.77e-18', 'L': '3.21e-19', 'A': '1.39e-23', 'l': '2.45e-19'}, '5.1': {'U': '1.37e-18', 'L': '4.93e-19', 'A': '1.65e-23', 'l': '8.74e-20'}} negatives True {'4.9': ('0.004376', '0.001947', '0.01373'), '5.1': ('0.004213', '0.001659', '0.01145')}
+R1 True
+R2 True {'273': {'refined': ['0.0283441127685522349958038343664', '0.0376078956381220346094926385496'], 'whole_step': ['0.0258456688348040268237867878921', '0.0401351588797210094671038799416'], 'pass': True}, '274': {'refined': ['0.0276890192835647480584278810882', '0.0370473706982743233554828404138'], 'whole_step': ['0.025200857715918548334189920069', '0.0395962681193309067586137654176'], 'pass': True}}
+R3 True {'t_center': '4.9', 'half_width': '0.04', 'true_sign': 'negative', 'true_range': ['-0.0058422132', '-0.0044415565'], 'unsplit': ['-0.0119613352402519213406911015835', '0.00192961540278257323440709190987'], 'split_hull': ['-0.00660487935934416302951320707667', '-0.00364613730312826784952902996866'], 'split_decides': True, 'split_contains_truth': True}
+ddl-refine controls R1-R3 passed on the full frozen table
+insertion controls {'I1_reproduces_step154_strings': True, 'I2_known_append_accepted': True, 'I3_gap_refused': True, 'I4_frozen_mismatch_refused': True}
+checked append done; last own-570
+own appended 296 guaranteed end 7.566684593623649597167969
+saved reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-post-turn-claude-review-ddl10-GP5a-371-405.json
+371 ddl -0.0003251 0.01181508 end dl up -0.00462180 bound -0.004620415 negative | reconstructed only
+372 ddl -0.0001664 0.01213445 end dl up -0.00455216 bound -0.004551468 negative | reconstructed only
+373 ddl 0.00000807 0.01242609 end dl up -0.00447692 bound -0.004476923 negative | reconstructed only
+374 ddl 0.00014829 0.01274159 end dl up -0.00440666 bound -0.004406669 negative | reconstructed only
+375 ddl 0.00031379 0.01304956 end dl up -0.00432769 bound -0.004327692 negative | reconstructed only
+376 ddl 0.00050006 0.01341574 end dl up -0.00424316 bound -0.004243163 negative | reconstructed only
+377 ddl 0.00062780 0.01375029 end dl up -0.00416597 bound -0.004165978 negative | reconstructed only
+378 ddl 0.00081069 0.01406110 end dl up -0.00407796 bound -0.004077969 negative | reconstructed only
+379 ddl 0.00094572 0.01441481 end dl up -0.00399125 bound -0.003991252 negative | reconstructed only
+380 ddl 0.00112395 0.01480406 end dl up -0.00389906 bound -0.003899062 negative | reconstructed only
+381 ddl 0.00129767 0.01511753 end dl up -0.00380251 bound -0.003802517 negative | reconstructed only
+382 ddl 0.00144515 0.01547866 end dl up -0.00370958 bound -0.003709588 negative | reconstructed only
+383 ddl 0.00159921 0.01576889 end dl up -0.00360714 bound -0.003607141 negative | reconstructed only
+384 ddl 0.00174588 0.01613613 end dl up -0.00350945 bound -0.003509457 negative | reconstructed only
+385 ddl 0.00192891 0.01656534 end dl up -0.00340301 bound -0.003403012 negative | reconstructed only
+386 ddl 0.00209166 0.01684949 end dl up -0.00328995 bound -0.003289951 negative | reconstructed only
+387 ddl 0.00220639 0.01722765 end dl up -0.00318563 bound -0.003185631 negative | reconstructed only
+388 ddl 0.00236172 0.01753212 end dl up -0.00306772 bound -0.003067724 negative | reconstructed only
+389 ddl 0.00247060 0.01792883 end dl up -0.00295420 bound -0.002954203 negative | reconstructed only
+390 ddl 0.00264532 0.01820983 end dl up -0.00283051 bound -0.002830515 negative | reconstructed only
+391 ddl 0.00269301 0.01862905 end dl up -0.00271293 bound -0.002712932 negative | reconstructed only
+392 ddl 0.00284591 0.01906766 end dl up -0.00258307 bound -0.002583079 negative | reconstructed only
+393 ddl 0.00293650 0.01934722 end dl up -0.00245047 bound -0.002450474 negative | reconstructed only
+394 ddl 0.00301630 0.01974241 end dl up -0.00232712 bound -0.002327120 negative | reconstructed only
+395 ddl 0.00311806 0.02002888 end dl up -0.00218975 bound -0.002189759 negative | reconstructed only
+396 ddl 0.00319374 0.02042839 end dl up -0.00205916 bound -0.002059161 negative | reconstructed only
+397 ddl 0.00324790 0.02070291 end dl up -0.00191709 bound -0.001917093 negative | reconstructed only
+398 ddl 0.00333753 0.02109968 end dl up -0.00178345 bound -0.001783459 negative | reconstructed only
+399 ddl 0.00342111 0.02135633 end dl up -0.00163457 bound -0.001634577 negative | reconstructed only
+400 ddl 0.00343246 0.02175122 end dl up -0.00149639 bound -0.001496392 negative | reconstructed only
+401 ddl 0.00349403 0.02222118 end dl up -0.00134526 bound -0.001345264 negative | reconstructed only
+402 ddl 0.00349249 0.02243663 end dl up -0.00119940 bound -0.001199402 negative | reconstructed only
+403 ddl 0.00349737 0.02288705 end dl up -0.00104414 bound -0.001044149 negative | reconstructed only
+404 ddl 0.00346745 0.02317277 end dl up -0.00088822 bound -0.000888228 negative | reconstructed only
+405 ddl 0.00350077 0.02360386 end dl up -0.00073543 bound -0.000735437 negative | reconstructed only
+lemma negative steps: [371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 403, 404, 405]
+saved reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-post-turn-claude-review-ddl10-GP5a-371-405.json.ddl10.json

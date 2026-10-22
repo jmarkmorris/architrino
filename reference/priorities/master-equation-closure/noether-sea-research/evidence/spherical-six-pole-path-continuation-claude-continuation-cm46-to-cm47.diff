@@ -1,0 +1,92 @@
+1,2c1,6
+< # Six-pole path-continuation campaign (Claude continuation role, jack-k-hale lens, 2026-10-20): steps10-cm version 4.6 = the frozen version 4.4 with ONE repair, the delay-root
+< # search bracket's lower end. Everything else is the v4.4 text executed unchanged (sha256 1bcc8a279934bc77b83e164ee4e7e8499d5fb44c173395b8178802fbd31e0540, checked here), with
+---
+> # Six-pole path-continuation campaign (Claude continuation role, jack-k-hale lens, 2026-10-20): steps10-cm version 4.7 = the frozen version 4.4 with ONE repair, the delay-root
+> # search bracket's FALLBACK (lower end and upper end); v4.6 (cm46.py, kept unchanged) had the lower-end ladder only.
+> # v4.7 (2026-10-20, review adjudication 2 via the PI): the fallback upper end is b = up(chord) + max(0.90, 2 + 0.05 - up(chord)), i.e. max(chord + 0.90, 2.05), for every class
+> # (unit-sphere chord <= 2, so h(b) >= b - 2 >= 0.05 > 0 whenever the read at t0 - b is defined); the fallback ladder starts at rung 0 (the frozen lower end) so that an upper-end
+> # failure alone (the UNLIKE root rising past chord_U + 0.90, predicted near steps 507-509) is repaired with the frozen lower end; for the like class 2.05 - chord_L < 0.90, so the
+> # like fallback is exactly v4.6's. New controls B7 (known: unlike roots above the frozen upper end, stationary and uniform sources, direct-vector checks) and B8 (negatives). Everything else is the v4.4 text executed unchanged (sha256 1bcc8a279934bc77b83e164ee4e7e8499d5fb44c173395b8178802fbd31e0540, checked here), with
+14c18
+< # Modes and arguments: as v4.4. In "controls" mode the record-dependent controls B5-B6 also run (r1-r5 appended by name and sha256); in "recon" and "compare" the controls B1-B4 run.
+---
+> # Modes and arguments: as v4.4. In "controls" mode the record-dependent controls B5-B6 also run (r1-r5 appended by name and sha256); in "recon" and "compare" B1-B4 and B7-B8 run.
+27,28c31,35
+< LADDER_STEP46 = mp.mpf("0.15"); UPPER46 = mp.mpf("0.90"); KMAX46 = 12
+< out["v46"] = {"version": "4.6", "base_v44_sha256": S10_SHA_46, "ladder_step": "0.15", "upper_half": "0.90", "lower_half_frozen": {NAME[c_]: str(LOWER9[c_]) for c_ in ALL3},
+---
+> LADDER_STEP46 = mp.mpf("0.15"); UPPER46 = mp.mpf("0.90"); KMAX46 = 12; TOP47 = mp.mpf("2.05")
+> def _upper47(guess):
+>     """v4.7 fallback upper half-width: b = up(guess) + max(0.90, 2.05 - up(guess)) = max(chord + 0.90, 2.05)"""
+>     return max(UPPER46, TOP47 - up(guess))
+> out["v46"] = {"version": "4.7", "base_v44_sha256": S10_SHA_46, "ladder_step": "0.15", "upper_half": "0.90 (frozen path); fallback max(0.90, 2.05 - up(chord))", "ladder_first_rung": 0, "lower_half_frozen": {NAME[c_]: str(LOWER9[c_]) for c_ in ALL3},
+61c68
+<     for k in range(1, kmax + 1):
+---
+>     for k in range(0, kmax + 1):
+75c82
+< def _note46(c, k, a_, b_, tau, wb=None):
+---
+> def _note46(c, k, a_, b_, tau, wb=None, ladder=False):
+77c84
+<     if k == 0: out["v46"]["old_path_calls"] += 1
+---
+>     if not ladder: out["v46"]["old_path_calls"] += 1
+79c86
+<     if TAU46["log"] is not None: TAU46["log"].append({"c": c, "k": k, "a": a_, "b": b_, "tau": tau, "wb": wb})
+---
+>     if TAU46["log"] is not None: TAU46["log"].append({"c": c, "k": k, "a": a_, "b": b_, "tau": tau, "wb": wb, "ladder": ladder})
+84c91
+<     r_, info = _ladder46(enc, t0, Q0, c, UPPER46, KMAX46)
+---
+>     r_, info = _ladder46(enc, t0, Q0, c, _upper47(guess), KMAX46)
+89c96
+<     _note46(c, info["k"], info["a"], info["b"], r_[0], info["w_bound"]); return r_
+---
+>     _note46(c, info["k"], info["a"], info["b"], r_[0], info["w_bound"], ladder=True); return r_
+101c108,109
+<         if "tau_first" not in d: d["tau_first"] = pair(e["tau"]); d["k_first"] = e["k"]; d["lower_end_first"] = mp.nstr(e["a"], 12); d["upper_end_first"] = mp.nstr(e["b"], 12)
+---
+>         d["fallback_calls"] = d.get("fallback_calls", 0) + (1 if e.get("ladder") else 0)
+>         if "tau_first" not in d: d["tau_first"] = pair(e["tau"]); d["k_first"] = e["k"]; d["fallback_first"] = bool(e.get("ladder")); d["lower_end_first"] = mp.nstr(e["a"], 12); d["upper_end_first"] = mp.nstr(e["b"], 12)
+142c150
+<     r_new = _with_history46(_stationary46(qs), lambda: _ladder46(enc, T46, iv.mpf(Q0), c, UPPER46, KMAX46, wbound=W0_46, cover_end=lo(T46)))
+---
+>     r_new = _with_history46(_stationary46(qs), lambda: _ladder46(enc, T46, iv.mpf(Q0), c, _upper47(fixed_chord(iv.mpf(Q0), c)), KMAX46, wbound=W0_46, cover_end=lo(T46)))
+159c167
+<     r_old = _with_history46(fh, lambda: tau_point9(enc, t0I, iv.mpf(Q0), c)); r46 = _with_history46(fh, lambda: (r_old, None) if r_old is not None else _ladder46(enc, t0I, iv.mpf(Q0), c, UPPER46, KMAX46, wbound=wb, cover_end=mp.mpf(t0)))
+---
+>     r_old = _with_history46(fh, lambda: tau_point9(enc, t0I, iv.mpf(Q0), c)); r46 = _with_history46(fh, lambda: (r_old, None) if r_old is not None else _ladder46(enc, t0I, iv.mpf(Q0), c, _upper47(fixed_chord(iv.mpf(Q0), c)), KMAX46, wbound=wb, cover_end=mp.mpf(t0)))
+179c187
+< b3["class_sign_exchanged"] = _with_history46(fhn, lambda: _ladder46(enc, T46, Qn, 1, UPPER46, KMAX46, wbound=W0_46, cover_end=lo(T46)) if tau_point9(enc, T46, Qn, 1) is None else (tau_point9(enc, T46, Qn, 1), {"k": 0}))
+---
+> b3["class_sign_exchanged"] = _with_history46(fhn, lambda: _ladder46(enc, T46, Qn, 1, _upper47(fixed_chord(Qn, 1)), KMAX46, wbound=W0_46, cover_end=lo(T46)) if tau_point9(enc, T46, Qn, 1) is None else (tau_point9(enc, T46, Qn, 1), {"k": 0}))
+193a202,216
+> # (B7) KNOWN, v4.7: UNLIKE roots ABOVE the frozen upper end chord_U + 0.90: the frozen bracket refuses, the fallback (rung 0, b = 2.05) encloses; direct-vector checks
+> b7 = {}; okb7 = True
+> r7s, rn7 = _known_root46(mp.mpf("1.82"), mp.mpf("1.77"), c=1); r7s["frozen_upper_end"] = mp.nstr(up(fixed_chord(iv.mpf("1.82"), 1)) + UPPER46, 12); b7["stationary unlike Q = 1.82, q' = 1.77"] = r7s
+> okb7 = okb7 and bool(r7s["frozen_bracket_refused"] and rn7[0] is not None and r7s.get("meets_direct_root") and mp.mpf(r7s["width"]) < mp.mpf("1e-15") and mp.mpf(r7s["centre_diff"]) < mp.mpf("1e-15") and r7s.get("rung") == 0 and abs(rn7[1]["b"] - TOP47) < mp.mpf("1e-25")
+>                      and mp.mpf(r7s["tau"][0]) > mp.mpf(r7s["frozen_upper_end"]))
+> r7u, ok7u = _moving46(mp.mpf("1.80"), mp.mpf("1.78"), mp.mpf("0.10"), mp.mpf(5), c=1); b7["uniform unlike Q = 1.80, q1 = 1.78, u = +0.10"] = r7u
+> okb7 = okb7 and ok7u and r7u["frozen_bracket_refused"] and r7u.get("rung") == 0 and mp.mpf(r7u["tau"][0]) > up(fixed_chord(iv.mpf("1.80"), 1)) + UPPER46
+> out["controls"].append({"name": "(B7) KNOWN (v4.7) unlike roots above the frozen upper end chord_U + 0.90 (constructed: stationary source, exact root = direct-vector chord about 1.888; uniform source |u| = 0.10, root about 1.83 proved by the independent direct-vector sign test): the frozen v3c1 bracket refuses, the v4.7 fallback encloses on rung 0 (frozen lower end) with b = 2.05", "pass": bool(okb7), "detail": b7})
+> # (B8) NEGATIVES (v4.7) on the stationary unlike case: an upper end forced to 1.80 (below the root about 1.888) refuses; the like geometry on the unlike source is detected (refuses or disjoint)
+> fh8 = _stationary46(mp.mpf("1.77")); Q8 = iv.mpf("1.82"); rd8 = _rdir46(mp.mpf("1.82"), mp.mpf("1.77"), 1); b8 = {}
+> n8a = _with_history46(fh8, lambda: _ladder46(enc, T46, Q8, 1, mp.mpf("1.80") - up(fixed_chord(Q8, 1)), KMAX46, wbound=W0_46, cover_end=lo(T46)))
+> n8b = _with_history46(fh8, lambda: (tau_point9(enc, T46, Q8, -1), {"k": "frozen"}) if tau_point9(enc, T46, Q8, -1) is not None else _ladder46(enc, T46, Q8, -1, _upper47(fixed_chord(Q8, -1)), KMAX46, wbound=W0_46, cover_end=lo(T46)))
+> b8["upper_end_1.80_below_root_refused"] = ({"refused": n8a[1]} if n8a[0] is None else {"enclosure": pair(n8a[0][0])}); b8["like_geometry_on_unlike_source"] = ({"refused": n8b[1]} if n8b[0] is None else {"enclosure": pair(n8b[0][0])}); b8["unlike_direct_root"] = pair(rd8)
+> okb8 = bool(n8a[0] is None and "frozen bracket on [a_k, b] refused" in n8a[1]["failing"] and (n8b[0] is None or not inter(n8b[0][0], rd8)))
+> out["controls"].append({"name": "(B8) NEGATIVES (v4.7, constructed stationary unlike source, root about 1.888): a fallback with the upper end forced to 1.80 refuses (inf h(b) > 0 not proved); the like class sign on the unlike source is DETECTED (refuses or disjoint from the unlike direct-vector root)", "pass": okb8, "detail": b8})
+228c251
+<     rl, il = _ladder46(enc, t_, Q_, -1, UPPER46, KMAX46)
+---
+>     rl, il = _ladder46(enc, t_, Q_, -1, _upper47(fixed_chord(Q_, -1)), KMAX46)
+234c257
+<     okb6 = bool(o_ is None and rl is not None and il["k"] >= 1 and lo(rl[0]) > il["a"] and up(rl[0]) < il["b"] and il["w_bound"] < 1)
+---
+>     okb6 = bool(o_ is None and rl is not None and il["k"] >= 1 and il["b"] == up(fixed_chord(Q_, -1)) + UPPER46 and lo(rl[0]) > il["a"] and up(rl[0]) < il["b"] and il["w_bound"] < 1)
+245c268
+< out["v46"]["controls_note"] = "B1-B4 run in every mode; B5-B6 only in controls mode (they append r1-r5)"
+---
+> out["v46"]["controls_note"] = "B1-B4, B7-B8 run in every mode; B5-B6 only in controls mode (they append r1-r5)"

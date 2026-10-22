@@ -50,6 +50,8 @@ export function frozenResearchSourceOrigin(currentPath) {
 }
 
 export function resolveResearchDocumentLink(documentPath, href) {
+  const recorded = recordedResearchLinkTarget(documentPath, href);
+  if (recorded) return resolveLocation(recorded, '');
   if (!href || /^[a-z][\w+.-]*:/iu.test(href) || href.startsWith('/')) return null;
   const hash = href.indexOf('#');
   const rawPath = hash < 0 ? href : href.slice(0, hash);
@@ -63,4 +65,16 @@ export function resolveResearchDocumentLink(documentPath, href) {
   }
   const logicalPath = segments.join('/');
   return resolveLocation(logicalPath, fragment);
+}
+
+// Captured independent review replies retain their original chat-link bytes.
+// Resolve only the recorded checkout prefix in this provenance-bearing class;
+// ordinary authored documents still require relative links.
+export function recordedResearchLinkTarget(documentPath, href) {
+  if (!/^reference\/priorities\/.+\/evidence\/.+\/review\/(?:chunk\d+|tracking)-(?:reply|request|response)-round\d+\.md$/.test(documentPath)) return null;
+  const prefix = '/Users/markmorris/vibe/architrino/';
+  if (typeof href !== 'string' || !href.startsWith(prefix)) return null;
+  const target = href.slice(prefix.length).replace(/:\d+(?::\d+)?$/, '');
+  if (!target || target.startsWith('/') || target.split('/').some(p => p === '..' || p === '.') || /[%\\?#]/.test(target)) return null;
+  return target;
 }

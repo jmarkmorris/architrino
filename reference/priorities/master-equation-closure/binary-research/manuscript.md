@@ -1477,7 +1477,7 @@ The [final independent disposition](analysis/saturday-low-angular-momentum-codex
 
 ### 9.7. Actual common-motion correlations and necessary radial travel
 
-The [actual-correlation analysis](analysis/saturday-actual-common-motion-correlations-2026-10-17.md), accepted by its [final independent review](analysis/saturday-actual-common-motion-correlations-codex-review-2026-10-18.md#final-corrected-byte-disposition--october-18), reduces the sign-free correlation K2 using the actual common-motion equation. The scope remains complete twice continuously differentiable planar opposite-unit pairs, positive separation, unit reduced coupling, normalized wake speed $c_f=1$ and whole-history speed bound $0<w<1/3$. Relative-vector recurrence is up to an orientation-preserving rotation; an orientation-reversing return uses twice the period. No periodic common velocity, constant J, mirror symmetry or conserved angular momentum is assumed. Here $T$ denotes absolute time and $P_{\mathrm{cyc}}$ the recurrence period, translating the source's time/period notation without changing its mathematical assumptions.
+The [actual-correlation analysis](analysis/saturday-actual-common-motion-correlations-2026-10-17.md), accepted by its [final independent review](analysis/saturday-actual-common-motion-correlations-codex-review-2026-10-18.md#final-corrected-byte-disposition--october-18), reduces the sign-free correlation K2 using the actual common-motion equation. The scope remains complete twice continuously differentiable planar opposite-unit pairs, positive separation, unit reduced coupling, normalized wake speed $c_f=1$ and whole-history speed bound $0<w<1/3$, in the ordinary partner-root class with no positive-delay own-path roots. Relative-vector recurrence is up to an orientation-preserving rotation; an orientation-reversing return uses twice the period. No periodic common velocity, constant J, mirror symmetry or conserved angular momentum is assumed. Here $T$ denotes absolute time and $P_{\mathrm{cyc}}$ the recurrence period, translating the source's time/period notation without changing its mathematical assumptions.
 
 Write $d=J/r$, let $P_\parallel,P_\perp$ be components of the velocity sum in the relative rotating frame, and let $A_\parallel,A_\perp$ be those of the acceleration sum. Define $Q_P=P_\parallel^2-P_\perp^2$ and $H=A_\parallel P_\parallel-A_\perp P_\perp$. The frame equations give the exact identities
 
@@ -1509,3 +1509,76 @@ All three allow zeros and sign changes of J. At $w=.1$, the independent rational
 A proved upper-travel bound $\rho_1\le U$ would exclude a candidate only with the strict margin $a_fU+b_f<c_-u$. Direct control of the signed correlation is a different route, not an equivalent travel bound. The candidate turning term obeys $\int|\dot\vartheta P_\parallel P_\perp|\,dT\le(4w^3/c_-)Q_d$; multiplying it by an excursion supremum introduces another uncontrolled quantity and gives no new exclusion. K1 remains separate. The radial allowance $\rho_1\le\sqrt{c_+u}$ is compatible with these constraints in the checked speed-.1 domain; compatibility establishes no solution.
 
 These are derived necessary conditions, with conservative arithmetic checked by a separately authored rational/interval reference after known controls. No actual history is measured or newly evolved. General periodicity, strongly breathing or widely separated recurrence, signed correlations and useful actual travel/excursion control remain open. A complete admitted solution violating a necessary bound, or satisfying the strict upper-travel contradiction, would refute the affected theorem; a failed sufficient test establishes neither existence nor general exclusion.
+
+### 9.8. An inverse-weighted angular balance and exclusions at every separation
+
+The open cases described in this section concern this inverse-weighted argument. Section 9.9 supplies the stronger complete-history conclusion at whole-history speed bound at most $129/1000$; questions above that range remain open.
+
+Three analyses of 2026-10-20 were each accepted by Codex (gpt-6.1-sol, reasoning high) after three review rounds:
+
+- the [excursion bound](analysis/saturday-binary-correlation-travel-2026-10-20.md);
+- the [inverse-weighted balance](analysis/saturday-binary-correlation-travel-2026-10-20-inverse-weight.md);
+- the [higher-speed extension](analysis/saturday-binary-correlation-travel-2026-10-20-speed-range.md).
+
+The review records are in the [evidence folder](evidence/saturday-binary-correlation-travel-2026-10-20/README.md). The class is that of Section 9.7: complete planar opposite-unit pairs, unit reduced coupling, $c_f=1$, positive separation, whole-history speed bound $w<1/3$, ordinary partner roots and no positive-delay own roots. Recurrence is relative periodicity after an orientation-preserving rotation; rigid recurrence is not assumed.
+
+**Centring at closest approach.** Splitting K2 about a constant reference separation gives an exact identity, regular through zeros of J. Centring at $r_{\min}$ bounds the radial–anisotropy correlation of Section 9.7 by the relative excursion $\varepsilon_r=1-r_{\min}/r_{\max}$ instead of by radial speed. The common velocity need not recur; the boundary term is removed by averaging over many periods. Where $D>m$, every repeating history satisfies
+
+$$
+w^2\Delta r+wz_0r_{\max}\ge(D-m)\sqrt{c_-r_{\min}},\qquad \Delta r=r_{\max}-r_{\min}.
+$$
+
+At $w=1/10$ this requires $\Delta r>121$ at the separation floor, $\Delta r>1906$ at $r_{\min}=10^4$ and $\Delta r>10083$ at $r_{\min}=10^6$. The requirement is positive only below $r_{\min}\approx4.04\times10^6$. It constrains amplitude, whereas the lines of Section 9.7 constrain mean radial speed; the two are logically separate necessary conditions.
+
+**The inverse-weighted balance.** Weight the period balance of $J^2$ by $1/r$. The common-motion term then becomes the turning correlation $\oint\dot\vartheta P_\parallel P_\perp\,dt$, which the common-motion equation fixes up to a small nonnegative quantity and a third-order remainder. What remains depends on the relative orbit alone (Theorem R):
+
+$$
+\tfrac12\oint\dot r\,d^2\,dt=\oint\frac{J\dot J}{r}\,dt\ \ge\ G(w,r_{\min})\oint\frac{dt}{r^2},
+$$
+
+with an explicit $G$. At $w=1/10$, $G>0.2437$ at the floor and $G>0.997$ once $r_{\min}\ge10^4$. Three consequences hold at every separation, for every sign pattern of J, at $w\le1/10$:
+
+- **Constant separation is excluded.** The earlier exclusions reached normalized separation $2\times10^7$ (rigid recurrence, $J>0$) and $4.04\times10^6$ (all sign patterns).
+- **Constant J is excluded**, with no threshold. More generally $\max J^2-\min J^2\ge2G/w$, which exceeds $4.87$ at $w=1/10$. This removes the constant-J alternative of the October 10–11 notes for relative-periodic histories.
+- **A minimum radial amplitude.** At $w=1/10$ and $r_{\min}\ge10^4$, $\Delta r>4.522\,r_{\min}/\sqrt{r_{\max}}$ and $\Delta r>140.9\,r_{\min}/r_{\max}$.
+
+**Higher speed bounds.** Theorem R does not use the coefficient D. So for each tabulated $w\le27/100$, constant separation and constant J are excluded, and a minimum amplitude is forced, once the closest approach exceeds a certified distance $\rho_w$:
+
+| $w$ | $\rho_w$ |
+| --- | --- |
+| $11/100$ | $63$ |
+| $1/5$ | $9199$ |
+| $1/4$ | $740{,}904$ |
+| $27/100$ | $1.713\times10^7$ |
+
+The large-separation limit of G changes sign between $27/100$ and $3/10$. That is a limit of the constants, not a physical speed boundary. Where Theorem Z applies, an alternative amplitude coefficient is $1.78$ times stronger at $w=1/10$; both bounds hold.
+
+All of these are derived necessary conditions. The decimals are exact-rational evaluations, confirmed as conservative by the reviewer. No history is measured, and no repeating solution is constructed; the frozen-ellipse comparison violates Theorem R, as a non-solution should. On this route, strongly eccentric, widely separated histories remain open, and the only uncontrolled quantity is an upper bound on the relative-orbit correlation $\tfrac12\oint\dot r\,d^2\,dt$ below $G\oint r^{-2}dt$. That is the asymmetry of transverse speed between the outward and inward legs. A complete relative-periodic history in the class with constant separation or constant J at $w\le1/10$, or with an amplitude below these bounds, would refute the corresponding result.
+
+### 9.9. A balance function excludes bounded complete histories at small speed
+
+Every complete history in the declared planar opposite-unit-polarity class with both speeds bounded by $129/1000$ separates without limit in both time directions. This excludes relative-periodic histories and also histories that stay at bounded separation without repeating. The result is a conditional derivation under the unchanged Master Equation, unit reduced coupling and $c_f=1$: paths are twice continuously differentiable for all absolute times, separation is positive, each member has one ordinary partner root and no positive-delay own root, and the speed bound holds over the whole history. A finite release from a supplied past is not such a history. No mirror symmetry, constant common velocity or conserved energy is assumed.
+
+The mechanism uses a balance function combining relative speed and delayed acceleration geometry. With $r$ the separation, $d$ the relative transverse speed, $b_i$ member $i$'s transverse velocity and $S_i=\sqrt{1-b_i^2}$, define
+
+$$
+\mathcal L=\frac12\dot r^2+\frac12d^2-\frac{S_1+S_2+\dot r}{r}
+$$
+
+Dots here denote absolute-time derivatives. This is not a postulated energy or a pointwise monotone quantity. Straight-window cancellations remove the uncontrolled common-motion terms; bounds on curved emission windows control the remainder. The [balance-function derivation](analysis/saturday-binary-inout-asymmetry-2026-10-21.md), [complete-history separation argument](analysis/saturday-binary-inout-asymmetry-2026-10-21-separation.md), [sharpened bounds](analysis/saturday-binary-inout-asymmetry-2026-10-21-sharpened.md) and [regrouped numerator](analysis/saturday-binary-inout-asymmetry-2026-10-21-regrouped.md) supply the full proofs.
+
+The separation floor $r\ge\rho_w=c_-/(4w^2)$, where $c_-=2(1-w)^2\sqrt{1-w^2}/(1+w)$, holds for complete histories without a recurrence assumption. Below that floor the actual radial acceleration obeys $\ddot r\le4w^2/r-c_-/r^2<0$. Strict concavity would drive separation to zero in finite time in one time direction, contradicting completeness with positive separation. The floor and speed bound keep $\mathcal L$ bounded.
+
+The final numerator estimate retains cancellation between the displacement error and velocity change over one emission window. Their combination is one backward-weighted acceleration integral, bounded by half the squared delay times the acceleration bound. This is one third of the separate triangle allowance; after including the unchanged delay-error term, the total speed-dependent contribution is halved. It changes an estimate, not the equation or solution class.
+
+For every finite absolute-time interval, the resulting bound has the form
+
+$$
+\Gamma_{\rm reg}(w)I-B_w\sqrt I\le K_w,\qquad I=\int_{T_0}^{T_1}r^{-3}\,dT
+$$
+
+Here $\Gamma_{\rm reg}$ is the positive gain remaining after the controlled errors; $B_w$ and $K_w$ are the finite endpoint allowances defined in the separation companion, with the regrouped constants substituted. Positive gain bounds $I$ independently of the interval endpoints. Thus the whole-line inverse-cube integral is finite. Since $|\dot r|\le2w$, infinitely many returns to any bounded separation would contribute infinitely many disjoint positive amounts to that integral. Consequently $r(T)\to\infty$ as $T\to\pm\infty$.
+
+The [final independent review](evidence/saturday-binary-inout-asymmetry-2026-10-21/review/chunk4-reply-round2.md) accepts the regrouping and theorem transfer and independently encloses $\Gamma_{\rm reg}(129/1000)$ between .03886897652558 and .03886897652559. Class nesting covers every smaller speed bound. The same review places the certificate's unique zero strictly between .129 and .130. This is an endpoint of this sufficient proof, not a physical threshold for existence. The [evidence account](evidence/saturday-binary-inout-asymmetry-2026-10-21/README.md) retains the accepted intermediate thresholds .081 and .118 and the individual review dispositions.
+
+Claim grade: derived, conditional on the declared inputs, with independently checked arithmetic recorded in the review. Prescribed-path samples check algebra only; no solution history is measured. Existence of a complete member of the class, increased outgoing relative speed, histories exceeding the speed bound at another time and general behavior above .129 remain unresolved. A complete admitted history at speed bound at most .129 that fails to separate in either time direction, a violated intermediate bound, or an exact evaluation with nonpositive endpoint gain would overturn the corresponding result. BP-001, canonical scores and production gates are unchanged.

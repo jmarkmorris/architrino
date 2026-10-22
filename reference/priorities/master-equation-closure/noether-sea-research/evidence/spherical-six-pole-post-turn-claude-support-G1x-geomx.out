@@ -1,0 +1,110 @@
+PID 79111
+PID 79111
+PID 79111
+[{"name": "(K1) known: signed closed forms (chord, D_t, tangential N/(r^3 D), radial sigma/(2 r D), identity 1 + r_q' v' = D; both code paths kern and geom) vs direct vector computation, 400 random points of the EXTENDED box (geomx: source q' in [0, 1.83], source velocity in [-0.20, 0.45]), three classes; the vector tangent hit of each meridional class has the sign of N", "points_with_M_negative": 400, "points_with_N_negative": 398, "points_with_negative_source_velocity": 110, "max_abs_diff": {"unlike": "6.8877e-41", "like": "7.3468e-40", "antipode": "6.8877e-41"}, "pass": true}, {"name": "(X2) known, EXTENSION strips: closed forms (both code paths) vs direct vectors at 150 points with q' in [1.80, 1.83] (w' in [-0.20, 0.45]) and 150 points with w' in [-0.20, -0.10] (q' in [0, 1.83]), receiver q in [1.45, 2.10], three classes; tangent-hit sign = sign N for meridional classes", "n_qp_strip": 150, "n_wp_strip": 150, "max_abs_diff": {"unlike": "8.0356e-41", "like": "2.1122e-39", "antipode": "5.7397e-41"}, "pass": true}, {"name": "(X3) NEGATIVES, swapped signs at the extension point (1.70, 1.82, -0.15): (i) source velocity sign flipped changes D_t by > 1e-3; (ii) the other class's geometry (unlike<->like; antipode->unlike) differs from the vector chord/tangent hit by > 1e-3; (iii) receiver and source exchanged changes the meridional tangent hit by > 1e-3; the true closed forms match the vector to 1e-30", "detail": {"unlike": {"D": "0.957019683343599", "D_velocity_flipped_vector": "1.0429803166564", "class_swapped_diff": "2.493282", "receiver_source_swapped_tangent_diff": "0.0091855408", "true_matches_vector": true}, "like": {"D": "1.11162006613833", "D_velocity_flipped_vector": "0.888379933861667", "class_swapped_diff": "2.493282", "receiver_source_swapped_tangent_diff": "0.15946342", "true_matches_vector": true}, "antipode": {"D": "1.00899460097192", "D_velocity_flipped_vector": "0.991005399028083", "class_swapped_diff": "0.21064539", "receiver_source_swapped_tangent_diff": "0.030092633", "true_matches_vector": true}}, "pass": true}, {"name": "(H1) EXACT HAND-KNOWN: antipode class, static source q' = 0, receiver q = pi/2, qdot = 2/5: h_A = sqrt2/4 and dh_A/dt = 3 sqrt2/20", "h": "0.353553390593273762200422181052", "dh_dt": "0.212132034355964257320253308631", "hand_dh_dt": "0.212132034355964257320253308631", "pass": true}, {"name": "(W1) negative (sign flip): source velocity sign flipped at (1.7, 1.2, 0.4) changes D_t by > 1e-3 in every class", "detail": {"unlike": {"D_closed": "1.2154718459505", "D_wrong_velocity": "0.784528154049504"}, "like": {"D_closed": "0.708618982660832", "D_wrong_velocity": "1.29138101733917"}, "antipode": {"D_closed": "1.09896158370181", "D_wrong_velocity": "0.901038416298191"}}, "pass": true}, {"name": "(W3) negative: the OLD LABEL imposed (unlike D computed as 1 - v'|M|/r, i.e. approach assumed) at (1.7, 1.2, 0.4), where M < 0, differs from the vector D_t", "M": "-0.86623981978", "N": "-0.626527050478", "D_vector": "1.2154718459505", "D_old_label": "0.784528154049504", "pass": true}, {"name": "(K2) NUMERICAL prescribed-history control: d(lambda_hat)/dt and d(a_rad)/dt closed forms vs Richardson differences on an exactly known history with a generated segment, NEW box, t = 5.1 (q about 1.55) and t = 5.6 (q about 1.86)", "detail": {"5.1": {"q": "1.54755", "qdot": "0.581", "classes": {"unlike": {"delayed_arg": "3.7518511", "q_delayed": "0.864238", "v_delayed": "0.432704", "beyond_seam": true, "M": "-0.85153224", "N": "-0.5358499", "D": "1.273308884"}, "like": {"delayed_arg": "3.5819752", "q_delayed": "0.79232", "v_delayed": "0.414017", "beyond_seam": true, "M": "-0.84277427", "N": "-0.50004602", "D": "0.770146645"}, "antipode": {"delayed_arg": "3.2872965", "q_delayed": "0.675093", "v_delayed": "0.381603", "beyond_seam": true, "M": "-0.81918927", "N": "-0.43623393", "D": "1.161236254"}}, "dlambda_closed": "-0.2108400560796714316393", "dlambda_abs_err": "3.3201e-29", "darad_abs_err": "3.3201e-29", "jerk": {"unlike": {"closed": "0.10214611845664904695", "abs_err": "4.9149e-30"}, "like": {"closed": "-0.42503464444383569881", "abs_err": "4.0818e-28"}, "antipode": {"closed": "0.021672334899325249259", "abs_err": "8.3989e-34"}}, "dqddot_dt_closed": "-0.062410471707504805446", "dqddot_dt_fd": "-0.062410471707504805446"}, "5.6": {"q": "1.8518", "qdot": "0.636", "classes": {"unlike": {"delayed_arg": "4.0504133", "q_delayed": "0.99833", "v_delayed": "0.465545", "beyond_seam": true, "M": "-0.93751417", "N": "-0.56073113", "D": "1.281659272"}, "like": {"delayed_arg": "4.5088609", "q_delayed": "1.22332", "v_delayed": "0.515975", "beyond_seam": true, "M": "-0.86913098", "N": "-0.5751721", "D": "0.5890078651"}, "antipode": {"delayed_arg": "3.8241601", "q_delayed": "0.895814", "v_delayed": "0.440658", "beyond_seam": true, "M": "-0.95312172", "N": "-0.54468034", "D": "1.202701598"}}, "dlambda_closed": "-0.4526547667985067335223", "dlambda_abs_err": "2.1918e-27", "darad_abs_err": "2.1918e-27", "jerk": {"unlike": {"closed": "0.10785223551689147663", "abs_err": "2.3688e-30"}, "like": {"closed": "-2.8583860573796084789", "abs_err": "4.9221e-26"}, "antipode": {"closed": "0.020528605809170898619", "abs_err": "7.1685e-34"}}, "dqddot_dt_closed": "-0.54805390379162631059", "dqddot_dt_fd": "-0.54805390379162631059"}}, "pass": true}, {"name": "(K3) NUMERICAL prescribed-history control: each class's dh_c/dt and d(qddot)/dt closed forms vs Richardson differences, same history and times (values inside the K2 detail)", "pass": true}, {"name": "(W2) negative: the pre-seam acceleration used for the unlike source beyond the seam at t = 5.6 changes d(lambda_hat)/dt and dh_U/dt by more than 1e-6", "dlambda": ["-0.452654766798507", "-0.452226454842777"], "dhU": ["0.107852235516891", "0.1068520441749"], "pass": true}, {"name": "(W4) negative (acceleration omission): the unlike source acceleration set to zero at t = 5.6 moves dh_U/dt away from the Richardson difference and changes d(lambda_hat)/dt, each by more than 1e-6", "dhU_true_omitted_fd": ["0.107852235516891", "0.104184867262924", "0.107852235516891"], "dlambda": ["-0.452654766798507", "-0.451084289627498"], "pass": true}, {"name": "(W5) negative (sign flip): the delayed speed entered with the wrong sign in dh_U/dt at t = 5.6 is rejected by the Richardson difference (difference > 1e-6)", "dhU_flipped": "0.0436080811706259", "pass": true}, {"name": "(H2) EXACT HAND-KNOWN radial account: static sources at q' = 0, receiver q = pi/2, qdot = 2/5, qddot = 0: a_r and da_r/dt from the hand formula; dl/dt = -da_r/dt", "a_r": "-0.1118920255323453305657342", "a_r_hand": "-0.1118920255323453305657342", "da_r_dt": "-0.007071067811865475244008444", "da_r_dt_hand": "-0.007071067811865475244008444", "dl_dt": "0.007071067811865475244008444", "pass": true}, {"name": "(K2b) NUMERICAL prescribed-history control, smooth turning history q(s) = 1.45 + 0.3 sin(0.5 (s - 2)) at t = 7.2 (receiver w < 0, unlike source w' < 0): d(a_r)/dt, dl/dt and each dh_c/dt against Richardson differences", "q": "1.6046504", "w": "-0.12853331", "classes": {"unlike": {"delayed_arg": "5.3890077", "q_delayed": "1.74771", "v_delayed": "-0.0185088", "beyond_seam": true, "M": "-0.60351488", "N": "-0.67479964", "D": "0.9938319124"}, "like": {"delayed_arg": "6.3169674", "q_delayed": "1.69967", "v_delayed": "-0.0831657", "beyond_seam": true, "M": "-0.63354492", "N": "-0.68098203", "D": "1.059668458"}, "antipode": {"delayed_arg": "5.2052683", "q_delayed": "1.74985", "v_delayed": "-0.00477486", "beyond_seam": true, "M": "-0.60214386", "N": "-0.67448781", "D": "1.000346345"}}, "dl_err": "5.8143e-32", "dar_err": "2.5013e-32", "dh_err": {"unlike": "2.425e-32", "like": "8.9798e-31", "antipode": "6.8398e-33"}, "pass": true}, {"name": "(W6) negative (sign flip): the unlike delayed velocity entered with the wrong sign in d(a_r)/dt at t = 7.2 is rejected by the Richardson difference (difference > 1e-6)", "dar_true": "-0.0246279891901228", "dar_flipped": "-0.0241233041493025", "dar_fd": "-0.0246279891901228", "pass": true}, {"name": "(W7) negative (acceleration omission): the unlike source acceleration set to zero changes d(a_r)/dt at t = 7.2 by more than 1e-6 and is rejected by the Richardson difference", "dar_omitted": "-0.0231659378379926", "pass": true}, {"name": "(X4) NUMERICAL prescribed-history control reaching the extension (q(s) = 1.46 + 0.36 sin(0.5 (s - 2))): at a time where a class reads q' > 1.80 and at a time where the like source has w' < -0.10, dl/dt, d(a_r)/dt and each dh_c/dt closed forms agree with Richardson differences to 1e-12, every read lies in the extended box; NEGATIVES at both times: the like delayed velocity sign-flipped (in d(a_r)/dt) and the like source acceleration omitted (in dl/dt) are rejected by > 1e-6", "detail": {"source_qp_beyond_1.80": {"t": "6.7", "q": "1.7161304", "w": "-0.12648835", "classes": {"unlike": {"delayed_arg": "4.8297488", "q_delayed": "1.81563", "v_delayed": "0.0279524", "beyond_seam": true, "M": "-0.53404253", "N": "-0.58371165", "D": "1.007981683"}, "like": {"delayed_arg": "5.9715486", "q_delayed": "1.78945", "v_delayed": "-0.0725706", "beyond_seam": true, "M": "-0.55346965", "N": "-0.59009416", "D": "1.055138341"}, "antipode": {"delayed_arg": "4.7022662", "q_delayed": "1.81135", "v_delayed": "0.0392222", "beyond_seam": true, "M": "-0.53724542", "N": "-0.58478307", "D": "0.9981333553"}}, "dl_err": "6.6261e-32", "dar_err": "1.2264e-32", "dh_err": {"unlike": "2.1599e-34", "like": "1.2977e-30", "antipode": "1.2914e-32"}, "all_inside_extended_box": true, "neg_like_velocity_flip_rejected": true, "neg_like_acceleration_omitted_rejected": true, "pass": true}, "like_source_wp_below_-0.10": {"t": "7.3", "q": "1.629931", "w": "-0.1586848", "classes": {"unlike": {"delayed_arg": "5.4583654", "q_delayed": "1.81549", "v_delayed": "-0.0283905", "beyond_seam": true, "M": "-0.55379942", "N": "-0.64604932", "D": "0.9914626702"}, "like": {"delayed_arg": "6.4684411", "q_delayed": "1.74364", "v_delayed": "-0.110847", "beyond_seam": true, "M": "-0.60232416", "N": "-0.65905609", "D": "1.080290181"}, "antipode": {"delayed_arg": "5.3089057", "q_delayed": "1.81874", "v_delayed": "-0.0150406", "beyond_seam": true, "M": "-0.55153713", "N": "-0.64538223", "D": "1.001417801"}}, "dl_err": "1.2716e-31", "dar_err": "8.2221e-32", "dh_err": {"unlike": "3.1045e-32", "like": "3.2381e-30", "antipode": "8.9952e-33"}, "all_inside_extended_box": true, "neg_like_velocity_flip_rejected": true, "neg_like_acceleration_omitted_rejected": true, "pass": true}}, "pass": true}]
+{
+"cells": [
+65,
+183
+],
+"N_range": [
+"-0.7670710923844577890729151",
+"0.08520832537142347544543291"
+],
+"M_range": [
+"-1.00183228859573143382108",
+"-0.3872267127607894230416283"
+],
+"cell_sign_counts": {
+"N_pos": 57,
+"N_neg": 11813,
+"N_und": 25,
+"M_pos": 0,
+"M_neg": 11895,
+"M_und": 0
+},
+"min_chord_unlike": "0.76536686473017954345692",
+"min_chord_like": "0.3944625083226407500749251",
+"min_chord_antipode_any_order": "0.9951420957834539805816991",
+"M_over_rU_range": [
+"-0.9071921984055187700707339",
+"-0.1974927071444600739870099"
+],
+"M_over_rL_range": [
+"-1.019045311009085922463242",
+"-0.2227326151369558839906649"
+],
+"D_unlike_range_w_in_[-0.20,0.45]": [
+"0.8185615603188962459858532",
+"1.40823648928248344653183"
+],
+"D_like_range": [
+"0.541429610045911334891541",
+"1.203809062201817184492648"
+],
+"D_antipode_range_d_in_[-0.38,2.10]": [
+"0.8265153548811966211237181",
+"1.390340451517307602471634"
+],
+"D_unlike_interval_outer": [
+"0.8185615603188962459858532",
+"1.40823648928248344653183"
+],
+"D_like_interval_outer": [
+"0.541429610045911334891541",
+"1.203809062201817184492648"
+],
+"D_antipode_interval_outer": [
+"0.8265153548811966211237181",
+"1.390340451517307602471634"
+],
+"D_all_positive_proved": true,
+"M_zero_q_of_qp_on_[0,1.57]": {
+"0": "0.955316618125",
+"0.1": "0.891534355212",
+"0.2": "0.832583967619",
+"0.3": "0.777243870865",
+"0.35": "0.750600166238",
+"0.4": "0.724484834885",
+"0.5": "0.673412704712",
+"0.6": "0.623220026692",
+"0.8": "0.522427524377",
+"1.0": "0.415843016532",
+"1.2": "0.295989121038",
+"1.4": "0.152534027667",
+"1.6": null,
+"1.8": null
+},
+"N_zero_q_of_qp_on_[0,1.57]": {
+"0": null,
+"0.1": "1.46321652593",
+"0.2": "1.33844242104",
+"0.3": "1.19379296728",
+"0.35": "1.11354677239",
+"0.4": "1.02810475163",
+"0.5": "0.843438791903",
+"0.6": "0.646431711026",
+"0.8": "0.258211908192",
+"1.0": null,
+"1.2": null,
+"1.4": null,
+"1.6": null,
+"1.8": null
+},
+"N_zero_formula_q_star": {
+"0": null,
+"0.1": "1.46321652593",
+"0.2": "1.33844242104",
+"0.3": "1.19379296728",
+"0.35": "1.11354677239",
+"0.4": "1.02810475163",
+"0.5": "0.843438791903",
+"0.6": "0.646431711026",
+"0.8": "0.258211908192",
+"1.0": null,
+"1.2": null,
+"1.4": null,
+"1.6": null,
+"1.8": null
+}
+}

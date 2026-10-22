@@ -1,0 +1,9 @@
+You are an independent reviewer (Codex, gpt-6.1-sol) for the Architrino repository at /Users/markmorris/vibe/architrino. Do not edit any file. Read AGENTS.md's physics rules and the canonical Master Equation passages you need. Read the files under review in full and the cited accepted sources. Reconstruct every derivation and every numerical claim independently; do not trust the author's statements or instruments. Report: (a) what you read; (b) for each claim, supported / not supported / needs correction, with the reason; (c) a numbered list of actionable corrections, each labelled with a short ID; (d) an overall disposition: ACCEPT, ACCEPT AFTER CORRECTIONS, or REJECT. Be specific about scope: what is derived, what is only sampled, what is conditional.
+
+## Chunk 1, round 2: verify corrections to the fixed-past field theorem
+
+- File under review: `reference/priorities/master-equation-closure/analysis/saturday-cross-geometry-continuation-2026-10-20.md`, SHA-256 `4ab0726d2dca9e4a62e2f0bb9e245b71bf40d252f84ec2a87fb09ddb4b167f1f`, 45,360 bytes.
+- Your round 1 reply: `reference/priorities/master-equation-closure/evidence/saturday-cross-geometry-2026-10-20/review/chunk1-reply-round1.md`.
+- Author response: `reference/priorities/master-equation-closure/evidence/saturday-cross-geometry-2026-10-20/review/chunk1-response-round1.md`.
+
+Verify that R1, R2 and R3 are resolved. Verify also the restatement of Theorem A by part (made for consistency with the chunk 2 finding B-ROOT): that (a) and (d) indeed follow from (H1) and (H2) alone in the given proof, that (b) and (c) carry the summability hypotheses, and that Theorem A′ (which still assumes $\Sigma_0<\infty$) and the statements table are consistent with the restatement. Read the whole file again and report any new error introduced by these edits.

@@ -7,13 +7,13 @@
 <section class="stage" aria-label="Path viewer">
   <div class="stage-heading"><h2>Motion on a closed surface</h2><p id="stage-description">Prepared past. Calculated future. One fixed sphere.</p></div>
   <div id="viewer"></div><div class="view-tools"><button id="camera">Reset view</button><span>Drag to rotate · Scroll to zoom</span></div>
-  <div class="legend"><span class="electrino">● Electrino (+)</span><span class="positrino">● Positrino (−)</span><span>┄ Prepared past</span><span>━ Computed path</span></div>
+  <div class="legend"><span><span class="electrino">●</span> Electrino (−)</span><span><span class="positrino">●</span> Positrino (+)</span><span>┄ Prepared past</span><span>━ Computed path</span></div>
   <div class="timeline"><div class="timeline-heading"><button id="play" disabled>Play</button><span id="time-label">Absolute time 0</span><span id="coverage">Preparation only</span></div><input id="timeline" type="range" min="0" max="0.25" step="0.0001" value="0" aria-label="Playback absolute time" disabled><p>Playback stays inside accepted coverage. Curves display the retained approximation and its recorded uncertainty.</p></div>
 </section>
 <aside>
 <section class="panel">
   <div class="section-label">01 / PREPARE</div><h2>Experiment</h2><p class="muted">A smooth closed surface: compact, without edges, embedded in three-dimensional space.</p>
-  <label>Preparation preset<select id="preset"><option value="sphere">Sphere · equatorial ring</option><option value="oblate">Oblate spheroid · northern ring</option><option value="sphere-latitude">Sphere · matched northern ring</option><option value="torus-outer">Ring torus · outer northern ring</option><option value="torus-inner">Ring torus · inner northern ring</option></select></label>
+  <label>Preparation preset<select id="preset"><option value="sphere">Sphere · equatorial ring</option><option value="oblate">Oblate spheroid · northern ring</option><option value="sphere-latitude">Sphere · matched northern ring</option><option value="torus-outer">Ring torus · outer northern ring</option><option value="torus-inner">Ring torus · inner northern ring</option><option value="sphere-watch">Sphere · watchable speed</option></select></label>
   <button id="preset-apply">Use preset preparation</button><p class="muted">Using a preset replaces the current preparation and precision settings. Recorded runs remain in Session records.</p>
   <form id="experiment"><fieldset id="inputs">
     <label>Shape<select id="shape"><option value="sphere">Sphere</option><option value="oblate">Oblate spheroid · compressed along Z</option><option value="ring-torus">Ring torus · one handle</option></select></label>
@@ -39,7 +39,7 @@
 </section>
 <section class="panel">
   <div class="section-label">03 / INSPECT & SAVE</div><label>Receiving architrino<select id="member"><option value="p0">p0</option></select></label>
-  <p class="muted">Normal arrows: violet = discarded interaction, white = artificial support. Directions use sampled interval midpoints; lengths are normalized for display.</p><dl id="diagnostics"><dt>Diagnostics</dt><dd>Available after an accepted run.</dd></dl><p id="sample-time" class="muted"></p><p id="precision" class="muted"></p>
+  <p class="muted">Normal arrows on every architrino: violet = discarded interaction, white = artificial support. The receiving architrino selects the diagnostics listed below. Directions use sampled interval midpoints; lengths are normalized for display.</p><dl id="diagnostics"><dt>Diagnostics</dt><dd>Available after an accepted run.</dd></dl><p id="sample-time" class="muted"></p><p id="precision" class="muted"></p>
   <details><summary>Resolved model and evidence</summary><pre id="manifest">Inspect to resolve the selected equation.</pre></details>
   <div class="actions"><button id="export" disabled>Export playback</button><label class="file-label">Import playback<input id="import" type="file" accept="application/json,.json"></label></div><div id="raw-records"></div><label>Session records<select id="saved"><option value="">Current experiment</option></select></label>
   <p class="muted">Playback imports retain their declared provenance; importing does not independently certify them. Complete ledgers remain in the local EOM record. Save downloads before closing.</p>

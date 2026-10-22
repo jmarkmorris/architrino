@@ -1,0 +1,46 @@
+{
+ "controls": [
+  {
+   "name": "(R4) known, REAL records: 486-record chain, all 485 joins (polynomial end box meets next start strings and a0; both uncertain start-time endpoints step by Delta); appended steps 275..436 consecutive and certified",
+   "n_records": 486,
+   "appended": 162,
+   "skipped_entries": [
+    [
+     "v3c1-N4000-q2.json",
+     437,
+     false
+    ]
+   ],
+   "failures": [],
+   "max_poly_end_q_width": "0.024932",
+   "pass": true
+  },
+  {
+   "name": "(R6) known, self-append: source time 5.0 refused with 324 records and answered with 486; a request at the guaranteed end of step 436 meets its end strings; the chain end equals the campaign restart strings exactly",
+   "refusal": "beyond coverage",
+   "end_matches_restart": true,
+   "pass": true
+  },
+  {
+   "name": "(R7) negatives on the 486-record chain",
+   "detail": {
+    "gap (step 420 removed) refused": true,
+    "gap reason": "gap before sm#421",
+    "uncertified (step 430 flagged) refused": true,
+    "uncertified reason": "uncertified record sm#430",
+    "unaccepted (q2 records off the allow-list) refused": true,
+    "unaccepted reason": "uncertified record sm#432",
+    "beyond the guaranteed end of step 436 refused": true,
+    "read into the uncertain end of step 436 refused": true
+   },
+   "pass": true
+  }
+ ],
+ "slice6_controls_all_pass": true,
+ "controls_all_pass": true,
+ "chain": {
+  "records": 486,
+  "guaranteed_end": "6.226684593623649597167969",
+  "possible_end": "6.226684709182828044891357"
+ }
+}

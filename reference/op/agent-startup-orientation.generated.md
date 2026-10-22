@@ -82,7 +82,7 @@ A changed hash means a startup source was edited after the last regeneration. It
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 24 | `ea8da8bb87d4206f` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 38 | `3666ac9286628a8e` |
 | [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 111 | `cb6eccb992abdf30` |
-| [reference/op/brainstorming.md](brainstorming.md) | 401 | `843e17f05688f203` |
+| [reference/op/brainstorming.md](brainstorming.md) | 409 | `4bcabb6be5a14929` |
 | [reference/op/operator-explanation-standard.md](operator-explanation-standard.md) | 214 | `dccd330a886933a3` |
 | [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 190 | `2c685c5e25ca8643` |
 | [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 142 | `5da12922fc9cadb4` |

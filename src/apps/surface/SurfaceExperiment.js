@@ -5,7 +5,9 @@ export const SURFACE_PRESETS=Object.freeze({
   oblate:{name:'Oblate spheroid · northern ring',shape:'oblate',latitude:'north',flattening:'0.6',radius:'0.1',speed:'0.006',coupling:'0.000001',duration:'0.15',step:'0.01',population:6,speedDomain:'unrestricted'},
   'torus-outer':{name:'Ring torus · outer northern ring',shape:'ring-torus',latitude:'north',radius:'0.05',majorRadius:'0.1',speed:'0.013',coupling:'0.000001',duration:'0.15',step:'0.01',population:6,speedDomain:'unrestricted'},
   'torus-inner':{name:'Ring torus · inner northern ring',shape:'ring-torus',latitude:'inner',radius:'0.05',majorRadius:'0.1',speed:'0.007',coupling:'0.000001',duration:'0.15',step:'0.01',population:6,speedDomain:'unrestricted'},
-  'sphere-latitude':{name:'Sphere · matched northern ring',shape:'sphere',latitude:'north',radius:'0.1',speed:'0.006',coupling:'0.000001',duration:'0.15',step:'0.01',population:6,speedDomain:'unrestricted'}
+  'sphere-latitude':{name:'Sphere · matched northern ring',shape:'sphere',latitude:'north',radius:'0.1',speed:'0.006',coupling:'0.000001',duration:'0.15',step:'0.01',population:6,speedDomain:'unrestricted'},
+  // Watchable motion: the fastest initial speed whose 0→0.25 run completes under the current surface tolerances. No checked reference exists.
+  'sphere-watch':{name:'Sphere · watchable speed',shape:'sphere',latitude:'equator',radius:'0.1',speed:'0.05',coupling:'0.000001',duration:'0.25',step:'0.01',population:6,speedDomain:'unrestricted',unchecked:true}
 });
 export function createSurfaceExperiment({ radius='0.1', speed='0.01', coupling='0.000001', duration='0.25', step='0.01', population=6, speedDomain='unrestricted',shape='sphere',latitude='equator',flattening='0.6',majorRadius='0.2' } = {}) {
   if (!Number.isInteger(population) || population < 2 || population > 12 || population % 2) throw new Error('Choose an even population from 2 to 12.');
@@ -23,6 +25,7 @@ export function qualifiedPreparationId(request) {
   const m=request?.model,paths=request?.paths;
   if(m?.compositionId!=='canonical-surface/v1'||m.constraint!=='surface'||m.speedDomain!=='unrestricted'||m.boundaryPolicy!=='none'||!sameDecimal(m.fieldSpeed,'1')||m.coupling!=='0.000001'||!m.geometry||m.geometry.center||m.geometry.orientation||!sameDecimal(request.interval?.start,'0')||paths?.length!==6) return null;
   for(const [id,preset] of Object.entries(SURFACE_PRESETS)){
+    if(preset.unchecked) continue;
     const g=m.geometry;
     if(g.kind!==preset.shape||g.radius!==preset.radius||g.kind==='oblate'&&g.flattening!==preset.flattening||g.kind==='ring-torus'&&g.majorRadius!==preset.majorRadius) continue;
     if(!(Number(request.interval.end)>0)||Number(request.interval.end)>Number(preset.duration)) continue;

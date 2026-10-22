@@ -1,0 +1,97 @@
+0a1,10
+> # Post-turn campaign (2026-10-21), support role (emmy-noether): geomx, a NEW file built from the frozen October geometry instrument geomv-iv.py
+> # (spherical-six-pole-correlated-continuation-claude-support-geomv-iv.py, sha256 1b0077c041d0940b740cb910bc28ca5053ae6d004fe0f05136ca05cd1dcef7ab, unchanged).
+> # Purpose: extend the qualified signed-geometry chart G1 (receiver q [1.45, 2.10], source q' [0, 1.80], source w' [-0.10, 0.45]) to source q' [0, 1.83]
+> # (the review's sizing: q' <= q(t*) <= 1.817731, plus margin) and source w' [-0.20, 0.45] (the like source reads post-turn history, w' < 0, from about
+> # step 624 and w' < -0.10 from about step 648; inferred from the like delay ~0.67 and a ~ -0.41 at the turn). Receiver box unchanged.
+> # Changes (complete list): (X1) box and K1 sampling extended; (X2) known control on the extension strips; (X3) swapped-sign negatives at an extension
+> # point; (X4) numerical prescribed-history control whose reads reach q' > 1.80 and like w' < -0.10, with sign-flip and omission negatives;
+> # (X5) target: cells over the extended box with exact first/last edges and shared internal edges (box read outward from its decimals), D ranges also
+> # in interval arithmetic with a proved-positivity flag. All geomv controls (K1, H1, W1, W3, K2, K3, W2, W4, W5, H2, K2b, W6, W7) are retained.
+> # ---- geomv header follows unchanged ----
+15c25
+< out = {"box": {"q": ["1.45", "2.10"], "q_delayed": ["0", "1.80"], "w_delayed": ["-0.10", "0.45"]}, "controls": []}
+---
+> out = {"box": {"q": ["1.45", "2.10"], "q_delayed": ["0", "1.83"], "w_delayed": ["-0.20", "0.45"]}, "controls": [], "instrument": "geomx (post-turn support; from geomv 1b0077c0)"}      # geomx (X1): extended source box
+31c41
+<     q = mp.mpf("1.45") + mp.mpf(random.random())*mp.mpf("0.65"); qp = mp.mpf(random.random())*mp.mpf("1.80"); vp = mp.mpf("-0.10") + mp.mpf(random.random())*mp.mpf("0.55"); nvneg += (vp < 0)
+---
+>     q = mp.mpf("1.45") + mp.mpf(random.random())*mp.mpf("0.65"); qp = mp.mpf(random.random())*mp.mpf("1.83"); vp = mp.mpf("-0.20") + mp.mpf(random.random())*mp.mpf("0.65"); nvneg += (vp < 0)
+38c48,68
+< out["controls"].append({"name": "(K1) known: signed closed forms (chord, D_t, tangential N/(r^3 D), radial sigma/(2 r D), identity 1 + r_q' v' = D; both code paths kern and geom) vs direct vector computation, 400 random points of the NEW box (source velocity sampled in [-0.05, 0.45]), three classes; the vector tangent hit of each meridional class has the sign of N", "points_with_M_negative": nMneg, "points_with_N_negative": nNneg, "points_with_negative_source_velocity": nvneg, "max_abs_diff": {NAME[c]: mp.nstr(worst[c], 5) for c in worst}, "pass": bool(all(w < mp.mpf("1e-30") for w in worst.values()) and nMneg > 20 and nNneg > 20 and nvneg > 20 and sign_ok)})
+---
+> out["controls"].append({"name": "(K1) known: signed closed forms (chord, D_t, tangential N/(r^3 D), radial sigma/(2 r D), identity 1 + r_q' v' = D; both code paths kern and geom) vs direct vector computation, 400 random points of the EXTENDED box (geomx: source q' in [0, 1.83], source velocity in [-0.20, 0.45]), three classes; the vector tangent hit of each meridional class has the sign of N", "points_with_M_negative": nMneg, "points_with_N_negative": nNneg, "points_with_negative_source_velocity": nvneg, "max_abs_diff": {NAME[c]: mp.nstr(worst[c], 5) for c in worst}, "pass": bool(all(w < mp.mpf("1e-30") for w in worst.values()) and nMneg > 20 and nNneg > 20 and nvneg > 20 and sign_ok)})
+> # ---- geomx (X2): known control concentrated on the EXTENSION strips (source q' in [1.80, 1.83], or source w' in [-0.20, -0.10])
+> random.seed(20261021); worstx = {1: mp.mpf(0), -1: mp.mpf(0), 0: mp.mpf(0)}; sign_okx = True; nA = nB = 0
+> for i_ in range(300):
+>     q = mp.mpf("1.45") + mp.mpf(random.random())*mp.mpf("0.65")
+>     if i_ % 2 == 0: qp = mp.mpf("1.80") + mp.mpf(random.random())*mp.mpf("0.03"); vp = mp.mpf("-0.20") + mp.mpf(random.random())*mp.mpf("0.65"); nA += 1
+>     else: qp = mp.mpf(random.random())*mp.mpf("1.83"); vp = mp.mpf("-0.20") + mp.mpf(random.random())*mp.mpf("0.10"); nB += 1
+>     for c in (1, -1, 0):
+>         k = kern(q, qp, vp, c, mp); rn, Dv, tv, rv = vec(q, qp, vp, c); r, D, r_q, r_qp, D_q, D_qp, D_vp, Nn = geom(q, qp, vp, c, 1, mp)
+>         worstx[c] = max(worstx[c], abs(k["r"] - rn), abs(k["D"] - Dv), abs(k["h"] - tv), abs(mp.mpf(SIG[c])/(2*k["r"]*k["D"]) - rv), abs((1 + r_qp*vp) - D), abs(r - rn), abs(D - Dv))
+>         if c != 0 and Dv > 0 and (tv > 0) != (Nfun(q, qp) > 0): sign_okx = False
+> out["controls"].append({"name": "(X2) known, EXTENSION strips: closed forms (both code paths) vs direct vectors at 150 points with q' in [1.80, 1.83] (w' in [-0.20, 0.45]) and 150 points with w' in [-0.20, -0.10] (q' in [0, 1.83]), receiver q in [1.45, 2.10], three classes; tangent-hit sign = sign N for meridional classes", "n_qp_strip": nA, "n_wp_strip": nB, "max_abs_diff": {NAME[c]: mp.nstr(worstx[c], 5) for c in worstx}, "pass": bool(all(w < mp.mpf("1e-30") for w in worstx.values()) and nA == 150 and nB == 150 and sign_okx)})
+> # ---- geomx (X3): SWAPPED-SIGN negatives at an extension point (q, q', w') = (1.70, 1.82, -0.15)
+> qx, qpx, vpx = mp.mpf("1.70"), mp.mpf("1.82"), mp.mpf("-0.15"); dx = {}; okx3 = True
+> for c in (1, -1, 0):
+>     kk = kern(qx, qpx, vpx, c, mp); _, Dflip, _, _ = vec(qx, qpx, vpx, c, flip=-1); rv_, Dv_, tv_, _ = vec(qx, qpx, vpx, c)
+>     swap_cls = kern(qx, qpx, vpx, (-c if c != 0 else 1), mp); swap_rs = kern(qpx, qx, vpx, c, mp)
+>     e1 = abs(kk["D"] - Dflip); e2 = abs(swap_cls["r"] - rv_) + abs(swap_cls["h"] - tv_); e3 = abs(swap_rs["h"] - tv_)
+>     dx[NAME[c]] = {"D": mp.nstr(kk["D"], 15), "D_velocity_flipped_vector": mp.nstr(Dflip, 15), "class_swapped_diff": mp.nstr(e2, 8), "receiver_source_swapped_tangent_diff": mp.nstr(e3, 8), "true_matches_vector": bool(abs(kk["D"] - Dv_) < mp.mpf("1e-30") and abs(kk["h"] - tv_) < mp.mpf("1e-30"))}
+>     okx3 = okx3 and e1 > mp.mpf("1e-3") and e2 > mp.mpf("1e-3") and dx[NAME[c]]["true_matches_vector"] and (c == 0 or e3 > mp.mpf("1e-3"))
+> out["controls"].append({"name": "(X3) NEGATIVES, swapped signs at the extension point (1.70, 1.82, -0.15): (i) source velocity sign flipped changes D_t by > 1e-3; (ii) the other class's geometry (unlike<->like; antipode->unlike) differs from the vector chord/tangent hit by > 1e-3; (iii) receiver and source exchanged changes the meridional tangent hit by > 1e-3; the true closed forms match the vector to 1e-30", "detail": dx, "pass": bool(okx3)})
+112a143,166
+> # ---- geomx (X4): NUMERICAL prescribed-history control REACHING THE EXTENSION. q(s) = 1.46 + 0.36 sin(0.5 (s - 2)) (maximum 1.82); times chosen by rule:
+> # the first of 6.7..7.0 at which some class reads a source with q' > 1.80, and the first of 7.3..7.6 at which the like source has w' < -0.10 (receiver q >= 1.45).
+> def hist(s):
+>     x = mp.mpf("0.5")*(s - 2); return mp.mpf("1.46") + mp.mpf("0.36")*mp.sin(x), mp.mpf("0.18")*mp.cos(x), -mp.mpf("0.09")*mp.sin(x)
+> x4 = {}; okx4 = True; tq = tw = None
+> for tc in ("6.7", "6.8", "6.9", "7.0"):
+>     st_, _ = states(mp.mpf(tc))
+>     if max(st_[c][0] for c in (1, -1, 0)) > mp.mpf("1.80"): tq = mp.mpf(tc); break
+> for tc in ("7.3", "7.4", "7.5", "7.6"):
+>     st_, _ = states(mp.mpf(tc))
+>     if st_[-1][1] < mp.mpf("-0.10") and hist(mp.mpf(tc))[0] >= mp.mpf("1.45"): tw = mp.mpf(tc); break
+> for lab, tK in (("source_qp_beyond_1.80", tq), ("like_source_wp_below_-0.10", tw)):
+>     if tK is None: okx4 = False; x4[lab] = "no time found by the rule"; continue
+>     st, info = states(tK); qt, vt, at = hist(tK); cf = contributions(qt, vt, at, st, 1, mp)
+>     fdl = rich(lambda x: lam_parts(x)["lambda_hat"], tK); fdr = rich(lambda x: lam_parts(x)["a_rad"], tK)
+>     e1 = abs(cf["dlambda_dt"] - fdl); e2 = abs(cf["d_arad_dt"] - fdr); ejs = {}
+>     for c in (1, -1, 0): ejs[NAME[c]] = abs(dh_dt(qt, vt, st[c][0], st[c][1], st[c][2], c, mp) - rich(lambda x, c=c: hsum(x)[c], tK))
+>     inbox = bool(mp.mpf("1.45") <= qt <= mp.mpf("2.10") and all(mp.mpf(0) <= st[c][0] <= mp.mpf("1.83") and mp.mpf("-0.20") <= st[c][1] <= mp.mpf("0.45") for c in (1, -1, 0)))
+>     stf = {c: ((st[c][0], -st[c][1], st[c][2]) if c == -1 else st[c]) for c in st}; sto = {c: ((st[c][0], st[c][1], mp.mpf(0)) if c == -1 else st[c]) for c in st}
+>     neg_flip = bool(abs(contributions(qt, vt, at, stf, 1, mp)["d_arad_dt"] - fdr) > mp.mpf("1e-6")); neg_omit = bool(abs(contributions(qt, vt, at, sto, 1, mp)["dlambda_dt"] - fdl) > mp.mpf("1e-6"))
+>     ok_ = bool(e1 < mp.mpf("1e-12") and e2 < mp.mpf("1e-12") and all(v < mp.mpf("1e-12") for v in ejs.values()) and inbox and neg_flip and neg_omit)
+>     x4[lab] = {"t": mp.nstr(tK, 4), "q": mp.nstr(qt, 8), "w": mp.nstr(vt, 8), "classes": info, "dl_err": mp.nstr(e1, 5), "dar_err": mp.nstr(e2, 5), "dh_err": {k_: mp.nstr(v, 5) for k_, v in ejs.items()}, "all_inside_extended_box": inbox, "neg_like_velocity_flip_rejected": neg_flip, "neg_like_acceleration_omitted_rejected": neg_omit, "pass": ok_}
+>     okx4 = okx4 and ok_
+> out["controls"].append({"name": "(X4) NUMERICAL prescribed-history control reaching the extension (q(s) = 1.46 + 0.36 sin(0.5 (s - 2))): at a time where a class reads q' > 1.80 and at a time where the like source has w' < -0.10, dl/dt, d(a_r)/dt and each dh_c/dt closed forms agree with Richardson differences to 1e-12, every read lies in the extended box; NEGATIVES at both times: the like delayed velocity sign-flipped (in d(a_r)/dt) and the like source acceleration omitted (in dl/dt) are rejected by > 1e-6", "detail": x4, "pass": bool(okx4)})
+119c173,177
+< nq, nqp = 65, 180; ext = {}; cnt = {"N_pos": 0, "N_neg": 0, "N_und": 0, "M_pos": 0, "M_neg": 0, "M_und": 0}
+---
+> nq, nqp = 65, 183; ext = {};      # geomx (X5): source q' cells over [0, 1.83] (width 0.01)
+> QA, QB, PA_, PB = lo(iv.mpf("1.45")), up(iv.mpf("2.10")), mp.mpf(0), up(iv.mpf("1.83"))      # box read outward from its decimals
+> EQ = [QA] + [QA + (QB - QA)*i/nq for i in range(1, nq)] + [QB]; EP = [PA_] + [PA_ + (PB - PA_)*j/nqp for j in range(1, nqp)] + [PB]      # exact first/last edges, shared internal edges
+> assert all(EQ[i] < EQ[i + 1] for i in range(nq)) and all(EP[j] < EP[j + 1] for j in range(nqp)) and EQ[0] == QA and EQ[-1] == QB and EP[0] == PA_ and EP[-1] == PB
+> cnt = {"N_pos": 0, "N_neg": 0, "N_und": 0, "M_pos": 0, "M_neg": 0, "M_und": 0}
+123c181
+<     qc = I(mp.mpf("1.45") + mp.mpf("0.65")*i/nq, mp.mpf("1.45") + mp.mpf("0.65")*(i + 1)/nq)
+---
+>     qc = I(EQ[i], EQ[i + 1])
+125c183
+<         pc = I(mp.mpf("1.80")*j/nqp, mp.mpf("1.80")*(j + 1)/nqp); cc = iv.cos(qc + pc); ss = iv.sin(qc + pc)
+---
+>         pc = I(EP[j], EP[j + 1]); cc = iv.cos(qc + pc); ss = iv.sin(qc + pc)
+131c189
+< W_LO, W_HI = mp.mpf("-0.10"), mp.mpf("0.45")
+---
+> W_LO, W_HI = lo(iv.mpf("-0.20")), up(iv.mpf("0.45"))      # geomx (X5)
+141c199,200
+< pU = prod_range(ext["MrU_min"], ext["MrU_max"]); pL = prod_range(ext["MrL_min"], ext["MrL_max"]); pA = prod_range(mp.sin(mp.mpf("-0.175")), mp.sin(mp.mpf("1.05")))
+---
+> pU = prod_range(ext["MrU_min"], ext["MrU_max"]); pL = prod_range(ext["MrL_min"], ext["MrL_max"]); pA = prod_range(mp.sin(mp.mpf("-0.19")), mp.sin(mp.mpf("1.05")))
+> WI = I(W_LO, W_HI); DU_iv = 1 - WI*I(ext["MrU_min"], ext["MrU_max"]); DL_iv = 1 + WI*I(ext["MrL_min"], ext["MrL_max"]); DA_iv = 1 + WI*iv.sin(I(lo(iv.mpf("-0.19")), up(iv.mpf("1.05"))))      # geomx (X5): interval-arithmetic D ranges (outer)
+146c205
+<     "D_unlike_range_w_in_[-0.10,0.45]": [s45(1 - pU[1]), s45(1 - pU[0])], "D_like_range": [s45(1 + pL[0]), s45(1 + pL[1])], "D_antipode_range_d_in_[-0.35,2.10]": [s45(1 + pA[0]), s45(1 + pA[1])],
+---
+>     "D_unlike_range_w_in_[-0.20,0.45]": [s45(1 - pU[1]), s45(1 - pU[0])], "D_like_range": [s45(1 + pL[0]), s45(1 + pL[1])], "D_antipode_range_d_in_[-0.38,2.10]": [s45(1 + pA[0]), s45(1 + pA[1])], "D_unlike_interval_outer": J(DU_iv), "D_like_interval_outer": J(DL_iv), "D_antipode_interval_outer": J(DA_iv), "D_all_positive_proved": bool(lo(DU_iv) > 0 and lo(DL_iv) > 0 and lo(DA_iv) > 0),

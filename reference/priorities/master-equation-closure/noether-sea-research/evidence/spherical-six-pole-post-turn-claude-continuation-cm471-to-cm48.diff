@@ -1,0 +1,37 @@
+1c1,5
+< # Six-pole path-continuation campaign (Claude continuation role, jack-k-hale lens, 2026-10-20): steps10-cm version 4.7 = the frozen version 4.4 with ONE repair, the delay-root
+---
+> # Six-pole POST-TURN campaign (Claude continuation role, jack-k-hale lens, 2026-10-21): steps10-cm version 4.8 = cm471 (v4.7.1, sha256 05abecc028a2cf4f3875ab7adc4c4df9f12339d2401abdb0a1aff0125e7d3e5c,
+> # kept frozen) with ONE change: the chart box (source q' upper edge 1.80 -> 1.83, source velocity lower edge -0.10 -> -0.20; receiver q unchanged [0.55, 2.10], so the inherited E10 census re-verifies the WHOLE new box), the source bounds of the
+> # support's extended signed-geometry instrument geomx (spherical-six-pole-post-turn-claude-support-geomx-iv.py, sha256 12f7528524c4ea1741e5a18d9aa2c524adc4c1f12d93c5f375fca603fbdf8983), applied
+> # by ONE asserted textual replacement of the v4.4 BOX line; new controls B9 (acceptance just inside every new edge, refusal just past it, the old box refusing q' = 1.81). Nothing else changed.
+> # (The text below is cm471's header.) Six-pole path-continuation campaign (Claude continuation role, jack-k-hale lens, 2026-10-20): steps10-cm version 4.7 = the frozen version 4.4 with ONE repair, the delay-root
+30a35,38
+> _BOXOLD_48 = 'BOX = {"q": (mp.mpf("0.55"), mp.mpf("2.10")), "qp": (mp.mpf(0), mp.mpf("1.80")), "vp": (mp.mpf("-0.10"), mp.mpf("0.45"))}'
+> _BOXNEW_48 = 'BOX = {"q": (mp.mpf("0.55"), mp.mpf("2.10")), "qp": (mp.mpf(0), mp.mpf("1.83")), "vp": (mp.mpf("-0.20"), mp.mpf("0.45"))}   # v4.8: geomx extended chart'
+> assert _t10_46.count(_BOXOLD_48) == 1
+> _t10_46 = _t10_46.replace(_BOXOLD_48, _BOXNEW_48, 1)
+37c45
+< out["v46"] = {"version": "4.7.1", "base_v44_sha256": S10_SHA_46, "ladder_step": "0.15", "upper_half": "0.90 (frozen path); fallback max(0.90, 2.05 - up(chord))", "ladder_first_rung": 0, "lower_half_frozen": {NAME[c_]: str(LOWER9[c_]) for c_ in ALL3},
+---
+> out["v46"] = {"version": "4.8", "chart_v48": {"q": ["0.55", "2.10"], "qp": ["0", "1.83"], "vp": ["-0.20", "0.45"]}, "base_v44_sha256": S10_SHA_46, "ladder_step": "0.15", "upper_half": "0.90 (frozen path); fallback max(0.90, 2.05 - up(chord))", "ladder_first_rung": 0, "lower_half_frozen": {NAME[c_]: str(LOWER9[c_]) for c_ in ALL3},
+275c283,299
+< out["v46"]["controls_note"] = "B1-B4, B7-B8 run in every mode; B5-B6 only in controls mode (they append r1-r5)"
+---
+> def _controls_chart_48():
+>     """v4.8 (B9): the chart predicates actually used (v4.4 in_box in accel_parts; the frozen step8 inline in_iv test) accept boxes just inside each new edge and refuse boxes just past it"""
+>     e9 = mp.mpf("1e-9"); e6 = mp.mpf("1e-6"); d9 = {}
+>     d9["qp_inside_accepted"] = in_box(I(mp.mpf("1.83") - e6, mp.mpf("1.83") - e9), "qp") and in_iv(I(mp.mpf("1.83") - e6, mp.mpf("1.83") - e9), BOX["qp"][0], BOX["qp"][1])
+>     d9["qp_past_refused"] = (not in_box(I(mp.mpf("1.83") - e6, mp.mpf("1.83") + e9), "qp")) and (not in_iv(I(mp.mpf("1.83") - e6, mp.mpf("1.83") + e9), BOX["qp"][0], BOX["qp"][1]))
+>     d9["qp_1.81_accepted_new_box"] = in_box(I(mp.mpf("1.805"), mp.mpf("1.81")), "qp")
+>     d9["qp_1.81_refused_by_old_box"] = not in_iv(I(mp.mpf("1.805"), mp.mpf("1.81")), mp.mpf(0), mp.mpf("1.80"))
+>     d9["vp_inside_accepted"] = in_box(I(mp.mpf("-0.20") + e9, mp.mpf("-0.19")), "vp") and in_iv(I(mp.mpf("-0.20") + e9, mp.mpf("-0.19")), BOX["vp"][0], BOX["vp"][1])
+>     d9["vp_past_refused"] = (not in_box(I(mp.mpf("-0.20") - e9, mp.mpf("-0.19")), "vp")) and (not in_iv(I(mp.mpf("-0.20") - e9, mp.mpf("-0.19")), BOX["vp"][0], BOX["vp"][1]))
+>     d9["vp_upper_unchanged_refused_past"] = not in_box(I(mp.mpf("0.44"), mp.mpf("0.45") + e9), "vp")
+>     d9["q_unchanged_inside_accepted"] = in_box(I(mp.mpf("0.55") + e9, mp.mpf("0.6")), "q")
+>     d9["q_unchanged_past_refused"] = not in_box(I(mp.mpf("0.55") - e9, mp.mpf("0.6")), "q")
+>     d9["box_values"] = {k_: [str(v_[0]), str(v_[1])] for k_, v_ in BOX.items()}
+>     ok9 = all(v_ for k_, v_ in d9.items() if k_ != "box_values") and d9["box_values"] == {"q": ["0.55", "2.1"], "qp": ["0.0", "1.83"], "vp": ["-0.2", "0.45"]}
+>     out["controls"].append({"name": "(B9) v4.8 chart: the predicates used by accel_parts (in_box) and the frozen step check (in_iv) accept boxes just inside the new edges (q' 1.83, w' -0.20) and refuse boxes 1e-9 past them; q' in [1.805, 1.81] accepted (refused by the old 1.80 edge); the edges w' 0.45 and receiver q [0.55, 2.10] unchanged and still enforced", "pass": bool(ok9), "detail": d9})
+> _controls_chart_48()
+> out["v46"]["controls_note"] = "B1-B4, B7-B9 run in every mode; B5-B6 only in controls mode (they append r1-r5)"

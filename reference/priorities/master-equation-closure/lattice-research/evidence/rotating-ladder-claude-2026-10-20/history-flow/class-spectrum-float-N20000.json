@@ -1,0 +1,76 @@
+{
+ "instrument": "class_spectrum_float.py",
+ "grade": "measured (float, truncated sums); not a certificate",
+ "controls": {
+  "alt_inv_square": [
+   -1.644934066841977,
+   -1.6449340668482264
+  ],
+  "alt_lorentz": [
+   1.007843103419241,
+   1.0078431034129907
+  ],
+  "zero_speed_delay_err": [
+   0.0,
+   2.842170943040401e-14
+  ],
+  "zero_speed_Lu_Lw_err": [
+   6.938893903907228e-18,
+   6.938893903907228e-18
+  ],
+  "uniform_source_delay": [
+   2.1431020854277945,
+   2.143102085427795
+  ]
+ },
+ "params": {
+  "R": 1000.0,
+  "delta": 3.345035293,
+  "eps": 0.01384081428,
+  "g": 0.001,
+  "N": 20000
+ },
+ "balance_residual_over_eps2": [
+  -1.5216288817114362e-10,
+  2.6320620533135458e-12,
+  -1.7752865995735195e-17
+ ],
+ "rigid_rotation_residual_over_eps2": 1.52191312670521e-10,
+ "inplane_axial_coupling_over_eps2": {
+  "1": 1.2621150683613236e-17,
+  "-1": 1.4187253796573156e-17
+ },
+ "real_roots_over_eps": {
+  "q0": {
+   "inplane": [],
+   "axial": []
+  },
+  "qpi": {
+   "inplane": [
+    0.9874297207917532
+   ],
+   "axial": [
+    0.8194884803726374
+   ]
+  }
+ },
+ "lambda_star_over_eps": 0.9874297207917532,
+ "null_vector_radial_tangential": [
+  -0.6935464285978138,
+  0.7204119317301857
+ ],
+ "null_sv_over_eps2": 3.53821234029244e-16,
+ "B_sampled_times_eps2": 0.7139353120880559,
+ "B1_sampled_times_eps2": 1.4278706241761119,
+ "B2_sampled_times_eps2": 2.8557412483522238,
+ "inv_at_2lambda_times_eps2": [
+  0.37107189020895864,
+  0.3428634218790973
+ ],
+ "b0_over_eps2_at_mu0": 2.9417153815612758,
+ "b1_over_eps_at_mu0": 0.020894328711439092,
+ "neumann_threshold_mu1_over_eps": 1.4039408043858244,
+ "b0_over_eps2_at_2lambda": 2.8047048111587887,
+ "b1_over_eps_at_2lambda": 0.01961282777439921,
+ "seconds": 25.187989950180054
+}

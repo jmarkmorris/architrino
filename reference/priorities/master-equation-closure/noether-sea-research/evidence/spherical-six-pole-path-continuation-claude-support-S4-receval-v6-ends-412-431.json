@@ -1,0 +1,739 @@
+{
+ "controls": [
+  {
+   "name": "(D1) identity of the rebuild path: rec_boxes + make_slabs with the UNPADDED reader reproduce the frozen 486-slab chain exactly (every field, both ends)",
+   "n": 486,
+   "mismatch": [],
+   "pass": true
+  },
+  {
+   "name": "(D2) padded chain: every field of the 486 padded slabs contains the frozen field; window premises contain the frozen ones; all 485 joins pass",
+   "not_containing": [],
+   "join_failures": [],
+   "pass": true
+  },
+  {
+   "name": "(W1) known: the field [2/3, 4/3] (30-digit binary) written by nstr(., 25) rounds INWARD at both ends; the padded read contains the true field; NEGATIVE: the unpadded read misses it; the |value| >= 100 guard refuses",
+   "written": [
+    "0.6666666666666666666666667",
+    "1.333333333333333333333333"
+   ],
+   "inward_at_both_ends": true,
+   "unpadded_misses": true,
+   "padded_contains": true,
+   "guard_refuses": true,
+   "pass": true
+  },
+  {
+   "name": "(P1) reconstructed chain: all joins pass and every reconstructed end box meets the frozen end box of the same step",
+   "recon_steps": [
+    155,
+    492
+   ],
+   "skipped": [
+    [
+     "spherical-six-pole-correlated-continuation-claude-continuation-steps10-cm-v44-C22-r5.json",
+     493,
+     false
+    ]
+   ],
+   "join_failures": [],
+   "meet_failures": [],
+   "pass": true
+  },
+  {
+   "name": "(P2) known: the intersected lookup is non-empty and lies inside each separate lookup on a request inside both chains",
+   "how": "intersected",
+   "pass": true
+  },
+  {
+   "name": "(P4) negatives: a reconstructed record with a shifted origin fails the join check; an end box shifted off the frozen one is detected as non-meeting (unjustified intersection refused)",
+   "pass": true
+  },
+  {
+   "name": "(P3) replay consistency: whole-step dl/dt on frozen steps 360-370 (through the intersected lookup) is proved negative, as certified in the turning-point campaign",
+   "pass": true
+  },
+  {
+   "name": "(P5) negative: receiver sub-intervals with a wrong origin (two steps late) refuse",
+   "outcome": "sub-interval outside the receiver step",
+   "pass": true
+  },
+  {
+   "name": "(P6) KNOWN positive control of the sub-interval route: receiver cubic with acceleration 1 and jerk 2000 and an uncertain origin (1e-3), stationary partners (exact roots t - r_c(q(t), 0)); on all 4 sub-intervals the exact q and w ranges and the exact root range of each class lie inside the route's boxes; sub-intervals cover the uncertain step without a gap; the hull of the q boxes contains the exact whole-step range and lies inside the whole-step box",
+   "detail": [
+    [
+     0,
+     true,
+     true,
+     true
+    ],
+    [
+     1,
+     true,
+     true,
+     true
+    ],
+    [
+     2,
+     true,
+     true,
+     true
+    ],
+    [
+     3,
+     true,
+     true,
+     true
+    ]
+   ],
+   "no_gap": true,
+   "whole_step_ok": true,
+   "pass": true
+  },
+  {
+   "name": "(P7) negative: the rate remainder dropped (stored rate bound set to 0) misses the known path on some sub-interval (or refuses)",
+   "pass": true
+  },
+  {
+   "name": "(P8) negative: the origin uncertainty dropped (origin told as the point T0 while the true origin is T0 + 1e-3) misses the known path or roots (or refuses)",
+   "pass": true
+  },
+  {
+   "name": "(P9) negative: an initial source bracket shifted off the true root (by 0.1, beyond the 0.03 search widening) is refused by the residual-sign containment check",
+   "outcome": "start interval not proved to contain the root",
+   "pass": true
+  },
+  {
+   "name": "(V0) outward decimal reading: the floor/ceiling box of each known decimal contains it exactly (rational check); NEGATIVE: the nearest-rounded point box of 0.1 does not contain 0.1, and the rational check detects it",
+   "pass": true
+  },
+  {
+   "name": "(V1) KNOWN positive of the end-instant cover and root path: stationary partners (exact roots t - r_c(q, 0)), end time [5.0, 5.001], end box q [0.30, 0.50] x w [0.20, 0.26], known law q + 2w with exact image [0.7, 1.02]; the route's hull contains the exact image and exceeds it by < 1e-22 at each end (v6: end-box pad); on all 9 pieces the exact root range of every class lies inside the piece's contracted source range; the pieces reach the decimal box edges",
+   "outcome": "ok",
+   "image": [
+    "0.69999999999999999999997",
+    "1.02000000000000000000003"
+   ],
+   "roots_per_piece": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "pass": true
+  },
+  {
+   "name": "(V2) NEGATIVE dropped edge: a cover missing a top strip (width/1000) of the box is detected and the end evaluation refused; with the check bypassed the same cover misses the known exact image (the check has teeth)",
+   "outcome": "cover of the q end box refused: last edge is not up(x)",
+   "bypassed_image": [
+    "0.69999999999999999999997",
+    "1.01968000000000000000003"
+   ],
+   "pass": true
+  },
+  {
+   "name": "(V3) NEGATIVE interior strip: a cover with a gap between pieces 0 and 1 is detected and refused",
+   "outcome": "cover of the q end box refused: gap between pieces 0 and 1",
+   "pass": true
+  },
+  {
+   "name": "(V4) NEGATIVE union larger than the box: a piece extending beyond up(x) is refused (the check enforces union == box, not only union >= box)",
+   "outcome": "cover of the q end box refused: piece 1 outside the box",
+   "pass": true
+  }
+ ],
+ "n_sub": 2,
+ "steps": [
+  412,
+  431
+ ],
+ "instrument": "receval v5",
+ "diagnostics": {
+  "v4_edge_formula_on_known_boxes": {
+   "q": [
+    true,
+    "ok"
+   ],
+   "w": [
+    true,
+    "ok"
+   ]
+  }
+ },
+ "controls_all_pass": true,
+ "target": [
+  {
+   "step": 412,
+   "frozen": {
+    "q_width": "0.018749",
+    "w_width": "0.023358",
+    "end_account": {
+     "lambda_hat": [
+      "-0.1197582384625508267571464",
+      "-0.1031858852612096262033928"
+     ],
+     "a_rad": [
+      "0.01445339497146709175482137",
+      "0.01656457735789788112158357"
+     ],
+     "tan_sum": [
+      "-0.08881413777459132633075112",
+      "-0.08567138228353024484332673"
+     ],
+     "d_arad_dt": [
+      "0.05240368136559051279813238",
+      "0.05826674566791137864981532"
+     ],
+     "a": [
+      "-0.08881413777459132633075112",
+      "-0.08567138228353024484332673"
+     ],
+     "minus_w2": [
+      "-0.1031936611046529456355628",
+      "-0.08873249028974253444857147"
+     ],
+     "unlike_tan_x_mult": [
+      "-0.03361263135592676362369056",
+      "-0.03250645894829508298733864"
+     ],
+     "unlike_rad_x_mult": [
+      "-0.05683311728298219108776995",
+      "-0.05632811086753218141996133"
+     ],
+     "like_tan_x_mult": [
+      "-0.06393558336127372155451094",
+      "-0.06113509727123906020891815"
+     ],
+     "like_rad_x_mult": [
+      "0.09480306704269390339120635",
+      "0.09633966753452476563482342"
+     ],
+     "antipode_tan_x_mult": [
+      "0.008203766825089846057604697",
+      "0.008487174042819220383480349"
+     ],
+     "antipode_rad_x_mult": [
+      "-0.02352054651444622244080274",
+      "-0.02344349949444253710975266"
+     ],
+     "te": [
+      "5.986684593623649597167959",
+      "5.986684709182828044891367"
+     ],
+     "q_box": [
+      "1.524393642357269271323348",
+      "1.543142545068578537554094"
+     ],
+     "w_box": [
+      "0.2978799931008165819286955",
+      "0.3212377018730101450225111"
+     ],
+     "unlike_end_root": [
+      "4.541195350888986712827128",
+      "4.552489835040015178072998"
+     ],
+     "unlike_root_margin_in_recorded_range": [
+      "0.00834683",
+      "0.00100482"
+     ],
+     "like_end_root": [
+      "4.608524154044579184489091",
+      "4.620767663671295224201262"
+     ],
+     "like_root_margin_in_recorded_range": [
+      "0.0152129",
+      "0.000836566"
+     ],
+     "antipode_end_root": [
+      "4.09846530177707652893466",
+      "4.105321936514884730089508"
+     ],
+     "antipode_root_margin_in_recorded_range": [
+      "0.00934009",
+      "0.0"
+     ]
+    },
+    "v4_diagnostics": {
+     "q": {
+      "v4_nearest_contains_decimal_box": true,
+      "v4_edge_formula_cover": [
+       true,
+       "ok"
+      ]
+     },
+     "w": {
+      "v4_nearest_contains_decimal_box": true,
+      "v4_edge_formula_cover": [
+       true,
+       "ok"
+      ]
+     }
+    },
+    "dl_whole": [
+     "-0.01176037811434936623246719",
+     "0.008945331046061172244638687"
+    ],
+    "dl_whole_sign": "und",
+    "l_whole": [
+     "-0.1206768770515803676410511",
+     "-0.1022150434154131790646178"
+    ],
+    "a_r_whole": [
+     "0.01348255312567064461604631",
+     "0.01701205193410010593953192"
+    ],
+    "a_whole": [
+     "-0.09101921721551521526271012",
+     "-0.08278694964318626914959969"
+    ],
+    "dl_whole_width": "0.020706",
+    "dl_sub_hull": [
+     "-0.01074703006028983455905552",
+     "0.008052398572983575932782424"
+    ],
+    "dl_sub_signs": [
+     "und",
+     "und"
+    ],
+    "dl_sub_all_neg": false,
+    "dl_sub_hull_width": "0.018799",
+    "dl_end": [
+     "-0.005504430757506031391311281",
+     "0.00295542794834156592216411"
+    ],
+    "dl_end_sign": "und",
+    "dl_end_width": "0.0084599"
+   },
+   "recon": {
+    "q_width": "0.0031739",
+    "w_width": "0.0014735",
+    "end_account": {
+     "lambda_hat": [
+      "-0.1118894911365878442903439",
+      "-0.1103184497267891784866061"
+     ],
+     "a_rad": [
+      "0.01513124510709082205333424",
+      "0.01579088859055279263600257"
+     ],
+     "tan_sum": [
+      "-0.08767948909600660235651223",
+      "-0.08671781036693613123554064"
+     ],
+     "d_arad_dt": [
+      "0.05429586015582144504794933",
+      "0.05615581244062696725819211"
+     ],
+     "a": [
+      "-0.08767948909600660235651223",
+      "-0.08671781036693613123554064"
+     ],
+     "minus_w2": [
+      "-0.09609860254603505165434129",
+      "-0.09518720461969835643327189"
+     ],
+     "unlike_tan_x_mult": [
+      "-0.03322519296952173279795809",
+      "-0.03291536569468704852639829"
+     ],
+     "unlike_rad_x_mult": [
+      "-0.05667110158833213652745609",
+      "-0.05650407104611293252939143"
+     ],
+     "like_tan_x_mult": [
+      "-0.06284951505765963835762754",
+      "-0.06208540391046980019440078"
+     ],
+     "like_rad_x_mult": [
+      "0.09529640073273433260866326",
+      "0.0957639715670274304522191"
+     ],
+     "antipode_tan_x_mult": [
+      "0.008306223546794650026159219",
+      "0.008371205715303211064534381"
+     ],
+     "antipode_rad_x_mult": [
+      "-0.0234947087992780951377719",
+      "-0.02346841952199389347472204"
+     ],
+     "te": [
+      "5.986684593623649597167959",
+      "5.986684709182828044891367"
+     ],
+     "q_box": [
+      "1.531651186478308201280272",
+      "1.534825099947239025775069"
+     ],
+     "w_box": [
+      "0.3085242366811695985680682",
+      "0.3099977460337978838936445"
+     ],
+     "unlike_end_root": [
+      "4.545614106051652730451613",
+      "4.548428388659145552795606"
+     ],
+     "unlike_root_margin_in_recorded_range": [
+      "0.00953221",
+      "0.0023904"
+     ],
+     "like_end_root": [
+      "4.612770947976997498584158",
+      "4.615847057113725481718242"
+     ],
+     "like_root_margin_in_recorded_range": [
+      "0.0148956",
+      "9.06283e-5"
+     ],
+     "antipode_end_root": [
+      "4.101197439320328438075126",
+      "4.102792976935991105298234"
+     ],
+     "antipode_root_margin_in_recorded_range": [
+      "0.00984638",
+      "4.49063e-5"
+     ]
+    },
+    "v4_diagnostics": {
+     "q": {
+      "v4_nearest_contains_decimal_box": true,
+      "v4_edge_formula_cover": [
+       true,
+       "ok"
+      ]
+     },
+     "w": {
+      "v4_nearest_contains_decimal_box": true,
+      "v4_edge_formula_cover": [
+       true,
+       "ok"
+      ]
+     }
+    },
+    "dl_whole": [
+     "-0.005105286684005368025495873",
+     "0.002352218844188443122410623"
+    ],
+    "dl_whole_sign": "und",
+    "l_whole": [
+     "-0.1126889229185695695375405",
+     "-0.1094972885173151315527724"
+    ],
+    "a_r_whole": [
+     "0.01432398258038905187342743",
+     "0.016052832934091920475678"
+    ],
+    "a_whole": [
+     "-0.08857474668971148142945851",
+     "-0.08504026029283199394330011"
+    ],
+    "dl_whole_width": "0.0074575",
+    "dl_sub_hull": [
+     "-0.004157975716624703728118287",
+     "0.001446637274403804766376448"
+    ],
+    "dl_sub_signs": [
+     "und",
+     "und"
+    ],
+    "dl_sub_all_neg": false,
+    "dl_sub_hull_width": "0.0056046",
+    "dl_end": [
+     "-0.002491758633779073118147904",
+     "-0.0000898977924673585056839101"
+    ],
+    "dl_end_sign": "neg",
+    "dl_end_width": "0.0024019"
+   }
+  },
+  {
+   "step": 431,
+   "frozen": {
+    "q_width": "0.023728",
+    "w_width": "0.029353",
+    "end_account": {
+     "lambda_hat": [
+      "-0.1216034991184882495541032",
+      "-0.1014555446611565792977394"
+     ],
+     "a_rad": [
+      "0.0249041806546527549843826",
+      "0.02794797345802348873456712"
+     ],
+     "tan_sum": [
+      "-0.1079297919399721552190609",
+      "-0.1027789815213096394546363"
+     ],
+     "d_arad_dt": [
+      "0.05545054181837009729598423",
+      "0.06411398760220681450941042"
+     ],
+     "a": [
+      "-0.1079297919399721552190609",
+      "-0.1027789815213096394546363"
+     ],
+     "minus_w2": [
+      "-0.09365552566046476081953611",
+      "-0.0765513640065038243133568"
+     ],
+     "unlike_tan_x_mult": [
+      "-0.03104970860922720604024423",
+      "-0.02981927852660360924290943"
+     ],
+     "unlike_rad_x_mult": [
+      "-0.05507568532560449676366677",
+      "-0.05451773661340992949611853"
+     ],
+     "like_tan_x_mult": [
+      "-0.08550728094162221234666457",
+      "-0.08063461837217221710954278"
+     ],
+     "like_rad_x_mult": [
+      "0.1034915870417376576245865",
+      "0.10589209109062043962786"
+     ],
+     "antipode_tan_x_mult": [
+      "0.007969322658168501488407095",
+      "0.008322480006168672887743075"
+     ],
+     "antipode_rad_x_mult": [
+      "-0.02351569066900057090258734",
+      "-0.02342322165639224378602569"
+     ],
+     "te": [
+      "6.176684593623649597167959",
+      "6.176684709182828044891367"
+     ],
+     "q_box": [
+      "1.57904541421681020548507",
+      "1.602773345155234040205473"
+     ],
+     "w_box": [
+      "0.2766791716167008916855487",
+      "0.3060319030108866947434196"
+     ],
+     "unlike_end_root": [
+      "4.675402511904493229779331",
+      "4.689568889347549495492716"
+     ],
+     "unlike_root_margin_in_recorded_range": [
+      "0.00797343",
+      "0.000480175"
+     ],
+     "like_end_root": [
+      "4.893164721638606257945303",
+      "4.911229500444674943793006"
+     ],
+     "like_root_margin_in_recorded_range": [
+      "0.0159912",
+      "0.00153663"
+     ],
+     "antipode_end_root": [
+      "4.282702622593736601105759",
+      "4.291190974034445601112231"
+     ],
+     "antipode_root_margin_in_recorded_range": [
+      "0.00922704",
+      "0.0"
+     ]
+    },
+    "v4_diagnostics": {
+     "q": {
+      "v4_nearest_contains_decimal_box": true,
+      "v4_edge_formula_cover": [
+       true,
+       "ok"
+      ]
+     },
+     "w": {
+      "v4_nearest_contains_decimal_box": true,
+      "v4_edge_formula_cover": [
+       true,
+       "ok"
+      ]
+     }
+    },
+    "dl_whole": [
+     "-0.01327849166014459047154126",
+     "0.01627505834072327355186602"
+    ],
+    "dl_whole_sign": "und",
+    "l_whole": [
+     "-0.122759594262713655837679",
+     "-0.100277561248172570017074"
+    ],
+    "a_r_whole": [
+     "0.02372619724166874570371717",
+     "0.02857353633424929950597084"
+    ],
+    "a_whole": [
+     "-0.1108637943690193626745517",
+     "-0.09897337177596890459001718"
+    ],
+    "dl_whole_width": "0.029554",
+    "dl_sub_hull": [
+     "-0.01199698375435276026463058",
+     "0.0151482275213512188131733"
+    ],
+    "dl_sub_signs": [
+     "und",
+     "und"
+    ],
+    "dl_sub_all_neg": false,
+    "dl_sub_hull_width": "0.027145",
+    "dl_end": [
+     "-0.00452299087066890529852036",
+     "0.007878790290806345254061713"
+    ],
+    "dl_end_sign": "und",
+    "dl_end_width": "0.012402"
+   },
+   "recon": {
+    "q_width": "0.0034624",
+    "w_width": "0.0015685",
+    "end_account": {
+     "lambda_hat": [
+      "-0.1119512726872385120699006",
+      "-0.1101920137451813869956102"
+     ],
+     "a_rad": [
+      "0.02593071107528727837986089",
+      "0.02677692113128825579247807"
+     ],
+     "tan_sum": [
+      "-0.1059425679752080259285476",
+      "-0.1045654343478696234120685"
+     ],
+     "d_arad_dt": [
+      "0.05832618059423848411152338",
+      "0.06084350715182798558289793"
+     ],
+     "a": [
+      "-0.1059425679752080259285476",
+      "-0.1045654343478696234120685"
+     ],
+     "minus_w2": [
+      "-0.08517435155595025627742256",
+      "-0.08426130266989410861574933"
+     ],
+     "unlike_tan_x_mult": [
+      "-0.0305935976642120372184264",
+      "-0.03029995191283835808214153"
+     ],
+     "unlike_rad_x_mult": [
+      "-0.05488612368943320531638977",
+      "-0.05472210261272854098153082"
+     ],
+     "like_tan_x_mult": [
+      "-0.08354694951087724121670987",
+      "-0.08234452404091043216268462"
+     ],
+     "like_rad_x_mult": [
+      "0.1042993050076279117012354",
+      "0.1049541795564474106650121"
+     ],
+     "antipode_tan_x_mult": [
+      "0.008102417579023112370579078",
+      "0.008174002339857827636526235"
+     ],
+     "antipode_rad_x_mult": [
+      "-0.02348295666088023908359184",
+      "-0.02345460707790897642757323"
+     ],
+     "te": [
+      "6.176684593623649597167959",
+      "6.176684709182828044891367"
+     ],
+     "q_box": [
+      "1.588591877311400910906298",
+      "1.592054306572528211435934"
+     ],
+     "w_box": [
+      "0.2902779748273955913912467",
+      "0.291846452018780341857762"
+     ],
+     "unlike_end_root": [
+      "4.681144971559554517189274",
+      "4.684205098082687498026969"
+     ],
+     "unlike_root_margin_in_recorded_range": [
+      "0.00949248",
+      "0.00224408"
+     ],
+     "like_end_root": [
+      "4.899758611930528836895845",
+      "4.903763127860219786859645"
+     ],
+     "like_root_margin_in_recorded_range": [
+      "0.0152637",
+      "9.73769e-5"
+     ],
+     "antipode_end_root": [
+      "4.286204144129746268190492",
+      "4.287939382592926695880768"
+     ],
+     "antipode_root_margin_in_recorded_range": [
+      "0.00983327",
+      "8.39746e-5"
+     ]
+    },
+    "v4_diagnostics": {
+     "q": {
+      "v4_nearest_contains_decimal_box": true,
+      "v4_edge_formula_cover": [
+       true,
+       "ok"
+      ]
+     },
+     "w": {
+      "v4_nearest_contains_decimal_box": true,
+      "v4_edge_formula_cover": [
+       true,
+       "ok"
+      ]
+     }
+    },
+    "dl_whole": [
+     "-0.003040373425324463748331628",
+     "0.006187328599583692848728772"
+    ],
+    "dl_whole_sign": "und",
+    "l_whole": [
+     "-0.1128787375934670263814725",
+     "-0.1092760439699471975162721"
+    ],
+    "a_r_whole": [
+     "0.02502981064770418008107276",
+     "0.02709391652385337876189222"
+    ],
+    "a_whole": [
+     "-0.106930258256085287411299",
+     "-0.1025275153453041316783407"
+    ],
+    "dl_whole_width": "0.0092277",
+    "dl_sub_hull": [
+     "-0.001924007532932587855715343",
+     "0.005131256403289490810081731"
+    ],
+    "dl_sub_signs": [
+     "und",
+     "und"
+    ],
+    "dl_sub_all_neg": false,
+    "dl_sub_hull_width": "0.0070553",
+    "dl_end": [
+     "0.00008760459953429698858073472",
+     "0.003285263991316478499488237"
+    ],
+    "dl_end_sign": "pos",
+    "dl_end_width": "0.0031977"
+   }
+  }
+ ],
+ "wall_s": 23.665014028549194
+}

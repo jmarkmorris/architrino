@@ -1,0 +1,69 @@
+1c1,7
+< # Six-pole POST-TURN campaign (Claude continuation role, jack-k-hale lens, 2026-10-21): steps10-cm version 4.8 = cm471 (v4.7.1, sha256 05abecc028a2cf4f3875ab7adc4c4df9f12339d2401abdb0a1aff0125e7d3e5c,
+---
+> # Six-pole POST-TURN campaign (Claude continuation role, jack-k-hale lens, 2026-10-21): steps10-cm version 4.9 = cm48 (sha256 5e67e4b09558d19f5ffef3c3127105bc32139c03768aa83b965397c9addf7646,
+> # kept frozen, extended chart kept) with ONE repair, the affine-form serialization used at slice ends:
+> #  WRITER: v4.4 line 390 "def ser(x): ... str(int(x.man)) ..." wrote the UNSIGNED mantissa (mpmath mpf.man = _mpf_[1]; the sign is _mpf_[0]), so every negative centre and every
+> #  negative coefficient of every saved affine_last since r1 was stored as its absolute value (post-turn adjudication 10). Replaced by ser49 (signed mantissa from _mpf_[0]);
+> #  READER: deser49 = the v4.4 line 391 text (mpf((m, e)) with a signed m), now the only reader; FORMAT TAG: every record written by cm49 carries "affine_format": "signed-v49",
+> #  and the resume REFUSES any file without that tag (no unsigned record can be resumed). Controls S-ser (i)-(iii). Nothing else changed.
+> # (The text below is cm48's header.) Six-pole POST-TURN campaign (Claude continuation role, jack-k-hale lens, 2026-10-21): steps10-cm version 4.8 = cm471 (v4.7.1, sha256 05abecc028a2cf4f3875ab7adc4c4df9f12339d2401abdb0a1aff0125e7d3e5c,
+37a44,50
+> _SEROLD_49 = 'def ser(x): x = mp.mpf(x); return [str(int(x.man)), int(x.exp)] if x != 0 else ["0", 0]'
+> _DESOLD_49 = 'def deser(p): return mp.mpf((int(p[0]), int(p[1]))) if p[0] != "0" else mp.mpf(0)'
+> _RESOLD_49 = 'F = aff_deser(prev["affine_last"]); k0 = last["step"]'
+> assert _t10_46.count(_SEROLD_49) == 1 and _t10_46.count(_DESOLD_49) == 1 and _t10_46.count(_RESOLD_49) == 1
+> _t10_46 = _t10_46.replace(_SEROLD_49, 'def ser(x): return ser49(x)   # v4.9: signed writer\nout["affine_format"] = "signed-v49"', 1)
+> _t10_46 = _t10_46.replace(_DESOLD_49, 'def deser(p): return deser49(p)   # v4.9: the matching reader', 1)
+> _t10_46 = _t10_46.replace(_RESOLD_49, 'F = _resume_form_49(prev); k0 = last["step"]', 1)
+45c58
+< out["v46"] = {"version": "4.8", "chart_v48": {"q": ["0.55", "2.10"], "qp": ["0", "1.83"], "vp": ["-0.20", "0.45"]}, "base_v44_sha256": S10_SHA_46, "ladder_step": "0.15", "upper_half": "0.90 (frozen path); fallback max(0.90, 2.05 - up(chord))", "ladder_first_rung": 0, "lower_half_frozen": {NAME[c_]: str(LOWER9[c_]) for c_ in ALL3},
+---
+> out["v46"] = {"version": "4.9", "chart_v48": {"q": ["0.55", "2.10"], "qp": ["0", "1.83"], "vp": ["-0.20", "0.45"]}, "base_v44_sha256": S10_SHA_46, "ladder_step": "0.15", "upper_half": "0.90 (frozen path); fallback max(0.90, 2.05 - up(chord))", "ladder_first_rung": 0, "lower_half_frozen": {NAME[c_]: str(LOWER9[c_]) for c_ in ALL3},
+298a312,357
+> def ser49(x):
+>     """v4.9 writer: [signed mantissa, exponent]; mpmath _mpf_ = (sign, man, exp, bc) with man unsigned"""
+>     x = mp.mpf(x)
+>     if x == 0: return ["0", 0]
+>     s_, m_, e_, b_ = x._mpf_; return [str(-int(m_) if s_ else int(m_)), int(e_)]
+> def deser49(p): return mp.mpf((int(p[0]), int(p[1]))) if p[0] != "0" else mp.mpf(0)      # the v4.4 line 391 text
+> def _ser_old49(x): x = mp.mpf(x); return [str(int(x.man)), int(x.exp)] if x != 0 else ["0", 0]   # the v4.4 line 390 text (negative control only)
+> def _resume_form_49(prev):
+>     if prev.get("affine_format") != "signed-v49": raise ValueError("resume refused: affine_last is not in the signed-v49 format (legacy unsigned serializer)")
+>     return aff_deser(prev["affine_last"])
+> def _aff_ser49(F_, w_=None):
+>     w_ = w_ or ser49; return {"cq": w_(F_["cq"]), "cw": w_(F_["cw"]), "S": {k_: [w_(v_[0]), w_(v_[1])] for k_, v_ in F_["S"].items()}}     # the v4.4 aff_ser text, writer as argument
+> def _aff_deser49(d_): return {"cq": deser49(d_["cq"]), "cw": deser49(d_["cw"]), "S": {k_: [deser49(v_[0]), deser49(v_[1])] for k_, v_ in d_["S"].items()}}   # the v4.4 aff_deser text
+> def _same_form49(A_, B_): return bool(A_["cq"] == B_["cq"] and A_["cw"] == B_["cw"] and list(A_["S"].keys()) == list(B_["S"].keys()) and all(A_["S"][k_][i_] == B_["S"][k_][i_] for k_ in A_["S"] for i_ in (0, 1)))
+> def _controls_sser_49():
+>     """(S-ser) (i) exact round trips of numbers and of a form with a negative centre and mixed-sign columns; (ii) the old writer fails (i); (iii, controls mode only) KNOWN resume case"""
+>     d_ = {}; nums = [mp.mpf("-0.0526"), mp.mpf("0.0526"), mp.mpf(0), mp.mpf("-1e-30"), mp.mpf("1.81"), -mp.pi, mp.mpf(2)**-200, -mp.mpf(3)/7]
+>     d_["numbers_round_trip_exact"] = all(deser49(json.loads(json.dumps(ser49(x_)))) == x_ for x_ in nums)
+>     F_ = {"cq": mp.mpf("1.81"), "cw": mp.mpf("-0.0526"), "S": {"anchor_q": [mp.mpf("3e-3"), mp.mpf("-2.5e-4")], "E_1": [mp.mpf("-1e-5"), mp.mpf("7e-6")], "Rq_1": [mp.mpf("-4e-6"), mp.mpf(0)], "Rw_1": [mp.mpf(0), mp.mpf("-3e-7")], "anchor_w": [mp.mpf("1e-30"), mp.mpf("-2e-4")]}}
+>     d_["form_round_trip_exact"] = _same_form49(_aff_deser49(json.loads(json.dumps(_aff_ser49(F_)))), F_)
+>     G_ = _aff_deser49(json.loads(json.dumps(_aff_ser49(F_, _ser_old49))))
+>     d_["old_writer_fails_round_trip"] = (not _same_form49(G_, F_)) and G_["cw"] == -F_["cw"] and G_["S"]["anchor_q"][1] == -F_["S"]["anchor_q"][1]
+>     d_["old_writer_cw_read_back"] = mp.nstr(G_["cw"], 6)
+>     d_["legacy_resume_refused"] = refused(lambda: _resume_form_49({"affine_last": _aff_ser49(F_, _ser_old49)}))[0]
+>     ok_ = bool(d_["numbers_round_trip_exact"] and d_["form_round_trip_exact"] and d_["old_writer_fails_round_trip"] and d_["legacy_resume_refused"])
+>     if RUNMODE == "controls":
+>         # (iii) KNOWN resume case from the anchor: two steps uninterrupted versus step 1, a JSON save of the form and of the record strings, a resume, step 2
+>         global RECORDS
+>         RECORDS = list(RECORDS_ALL[:ia + 1]); rebuild_index()
+>         stU1, FU1, wU1 = corr_step(tA, FA, QA, VA, "s1"); recU1 = {k2: v2 for k2, v2 in stU1.items() if k2 not in ("end_q", "end_v", "a0_iv", "ap_iv")}; recU1["step"] = ANCHOR + 1; recU1["certified"] = True
+>         self_append10(recU1, "reconstruction step " + str(ANCHOR + 1)); tU2 = tA + DELTA
+>         stU2, FU2, wU2 = corr_step(tU2, FU1, stU1["end_q"], stU1["end_v"], "s2")
+>         saved = json.loads(json.dumps({"affine_format": "signed-v49", "affine_last": _aff_ser49(FU1), "last": {"t_int": stU1["t_int"], "end_q_str": stU1["end_q_str"], "end_v_str": stU1["end_v_str"]}}))
+>         FR = _resume_form_49(saved); d_["iii_form_after_resume_identical"] = _same_form49(FR, FU1)
+>         stR2, FR2, wR2 = corr_step(tU2, FR, Istr(saved["last"]["end_q_str"]), Istr(saved["last"]["end_v_str"]), "s2")
+>         keys_ = ("end_q_str", "end_v_str", "S", "VS", "a0", "ap")
+>         d_["iii_step2_in_run_t0_strings_identical"] = bool(wU2 is None and wR2 is None and all(stU2[k2] == stR2[k2] for k2 in keys_) and stU2["corr"]["affine_end_q"] == stR2["corr"]["affine_end_q"] and stU2["corr"]["affine_end_w"] == stR2["corr"]["affine_end_w"] and _same_form49(FU2, FR2))
+>         tR2 = I(mp.mpf(saved["last"]["t_int"][0]) + DLT, mp.mpf(saved["last"]["t_int"][1]))
+>         stR2b, FR2b, wR2b = corr_step(tR2, FR, Istr(saved["last"]["end_q_str"]), Istr(saved["last"]["end_v_str"]), "s2")
+>         d_["iii_resume_t0_vs_in_run_t0"] = {"in_run": pair(tU2), "resume": pair(tR2)}
+>         d_["iii_step2_resume_t0_strings_identical"] = bool(wR2b is None and all(stU2[k2] == stR2b[k2] for k2 in keys_) and stU2["corr"]["affine_end_q"] == stR2b["corr"]["affine_end_q"] and stU2["corr"]["affine_end_w"] == stR2b["corr"]["affine_end_w"])
+>         d_["iii_step2_end_q"] = stU2["end_q_str"]; d_["iii_step2_end_w"] = stU2["end_v_str"]
+>         ok_ = ok_ and d_["iii_form_after_resume_identical"] and d_["iii_step2_in_run_t0_strings_identical"]
+>         RECORDS = list(RECORDS_ALL[:ia + 1]); rebuild_index()
+>     out["controls"].append({"name": "(S-ser) v4.9 serialization: (i) numbers (negative, positive, zero, tiny, irrational) and a whole affine form with a NEGATIVE centre and MIXED-SIGN columns round-trip EXACTLY; (ii) NEGATIVE: the old writer (v4.4 line 390) fails (i) with the centre sign flipped, and a resume file without the signed-v49 tag is refused; (iii, controls mode) KNOWN resume case: from the anchor, two steps uninterrupted versus one step, a JSON save and a resume, then step 2: the resumed form is identical and step 2 is string-for-string identical with the in-run time origin (also reported with the resume-constructed origin)", "pass": ok_, "detail": d_})
+> _controls_sser_49()

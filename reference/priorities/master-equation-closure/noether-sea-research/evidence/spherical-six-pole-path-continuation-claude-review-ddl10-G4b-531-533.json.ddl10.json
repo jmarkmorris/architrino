@@ -1,0 +1,132 @@
+{
+ "ddl10_sha256": "67a82d348edff01ebdbf0219d213c80910693f57d0aa92f1553161e34a3fc396",
+ "inputs_sha256": {
+  "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-correlated-continuation-claude-continuation-steps10-cm-v44-C18-r1.json": "7940e277359dd41690b60a0b77af59e5587c3172397c119854d809190538c2d4",
+  "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-correlated-continuation-claude-continuation-steps10-cm-v44-C20-r2.json": "7b1470e81409f6a9361b8f932e5974895698f373e6b0d2dc8d340e53d5aec3c1",
+  "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-correlated-continuation-claude-continuation-steps10-cm-v44-C20-r3.json": "e2dc6540a21e0682a14fce9a5d848785c06839f4c688f64f94ce8606c4cf6cb8",
+  "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-correlated-continuation-claude-continuation-steps10-cm-v44-C20-r4.json": "8182cb08f20b4409e61b3149c800a0a022572d2e23fb0b2ec9f77f3acd55d8d6",
+  "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-correlated-continuation-claude-continuation-steps10-cm-v44-C22-r5.json": "7af6178534c67a97e78800f6a5c7782b4c27fd6f124ed15bad7d82483e54b875",
+  "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-continuation-claude-continuation-steps10-cm471-P1.json": "e19aac9418e7cdc0b5d34b80084463e46aa2bf14763cfb15f92c7ff132adcac4",
+  "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-continuation-claude-continuation-steps10-cm471-P2.json": "08683e84f29af2578e0dc1f6203f607968ac8ca304be6da924e9128581d04e96",
+  "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-continuation-claude-continuation-steps10-cm471-P3.json": "e6b7fbb6b1107508e76730c9647fe15b8ef2de06460ede0463819ac6a4f3434b"
+ },
+ "range": [
+  531,
+  533
+ ],
+ "ksub": 4,
+ "insertion_controls": {
+  "I1_reproduces_step154_strings": true,
+  "I2_known_append_accepted": true,
+  "I3_gap_refused": true,
+  "I4_frozen_mismatch_refused": true
+ },
+ "refine_controls": {
+  "R1_cubic_origin_and_remainder": true,
+  "R2_frozen_t3": true,
+  "R3_unsplit_undecided_split_decides": true
+ },
+ "rows": [
+  {
+   "step": 531,
+   "ddl": [
+    "-0.133956729128024633179765957829",
+    "0.0616121587935946506280113792314"
+   ],
+   "ddl_sign": "UNDECIDED",
+   "dl_end": [
+    "0.0010270624771844997050004165879",
+    "0.0225972251973182916490138144514"
+   ],
+   "reads_frozen_records_through_154": [],
+   "reads_reconstructed_records": [
+    "own-337",
+    "own-338",
+    "own-358",
+    "own-359",
+    "own-453",
+    "own-454",
+    "own-455"
+   ],
+   "history": "reconstructed only",
+   "lemma": {
+    "A_up": "0.0228444794021245428439386282629",
+    "B_up": "0.0225972251973182916490138144514",
+    "L": "-0.133956729128024633179765957829",
+    "U": "0.0616121587935946506280113792314",
+    "start_only": "0.0234606009900604893502187420552",
+    "end_only": "0.0239367924885985379808114740297",
+    "bound": "0.0231886024784040883239847079697",
+    "sign": "UNDECIDED"
+   }
+  },
+  {
+   "step": 532,
+   "ddl": [
+    "-0.138258983571076255527208171012",
+    "0.0602187663820232567367654454204"
+   ],
+   "ddl_sign": "UNDECIDED",
+   "dl_end": [
+    "0.00052174821426405103944073972214",
+    "0.0223180548203372234813138507819"
+   ],
+   "reads_frozen_records_through_154": [],
+   "reads_reconstructed_records": [
+    "own-338",
+    "own-339",
+    "own-359",
+    "own-360",
+    "own-454",
+    "own-455",
+    "own-456"
+   ],
+   "history": "reconstructed only",
+   "lemma": {
+    "A_up": "0.0225972251973182916490138144514",
+    "B_up": "0.0223180548203372234813138507819",
+    "L": "-0.138258983571076255527208171012",
+    "U": "0.0602187663820232567367654454204",
+    "start_only": "0.0231994128611385242163814689056",
+    "end_only": "0.023700644656047986036585932492",
+    "bound": "0.0229320060915108316489366705692",
+    "sign": "UNDECIDED"
+   }
+  },
+  {
+   "step": 533,
+   "ddl": [
+    "-0.142337578491018445263472260683",
+    "0.0590928478446291369355277205428"
+   ],
+   "ddl_sign": "UNDECIDED",
+   "dl_end": [
+    "0.0000629351043388659016986034955018",
+    "0.0219373126593109342764106757766"
+   ],
+   "reads_frozen_records_through_154": [],
+   "reads_reconstructed_records": [
+    "own-339",
+    "own-340",
+    "own-360",
+    "own-361",
+    "own-455",
+    "own-456",
+    "own-457",
+    "own-458"
+   ],
+   "history": "reconstructed only",
+   "lemma": {
+    "A_up": "0.0223180548203372234813138507819",
+    "B_up": "0.0219373126593109342764106757766",
+    "L": "-0.142337578491018445263472260683",
+    "U": "0.0590928478446291369355277205428",
+    "start_only": "0.0229089832987835148506691279873",
+    "end_only": "0.0233606884442211187290453983834",
+    "bound": "0.0226239281246571958298061577461",
+    "sign": "UNDECIDED"
+   }
+  }
+ ],
+ "lemma_negative_steps": []
+}

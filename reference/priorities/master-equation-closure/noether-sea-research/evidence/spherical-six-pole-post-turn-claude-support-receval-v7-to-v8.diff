@@ -1,0 +1,45 @@
+39a40,47
+> # ---- receval v8 (post-turn campaign 2026-10-21; review request after post-turn adjudication 9): a NEW file built from receval v7 (sha256 b0d1462e629e634f20d67281f791de840b3fb3454590f25222cf892fd7c745a8, unchanged).
+> # Changes (complete list): (F1) optional flag --end-box=frozen-step: the end instant is evaluated on the record's FROZEN-STEP end box corr.box_end_q / corr.box_end_w
+> #   (read outward, padded by 1e-23, exactly as the end strings are read) instead of the intersected end_q_str / end_v_str; a record without those fields refuses.
+> #   Without the flag v8 is v7. The history chain, lookups, roots and law are unchanged (the chain still uses the records' intersected end strings).
+> #  (F2) the end account records which box was used; each target row records whether the intersected end box lies inside the frozen-step box.
+> #  (F3) control V5: known record with a distinct corr box: with the flag the route evaluates the corr box (exact image of q + 2w on it, to 1e-22) and without it the
+> #   end strings (exact image [0.7, 1.02]); NEGATIVE: the flag on a record without corr fields refuses.
+> # Command line: <out.json> <steps|none> <n_sub> <NQ>x<NW> [--end-only] [--end-box=frozen-step] <recon.json ...>
+61c69,70
+< NEND = tuple(int(x_) for x_ in sys.argv[4].split("x")); ENDONLY = "--end-only" in sys.argv[5:]; RECF = [a_ for a_ in sys.argv[5:] if not a_.startswith("--")]      # v7 (E1, E2): <n_endq>x<n_endw> and the cost flag
+---
+> NEND = tuple(int(x_) for x_ in sys.argv[4].split("x")); ENDONLY = "--end-only" in sys.argv[5:]; ENDBOX = "corr" if "--end-box=frozen-step" in sys.argv[5:] else None;      # v8 (F1)
+> RECF = [a_ for a_ in sys.argv[5:] if not a_.startswith("--")]      # v7 (E1, E2): <n_endq>x<n_endw> and the cost flag
+66c75
+< outX = {"controls": [], "n_sub": NSX, "steps": STEPS, "instrument": "receval v7", "n_end_q_w": list(NEND), "end_only": ENDONLY}; tX = time.time(); FROZ = SL      # v5 (C4)
+---
+> outX = {"controls": [], "n_sub": NSX, "steps": STEPS, "instrument": "receval v8", "end_box": ("frozen-step corr.box_end_q/w" if ENDBOX else "end_q_str/end_v_str"), "n_end_q_w": list(NEND), "end_only": ENDONLY}; tX = time.time(); FROZ = SL      # v5 (C4)
+220c229
+< def end_instant(st, n=3, law=None, builder=None, check_cover=True, trace=None, full=False):
+---
+> def end_instant(st, n=3, law=None, builder=None, check_cover=True, trace=None, full=False, box_src=None):
+223c232,236
+<     qb, wb = box_out(st["end_q_str"]), box_out(st["end_v_str"]); Sx = {}
+---
+>     if box_src == "corr":      # v8 (F1)
+>         if not isinstance(st.get("corr"), dict) or "box_end_q" not in st["corr"] or "box_end_w" not in st["corr"]: return None, "no frozen-step end box (corr.box_end_q/w) in the record: refused"
+>         pq_, pw_ = st["corr"]["box_end_q"], st["corr"]["box_end_w"]
+>     else: pq_, pw_ = st["end_q_str"], st["end_v_str"]
+>     qb, wb = box_out(pq_), box_out(pw_); Sx = {}
+262a276
+>         acc["end_box_source"] = "corr.box_end_q/w (frozen step)" if box_src == "corr" else "end_q_str/end_v_str (intersected)"      # v8 (F2)
+376a391,395
+> # ---- v8 (F3): control V5 of the frozen-step end-box selection (known record, stationary partners; corr box q [0.31, 0.50] x w [0.20, 0.27], exact image of q + 2w = [0.71, 1.04])
+> stK5 = dict(stK, corr={"box_end_q": ["0.31", "0.50"], "box_end_w": ["0.20", "0.27"]})
+> r5a, w5a = end_instant(stK5, NEND, law=fK, box_src="corr"); r5b, w5b = end_instant(stK5, NEND, law=fK); r5c, w5c = end_instant(stK, NEND, law=fK, box_src="corr")
+> def _tight(r_, a_, b_): return r_ is not None and fr(lo(r_)) <= Fraction(a_) and Fraction(b_) <= fr(up(r_)) and Fraction(a_) - fr(lo(r_)) < Fraction(1, 10**22) and fr(up(r_)) - Fraction(b_) < Fraction(1, 10**22)
+> outX["controls"].append({"name": "(V5) known: with box_src corr the route evaluates the record's corr box (image of q + 2w is [0.71, 1.04] to 1e-22); without it, the end strings ([0.7, 1.02]); NEGATIVE: box_src corr on a record without corr fields refuses", "corr_image": J(r5a) if r5a is not None else w5a, "strings_image": J(r5b) if r5b is not None else w5b, "missing_corr_outcome": w5c, "pass": bool(_tight(r5a, "0.71", "1.04") and _tight(r5b, "0.7", "1.02") and r5c is None and "frozen-step" in w5c)})
+389c408,409
+<         eiF, why3 = end_instant(st, NEND, full=True); ei = eiF[0] if eiF is not None else None      # v5 (C3)
+---
+>         eiF, why3 = end_instant(st, NEND, full=True, box_src=ENDBOX);      # v8 (F1)
+>         ei = eiF[0] if eiF is not None else None      # v5 (C3)
+391a412
+>         if isinstance(st.get("corr"), dict) and "box_end_q" in st["corr"]: ent["intersected_end_box_inside_frozen_step_box"] = bool(inside(box_out(st["end_q_str"]), box_out(st["corr"]["box_end_q"])) and inside(box_out(st["end_v_str"]), box_out(st["corr"]["box_end_w"])))      # v8 (F2)

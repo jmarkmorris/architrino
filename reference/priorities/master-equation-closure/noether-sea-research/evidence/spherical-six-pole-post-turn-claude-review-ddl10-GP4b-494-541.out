@@ -1,0 +1,75 @@
+PID 99724 ddl10 sha256 67a82d348edff01ebdbf0219d213c80910693f57d0aa92f1553161e34a3fc396
+PID 99724
+K1 table 324 exact resume-string joins 21 first-reading records [('w16-1', ['unlike']), ('w17-1', ['like']), ('ant-b3-13', ['antipode'])]
+K2 True ['0.401200769746683166266666996002', '0.401200799786666666666669670665'] negatives {'N1_dropped_remainder': True, 'N2_origin_uncertainty_dropped': True, 'N3_wrong_start_state': True, 'N4_wrong_start_acceleration': True, 'N5_gap': True, 'N6_uncertified': True, 'N7_beyond_coverage': True, 'N7b_window_read': True}
+K3 True 323 max endpoint difference 1.804e-8 | W2 shifted table detected on 322 of 322
+KD1 True KD2 True {'4.9': {'U': ('6.0e-23', '2.2e-23', '1.2006609'), 'L': ('9.3e-23', '9.2e-23', '0.89098756'), 'A': ('2.6e-27', '1.6e-27', '1.1071221')}, '5.1': {'U': ('7.7e-24', '1.9e-23', '1.2219361'), 'L': ('2.2e-22', '2.0e-22', '0.85764961'), 'A': ('4.1e-28', '1.2e-27', '1.1183649')}} WD True
+KO omission True {'U': '0.00237', 'L': '0.00129', 'A': '0.00377'}
+event controls {'E1_maximum_detected': True, 'E2_minimum_not_a_maximum': True, 'E3_zero_box_undecided_no_event': True, 'E4_bracket_spans_undecided_step': True, 'E5_no_classification_without_positive_qdot': True, 'E6_no_uniqueness_without_rate_sign': True, 'T1_wrong_boundaries_not_target2': True, 'T2_L_crossing_is_target2': True}
+K4' True fails 0 events 2.8067 [[192, 193]] as target 2: [] | W3 True
+KOE own end evaluation True {'s2w-192': ('0.05272767', '0.05297109', '1.0'), 's2w-193': ('0.05159090', '0.05183771', '1.0'), 's3w-213': ('0.02818654', '0.02849943', '1.0'), 's3w-214': ('0.02701745', '0.02733355', '1.0')} | WOE True
+H w17-1 ['like'] ap 0.00362297 0.00720005 | pre 0.00618453 0.00655674 in ap True meets True | post 0.00420498 0.00475218 in ap True meets True | classes ['like', 'unlike']
+H ant-b3-13 ['antipode'] ap 0.00468337 0.00751372 | pre 0.00565583 0.00651218 in ap True meets True | post 0.00560646 0.00648693 in ap True meets True | classes ['antipode', 'like', 'unlike']
+KR True True {'U': ('0.0', '0.007709', '0.1519'), 'L': ('3.08e-32', '0.02022', '0.1664'), 'A': ('4.62e-33', '0.01725', None)}
+ORACLE True True
+KOE2 True {'273': ('-0.0176394', '-0.0158465', '-0.019300', '-0.014530'), '274': ('-0.0173321', '-0.0155063', '-0.018989', '-0.014184')} WOE2 True
+event controls {'P1_path_turn_detected_not_speed_max': True, 'P2_reversed_crossing_reported_as_q_minimum': True, 'P3_zero_containing_w_undecided': True, 'S1_neg_to_pos_is_support_minimum': True, 'S2_pos_to_neg_is_support_maximum': True, 'S3_support_zero_not_a_turn': True, 'S4_zero_of_a_not_a_support_turn': True, 'S5_undecided_dl_undecided': True, 'S6_seam_one_sided': True}
+JET exact True {'U': '1.08e-32', 'L': '4.62e-33', 'A': '6.16e-33'} numerical True {'4.9': {'U': '2.77e-18', 'L': '3.21e-19', 'A': '1.39e-23', 'l': '2.45e-19'}, '5.1': {'U': '1.37e-18', 'L': '4.93e-19', 'A': '1.65e-23', 'l': '8.74e-20'}} negatives True {'4.9': ('0.004376', '0.001947', '0.01373'), '5.1': ('0.004213', '0.001659', '0.01145')}
+R1 True
+R2 True {'273': {'refined': ['0.0283441127685522349958038343664', '0.0376078956381220346094926385496'], 'whole_step': ['0.0258456688348040268237867878921', '0.0401351588797210094671038799416'], 'pass': True}, '274': {'refined': ['0.0276890192835647480584278810882', '0.0370473706982743233554828404138'], 'whole_step': ['0.025200857715918548334189920069', '0.0395962681193309067586137654176'], 'pass': True}}
+R3 True {'t_center': '4.9', 'half_width': '0.04', 'true_sign': 'negative', 'true_range': ['-0.0058422132', '-0.0044415565'], 'unsplit': ['-0.0119613352402519213406911015835', '0.00192961540278257323440709190987'], 'split_hull': ['-0.00660487935934416302951320707667', '-0.00364613730312826784952902996866'], 'split_decides': True, 'split_contains_truth': True}
+ddl-refine controls R1-R3 passed on the full frozen table
+insertion controls {'I1_reproduces_step154_strings': True, 'I2_known_append_accepted': True, 'I3_gap_refused': True, 'I4_frozen_mismatch_refused': True}
+checked append done; last own-570
+own appended 296 guaranteed end 7.566684593623649597167969
+saved reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-post-turn-claude-review-ddl10-GP4b-494-541.json
+494 ddl -0.0342365 0.06630920 end dl up 0.019786998 bound 0.0199157561 UNDECIDED | reconstructed only
+495 ddl -0.0354207 0.06692471 end dl up 0.020040785 bound 0.0201845726 UNDECIDED | reconstructed only
+496 ddl -0.0372842 0.06736504 end dl up 0.020316242 bound 0.0204581101 UNDECIDED | reconstructed only
+497 ddl -0.0385535 0.06793840 end dl up 0.020561113 bound 0.0207184214 UNDECIDED | reconstructed only
+498 ddl -0.0405222 0.06833024 end dl up 0.020828026 bound 0.0209830352 UNDECIDED | reconstructed only
+499 ddl -0.0418733 0.06885105 end dl up 0.021060285 bound 0.0212328289 UNDECIDED | reconstructed only
+500 ddl -0.0439443 0.06914515 end dl up 0.021312850 bound 0.0214833930 UNDECIDED | reconstructed only
+501 ddl -0.0453846 0.06960626 end dl up 0.021531211 bound 0.0217197508 UNDECIDED | reconstructed only
+502 ddl -0.0475702 0.06983461 end dl up 0.021770627 bound 0.0219565772 UNDECIDED | reconstructed only
+503 ddl -0.0490969 0.07022335 end dl up 0.021974010 bound 0.0221792736 UNDECIDED | reconstructed only
+504 ddl -0.0513855 0.07033438 end dl up 0.022194975 bound 0.0223986179 UNDECIDED | reconstructed only
+505 ddl -0.0530072 0.07068553 end dl up 0.022378413 bound 0.0226027188 UNDECIDED | reconstructed only
+506 ddl -0.0554140 0.07066825 end dl up 0.022586930 bound 0.0228058777 UNDECIDED | reconstructed only
+507 ddl -0.0571393 0.07101164 end dl up 0.022744084 bound 0.0229906368 UNDECIDED | reconstructed only
+508 ddl -0.0596589 0.07077852 end dl up 0.022931549 bound 0.0231695316 UNDECIDED | reconstructed only
+509 ddl -0.0614842 0.07091091 end dl up 0.023062720 bound 0.0233311148 UNDECIDED | reconstructed only
+510 ddl -0.0641728 0.07075060 end dl up 0.023226948 bound 0.0234853445 UNDECIDED | reconstructed only
+511 ddl -0.0668941 0.07111144 end dl up 0.023347208 bound 0.0236336074 UNDECIDED | reconstructed only
+512 ddl -0.0693033 0.07087177 end dl up 0.023502354 bound 0.0237760433 UNDECIDED | reconstructed only
+513 ddl -0.0722710 0.07128088 end dl up 0.023596288 bound 0.0239078602 UNDECIDED | reconstructed only
+514 ddl -0.0748033 0.07102981 end dl up 0.023721126 bound 0.0240214308 UNDECIDED | reconstructed only
+515 ddl -0.0779300 0.07129441 end dl up 0.023790688 bound 0.0241266840 UNDECIDED | reconstructed only
+516 ddl -0.0805388 0.07086970 end dl up 0.023872048 bound 0.0242057482 UNDECIDED | reconstructed only
+517 ddl -0.0839229 0.07046470 end dl up 0.023947145 bound 0.0242893601 UNDECIDED | reconstructed only
+518 ddl -0.0872103 0.07058194 end dl up 0.023952362 bound 0.0243395787 UNDECIDED | reconstructed only
+519 ddl -0.0900010 0.06991120 end dl up 0.023988267 bound 0.0243615302 UNDECIDED | reconstructed only
+520 ddl -0.0933905 0.06974884 end dl up 0.023949220 bound 0.0243708568 UNDECIDED | reconstructed only
+521 ddl -0.0962821 0.06905077 end dl up 0.023943527 bound 0.0243489625 UNDECIDED | reconstructed only
+522 ddl -0.0998120 0.06872572 end dl up 0.023870790 bound 0.0243208773 UNDECIDED | reconstructed only
+523 ddl -0.1027562 0.06786113 end dl up 0.023808895 bound 0.0242548741 UNDECIDED | reconstructed only
+524 ddl -0.1065672 0.06698148 end dl up 0.023734039 bound 0.0241913033 UNDECIDED | reconstructed only
+525 ddl -0.1102206 0.06626265 end dl up 0.023573700 bound 0.0240876743 UNDECIDED | reconstructed only
+526 ddl -0.1133299 0.06523173 end dl up 0.023453907 bound 0.0239439518 UNDECIDED | reconstructed only
+527 ddl -0.1171435 0.06441074 end dl up 0.023274493 bound 0.0238058509 UNDECIDED | reconstructed only
+528 ddl -0.1211909 0.06322575 end dl up 0.023091865 bound 0.0236273743 UNDECIDED | reconstructed only
+529 ddl -0.1244902 0.06202854 end dl up 0.022901733 bound 0.0234426391 UNDECIDED | reconstructed only
+530 ddl -0.1284335 0.06079762 end dl up 0.022614439 bound 0.0232220708 UNDECIDED | reconstructed only
+531 ddl -0.1317801 0.05940046 end dl up 0.022364055 bound 0.0229460899 UNDECIDED | reconstructed only
+532 ddl -0.1360399 0.05797646 end dl up 0.022081919 bound 0.0226862649 UNDECIDED | reconstructed only
+533 ddl -0.1400768 0.05650622 end dl up 0.021698335 bound 0.0223743012 UNDECIDED | reconstructed only
+534 ddl -0.1434940 0.05521288 end dl up 0.021352657 bound 0.0220009987 UNDECIDED | reconstructed only
+535 ddl -0.1476922 0.05349936 end dl up 0.020952958 bound 0.0216391044 UNDECIDED | reconstructed only
+536 ddl -0.1519122 0.05137764 end dl up 0.020493443 bound 0.0212207543 UNDECIDED | reconstructed only
+537 ddl -0.1553879 0.04955229 end dl up 0.020050025 bound 0.0207619407 UNDECIDED | reconstructed only
+538 ddl -0.1596085 0.04769139 end dl up 0.019537219 bound 0.0202992443 UNDECIDED | reconstructed only
+539 ddl -0.1638783 0.04528718 end dl up 0.018976900 bound 0.0197707219 UNDECIDED | reconstructed only
+540 ddl -0.1673564 0.04322431 end dl up 0.018422923 bound 0.0192067098 UNDECIDED | reconstructed only
+541 ddl -0.1716907 0.04118400 end dl up 0.017831809 bound 0.0186407262 UNDECIDED | reconstructed only
+lemma negative steps: []
+saved reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-post-turn-claude-review-ddl10-GP4b-494-541.json.ddl10.json

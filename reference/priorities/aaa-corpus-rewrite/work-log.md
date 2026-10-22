@@ -2,6 +2,24 @@
 
 This is the chronological completion log for the CRW-005 assurance campaign. The compact live status board is in [priorities.md](priorities.md#crw-005-status-board); detailed findings and receipts remain in [work-queue.md](work-queue.md).
 
+## Subsequent maintenance referrals
+
+### 2026-10-21 — Absolute Timespace periodic no-change review
+
+The [October 21 OPS-031 Absolute Timespace review](../aaa-operations/evidence/ops-031-absolute-timespace-review-2026-10-21.md) completes later whole-chapter coverage at unchanged source identity with no new actionable correction. Accepted repair and prior no-change checks survive explicit independent mathematics; physical recovery obligations remain open. Operations owns the second-cycle cursor, now five of fifteen early chapters, ten uncovered. Historical CRW-005 audit counts and its closed status remain unchanged. No substantive source repair is proposed.
+
+### 2026-10-20 — Six core geometry groups integrated and separately verified
+
+The operator approved integration of the outstanding recent findings on October 20. All six October 19 groups are implemented across the two braid chapters and [separately verified](evidence/ops-031-core-geometry-verification-2026-10-20.md), with [exact source identities and preservation checks](evidence/ops-031-core-geometry-integration-2026-10-20.md). No recent review repair remains pending in this six-group scope. Existing scientific obligations and historical CRW-005 closure remain unchanged. The operator instruction authorizes the bounded integration. Eight Coincident-Axis and ten Configuration Space fragments correct the accepted distinctions; the valid axial lemma and all 46 displayed equations/viewer links are preserved. Original receipts and their observed source hashes remain unchanged.
+
+### 2026-10-20 — Cosmology pair periodic review, no new repair
+
+The later October 20 OPS-031 reviews of [Cosmology Ontology](../aaa-operations/evidence/ops-031-cosmology-ontology-review-2026-10-20.md) and [Cosmology Reconstruction](../aaa-operations/evidence/ops-031-cosmology-reconstruction-review-2026-10-20.md) complete whole-chapter coverage at unchanged source identities with no new actionable correction. Previous accepted repairs survive independent checks; scientific cosmology construction and observation-fit obligations remain open. Operations owns the later coverage cursor. The six October 19 proposed maintenance groups and historical CRW-005 closure are unchanged.
+
+### 2026-10-19 — Six core geometry maintenance groups proposed
+
+The [maintenance referral](work-queue.md#ops-031--october-19-core-geometry-referrals) records four medium corrections, one low notation correction and one low clarification from two complete core-chapter reviews. The [operations batch record](../aaa-operations/evidence/ops-031-core-geometry-review-2026-10-19.md) links exact source identities, before/after fragments, independent references and falsifiers. Substantive repairs remain unapproved; no source edit occurred. Operations retains the later coverage cursor and historical CRW-005 accounting remains closed.
+
 ## Completed milestones
 
 ### 2026-10-14 — OPS-031 Bremsstrahlung terminology correction implemented

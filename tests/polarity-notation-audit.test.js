@@ -5,6 +5,21 @@ import { maskNonPolarityNotation } from "../scripts/lib/polarity-notation-audit.
 
 const ratios = text => [...mask(text).matchAll(/\b[PE]\s*\/\s*[PE]\b/g)].map(m => m[0]);
 
+test("a TeX exponent before a variable is not a compact polarity count", () => {
+  for (const expression of ["G=B+\\varepsilon^2E", "x^3P"]) {
+    const text = "This route uses $" + expression + "$; actual inventory 3P/3E.";
+    const classified = maskNonPolarityNotation(text);
+    assert.equal(classified.length, text.length);
+    assert(!/\^[0-9][PE]\b/.test(classified));
+    assert(classified.endsWith("actual inventory 3P/3E."));
+    assert.equal(classified.indexOf("3P/3E"), text.indexOf("3P/3E"));
+  }
+  for (const text of ["Inventory $2E$", "Route x^2E", "Route `$x^2E$`",
+    "Route $\\text{x^2E}$", "Route $x^23E$"]) {
+    assert.equal(maskNonPolarityNotation(text), text, text);
+  }
+});
+
 const eventPhase = (q = "q_E") => `At the reached event the next stationary distance gap is\n\n$$\nd_2-d_5=2\\sin(\\pi/12-${q}/2).\n$$\n\nSince $${q}<103/200$, the sine argument exceeds the bound.`;
 
 test("shifted history anchors do not become polarity counts in composition prose", () => {

@@ -1,0 +1,72 @@
+29a30,39
+> # ---- receval v7 (2026-10-20, PI request after review adjudication 13): a NEW file built from receval v6 (sha256 bd3baea86fe824b34bbc5e379f4ec9e8eb3232499c1291fb4f3f0f78737fbb9a,
+> # unchanged). Changes (complete list):
+> #  (E1) the end-instant cover counts are a command-line parameter <NQ>x<NW> (pieces along q and along w; both >= 3); the same exact-edge, shared-edge
+> #       cover_1d and the same cover_ok check per axis; V1-V4 run at these counts (V1's piece count check becomes NQ*NW).
+> #  (E2) COST ONLY: flag --end-only skips v4's whole-step and sub-step parts of each target row (the row records "skipped"); the end instant is unchanged.
+> #  (E3) COST ONLY: in end_instant the per-class source contraction and history lookup, which depend only on (end time, q piece), are computed once per
+> #       q piece and reused for every w piece; v6 recomputed the identical calls for each w piece. Per-piece inputs and results are unchanged.
+> #  (E4) diagnostics and progress only: the end account records the cover counts, the hull of l' per q piece and the piece with the largest upper end;
+> #       a progress line is printed after each q piece.
+> # Command line: <out.json> <steps|none> <n_sub> <NQ>x<NW> [--end-only] <recon.json ...>
+50a61,62
+> NEND = tuple(int(x_) for x_ in sys.argv[4].split("x")); ENDONLY = "--end-only" in sys.argv[5:]; RECF = [a_ for a_ in sys.argv[5:] if not a_.startswith("--")]      # v7 (E1, E2): <n_endq>x<n_endw> and the cost flag
+> assert len(NEND) == 2 and min(NEND) >= 3, "v7: end cover counts must be NQxNW with both >= 3 (V3, V4 need at least 3 pieces)"
+54c66
+< outX = {"controls": [], "n_sub": NSX, "steps": STEPS, "instrument": "receval v5"}; tX = time.time(); FROZ = SL      # v5 (C4)
+---
+> outX = {"controls": [], "n_sub": NSX, "steps": STEPS, "instrument": "receval v7", "n_end_q_w": list(NEND), "end_only": ENDONLY}; tX = time.time(); FROZ = SL      # v5 (C4)
+218c230,231
+<     bld = builder or cover_1d; QP, WP = bld(qb, n), bld(wb, n)
+---
+>     nq_, nw_ = (n, n) if isinstance(n, int) else n      # v7 (E1): separate cover counts along q and w
+>     bld = builder or cover_1d; QP, WP = bld(qb, nq_), bld(wb, nw_)
+226,232c239,247
+<     for qs in QP:
+<         for ws in WP:
+<             states = {}; Sp = {}
+<             for c in (1, -1, 0):
+<                 S_, why = contractX(te, qs, c, Sx[c], check=False)
+<                 if S_ is None: return None, why
+<                 rs, _ = lookup2(S_); states[c] = (rs[0], rs[1], rs[2]); Sp[c] = S_
+---
+>     best_ = None; qh_ = []
+>     for iq_, qs in enumerate(QP):
+>         states = {}; Sp = {}      # v7 (E3): the source contraction and lookup depend only on (te, qs), so they are computed once per q piece and reused for every w piece (cost only; same calls, same inputs as v6 per piece)
+>         for c in (1, -1, 0):
+>             S_, why = contractX(te, qs, c, Sx[c], check=False)
+>             if S_ is None: return None, why
+>             rs, _ = lookup2(S_); states[c] = (rs[0], rs[1], rs[2]); Sp[c] = S_
+>         hq_ = None
+>         for iw_, ws in enumerate(WP):
+241a257,260
+>             hq_ = v if hq_ is None else hull(hq_, v)      # v7 (E4) diagnostics: per-q-piece hull and the piece with the largest upper end
+>             if best_ is None or up(v) > best_[0]: best_ = (up(v), iq_, iw_)
+>         qh_.append(J(hq_))
+>         if full: print("  end-instant q piece %d/%d done, %.1f s" % (iq_ + 1, len(QP), time.time() - tX), flush=True)      # v7 (E4) progress
+243a263
+>         acc["cover_counts_q_w"] = [nq_, nw_]; acc["per_q_piece_hull"] = qh_; acc["max_upper_piece_q_w"] = [best_[1], best_[2], s45(best_[0])]
+332,333c352,353
+< trK = []; rK, whyK = end_instant(stK, 3, law=fK, trace=trK); detK = []
+< okK = rK is not None and len(trK) == 9
+---
+> trK = []; rK, whyK = end_instant(stK, NEND, law=fK, trace=trK); detK = []
+> okK = rK is not None and len(trK) == NEND[0]*NEND[1]
+350c370
+< r2, w2 = end_instant(stK, 3, law=fK, builder=cover_drop_top); r2b, w2b = end_instant(stK, 3, law=fK, builder=cover_drop_top, check_cover=False)
+---
+> r2, w2 = end_instant(stK, NEND, law=fK, builder=cover_drop_top); r2b, w2b = end_instant(stK, NEND, law=fK, builder=cover_drop_top, check_cover=False)
+353c373
+< r3, w3 = end_instant(stK, 3, law=fK, builder=cover_drop_mid)
+---
+> r3, w3 = end_instant(stK, NEND, law=fK, builder=cover_drop_mid)
+355c375
+< r4, w4 = end_instant(stK, 3, law=fK, builder=cover_beyond)
+---
+> r4, w4 = end_instant(stK, NEND, law=fK, builder=cover_beyond)
+367c387,389
+<         ws_, why = whole_step(st); ss_, why2 = sub_steps(st, slab, NSX); eiF, why3 = end_instant(st, full=True); ei = eiF[0] if eiF is not None else None      # v5 (C3)
+---
+>         if ENDONLY: ws_, why, ss_, why2 = None, "skipped (--end-only, v7 E2)", None, "skipped (--end-only, v7 E2)"      # v7 (E2): cost flag, end instant only
+>         else: ws_, why = whole_step(st); ss_, why2 = sub_steps(st, slab, NSX)
+>         eiF, why3 = end_instant(st, NEND, full=True); ei = eiF[0] if eiF is not None else None      # v5 (C3)

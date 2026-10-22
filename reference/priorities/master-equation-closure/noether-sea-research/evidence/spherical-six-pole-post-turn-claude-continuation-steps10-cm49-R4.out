@@ -1,0 +1,154 @@
+pid 95210
+pid 95210
+pid 95210
+T* [1.366684593623, 1.366684709182]; certified records 264 to t = 4.0066847091 (guaranteed 4.006684593623); joins exact True; controls 1.4 s
+controls: ALL PASS (27 controls: 14 frozen v5 + 13 new)
+   pass (C1) 264-record chain: 10 + 40 + 21 + 73 + 60 + 60 certified records, every file join exact-string, w-chain files accepted by name and sha25
+   pass (C2) known chain case on the 60 w-chain records: the sub-range form at sigma = Delta reproduces each certified end to 1e-18 and at sigma = 0
+   pass (C3) guaranteed coverage edge at the 264-record end: a range ending just below the lower endpoint of the last uncertain end is accepted, a r
+   pass (C4) signed closed forms (tangent hit, D_t, r, radial) of all three classes vs direct vector computation at 200 random points each on the NE
+   pass (C5) signed-geometry box q in [0.81, 1.10], q' in [0, 0.85], v' in [0, 0.45] (400 cells): every separation r > 0.80 (v2: the smallest unlike
+   pass (C6) derivative identities of the rate function on the new box: exact hand-known case (source at rest: d hit/dt = hit_fixed'(q) qdot and tau
+   pass (C7) reconciliation at the accepted step-214 state: g F(q) intersects the fixed-form class tangent sum 2U + 2L + A; the fixed radial sum int
+   pass (C8) negative: with the wrong sign of the velocity term in D_t the class term is disjoint from the correct one for the unlike and antipode c
+   pass (C9) delay-root bracket at the step-214 state: half-widths 0.15 and 0.30 give intersecting delay enclosures agreeing to 1e-9 for all classes
+   pass (C10) restart regression (same-chain consistency, not independence): from the frozen step-213 strings the step intersects the frozen step-21
+   pass (C11) self-append: the control step (from step 213), appended and enriched through the checked path, is read on a sub-range inside its whole
+   pass (C12) restart wrapper: the accepted terminal record (name and sha256) is resumed with the exact step-214 strings and t0 an interval; refused
+   pass (C13) synthetic EVENT controls: positive-to-negative qddot detected as one maximum (also through an undecided end, with the speed hull over 
+certified records 324 to t = 4.6066847091 (guaranteed 4.606684593623); joins exact True; controls 2.9 s
+turning-point controls: ALL PASS (43 controls: 27 frozen v3 + 16 new)
+   pass (D1) 324-record chain: 10 + 40 + 21 + 73 + 60 + 60 + 60 certified records, every file join exact-string (including the three new t1b, t2, t3
+   pass (D2) known chain case on the 60 records of steps 215-274: the sub-range form at sigma = Delta reproduces each certified end to 1e-18 and at 
+   pass (D3) guaranteed coverage edge at the 324-record end: a range ending just below the lower endpoint of the last uncertain end is accepted, a r
+   pass (D4) signed closed forms (tangent hit, D_t, r, radial) of all three classes vs direct vector computation at 200 random points each on the v3
+   pass (D5) signed-geometry box (v3) q in [1.04, 1.80], q' in [0, 1.20], w' in [-0.05, 0.45] (400 cells): every separation r > 0.70 (the smallest u
+   pass (D6) radial-derivative identities on the new box: exact rest-source case for all classes at q = 1.10, 1.30, 1.45, pi/2, 1.75; labelled numer
+   pass (D7) reconciliation at the accepted step-274 state: g F(q) intersects the fixed-form class tangent sum 2U + 2L + A; the fixed radial sum int
+   pass (D8) negative: at the step-274 state the D_t factor with the wrong sign of the velocity term is disjoint from the correct one for all three 
+   pass (D9) delay-root bracket at the step-274 state: half-widths 0.30 and 0.45 give intersecting delay enclosures agreeing to 1e-9 for all classes
+   pass (D10) restart regression (same-chain consistency, not independence): from the frozen step-273 strings the step intersects the frozen step-27
+   pass (D11) self-append: the control step (from step 273), appended and enriched through the checked path, is read on a sub-range inside its whole
+   pass (D12) restart wrapper: the accepted terminal record (name and sha256) is resumed with the exact step-274 strings and t0 an interval; refused
+   pass (D13) synthetic EVENT controls: w positive-to-negative detected as a PATH TURN (q maximum, |w| minimum), not as a speed maximum; a reversed 
+   pass (D9b) v3 bracket [chord - 0.45, chord + 0.90] at the step-274 state gives delay enclosures intersecting and agreeing to 1e-9 with the v2 bra
+   pass (D15, v3c) like-class bracket [chord - 0.90, chord + 0.90]: agrees with the v3b bracket to 1e-9 at the step-405 end for all classes; at the 
+   pass (D14) with the own records p1-p7 appended (name and sha256): the v2 and v3 brackets agree to 1e-9 at the step-334 state for all classes; at 
+correlated-continuation controls: ALL PASS (68 controls: 43 frozen v3c1 + 25 new); 6.6 s
+   pass (E1) 486-record admitted chain: 324 frozen plus 162 certified steps 275-436 from p1-p4, v3b p5-p7, v3c1 q1-q2 by name and sha256, every file join exac
+   pass (E2) KNOWN exact affine flow: q'' = -q, 60 steps of 0.01 from a 2e-4 box; the exact corner and centre solutions lie in the affine SET (2x2 membership)
+   pass (E3) NEGATIVE with a known truth: on the exact second-order step map (no remainder), the interior near-corner (q0 + 0.9e-4, w0 - 0.9e-4) propagated 60
+   pass (E4) KNOWN explicitly correlated polynomial image: one step q+ = q + w D - q^2 D^2/2, w+ = w - q^2 D from a correlated parallelogram (shared symbols);
+   pass (E5) receiver derivative of the class term including the delay-root dependence tau_q = r_q/(1 + r_q' w'): hand case (source at rest) for all classes a
+   pass (E6) one-sided seam (known Lipschitz mean-value inclusion): a source path with an acceleration jump of 0.8; for receiver intervals whose source times 
+   pass (N-R) NEGATIVE: with the Taylor-remainder and rounding symbols dropped, the exact solution of the known flow from a 1e-12 box (60 steps) is EXCLUDED w
+   pass (N-H) NEGATIVE: on a delayed test path, replacing the delayed-read width (history shifted by 1e-4) or the clock-origin width (time shifted by 1e-4) by
+   pass (E15) KNOWN cubic path with constant jerk: the exact step end lies in the integral (point-weight) remainder form and the frozen zero-hull form is wide
+   pass (E16) membership routines: the known false positive (columns (1,0), (0,1), shared (2,2), centre 0, point (3,-3)) is accepted by the RELAXED outer chec
+   pass (E17) certified membership routine (directed intervals): rank one, a point on the segment inside, beside it and beyond its end outside; rank two, an i
+   pass (E9) intersections: only two PROVED enclosures may be intersected (frozen accepted record, frozen step on a proved start box, reconstructed affine for
+   pass (E10) wider chart receiver q in [0.55, 2.10], source q' in [0, 1.80], w' in [-0.10, 0.45]: closed forms vs direct vectors at 150 points per class (fiv
+   pass (E7) refusals on the reader truncated at the anchor: a read into the possible (unguaranteed) end, a gap at append, an uncertified record, and any read
+   pass (E11) delay roots at the anchor state: the v3c1 bracket encloses the root of every class and agrees with a +-0.30 bracket where that straddles; unique
+   pass (E13) one reconstruction step from the anchor: the frozen step closes on the anchor box, the affine end and the frozen-step end intersect (empty would
+   pass (E12) event directions and first-turn status: the frozen v3c1 synthetic event controls (D13) are carried; a support minimum is called FIRST only if ev
+   pass (B1) KNOWN constructed stationary like source: exact root = direct-vector chord (frozen (0b) embedding, independent of geom); the frozen v3c1 bracket 
+   pass (B2) KNOWN uniform like source paths (constructed, exact, |u| = 0.30): the enclosure is proved by an INDEPENDENT direct-vector sign test (h < 0 just b
+   pass (B3) NEGATIVES (constructed stationary like source, root about 0.661 at rung 2): a ladder capped at 1 rung refuses; an upper end below the root refuse
+   pass (B4) at the anchor state the v4.6 delay root equals the frozen v3c1 root for every class (identical strings of tau, q', w'), through the frozen path (
+   pass (B7) KNOWN (v4.7) unlike roots above the frozen upper end chord_U + 0.90 (constructed: stationary source, exact root = direct-vector chord about 1.888
+   pass (B8) NEGATIVES (v4.7, constructed stationary unlike source, root about 1.888): a fallback with the upper end forced to 1.80 refuses (inf h(b) > 0 not 
+   pass (B9) v4.8 chart: the predicates used by accel_parts (in_box) and the frozen step check (in_iv) accept boxes just inside the new edges (q' 1.83, w' -0.
+   pass (S-ser) v4.9 serialization: (i) numbers (negative, positive, zero, tiny, irrational) and a whole affine form with a NEGATIVE centre and MIXED-SIGN col
+reconstruction from step 385 (anchor 154); records in reader 435
+step 386: q [1.44873547, 1.45146323] w [0.32881775, 0.33021489] wq 0.00272777 ww 0.00139714 dl/dt [-0.005764, -0.003284] neg over neg frozen 0.0135007; 7 s
+step 387: q [1.45202053, 1.45476150] w [0.32811503, 0.32951613] wq 0.00274097 ww 0.0014011 dl/dt [-0.005626, -0.003179] neg over neg frozen 0.0136751; 8 s
+step 388: q [1.45529854, 1.45805275] w [0.32740681, 0.32881189] wq 0.00275421 ww 0.00140508 dl/dt [-0.005572, -0.003060] neg over neg frozen 0.0138514; 8 s
+step 389: q [1.45856943, 1.46133693] w [0.32669300, 0.32810207] wq 0.0027675 ww 0.00140907 dl/dt [-0.005450, -0.002946] neg over neg frozen 0.0140298; 9 s
+step 390: q [1.46183317, 1.46461398] w [0.32597351, 0.32738660] wq 0.00278082 ww 0.00141309 dl/dt [-0.005394, -0.002821] neg over neg frozen 0.0142102; 10 s
+step 391: q [1.46508968, 1.46788385] w [0.32524824, 0.32666538] wq 0.00279418 ww 0.00141714 dl/dt [-0.005337, -0.002702] neg over neg frozen 0.0143927; 10 s
+step 392: q [1.46833890, 1.47114648] w [0.32451711, 0.32593832] wq 0.00280757 ww 0.00142121 dl/dt [-0.005211, -0.002571] neg over neg frozen 0.0145772; 11 s
+step 393: q [1.47158079, 1.47440180] w [0.32378002, 0.32520533] wq 0.00282101 ww 0.0014253 dl/dt [-0.005150, -0.002437] neg over neg frozen 0.0147639; 11 s
+step 394: q [1.47481528, 1.47764977] w [0.32303688, 0.32446631] wq 0.00283449 ww 0.00142943 dl/dt [-0.005005, -0.002313] neg over spa frozen 0.0149527; 12 s
+step 395: q [1.47804231, 1.48089031] w [0.32228759, 0.32372116] wq 0.00284801 ww 0.00143357 dl/dt [-0.004956, -0.002174] neg over spa frozen 0.0151437; 12 s
+step 396: q [1.48126181, 1.48412337] w [0.32153205, 0.32296979] wq 0.00286156 ww 0.00143774 dl/dt [-0.004808, -0.002042] neg over spa frozen 0.0153369; 13 s
+step 397: q [1.48447373, 1.48734889] w [0.32077016, 0.32221209] wq 0.00287516 ww 0.00144194 dl/dt [-0.004740, -0.001898] neg over spa frozen 0.0155323; 13 s
+step 398: q [1.48767799, 1.49056679] w [0.32000181, 0.32144798] wq 0.0028888 ww 0.00144617 dl/dt [-0.004670, -0.001763] neg over spa frozen 0.0157299; 14 s
+step 399: q [1.49087455, 1.49377702] w [0.31922691, 0.32067734] wq 0.00290247 ww 0.00145042 dl/dt [-0.004534, -0.001613] neg over spa frozen 0.0159298; 15 s
+step 400: q [1.49406332, 1.49697951] w [0.31844535, 0.31990006] wq 0.00291619 ww 0.00145471 dl/dt [-0.004460, -0.001473] neg over spa frozen 0.0161321; 15 s
+step 401: q [1.49724424, 1.50017419] w [0.31765702, 0.31911606] wq 0.00292995 ww 0.00145904 dl/dt [-0.004307, -0.001320] neg over spa frozen 0.0163366; 16 s
+step 402: q [1.50041724, 1.50336100] w [0.31686182, 0.31832520] wq 0.00294375 ww 0.00146339 dl/dt [-0.004245, -0.001173] neg over spa frozen 0.0165435; 16 s
+step 403: q [1.50358227, 1.50653986] w [0.31605962, 0.31752740] wq 0.00295759 ww 0.00146778 dl/dt [-0.004091, -0.001016] neg over spa frozen 0.0167528; 17 s
+step 404: q [1.50673923, 1.50971071] w [0.31525034, 0.31672253] wq 0.00297148 ww 0.0014722 dl/dt [-0.004011, -0.000859] neg over spa frozen 0.0169644; 17 s
+step 405: q [1.50988807, 1.51287347] w [0.31443384, 0.31591049] wq 0.0029854 ww 0.00147666 dl/dt [-0.003856, -0.000705] neg over spa frozen 0.0171786; 18 s
+step 406: q [1.51302870, 1.51602807] w [0.31361001, 0.31509116] wq 0.00299937 ww 0.00148114 dl/dt [-0.003788, -0.000536] neg over spa frozen 0.0173952; 19 s
+step 407: q [1.51616106, 1.51917444] w [0.31277874, 0.31426442] wq 0.00301338 ww 0.00148568 dl/dt [-0.003631, -0.000382] neg over spa frozen 0.0176143; 19 s
+step 408: q [1.51928508, 1.52231251] w [0.31193991, 0.31343016] wq 0.00302743 ww 0.00149025 dl/dt [-0.003547, -0.000212] neg over spa frozen 0.017836; 20 s
+step 409: q [1.52240066, 1.52544219] w [0.31109340, 0.31258825] wq 0.00304153 ww 0.00149486 dl/dt [-0.003403, -0.000052] neg over spa frozen 0.0180603; 20 s
+step 410: q [1.52550775, 1.52856342] w [0.31023908, 0.31173858] wq 0.00305567 ww 0.00149951 dl/dt [-0.003316, 0.0001220] spa over spa frozen 0.0182872; 21 s
+step 411: q [1.52860625, 1.53167611] w [0.30937682, 0.31088103] wq 0.00306986 ww 0.0015042 dl/dt [-0.003158, 0.0002829] spa over spa frozen 0.0185167; 22 s
+step 412: q [1.53169609, 1.53478018] w [0.30850652, 0.31001545] wq 0.00308408 ww 0.00150893 dl/dt [-0.003081, 0.0004620] spa over spa frozen 0.0187489; 22 s
+step 413: q [1.53477719, 1.53787555] w [0.30762803, 0.30914174] wq 0.00309836 ww 0.00151372 dl/dt [-0.002922, 0.0006285] spa over spa frozen 0.0189838; 23 s
+step 414: q [1.53784947, 1.54096214] w [0.30674122, 0.30825976] wq 0.00311268 ww 0.00151854 dl/dt [-0.002831, 0.0008110] spa over spa frozen 0.0192215; 23 s
+step 415: q [1.54091283, 1.54403987] w [0.30584597, 0.30736939] wq 0.00312704 ww 0.00152342 dl/dt [-0.002672, 0.0009786] spa over spa frozen 0.0194621; 24 s
+step 416: q [1.54396721, 1.54710866] w [0.30494214, 0.30647048] wq 0.00314145 ww 0.00152834 dl/dt [-0.002591, 0.0011676] spa over spa frozen 0.0197054; 24 s
+step 417: q [1.54701250, 1.55016840] w [0.30402958, 0.30556291] wq 0.0031559 ww 0.00153332 dl/dt [-0.002431, 0.0013382] spa over spa frozen 0.0199516; 25 s
+step 418: q [1.55004862, 1.55321903] w [0.30310818, 0.30464653] wq 0.00317041 ww 0.00153834 dl/dt [-0.002336, 0.0015282] spa over spa frozen 0.0202008; 26 s
+step 419: q [1.55307549, 1.55626045] w [0.30217778, 0.30372121] wq 0.00318496 ww 0.00154343 dl/dt [-0.002187, 0.0017028] spa over spa frozen 0.0204529; 26 s
+step 420: q [1.55609301, 1.55929256] w [0.30123825, 0.30278682] wq 0.00319955 ww 0.00154856 dl/dt [-0.002090, 0.0018981] spa over spa frozen 0.0207081; 27 s
+step 421: q [1.55910109, 1.56231529] w [0.30028943, 0.30184320] wq 0.0032142 ww 0.00155376 dl/dt [-0.001930, 0.0020746] spa over spa frozen 0.0209663; 27 s
+step 422: q [1.56209964, 1.56532853] w [0.29933120, 0.30089021] wq 0.00322889 ww 0.00155901 dl/dt [-0.001831, 0.0022717] spa over spa frozen 0.0212276; 28 s
+step 423: q [1.56508855, 1.56833219] w [0.29836338, 0.29992770] wq 0.00324363 ww 0.00156433 dl/dt [-0.001682, 0.0024537] spa over spa frozen 0.0214921; 28 s
+step 424: q [1.56806775, 1.57132617] w [0.29738584, 0.29895554] wq 0.00325843 ww 0.0015697 dl/dt [-0.001581, 0.0026517] spa over spa frozen 0.0217598; 29 s
+step 425: q [1.57103712, 1.57431039] w [0.29639841, 0.29797356] wq 0.00327327 ww 0.00157515 dl/dt [-0.001423, 0.0028381] spa over spa frozen 0.0220307; 30 s
+step 426: q [1.57399657, 1.57728473] w [0.29540094, 0.29698162] wq 0.00328816 ww 0.00158067 dl/dt [-0.001334, 0.0030376] spa over spa frozen 0.022305; 30 s
+step 427: q [1.57694599, 1.58024910] w [0.29439328, 0.29597957] wq 0.00330311 ww 0.00158629 dl/dt [-0.001178, 0.0032356] spa over spa frozen 0.0225826; 31 s
+step 428: q [1.57988529, 1.58320339] w [0.29337525, 0.29496724] wq 0.0033181 ww 0.00159199 dl/dt [-0.001077, 0.0034340] spa over spa frozen 0.0228636; 31 s
+step 429: q [1.58281436, 1.58614751] w [0.29234670, 0.29394449] wq 0.00333315 ww 0.00159779 dl/dt [-0.000922, 0.0036371] spa over spa frozen 0.0231482; 32 s
+step 430: q [1.58573309, 1.58908135] w [0.29130747, 0.29291115] wq 0.00334825 ww 0.00160367 dl/dt [-0.000830, 0.0038373] spa over spa frozen 0.0234362; 33 s
+step 431: q [1.58864138, 1.59200479] w [0.29025738, 0.29186704] wq 0.00336341 ww 0.00160965 dl/dt [-0.000681, 0.0040476] spa over spa frozen 0.0237279; 33 s
+step 432: q [1.59153911, 1.59491774] w [0.28919628, 0.29081201] wq 0.00337863 ww 0.00161573 dl/dt [-0.000578, 0.0042448] spa over spa frozen 0.0240233; 34 s
+step 433: q [1.59442618, 1.59782008] w [0.28812398, 0.28974589] wq 0.0033939 ww 0.00162191 dl/dt [-0.000433, 0.0044626] spa over spa frozen 0.0243224; 34 s
+step 434: q [1.59730247, 1.60071170] w [0.28704032, 0.28866850] wq 0.00340922 ww 0.00162819 dl/dt [-0.000329, 0.0046648] spa over spa frozen 0.0246253; 35 s
+step 435: q [1.60016788, 1.60359249] w [0.28594512, 0.28757968] wq 0.00342461 ww 0.00163456 dl/dt [-0.000174, 0.0048853] spa over spa frozen 0.0249321; 36 s
+step 436: q [1.60302227, 1.60646232] w [0.28483819, 0.28647925] wq 0.00344005 ww 0.00164105 dl/dt [-0.000070, 0.0050882] spa over spa frozen 0.0252429; 36 s
+step 437: q [1.60586554, 1.60932110] w [0.28371938, 0.28536702] wq 0.00345556 ww 0.00164764 dl/dt [0.0000749, 0.0053141] pos over spa frozen -; 37 s
+step 438: q [1.60869756, 1.61216868] w [0.28258847, 0.28424282] wq 0.00347113 ww 0.00165436 dl/dt [0.0002317, 0.0055184] pos over spa frozen -; 37 s
+step 439: q [1.61151821, 1.61500496] w [0.28144530, 0.28310647] wq 0.00348675 ww 0.00166117 dl/dt [0.0003351, 0.0057452] pos over spa frozen -; 38 s
+step 440: q [1.61432737, 1.61782982] w [0.28028966, 0.28195778] wq 0.00350245 ww 0.00166812 dl/dt [0.0004911, 0.0059545] pos over spa frozen -; 39 s
+step 441: q [1.61712492, 1.62064312] w [0.27912138, 0.28079655] wq 0.0035182 ww 0.00167517 dl/dt [0.0005872, 0.0061779] pos over spa frozen -; 39 s
+step 442: q [1.61991072, 1.62344474] w [0.27794025, 0.27962261] wq 0.00353402 ww 0.00168236 dl/dt [0.0007421, 0.0063997] pos over spa frozen -; 40 s
+step 443: q [1.62268465, 1.62623456] w [0.27674609, 0.27843575] wq 0.00354991 ww 0.00168966 dl/dt [0.0008471, 0.0066175] pos over spa frozen -; 41 s
+step 444: q [1.62544658, 1.62901244] w [0.27553868, 0.27723577] wq 0.00356586 ww 0.00169709 dl/dt [0.0009938, 0.0068499] pos over spa frozen -; 41 s
+step 445: q [1.62819636, 1.63177825] w [0.27431785, 0.27602250] wq 0.00358189 ww 0.00170465 dl/dt [0.0010987, 0.0070681] pos over spa frozen -; 42 s
+step 446: q [1.63093388, 1.63453186] w [0.27308336, 0.27479571] wq 0.00359798 ww 0.00171234 dl/dt [0.0012537, 0.0073075] pos over spa frozen -; 42 s
+step 447: q [1.63365898, 1.63727312] w [0.27183504, 0.27355521] wq 0.00361414 ww 0.00172017 dl/dt [0.0013587, 0.0075270] pos over spa frozen -; 43 s
+step 448: q [1.63637153, 1.64000191] w [0.27057266, 0.27230079] wq 0.00363038 ww 0.00172812 dl/dt [0.0015060, 0.0077719] pos over spa frozen -; 44 s
+step 449: q [1.63907139, 1.64271808] w [0.26929601, 0.27103225] wq 0.00364669 ww 0.00173624 dl/dt [0.0016107, 0.0079953] pos over spa frozen -; 44 s
+step 450: q [1.64175842, 1.64542149] w [0.26800488, 0.26974937] wq 0.00366307 ww 0.00174448 dl/dt [0.0017690, 0.0082328] pos over spa frozen -; 45 s
+step 451: q [1.64443247, 1.64811200] w [0.26669905, 0.26845195] wq 0.00367953 ww 0.0017529 dl/dt [0.0019257, 0.0084657] pos over spa frozen -; 45 s
+step 452: q [1.64709338, 1.65078945] w [0.26537831, 0.26713975] wq 0.00369607 ww 0.00176144 dl/dt [0.0020216, 0.0087038] pos over spa frozen -; 46 s
+step 453: q [1.64974102, 1.65345371] w [0.26404242, 0.26581258] wq 0.00371269 ww 0.00177016 dl/dt [0.0021788, 0.0089479] pos over spa frozen -; 47 s
+step 454: q [1.65237522, 1.65610461] w [0.26269117, 0.26447019] wq 0.00372939 ww 0.00177902 dl/dt [0.0022817, 0.0091791] pos over spa frozen -; 47 s
+step 455: q [1.65499584, 1.65874201] w [0.26132432, 0.26311237] wq 0.00374617 ww 0.00178804 dl/dt [0.0024321, 0.0094351] pos over spa frozen -; 48 s
+step 456: q [1.65760272, 1.66136575] w [0.25994167, 0.26173889] wq 0.00376303 ww 0.00179723 dl/dt [0.0025339, 0.0096716] pos over spa frozen -; 48 s
+step 457: q [1.66019569, 1.66397566] w [0.25854294, 0.26034953] wq 0.00377997 ww 0.00180659 dl/dt [0.0026918, 0.0099311] pos over spa frozen -; 49 s
+step 458: q [1.66277460, 1.66657161] w [0.25712794, 0.25894407] wq 0.00379701 ww 0.00181613 dl/dt [0.0027927, 0.0101685] pos over spa frozen -; 50 s
+step 459: q [1.66533928, 1.66915341] w [0.25569643, 0.25752224] wq 0.00381413 ww 0.00182581 dl/dt [0.0029478, 0.0104230] pos over spa frozen -; 50 s
+step 460: q [1.66788957, 1.67172090] w [0.25424814, 0.25608385] wq 0.00383134 ww 0.00183571 dl/dt [0.0031082, 0.0106719] pos over spa frozen -; 51 s
+step 461: q [1.67042529, 1.67427393] w [0.25278286, 0.25462862] wq 0.00384864 ww 0.00184576 dl/dt [0.0032026, 0.0109228] pos over spa frozen -; 51 s
+step 462: q [1.67294628, 1.67681231] w [0.25130032, 0.25315635] wq 0.00386603 ww 0.00185604 dl/dt [0.0033638, 0.0111828] pos over spa frozen -; 52 s
+step 463: q [1.67545236, 1.67933588] w [0.24980029, 0.25166676] wq 0.00388352 ww 0.00186647 dl/dt [0.0034539, 0.0114296] pos over spa frozen -; 53 s
+step 464: q [1.67794335, 1.68184446] w [0.24828251, 0.25015962] wq 0.0039011 ww 0.00187711 dl/dt [0.0036154, 0.0117029] pos over spa frozen -; 53 s
+step 465: q [1.68041908, 1.68433787] w [0.24674674, 0.24863468] wq 0.00391879 ww 0.00188795 dl/dt [0.0037099, 0.0119516] pos over spa frozen -; 54 s
+step 466: q [1.68287937, 1.68681594] w [0.24519270, 0.24709170] wq 0.00393657 ww 0.00189899 dl/dt [0.0038720, 0.0122265] pos over spa frozen -; 54 s
+step 467: q [1.68532403, 1.68927849] w [0.24362018, 0.24553043] wq 0.00395445 ww 0.00191025 dl/dt [0.0039579, 0.0124786] pos over spa frozen -; 55 s
+step 468: q [1.68775288, 1.69172532] w [0.24202890, 0.24395059] wq 0.00397244 ww 0.00192169 dl/dt [0.0041228, 0.0127521] pos over spa frozen -; 56 s
+step 469: q [1.69016573, 1.69415626] w [0.24041859, 0.24235197] wq 0.00399053 ww 0.00193338 dl/dt [0.0042096, 0.0130119] pos over spa frozen -; 56 s
+step 470: q [1.69256238, 1.69657111] w [0.23878901, 0.24073427] wq 0.00400873 ww 0.00194526 dl/dt [0.0043768, 0.0132728] pos over pos frozen -; 57 s
+step 471: q [1.69494264, 1.69896968] w [0.23713987, 0.23909727] wq 0.00402704 ww 0.0019574 dl/dt [0.0045364, 0.0135464] pos over pos frozen -; 57 s
+step 472: q [1.69730632, 1.70135178] w [0.23547094, 0.23744067] wq 0.00404546 ww 0.00196974 dl/dt [0.0046200, 0.0138055] pos over pos frozen -; 58 s
+step 473: q [1.69965321, 1.70371721] w [0.23378191, 0.23576424] wq 0.004064 ww 0.00198233 dl/dt [0.0047857, 0.0140894] pos over pos frozen -; 59 s
+step 474: q [1.70198312, 1.70606577] w [0.23207255, 0.23406769] wq 0.00408265 ww 0.00199515 dl/dt [0.0048655, 0.0143485] pos over pos frozen -; 59 s
+step 475: q [1.70429584, 1.70839726] w [0.23034256, 0.23235077] wq 0.00410142 ww 0.00200821 dl/dt [0.0050252, 0.0146350] pos over pos frozen -; 60 s
+stop: plan exhausted; wall 60.0 s

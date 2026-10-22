@@ -267,3 +267,44 @@ October14 12:51wake: root reads allcompletedC20r2–r4records/commands and C21au
 Same12:51wake C23join: root consumes fullreview13/rawC23auditandsecond-rateband. Positive l'atactual437end is independentlyverified, while f'' lowerbounds at436–437 remainnonpositive. Manuscript5.14integrates derivedEXISTENCEofinteriorsupportminimumin(5.956684593623,6.236684709182), using extreme-value theorem and endpointsides; fullstrictness/uniqueness awaits alreadyselectedK8verification. Rootdoesnot equateinfimumofpositive-rate timeswithstrictminimum fromcontinuityalone. Actual491speed[0.1996356996,0.2018898705], physical437endpointnearT62.36685 (spanstarts62.26685); oldPIapproximate0.198-at491/time437spanwordingnotadopted. Root7stillundelivered; newcorrectionnotesentonlyafterreadactualdeliveryreceipts. C24supportverificationalreadygranted13:01:07; no20minuteinquiryneededafteractualnewpre-request12:58:31. C22refusal493andend-lawrefusal492 preserve strongestrecord/qualification distinctions, no restart.
 
 October14 final root closeout: contribution8 appended13:16:54.857Z/3673bytes/chatSHA4d0a6baf34e2bdf9cf8938accc57273a586ee3aa64f1ae56d4cd4691b8779aa1. Appendguard initially refused changedheading before anywrite; newClaudecheckpoint7 fullyconsumed, then oneguardedappend. Desktoprestored at13:17–13:18observations; exactnamedcurvature/URL/emptydraft/textguards beforeoneSend, matchingYou said/emptycomposer/Reading contribution8 observed; priorBarnes-Hut selectionrestoredbyfreshsidebarandURL. Oldroot7alreadyprocessed13:13:38, soNOTresent. PIcorrection13:20 fullyacceptsroot8andchoosesno-computecloseout: broad ownreviewstrictuniquebracketFINAL, narrowerC24conditional, state492vsdiagnostics491/time/speed/idle-rulecorrections preserved. No furthercomputeafter13:10:35. Originaldeadlinesneverextended. Root verified1320manifestSHA2a05adc7bb7193164b60d7d5e78ddcce5f5cfc6e94f5f55a3b56fa3263d97573:366rows,selfexcluded,0mismatches, known/negativeparsercontrolsfirst; receipt task scratchroot-manifest-1320-verification.json. Liveps-p exact37completedgrantinterpreterPIDs returnsnone/exit1, no signals. ExistingautomationupdatePAUSED succeedsandTOMLreadbackconfirms exactid/thread/rruleunchanged. Currenttrackersremovedfromactiveexecution andmarkedclosed; manuscript5.14strictuniqueownreviewbracket/no secondturnthrough491, conditionalnarrowestimate, classmechanism andunits. Finalrootpreservation capturescurrentauthoredintegration/receipts/scratch, with historicalsnapshots and originalcapturegaps explicit. No new selectedworkleft; no publication or physicalacceptanceclaim.
+
+## 2026-10-20 — Path turn and narrower support bracket certified
+
+The operator answered the Claude PI's October 14 closing list with "do items 1 thru 3". Item 1 had already been integrated into manuscript 5.14 by the root session, so it was verified and not repeated. Items 2 and 3 ran as one Claude campaign, from 20:54:49 UTC, with continuation, support and independent-review roles. Controls preceded every target, there was one PI grant per invocation, and runs were separated by 90 s idle gaps. All compute ended by 22:14:51 UTC. The [plan](analysis/spherical-six-pole-path-continuation-plan.md) and the [PI synthesis](analysis/spherical-six-pole-path-continuation-claude-synthesis.md) hold the full record.
+
+- **Item 3, narrower first-support-turn bracket: CERTIFIED** ([review 7](analysis/spherical-six-pole-path-continuation-claude-review-adjudication-7.md)), $t\in(5.986684593623649597167959,\,6.176684709182828044891367)$. The support evaluator was repaired in two ways:
+  - an exact shared-edge end cover;
+  - outward reading of the end strings, plus a $10^{-23}$ pad on history reads, because the history writer rounds to nearest without padding.
+
+  The October rounding sliver never occurred on the real boxes. The October nearest-rounding reading of the end strings did shrink some evaluated boxes by about $10^{-31}$.
+- **Item 2, first PATH TURN: CERTIFIED**, unique and strict ([review 11](analysis/spherical-six-pole-path-continuation-claude-review-adjudication-11.md)), $t^*\in(7.426684593623649597167959,\,7.446684709182828044891367)$, with $q_{\max}\approx1.81$.
+  - **Repair.** The delay-root search bracket was repaired (cm471: a lower-end ladder above the history bound, and an upper end of at least 2.05).
+  - **Slices.** Three slices continued the history from step 493 to 570 without refusal, each audited clean.
+- **Second support turn** (a local maximum of $l$). Its existence is certified in $(7.1767,\,7.4267)$, strictly before the path turn ([review 15](analysis/spherical-six-pole-path-continuation-claude-review-adjudication-15.md)). Uniqueness is open, because the $l''$ enclosures are 0.10–0.20 wide.
+- **Canonical radial maximum.** Its existence is certified after the turn.
+- **Incidents** (all recorded in the synthesis):
+  - a controls-harness name collision (caught by the controls);
+  - an alarmed consistency replay (the partial result accepted);
+  - a ddl10 range error (rerun);
+  - one ungranted PI no-op;
+  - correctly blocked launches while foreign processes from four other sessions came and went.
+- **Integration.** The results are in [manuscript 5.14–5.15](manuscript.md#515-the-first-path-turn-and-a-second-support-turn).
+- **Not done.** Uniqueness of the second support turn, and any continuation past step 570, which needs a controlled chart extension beyond source $q'=1.80$. No Git or publication actions were taken.
+
+## 2026-10-21 — Serializer defect found and repaired; six-pole events re-certified; return path to step 688
+
+The operator answered the October 20 list with "do 1 2 3 4". Item 1, the commit, is blocked: the pre-commit receipt gate rejects while other sessions' files are present. The Staggered lattice session hit the same block; both sessions left the index empty and asked the operator for a route. Items 2–4 ran as one Claude campaign, 02:26:53–04:56:53 UTC (closed early). The [plan](analysis/spherical-six-pole-post-turn-plan.md) and the [synthesis](analysis/spherical-six-pole-post-turn-claude-synthesis.md) hold the record.
+
+- **Q2 and Q4.** A new correlated second-rate instrument (ddl-jet) proved $l''<0$ on every whole step 532–557, so the second support turn is unique and strict. The lower-bracket work was subsumed.
+- **Q3 and the defect.** The first step past 570 was refused for disjoint enclosures. A diagnostic, whose known case passed, showed the resumed state's speed mirrored in sign. Code reading found that v4.4's `ser` used mpmath's unsigned mantissa, so every saved affine state had lost its signs since the first October resume (step 225). Every certificate resting on post-resume records was suspended at about 03:03 UTC.
+- **Repair.** cm49 adds a signed serializer and tagged format. Its controls include an exact mixed-sign round trip, the old writer failing, and split-versus-uninterrupted identity. The history was recomputed from the step-154 anchor (R1′–R6′) and audited by the review. On the recomputed records the following were re-derived (review post-turn adjudications 15–19):
+  - speed maximum;
+  - canonical-radial zero;
+  - first support turn (broader bracket now one step narrower; narrower bracket restored);
+  - second support turn (unique, strict);
+  - path turn.
+
+  The radial maximum remains existence-only.
+- **Return path.** Continued to step 688 (adjudications 20–21): growing backward speed with no extremum; strengthening inward support; the like partner's delayed speed changes sign once ($D_L$ crosses 1); the antipode tangent changes sign. It stops before the source-speed chart edge $-0.20$.
+- **Integration.** [Manuscript 5.13 notices and 5.16](manuscript.md#516-the-return-path-after-the-first-path-turn); trackers updated.
+- **Incidents.** Recorded in the synthesis: the review's ungranted empty system-python call, K49's NameError, the S10 line slip, and the PI's stuck shell command. No Git or publication actions were taken.

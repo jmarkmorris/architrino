@@ -434,3 +434,43 @@ which constrains phase and root topology but does not select a radius because $R
 Plainly: circular geometry can select which delayed partner hits exist, but amplitude balance and an all-label closure condition are still required to select a physical scale.
 
 The complete prescribed circular root census belongs in [circular-binary-all-root-certificate.md](analysis/circular-binary-all-root-certificate.md). It establishes neither local continuation nor a retained Braid.
+
+## Why a slow widening binary loses speed despite its forward push
+
+**[derived within the secular near-circular comparison; corrected after an outside check; provisional]** Added 2026-10-20 from an operator discussion in a Claude session and corrected the same day after a Codex check ([shared review](../../../op/agent-chats/2026-10-20-slow-binary-two-tilt-check/chat.md), entry 2026-10-20T21:25:00Z). The question was how the accepted slow-binary results can say that a near-circular pair which stays near-circular widens without bound and slows, when the delayed partner row constantly has a forward component. The short answer: averaged over each revolution, the main inward row removes speed faster than the forward component adds it, because the widening tilts the motion outward; but instant by instant the speed oscillates, and a pair started on a circle first speeds up.
+
+**Setting.** The unchanged Master Equation, an isolated planar mirror pair of opposite polarity, coupling $K$, member speed small against $c_f$. Write $\rho$ for a member's actual distance from the fixed midpoint, $v_r=\dot\rho$ and $v_t$ for its radial and tangential speeds, and $L=\rho v_t$. The accepted slow-binary records use a *geometric slow radius* $\mathcal R=4L^2/K$ and a *comparison speed* $w=K/(4L)$; these are smoothed quantities and differ from $\rho$ and the actual speed $v$ by small orbital oscillations. Only the component of acceleration along the velocity changes the speed.
+
+**Inputs, both accepted with independent adjudications.** (i) $L$ rises by $K/(4c_f)$ per radian, per member ([first-order encounter map](analysis/slow-mirror-encounter-first-order-map.md)). (ii) The squared *geometric slow* radius drifts at $d(\mathcal R^2)/dT=K/c_f$ within a stated error, on a finite interval, for speed ratios up to $10^{-9}$ ([controlled secular theorem](analysis/slow-binary-controlled-secular-comparison.md)). Input (ii) is about $\mathcal R$, not $\rho$: the theorem bounds the distance between them but not the difference of their rates.
+
+**Direct projection of the row (derived; from the outside check).** Restoring dimensions in the slow-pair row of the [changing-scale record](analysis/slow-binary-changing-scale-fate.md#a-scale-dependent-defect), with $A_0=K/(4\rho^2)$, $\epsilon=v/c_f$ and pitch $\beta=v_r/v$, the along-velocity acceleration is, to leading order,
+
+$$
+\dot v=A_0(\epsilon-\beta)+O(A_0\epsilon^2).
+$$
+
+The forward lean of the row adds $A_0\epsilon$; the main inward row, met by a velocity tilted outward by the pitch $\beta$, removes $A_0\beta$. The sign of $\dot v$ at any instant is therefore set by the actual pitch, which near-circularity alone does not fix.
+
+**The forward lean (derived).** For an equal-radius delayed chord the row points forward of the inward radius by exactly half the angle the pair turns during the delay; the exact causal chord gives that half-angle $d=(v/c_f)\cos d$, so the lean is $v/c_f$ to leading order.
+
+**Averaged over a revolution (derived in the secular comparison).** The smoothed outward drift of $\mathcal R$ has pitch $2w/c_f$. With it the projection gives the secular rate
+
+$$
+\dot w=-\frac{w^3}{c_f\mathcal R},
+$$
+
+which agrees with differentiating $w=K/(4L)$ using input (i). On average, then, the forward lean adds one unit and the outward lean removes two.
+
+**Instant by instant (derived in the first-order forced response; from the outside check).** About a circle of radius $R_0$, speed $v_0$ and angular rate $\omega_0$, released from an exact circular past, with $f=v_0^3/(c_fR_0)$, the first-order equations give a radial velocity $(2f/\omega_0)(1-\cos\omega_0T)$ and a speed change
+
+$$
+\delta v=-fT+\frac{2f}{\omega_0}\sin\omega_0T,\qquad \frac{d(\delta v)}{dT}=f\,(2\cos\omega_0T-1).
+$$
+
+The pitch oscillates between $0$ and $4v_0/c_f$ and averages $2v_0/c_f$. The speed first rises, then falls, and loses $2\pi f/\omega_0$ per revolution. This agrees with the existing [forced-response calculation](analysis/slow-binary-first-order-drift.md#forced-response-about-the-zero-delay-circle). An exact check at release: from a complete circular past the along-velocity acceleration is strictly positive, $K\sin d/\bigl(4R^2\cos^2d\,[1+(v/c_f)\sin d]\bigr)$.
+
+**Long-time behaviour.** Continuing the secular law formally gives $\mathcal R^2\propto T$ and $w\propto T^{-1/4}$. Applying that indefinitely needs the continuation hypotheses of the separate all-future results in this workstream; the two inputs above hold on finite intervals.
+
+**Falsifiers.** A different first-order polar component in the accepted slow-pair row; a failure of the forced-response solution to satisfy its linearized equations with circular release data; a wrong sign or factor in the exact circular release row.
+
+**Correction history.** The first version of this note, written earlier on 2026-10-20, identified $\mathcal R$ with $\rho$. It therefore stated the pitch $2v/c_f$ and the negative along-velocity acceleration $-v^3/(c_fR)$ as holding at every instant, with a pointwise falsifier. The outside check showed that these hold only on average over a revolution and supplied the projection, the exact release counterexample and the oscillating solution above. **Status:** derived within the stated comparisons; checked once by a Codex session outside this model family, which read the note first and was therefore not blinded.
