@@ -4,6 +4,26 @@ This is the chronological completion log for the CRW-005 assurance campaign. The
 
 ## Subsequent maintenance referrals
 
+### 2026-10-25 — Frame chapters periodically reviewed, no new repair
+
+The October 25 OPS-031 [frame detection](../aaa-operations/evidence/ops-031-frame-detection-review-2026-10-25.md) and [frame construction](../aaa-operations/evidence/ops-031-frame-construction-review-2026-10-25.md) reviews complete two unchanged whole chapters without new actionable correction. Accepted repairs and actual earlier no-change claims survive independent analytical rechecks. Operations owns the second early-cycle cursor, now 8/15 with seven uncovered, next Emergence of Structure October 27. Historical CRW-005 accounting and closure remain unchanged; six October 23 repairs retain separate verified closure.
+
+### 2026-10-24 — Absolute Time Defense periodically reviewed, no new repair
+
+The October 24 OPS-031 [Absolute Time Defense review](../aaa-operations/evidence/ops-031-absolute-time-defense-review-2026-10-24.md) completes the whole unchanged chapter with no new actionable correction. F4-2/F4-3 accepted repairs and the earlier affine-metric no-change disposition survive independent claim-level checks. Operations owns the second early-cycle cursor, now 6/15 with nine uncovered; next October 25. Historical CRW-005 accounting and closed status are unchanged; the six October 23 repairs retain separate verified closure.
+
+### 2026-10-23 — Six braid-methods corrections implemented and separately verified
+
+The operator approved all six October 23 braid-methods groups. They are [implemented](evidence/ops-031-braid-methods-integration-2026-10-23.md) and [separately verified](evidence/ops-031-braid-methods-verification-2026-10-23.md) against unchanged mathematical references. No repair remains in this six-group scope; optional BM23-C1 remains outside it. Current methodology provenance is refreshed without changing the 29 analytical measure rows or numerical reducers. Operations coverage credits, independent cycle dates, scientific obligations and CRW-005 closure are unchanged.
+
+### 2026-10-23 — Braid methods: six proposed groups
+
+The October 23 OPS-031 [braid methods batch](../aaa-operations/evidence/ops-031-braid-methods-review-2026-10-23.md) completes Braid Mathematics and Braid Analysis Methodology. Six new groups are proposed in the [existing maintenance queue](work-queue.md#ops-031--october-23-braid-methods-referrals), without implementation. Operations owns the periodic coverage cursor, now 14/46 core with 32 uncovered. Historical CRW-005 counts and closure remain unchanged.
+
+### 2026-10-22 — Four validation chapters periodically reviewed, no new repair
+
+The later October 22 OPS-031 [causal/information](../aaa-operations/evidence/ops-031-causal-information-review-2026-10-22.md) and [energy/numerics](../aaa-operations/evidence/ops-031-delay-energy-numerics-review-2026-10-22.md) reviews complete four validation chapters at unchanged source identities, with no new actionable correction. Accepted repair and prior no-change rechecks survive explicit independent mathematics; existing scientific construction obligations remain open. Operations owns the periodic cursor, now eight of forty-three validation paths, thirty-five uncovered. Historical CRW-005 audit counts and closed status are unchanged.
+
 ### 2026-10-21 — Absolute Timespace periodic no-change review
 
 The [October 21 OPS-031 Absolute Timespace review](../aaa-operations/evidence/ops-031-absolute-timespace-review-2026-10-21.md) completes later whole-chapter coverage at unchanged source identity with no new actionable correction. Accepted repair and prior no-change checks survive explicit independent mathematics; physical recovery obligations remain open. Operations owns the second-cycle cursor, now five of fifteen early chapters, ten uncovered. Historical CRW-005 audit counts and its closed status remain unchanged. No substantive source repair is proposed.

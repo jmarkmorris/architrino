@@ -1,0 +1,970 @@
+{
+  "captured": "2026-10-25",
+  "scope": "Weekly bounded control pass:87 prior/delta-selected controls plus2 unchanged app-topo rotation controls.34 changed/new paths checked at current-control/intake scope;53 hashes reused only at prior scope. No full scientific-directory certification.",
+  "baseline": "2a24acaca073d21a80b838654d159543f8220c8e",
+  "head": "1a5e00adc9fd7c7a00247d2397c9a38f168e905f",
+  "directories": [
+    "aaa-corpus-dragnet",
+    "aaa-corpus-rewrite",
+    "aaa-operations",
+    "aaa-work-threads",
+    "app-aaa-core",
+    "app-barnes-hut",
+    "app-borg",
+    "app-equation-mapping",
+    "app-lattice-lab",
+    "app-photon",
+    "app-simulation",
+    "app-solver",
+    "app-surface",
+    "app-topo",
+    "app-ui-guidelines",
+    "category-theory",
+    "development-process-review",
+    "dormant-deferred",
+    "mapping",
+    "mapping-benchmarks",
+    "mapping-electromagnetism",
+    "mapping-equations",
+    "mapping-one-nature-many-theories",
+    "mapping-open-problems",
+    "mapping-quantum",
+    "mapping-standard-model",
+    "mapping-strong-field",
+    "master-equation-closure",
+    "source-mining"
+  ],
+  "entries": [
+    {
+      "path": "reference/priorities/aaa-corpus-rewrite/corpus-review-status.md",
+      "sha256": "b1e16978c46b6d16533091c0eca3ad59d11ae2dc0fd85255838b88a97651cf16",
+      "previous_sha256": "d7c44c4901db42ce356a554b864d3eb92c27b81bee5f1c483851c6b4af32727d",
+      "changed_since_previous_inventory": true,
+      "review_disposition": "changed current-control passages and decisive owner/evidence transitions checked; historical bodies retain scope",
+      "diff_baseline": {
+        "kind": "prior-scratch",
+        "exact_previous_final": true
+      },
+      "final_sha256": "06a4a7167aa9f9dab5706e3d9d1d7c9e0b43bfe5e2183ea7c1fdc672e2c2df2d"
+    },
+    {
+      "path": "reference/priorities/aaa-corpus-rewrite/priorities.md",
+      "sha256": "434e64f1399d992b168dadcd3b37c280d954ea83a6246c77f59dd2b8f8c92fe3",
+      "previous_sha256": "aa5f5edd8f8bd3fa7da55f31ffb1df905d51c4aa0787f38edfdfd97d77c96738",
+      "changed_since_previous_inventory": true,
+      "review_disposition": "changed current-control passages and decisive owner/evidence transitions checked; historical bodies retain scope",
+      "diff_baseline": {
+        "kind": "prior-scratch",
+        "exact_previous_final": true
+      },
+      "final_sha256": "434e64f1399d992b168dadcd3b37c280d954ea83a6246c77f59dd2b8f8c92fe3"
+    },
+    {
+      "path": "reference/priorities/aaa-corpus-rewrite/work-queue.md",
+      "sha256": "6bfbc24874f3693873d2e05350850881d2c6802c4b2f5d1162d0cef2f2de9ccb",
+      "previous_sha256": "dfec3f671e3e6cbd852f36463adeb9425ce0210ede044b4ea08837d4b35eaa03",
+      "changed_since_previous_inventory": true,
+      "review_disposition": "changed current-control passages and decisive owner/evidence transitions checked; historical bodies retain scope",
+      "diff_baseline": {
+        "kind": "prior-scratch",
+        "exact_previous_final": true
+      },
+      "final_sha256": "6bfbc24874f3693873d2e05350850881d2c6802c4b2f5d1162d0cef2f2de9ccb"
+    },
+    {
+      "path": "reference/priorities/aaa-operations/priorities.md",
+      "sha256": "2c41019acea2ba438c4c611b0ee4d19cfe69072b638ed9d6dc72bb6b8fea0f42",
+      "previous_sha256": "94adb72985f5da608b778183197b60a5da0307506cdf457adffbb5871a482444",
+      "changed_since_previous_inventory": true,
+      "review_disposition": "changed current-control passages and decisive owner/evidence transitions checked; historical bodies retain scope",
+      "diff_baseline": {
+        "kind": "prior-scratch",
+        "exact_previous_final": false
+      },
+      "final_sha256": "bc92511bf4f651f0f0e2c9bcf352512448f674c1f6e8dac7d1eb5a021daed235"
+    },
+    {
+      "path": "reference/priorities/aaa-operations/work-queue.md",
+      "sha256": "70103c5f05767f1b2983a40114090f49566abaf26fbfe1a74e6dacfe26f9bcb2",
+      "previous_sha256": "bc05ac1cf425b26b6f4b93e0251b6b7574c30198c6b58d546ec305b53699c252",
+      "changed_since_previous_inventory": true,
+      "review_disposition": "changed current-control passages and decisive owner/evidence transitions checked; historical bodies retain scope",
+      "diff_baseline": {
+        "kind": "prior-scratch",
+        "exact_previous_final": false
+      },
+      "final_sha256": "e576137e50de427078f79e8a0f95d558b0031e080b8b42986c7ca8a8f7672362"
+    },
+    {
+      "path": "reference/priorities/aaa-work-threads/priorities.md",
+      "sha256": "50acd228ce44f18eb7c55643c6470cf650ea948efb617dbdd49eb9d6693753aa",
+      "previous_sha256": "609da2838a7e96bc54b162e2d59e0ce16bc05cdd15631e50cc8e3601a5ce1cff",
+      "changed_since_previous_inventory": true,
+      "review_disposition": "changed current-control passages and decisive owner/evidence transitions checked; historical bodies retain scope",
+      "diff_baseline": {
+        "kind": "prior-scratch",
+        "exact_previous_final": true
+      },
+      "final_sha256": "50acd228ce44f18eb7c55643c6470cf650ea948efb617dbdd49eb9d6693753aa"
+    },
+    {
+      "path": "reference/priorities/app-barnes-hut/priorities.md",
+      "sha256": "68483304d729e2610ae30eb7437f04a12ab41d4217f6ec002c5cc03069a42c6b",
+      "previous_sha256": "68483304d729e2610ae30eb7437f04a12ab41d4217f6ec002c5cc03069a42c6b",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "68483304d729e2610ae30eb7437f04a12ab41d4217f6ec002c5cc03069a42c6b"
+    },
+    {
+      "path": "reference/priorities/app-barnes-hut/README.md",
+      "sha256": "eb77e421213a5ea26fb64df9ff6e87cfe0ce8083a4ecd0743c58544e53357183",
+      "previous_sha256": "eb77e421213a5ea26fb64df9ff6e87cfe0ce8083a4ecd0743c58544e53357183",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "eb77e421213a5ea26fb64df9ff6e87cfe0ce8083a4ecd0743c58544e53357183"
+    },
+    {
+      "path": "reference/priorities/app-barnes-hut/work-queue.md",
+      "sha256": "e5ccb7adf31ec19f861afe6162b6b1cff00d186f6f712dac2fccad6b697788be",
+      "previous_sha256": "e5ccb7adf31ec19f861afe6162b6b1cff00d186f6f712dac2fccad6b697788be",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "e5ccb7adf31ec19f861afe6162b6b1cff00d186f6f712dac2fccad6b697788be"
+    },
+    {
+      "path": "reference/priorities/app-photon/priorities.md",
+      "sha256": "6f9351bf4cd142d7e2abb1522686c7a4a73da657b707b8d2cd20c6b60603da57",
+      "previous_sha256": "6f9351bf4cd142d7e2abb1522686c7a4a73da657b707b8d2cd20c6b60603da57",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "6f9351bf4cd142d7e2abb1522686c7a4a73da657b707b8d2cd20c6b60603da57"
+    },
+    {
+      "path": "reference/priorities/app-photon/work-queue.md",
+      "sha256": "c48510052888546cb9c7dc0ace0a0c211d322b7c4c25cac1a2dfdac87090b16c",
+      "previous_sha256": "c48510052888546cb9c7dc0ace0a0c211d322b7c4c25cac1a2dfdac87090b16c",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "c48510052888546cb9c7dc0ace0a0c211d322b7c4c25cac1a2dfdac87090b16c"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-ordinary-stage-1-live/README.md",
+      "sha256": "cb1cdc951bae74ed96fd66591d75baf8b119d3eab83505f41ec1af2b42e98570",
+      "previous_sha256": "cb1cdc951bae74ed96fd66591d75baf8b119d3eab83505f41ec1af2b42e98570",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "cb1cdc951bae74ed96fd66591d75baf8b119d3eab83505f41ec1af2b42e98570"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-ordinary-stage-1-v2/README.md",
+      "sha256": "12daef39d64aa6be2703d14b5af363288d8741b3fcc47e11d3becae19f449ccc",
+      "previous_sha256": "12daef39d64aa6be2703d14b5af363288d8741b3fcc47e11d3becae19f449ccc",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "12daef39d64aa6be2703d14b5af363288d8741b3fcc47e11d3becae19f449ccc"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-ordinary-stage-1-v3/README.md",
+      "sha256": "fc7d6574ce06044ba5c17598eab953149f200efdfabafdfd545861f71b94f510",
+      "previous_sha256": "fc7d6574ce06044ba5c17598eab953149f200efdfabafdfd545861f71b94f510",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "fc7d6574ce06044ba5c17598eab953149f200efdfabafdfd545861f71b94f510"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-ordinary-stage-1/README.md",
+      "sha256": "ec45d7386e23e6682afbdef6c45eb9ebe274f5fe58d6941c469ee7ff064b03c8",
+      "previous_sha256": "ec45d7386e23e6682afbdef6c45eb9ebe274f5fe58d6941c469ee7ff064b03c8",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "ec45d7386e23e6682afbdef6c45eb9ebe274f5fe58d6941c469ee7ff064b03c8"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-ordinary-stage-2-live/README.md",
+      "sha256": "792a4460829a89280808904d88fc61545498ba1acc117c0bdae7bcd71cacb499",
+      "previous_sha256": "792a4460829a89280808904d88fc61545498ba1acc117c0bdae7bcd71cacb499",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "792a4460829a89280808904d88fc61545498ba1acc117c0bdae7bcd71cacb499"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-ordinary-stage-2-v2/README.md",
+      "sha256": "9effc0da9cc494a55fd0be961945c0748c722d1eb92b1dedbe574c3cd2600b0e",
+      "previous_sha256": "9effc0da9cc494a55fd0be961945c0748c722d1eb92b1dedbe574c3cd2600b0e",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "9effc0da9cc494a55fd0be961945c0748c722d1eb92b1dedbe574c3cd2600b0e"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-ordinary-stage-2-v3/README.md",
+      "sha256": "cfc84db9819f1aa66f00ea79993808f0f9e6b527fde9629ce3ad61b2225cc2b9",
+      "previous_sha256": "cfc84db9819f1aa66f00ea79993808f0f9e6b527fde9629ce3ad61b2225cc2b9",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "cfc84db9819f1aa66f00ea79993808f0f9e6b527fde9629ce3ad61b2225cc2b9"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-ordinary-stage-2-v4/README.md",
+      "sha256": "b75426d7aa7d7d9fa223aadeb5f6ecd3c3f9e73ad58c03b48f885d20a388413e",
+      "previous_sha256": "b75426d7aa7d7d9fa223aadeb5f6ecd3c3f9e73ad58c03b48f885d20a388413e",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "b75426d7aa7d7d9fa223aadeb5f6ecd3c3f9e73ad58c03b48f885d20a388413e"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-ordinary-stage-2/README.md",
+      "sha256": "34f2ed4792970397ce114c389a3c9659e47a5d37d6df23eaa4014821c6cfe060",
+      "previous_sha256": "34f2ed4792970397ce114c389a3c9659e47a5d37d6df23eaa4014821c6cfe060",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "34f2ed4792970397ce114c389a3c9659e47a5d37d6df23eaa4014821c6cfe060"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-ordinary-stage-3-capabilities-live/README.md",
+      "sha256": "4eb632849962d3a7b277fe0f1414fdeb555260c8a66ae23df7c742de5e95ae83",
+      "previous_sha256": null,
+      "changed_since_previous_inventory": true,
+      "review_disposition": "intake declaration, final review/disposition table or navigation checked; scientific payload not recertified",
+      "diff_baseline": {
+        "kind": "prior-HEAD-or-empty",
+        "exact_previous_final": false
+      },
+      "final_sha256": "4eb632849962d3a7b277fe0f1414fdeb555260c8a66ae23df7c742de5e95ae83"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-ordinary-stage-3-live/README.md",
+      "sha256": "1d79b42449ad8253ff76aad69f7ae0fbbc05c29f126c9e240c051ebb93ea6827",
+      "previous_sha256": null,
+      "changed_since_previous_inventory": true,
+      "review_disposition": "intake declaration, final review/disposition table or navigation checked; scientific payload not recertified",
+      "diff_baseline": {
+        "kind": "prior-HEAD-or-empty",
+        "exact_previous_final": false
+      },
+      "final_sha256": "1d79b42449ad8253ff76aad69f7ae0fbbc05c29f126c9e240c051ebb93ea6827"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-ordinary-stage-3-v2/README.md",
+      "sha256": "5250b5f813bdb2d375e95cb9bbddccb74f1a4d0ddf0dd805d206d75c353bbff1",
+      "previous_sha256": "5250b5f813bdb2d375e95cb9bbddccb74f1a4d0ddf0dd805d206d75c353bbff1",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "5250b5f813bdb2d375e95cb9bbddccb74f1a4d0ddf0dd805d206d75c353bbff1"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-ordinary-stage-3-v3/README.md",
+      "sha256": "35120a52e3af233f8b37fe62f1bfb135c878bba92e6c6fb8b9c2c7a7c7aa780b",
+      "previous_sha256": null,
+      "changed_since_previous_inventory": true,
+      "review_disposition": "intake declaration, final review/disposition table or navigation checked; scientific payload not recertified",
+      "diff_baseline": {
+        "kind": "prior-HEAD-or-empty",
+        "exact_previous_final": false
+      },
+      "final_sha256": "35120a52e3af233f8b37fe62f1bfb135c878bba92e6c6fb8b9c2c7a7c7aa780b"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-ordinary-stage-3/README.md",
+      "sha256": "aa7eca9991ad7170764e89cd34c3528917861015f2fda1d7399acce8b9911a06",
+      "previous_sha256": "aa7eca9991ad7170764e89cd34c3528917861015f2fda1d7399acce8b9911a06",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "aa7eca9991ad7170764e89cd34c3528917861015f2fda1d7399acce8b9911a06"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-stage-3-increment-1-v3/README.md",
+      "sha256": "d81a630e4acf3b767695cb27ec2cb0fd476560a1df5f9a55d8b85a094fa8c9ca",
+      "previous_sha256": "d81a630e4acf3b767695cb27ec2cb0fd476560a1df5f9a55d8b85a094fa8c9ca",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "d81a630e4acf3b767695cb27ec2cb0fd476560a1df5f9a55d8b85a094fa8c9ca"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-stage-3-increment-1/README.md",
+      "sha256": "ba694e163f5bd4ca2f7be7ee85200b9709ee9a8f9d7586d356ab98aaf2e52ef9",
+      "previous_sha256": "ba694e163f5bd4ca2f7be7ee85200b9709ee9a8f9d7586d356ab98aaf2e52ef9",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "ba694e163f5bd4ca2f7be7ee85200b9709ee9a8f9d7586d356ab98aaf2e52ef9"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-stage-3-increment-2/README.md",
+      "sha256": "7f49b7817ae063bc4912d2264d96710a4339248f374864d4146b6c28243478e2",
+      "previous_sha256": "7f49b7817ae063bc4912d2264d96710a4339248f374864d4146b6c28243478e2",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "7f49b7817ae063bc4912d2264d96710a4339248f374864d4146b6c28243478e2"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-stage-3-increment-3/README.md",
+      "sha256": "dee6fd5bdd4f660f7914af7ede48adc0c0d6d6e9efec3adae0e3226670d96c65",
+      "previous_sha256": "dee6fd5bdd4f660f7914af7ede48adc0c0d6d6e9efec3adae0e3226670d96c65",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "dee6fd5bdd4f660f7914af7ede48adc0c0d6d6e9efec3adae0e3226670d96c65"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-stage-3-increment-4-v2/README.md",
+      "sha256": "57eaa2f2df12c229bba9229cd4de7046496b23b60cf7806e25a3e746bbecdf59",
+      "previous_sha256": "57eaa2f2df12c229bba9229cd4de7046496b23b60cf7806e25a3e746bbecdf59",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "57eaa2f2df12c229bba9229cd4de7046496b23b60cf7806e25a3e746bbecdf59"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/matched-pair-stage-3-increment-4/README.md",
+      "sha256": "32548f143f0f6aab2944e632f5516e7669f89f5d3a36f2f25dcb4e2b5d9d0975",
+      "previous_sha256": "32548f143f0f6aab2944e632f5516e7669f89f5d3a36f2f25dcb4e2b5d9d0975",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "32548f143f0f6aab2944e632f5516e7669f89f5d3a36f2f25dcb4e2b5d9d0975"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/saturday-borg-six-path-2026-10-10/README.md",
+      "sha256": "0a5c83c74bb3a52a4d9bd2b32ca5989d8291546da3e75e1fe359fc57386a2287",
+      "previous_sha256": "0a5c83c74bb3a52a4d9bd2b32ca5989d8291546da3e75e1fe359fc57386a2287",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "0a5c83c74bb3a52a4d9bd2b32ca5989d8291546da3e75e1fe359fc57386a2287"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/saturday-stationary-fixture-obligations-2026-10-11/README.md",
+      "sha256": "54e71af56375a57d72c3f529556af6a3f8f0ee4c71609bdc1d0d0f72f46ecd99",
+      "previous_sha256": "54e71af56375a57d72c3f529556af6a3f8f0ee4c71609bdc1d0d0f72f46ecd99",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "54e71af56375a57d72c3f529556af6a3f8f0ee4c71609bdc1d0d0f72f46ecd99"
+    },
+    {
+      "path": "reference/priorities/app-solver/evidence/saturday-stationary-frontier-2026-10-11/README.md",
+      "sha256": "4093eb7b147881bbd0598b16fe0bffbbacb2384ebaf6b9dc7add0684b0ee7c0d",
+      "previous_sha256": "4093eb7b147881bbd0598b16fe0bffbbacb2384ebaf6b9dc7add0684b0ee7c0d",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "4093eb7b147881bbd0598b16fe0bffbbacb2384ebaf6b9dc7add0684b0ee7c0d"
+    },
+    {
+      "path": "reference/priorities/app-solver/priorities.md",
+      "sha256": "13c0bb2b58c17ba005bf7719dd60b93520dfdb1ccab7e3d24605fbcf7aa9ccb5",
+      "previous_sha256": "95c31749449df86298425b76a5a1c669469b1210d84be86fbdbbfc62bd6e458e",
+      "changed_since_previous_inventory": true,
+      "review_disposition": "changed current-control passages and decisive owner/evidence transitions checked; historical bodies retain scope",
+      "diff_baseline": {
+        "kind": "prior-scratch",
+        "exact_previous_final": false
+      },
+      "final_sha256": "13c0bb2b58c17ba005bf7719dd60b93520dfdb1ccab7e3d24605fbcf7aa9ccb5"
+    },
+    {
+      "path": "reference/priorities/app-solver/work-queue.md",
+      "sha256": "f1f8106de65c763b041e254c44c864a3ec4d5e0dd8554afd0363837baa101947",
+      "previous_sha256": "f1f8106de65c763b041e254c44c864a3ec4d5e0dd8554afd0363837baa101947",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "f1f8106de65c763b041e254c44c864a3ec4d5e0dd8554afd0363837baa101947"
+    },
+    {
+      "path": "reference/priorities/app-surface/priorities.md",
+      "sha256": "6b229ac6ad634800b51c1244c78a3343c97912b22560312ae58bf14a42a63d93",
+      "previous_sha256": "b786cf2491248d11890b955e2d54b2a353896faa6c6b5d04cfbf2ad1a4d79e8d",
+      "changed_since_previous_inventory": true,
+      "review_disposition": "changed current-control passages and decisive owner/evidence transitions checked; historical bodies retain scope",
+      "diff_baseline": {
+        "kind": "prior-scratch",
+        "exact_previous_final": true
+      },
+      "final_sha256": "6b229ac6ad634800b51c1244c78a3343c97912b22560312ae58bf14a42a63d93"
+    },
+    {
+      "path": "reference/priorities/app-surface/README.md",
+      "sha256": "410f1f10a51f99f26943a533d7e73486ae160cee43abdaa1a64bb90957dd0d9c",
+      "previous_sha256": "410f1f10a51f99f26943a533d7e73486ae160cee43abdaa1a64bb90957dd0d9c",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "410f1f10a51f99f26943a533d7e73486ae160cee43abdaa1a64bb90957dd0d9c"
+    },
+    {
+      "path": "reference/priorities/app-surface/work-queue.md",
+      "sha256": "a99003229a596d07e2e96e49582ffc3372f012ca11144200eaa883797b906907",
+      "previous_sha256": "375f5920bffbc6a6fed2b650f7d27dfc11568d8971561ef5db042a8a161723d3",
+      "changed_since_previous_inventory": true,
+      "review_disposition": "changed current-control passages and decisive owner/evidence transitions checked; historical bodies retain scope",
+      "diff_baseline": {
+        "kind": "prior-scratch",
+        "exact_previous_final": true
+      },
+      "final_sha256": "a99003229a596d07e2e96e49582ffc3372f012ca11144200eaa883797b906907"
+    },
+    {
+      "path": "reference/priorities/app-topo/priorities.md",
+      "sha256": "7dcaa441f2a6d58704309e503a31aacf799bb94c125943193165d47913069e73",
+      "previous_sha256": null,
+      "changed_since_previous_inventory": false,
+      "review_disposition": "whole current controls read as unchanged-directory rotation; native entire-directory git diff/untracked census empty",
+      "final_sha256": "7dcaa441f2a6d58704309e503a31aacf799bb94c125943193165d47913069e73"
+    },
+    {
+      "path": "reference/priorities/app-topo/work-queue.md",
+      "sha256": "8bb43e09cffa44a0be101fa54873f66c490779cbd0ec404b2808fac622444ccd",
+      "previous_sha256": null,
+      "changed_since_previous_inventory": false,
+      "review_disposition": "whole current controls read as unchanged-directory rotation; native entire-directory git diff/untracked census empty",
+      "final_sha256": "8bb43e09cffa44a0be101fa54873f66c490779cbd0ec404b2808fac622444ccd"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/evidence/saturday-actual-common-motion-correlations-2026-10-17/README.md",
+      "sha256": "1f6c10200c4fcbbf1157f968bf329b8e3ee07a61c939b83a83e03ea9863d3c9f",
+      "previous_sha256": "1f6c10200c4fcbbf1157f968bf329b8e3ee07a61c939b83a83e03ea9863d3c9f",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "1f6c10200c4fcbbf1157f968bf329b8e3ee07a61c939b83a83e03ea9863d3c9f"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/evidence/saturday-binary-correlation-travel-2026-10-20/README.md",
+      "sha256": "6237652ea8d2a577f36236de5f8597aad515c6258d7563796fd8a5f047d6b543",
+      "previous_sha256": null,
+      "changed_since_previous_inventory": true,
+      "review_disposition": "intake declaration, final review/disposition table or navigation checked; scientific payload not recertified",
+      "diff_baseline": {
+        "kind": "prior-HEAD-or-empty",
+        "exact_previous_final": false
+      },
+      "final_sha256": "6237652ea8d2a577f36236de5f8597aad515c6258d7563796fd8a5f047d6b543"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/evidence/saturday-binary-correlation-travel-2026-10-20/review/README.md",
+      "sha256": "e71d4ce9aeb92c7aa67fd7f0355126563e0d4f3fa9ff5e91f611a8d04f83385b",
+      "previous_sha256": null,
+      "changed_since_previous_inventory": true,
+      "review_disposition": "intake declaration, final review/disposition table or navigation checked; scientific payload not recertified",
+      "diff_baseline": {
+        "kind": "prior-HEAD-or-empty",
+        "exact_previous_final": false
+      },
+      "final_sha256": "e71d4ce9aeb92c7aa67fd7f0355126563e0d4f3fa9ff5e91f611a8d04f83385b"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/evidence/saturday-binary-inout-asymmetry-2026-10-21/README.md",
+      "sha256": "d9e6132c3e73eeb139c2df52707d9a71328ca59676bdc28eb7a076a4e8c3b859",
+      "previous_sha256": null,
+      "changed_since_previous_inventory": true,
+      "review_disposition": "intake declaration, final review/disposition table or navigation checked; scientific payload not recertified",
+      "diff_baseline": {
+        "kind": "prior-HEAD-or-empty",
+        "exact_previous_final": false
+      },
+      "final_sha256": "d9e6132c3e73eeb139c2df52707d9a71328ca59676bdc28eb7a076a4e8c3b859"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/evidence/saturday-binary-inout-asymmetry-2026-10-21/review/README.md",
+      "sha256": "e7ddc95f701cec6b92bb7ae104f4702e47d400f19622e381045098ee27224fef",
+      "previous_sha256": null,
+      "changed_since_previous_inventory": true,
+      "review_disposition": "intake declaration, final review/disposition table or navigation checked; scientific payload not recertified",
+      "diff_baseline": {
+        "kind": "prior-HEAD-or-empty",
+        "exact_previous_final": false
+      },
+      "final_sha256": "e7ddc95f701cec6b92bb7ae104f4702e47d400f19622e381045098ee27224fef"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/evidence/saturday-combined-breathing-period-average-2026-10-12/README.md",
+      "sha256": "934da1125e251e63839467df57f67a466acce6f22f9da907f69422384848cbfd",
+      "previous_sha256": "934da1125e251e63839467df57f67a466acce6f22f9da907f69422384848cbfd",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "934da1125e251e63839467df57f67a466acce6f22f9da907f69422384848cbfd"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/evidence/saturday-common-motion-period-comparison-2026-10-12/README.md",
+      "sha256": "e7eb19b22cd884aaeffbb36eac759c3b4b8565a941434f20f3b70b177a9fe0f9",
+      "previous_sha256": "e7eb19b22cd884aaeffbb36eac759c3b4b8565a941434f20f3b70b177a9fe0f9",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "e7eb19b22cd884aaeffbb36eac759c3b4b8565a941434f20f3b70b177a9fe0f9"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/evidence/saturday-correlations-codex-review-2026-10-18/README.md",
+      "sha256": "fb59cb964b050aec7274be4bbf7124456b644ba5859bb4da5da268107e73920c",
+      "previous_sha256": "fb59cb964b050aec7274be4bbf7124456b644ba5859bb4da5da268107e73920c",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "fb59cb964b050aec7274be4bbf7124456b644ba5859bb4da5da268107e73920c"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/evidence/saturday-curved-window-strength-difference-2026-10-11/README.md",
+      "sha256": "f42dd74f60e29bd4e8a892485b34319ad7d3b19f03e62c7f4a7c55ea5892cc79",
+      "previous_sha256": "f42dd74f60e29bd4e8a892485b34319ad7d3b19f03e62c7f4a7c55ea5892cc79",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "f42dd74f60e29bd4e8a892485b34319ad7d3b19f03e62c7f4a7c55ea5892cc79"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/evidence/saturday-low-angular-momentum-2026-10-14/README.md",
+      "sha256": "6b4d30e4d7e2a0362493ef20c486273a485922b9ace15ed70b9899a7982ec598",
+      "previous_sha256": "6b4d30e4d7e2a0362493ef20c486273a485922b9ace15ed70b9899a7982ec598",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "6b4d30e4d7e2a0362493ef20c486273a485922b9ace15ed70b9899a7982ec598"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/evidence/saturday-lowj-codex-review-2026-10-14/README.md",
+      "sha256": "1802a8993d1a9895c0695cfd0a162e325f20a1e35150b7b3a447322e5bb8f67a",
+      "previous_sha256": "1802a8993d1a9895c0695cfd0a162e325f20a1e35150b7b3a447322e5bb8f67a",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "1802a8993d1a9895c0695cfd0a162e325f20a1e35150b7b3a447322e5bb8f67a"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/evidence/saturday-nonmirror-periodicity-2026-10-11/README.md",
+      "sha256": "1e295280a76e4f132c3242ad80baa733d64db9eee892aa350d4405bd6fa096c2",
+      "previous_sha256": "1e295280a76e4f132c3242ad80baa733d64db9eee892aa350d4405bd6fa096c2",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "1e295280a76e4f132c3242ad80baa733d64db9eee892aa350d4405bd6fa096c2"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/evidence/saturday-signed-breathing-codex-review-2026-10-14/README.md",
+      "sha256": "ea443b9f410353416d47a1a5f49e794fc8ab63418bd242d8424e4092b8f2ecf0",
+      "previous_sha256": "ea443b9f410353416d47a1a5f49e794fc8ab63418bd242d8424e4092b8f2ecf0",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "ea443b9f410353416d47a1a5f49e794fc8ab63418bd242d8424e4092b8f2ecf0"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/evidence/saturday-solution-weighted-geometry-codex-review-2026-10-12/README.md",
+      "sha256": "c5337cb3031113b151aae8e5a907c38a31d3647e9d241ed9c8f4ef015ad64911",
+      "previous_sha256": "c5337cb3031113b151aae8e5a907c38a31d3647e9d241ed9c8f4ef015ad64911",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "c5337cb3031113b151aae8e5a907c38a31d3647e9d241ed9c8f4ef015ad64911"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/evidence/saturday-straight-strength-period-average-2026-10-12/README.md",
+      "sha256": "af79988bb1ad87e2c1f673d3265d7662274507dae789684cb84a5a0fb84d4fd9",
+      "previous_sha256": "af79988bb1ad87e2c1f673d3265d7662274507dae789684cb84a5a0fb84d4fd9",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "af79988bb1ad87e2c1f673d3265d7662274507dae789684cb84a5a0fb84d4fd9"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/priorities.md",
+      "sha256": "f10a727f331beb128d0ee3a753e8b7800904df759f236311187cc4bb987a9d2b",
+      "previous_sha256": "67bd3c2a8c361b296cb1fe2bb8836f42483f56b638ba4963974f106545c2801d",
+      "changed_since_previous_inventory": true,
+      "review_disposition": "changed current-control passages and decisive owner/evidence transitions checked; historical bodies retain scope",
+      "diff_baseline": {
+        "kind": "prior-scratch",
+        "exact_previous_final": false
+      },
+      "final_sha256": "f10a727f331beb128d0ee3a753e8b7800904df759f236311187cc4bb987a9d2b"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/README.md",
+      "sha256": "e6a2c03a5219521536bce88ee5a0957c3c517ac15e90f9922331884d3d9bacdf",
+      "previous_sha256": "ff27572b6e121c12e8aa2015fb7362b9d82ea5f32e20eb196e2ccaf9b36772b6",
+      "changed_since_previous_inventory": true,
+      "review_disposition": "changed current-control passages and decisive owner/evidence transitions checked; historical bodies retain scope",
+      "diff_baseline": {
+        "kind": "prior-scratch",
+        "exact_previous_final": true
+      },
+      "final_sha256": "e6a2c03a5219521536bce88ee5a0957c3c517ac15e90f9922331884d3d9bacdf"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/work-queue.md",
+      "sha256": "ca31a855d05ec42266d1f85f5aabee91decdf7d82d7d26c0bb6029ac3d9b20b9",
+      "previous_sha256": "80c7204bb8da1bb8859d98b49985e446e13d763dd3d0ba7fbb21bf8aef2a0f80",
+      "changed_since_previous_inventory": true,
+      "review_disposition": "changed current-control passages and decisive owner/evidence transitions checked; historical bodies retain scope",
+      "diff_baseline": {
+        "kind": "prior-scratch",
+        "exact_previous_final": true
+      },
+      "final_sha256": "ca31a855d05ec42266d1f85f5aabee91decdf7d82d7d26c0bb6029ac3d9b20b9"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/braid-program/priorities.md",
+      "sha256": "ba9b544de484aaf52335ef86f507f47c7cd9493c44a2a2c29c7abce5557c9103",
+      "previous_sha256": "4a48e81f1f4ac377b90d89bb435a7de74ad68f319326507fa7ebbd92315f5ec6",
+      "changed_since_previous_inventory": true,
+      "review_disposition": "changed current-control passages and decisive owner/evidence transitions checked; historical bodies retain scope",
+      "diff_baseline": {
+        "kind": "prior-scratch",
+        "exact_previous_final": true
+      },
+      "final_sha256": "ba9b544de484aaf52335ef86f507f47c7cd9493c44a2a2c29c7abce5557c9103"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/braid-program/work-queue.md",
+      "sha256": "58fd28e8afa52fb0d05b0cb8639add2d9d9b2ba54ad9b473a22d1da06c67b2ac",
+      "previous_sha256": "58fd28e8afa52fb0d05b0cb8639add2d9d9b2ba54ad9b473a22d1da06c67b2ac",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "58fd28e8afa52fb0d05b0cb8639add2d9d9b2ba54ad9b473a22d1da06c67b2ac"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/collinear-research/priorities.md",
+      "sha256": "8dee59e0f2db01df1944f8f7042ce61225e5b1f48fed992b56d207b2a4f2e098",
+      "previous_sha256": "8dee59e0f2db01df1944f8f7042ce61225e5b1f48fed992b56d207b2a4f2e098",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "8dee59e0f2db01df1944f8f7042ce61225e5b1f48fed992b56d207b2a4f2e098"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/equation-variants/README.md",
+      "sha256": "bdcb1c397e2cad5d32889ae2a9c222730cd254fcb1ae36cfbcafb66766960a71",
+      "previous_sha256": "b40f185f240df958751e3fe36ed8e74b0ac4729e02441fec0fcab1ce02a8425d",
+      "changed_since_previous_inventory": true,
+      "review_disposition": "changed current-control passages and decisive owner/evidence transitions checked; historical bodies retain scope",
+      "diff_baseline": {
+        "kind": "prior-scratch",
+        "exact_previous_final": true
+      },
+      "final_sha256": "bdcb1c397e2cad5d32889ae2a9c222730cd254fcb1ae36cfbcafb66766960a71"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/evidence/saturday-cross-geometry-2026-10-10/README.md",
+      "sha256": "18f96b9066f0a0de9efecc8e02da07730a547ccc68603dd578fdd7940eb28bad",
+      "previous_sha256": "18f96b9066f0a0de9efecc8e02da07730a547ccc68603dd578fdd7940eb28bad",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "18f96b9066f0a0de9efecc8e02da07730a547ccc68603dd578fdd7940eb28bad"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/evidence/saturday-cross-geometry-2026-10-20/README.md",
+      "sha256": "6b8e12f21fb1a424119f51240917a714de5023120dd3ab68eba0eec1b59e6c50",
+      "previous_sha256": null,
+      "changed_since_previous_inventory": true,
+      "review_disposition": "intake declaration, final review/disposition table or navigation checked; scientific payload not recertified",
+      "diff_baseline": {
+        "kind": "prior-HEAD-or-empty",
+        "exact_previous_final": false
+      },
+      "final_sha256": "6b8e12f21fb1a424119f51240917a714de5023120dd3ab68eba0eec1b59e6c50"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-claude-2026-10-20/delayed-growth/README.md",
+      "sha256": "b8086694be0a8677f0f4ff865643f8fc774e7bf7cfb190f8634f84e87a10f724",
+      "previous_sha256": null,
+      "changed_since_previous_inventory": true,
+      "review_disposition": "intake declaration, final review/disposition table or navigation checked; scientific payload not recertified",
+      "diff_baseline": {
+        "kind": "prior-HEAD-or-empty",
+        "exact_previous_final": false
+      },
+      "final_sha256": "b8086694be0a8677f0f4ff865643f8fc774e7bf7cfb190f8634f84e87a10f724"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-claude-2026-10-20/translating-ladder-leading-root/README.md",
+      "sha256": "4a0dda9de28e7169cbc28f5a10616b95a5b9f672cd0f848afb82b80eeb563047",
+      "previous_sha256": null,
+      "changed_since_previous_inventory": true,
+      "review_disposition": "intake declaration, final review/disposition table or navigation checked; scientific payload not recertified",
+      "diff_baseline": {
+        "kind": "prior-HEAD-or-empty",
+        "exact_previous_final": false
+      },
+      "final_sha256": "4a0dda9de28e7169cbc28f5a10616b95a5b9f672cd0f848afb82b80eeb563047"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-claude-2026-10-20/translating-ladder-stability/README.md",
+      "sha256": "8c693e68189a288af408fbb84167eb2fc8c065c125bbd08ab58b6fb91bd68129",
+      "previous_sha256": null,
+      "changed_since_previous_inventory": true,
+      "review_disposition": "intake declaration, final review/disposition table or navigation checked; scientific payload not recertified",
+      "diff_baseline": {
+        "kind": "prior-HEAD-or-empty",
+        "exact_previous_final": false
+      },
+      "final_sha256": "8c693e68189a288af408fbb84167eb2fc8c065c125bbd08ab58b6fb91bd68129"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-claude-2026-10-20/twisted-geometry/README.md",
+      "sha256": "5b04bc646184790b9cfa9139db479d0c7861d2d6d0c5d725d4c1e3b487283f92",
+      "previous_sha256": null,
+      "changed_since_previous_inventory": true,
+      "review_disposition": "intake declaration, final review/disposition table or navigation checked; scientific payload not recertified",
+      "diff_baseline": {
+        "kind": "prior-HEAD-or-empty",
+        "exact_previous_final": false
+      },
+      "final_sha256": "5b04bc646184790b9cfa9139db479d0c7861d2d6d0c5d725d4c1e3b487283f92"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-claude-2026-10-20/untwisted-certificate/README.md",
+      "sha256": "eeb9229158579fb5cc3a7d44ac7a3f150717c3f22c025ed52a8889788611cd09",
+      "previous_sha256": null,
+      "changed_since_previous_inventory": true,
+      "review_disposition": "intake declaration, final review/disposition table or navigation checked; scientific payload not recertified",
+      "diff_baseline": {
+        "kind": "prior-HEAD-or-empty",
+        "exact_previous_final": false
+      },
+      "final_sha256": "eeb9229158579fb5cc3a7d44ac7a3f150717c3f22c025ed52a8889788611cd09"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/saturday-beyond-evolved-endpoint-2026-10-14/README.md",
+      "sha256": "88ff2c552e198079ebc13e2a621a2b2f7bb9970e8c566b270ae550aecb374550",
+      "previous_sha256": "88ff2c552e198079ebc13e2a621a2b2f7bb9970e8c566b270ae550aecb374550",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "88ff2c552e198079ebc13e2a621a2b2f7bb9970e8c566b270ae550aecb374550"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/saturday-evolved-history-continuation-2026-10-12/README.md",
+      "sha256": "380567ff8370b22c0748ec7506d72793497ef448e68d8e76620c563e38a11b44",
+      "previous_sha256": "380567ff8370b22c0748ec7506d72793497ef448e68d8e76620c563e38a11b44",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "380567ff8370b22c0748ec7506d72793497ef448e68d8e76620c563e38a11b44"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/saturday-evolved-history-continuation-codex-review-2026-10-12/README.md",
+      "sha256": "f2d5de6e7e84b6d4e65fddb12a1f08c33a0184a8197b7bfb043f9267a2163313",
+      "previous_sha256": "f2d5de6e7e84b6d4e65fddb12a1f08c33a0184a8197b7bfb043f9267a2163313",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "f2d5de6e7e84b6d4e65fddb12a1f08c33a0184a8197b7bfb043f9267a2163313"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/saturday-followups-2026-10-11/README.md",
+      "sha256": "6c7f8646a6d774a40b2bd18b52f2a7c5b97a729e03a3d183128cdfebca30914f",
+      "previous_sha256": "6c7f8646a6d774a40b2bd18b52f2a7c5b97a729e03a3d183128cdfebca30914f",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "6c7f8646a6d774a40b2bd18b52f2a7c5b97a729e03a3d183128cdfebca30914f"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/saturday-forward-extension-2026-10-12/README.md",
+      "sha256": "aac4412a3246076e1475f5100c224d10a8fa59514893f2747d5554aef169fd10",
+      "previous_sha256": "aac4412a3246076e1475f5100c224d10a8fa59514893f2747d5554aef169fd10",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "aac4412a3246076e1475f5100c224d10a8fa59514893f2747d5554aef169fd10"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/saturday-forward-quantification-2026-10-11/README.md",
+      "sha256": "7b70e507acf220b95d893f46960a7d2833a060eed73892d9618b14d6ed345a92",
+      "previous_sha256": "7b70e507acf220b95d893f46960a7d2833a060eed73892d9618b14d6ed345a92",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "7b70e507acf220b95d893f46960a7d2833a060eed73892d9618b14d6ed345a92"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/saturday-lattice-growth-2026-10-20/README.md",
+      "sha256": "b04c899eb79faa8937467f4f9a13ec14dd30c16dcb872a5779ba1f4d8f75b6d2",
+      "previous_sha256": null,
+      "changed_since_previous_inventory": true,
+      "review_disposition": "intake declaration, final review/disposition table or navigation checked; scientific payload not recertified",
+      "diff_baseline": {
+        "kind": "prior-HEAD-or-empty",
+        "exact_previous_final": false
+      },
+      "final_sha256": "b04c899eb79faa8937467f4f9a13ec14dd30c16dcb872a5779ba1f4d8f75b6d2"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/saturday-lattice-odd-remainder-2026-10-21/README.md",
+      "sha256": "03bd069de0a7bb80c208087d8933aeeddfd75ea2a9879a59c8bd78dc31af9eb3",
+      "previous_sha256": null,
+      "changed_since_previous_inventory": true,
+      "review_disposition": "intake declaration, final review/disposition table or navigation checked; scientific payload not recertified",
+      "diff_baseline": {
+        "kind": "prior-HEAD-or-empty",
+        "exact_previous_final": false
+      },
+      "final_sha256": "03bd069de0a7bb80c208087d8933aeeddfd75ea2a9879a59c8bd78dc31af9eb3"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/saturday-profile-barrier-codex-review-2026-10-14/README.md",
+      "sha256": "ae80feb8aa342d646a8f6fcc783e3ebcfe4b3aeb6959dd5d06bff7b5fbbe84ce",
+      "previous_sha256": "ae80feb8aa342d646a8f6fcc783e3ebcfe4b3aeb6959dd5d06bff7b5fbbe84ce",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "ae80feb8aa342d646a8f6fcc783e3ebcfe4b3aeb6959dd5d06bff7b5fbbe84ce"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/saturday-summed-signed-lattice-codex-review-2026-10-18/README.md",
+      "sha256": "93ac394c84c803d02133c47554afc7c3f0b54970c8f59221f3da90bf1af600fe",
+      "previous_sha256": "93ac394c84c803d02133c47554afc7c3f0b54970c8f59221f3da90bf1af600fe",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "93ac394c84c803d02133c47554afc7c3f0b54970c8f59221f3da90bf1af600fe"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/saturday-summed-signed-lattice-remainder-2026-10-18/README.md",
+      "sha256": "4fc34dadfea68445f75c27cb5e49ae3bc29167d9fdfca08f5b356884ab66d414",
+      "previous_sha256": "4fc34dadfea68445f75c27cb5e49ae3bc29167d9fdfca08f5b356884ab66d414",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "4fc34dadfea68445f75c27cb5e49ae3bc29167d9fdfca08f5b356884ab66d414"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/priorities.md",
+      "sha256": "af6531c15f10570636d298b92bd52d0b0717fdf6a77effd675b30786d8a14f70",
+      "previous_sha256": "4d63ecaa9f12637257141ba8de61eddb42aed99110cdf9529753d7e65eafe1c3",
+      "changed_since_previous_inventory": true,
+      "review_disposition": "changed current-control passages and decisive owner/evidence transitions checked; historical bodies retain scope",
+      "diff_baseline": {
+        "kind": "prior-scratch",
+        "exact_previous_final": false
+      },
+      "final_sha256": "af6531c15f10570636d298b92bd52d0b0717fdf6a77effd675b30786d8a14f70"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/README.md",
+      "sha256": "782d65740d42d239c59d156844d758bba57de2331ceee34ec2ced6a8e3a4b050",
+      "previous_sha256": "11fe603362a80abaa3bd163a4be2611fc788607f0a801c96c85d04fdba4cb3d0",
+      "changed_since_previous_inventory": true,
+      "review_disposition": "changed current-control passages and decisive owner/evidence transitions checked; historical bodies retain scope",
+      "diff_baseline": {
+        "kind": "prior-scratch",
+        "exact_previous_final": true
+      },
+      "final_sha256": "782d65740d42d239c59d156844d758bba57de2331ceee34ec2ced6a8e3a4b050"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/work-queue.md",
+      "sha256": "51a32541c5d0bb2ad44c323a2f99453998f873d23158793e9c63fde95941e110",
+      "previous_sha256": "3ff9f19765a4b12873ab5161eb7a6aacfb7bbfa5614bb1606e101c85789f268a",
+      "changed_since_previous_inventory": true,
+      "review_disposition": "changed current-control passages and decisive owner/evidence transitions checked; historical bodies retain scope",
+      "diff_baseline": {
+        "kind": "prior-scratch",
+        "exact_previous_final": true
+      },
+      "final_sha256": "51a32541c5d0bb2ad44c323a2f99453998f873d23158793e9c63fde95941e110"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/noether-sea-research/priorities.md",
+      "sha256": "40fce5d08fe83e863e4ed4386335c73348f45512f33cc3672b2f6896c1b98b03",
+      "previous_sha256": "6a0603c21e3d03d12f9b7322a092d4d662806bca0eb1d70554ca8feab74fb821",
+      "changed_since_previous_inventory": true,
+      "review_disposition": "changed current-control passages and decisive owner/evidence transitions checked; historical bodies retain scope",
+      "diff_baseline": {
+        "kind": "prior-scratch",
+        "exact_previous_final": true
+      },
+      "final_sha256": "40fce5d08fe83e863e4ed4386335c73348f45512f33cc3672b2f6896c1b98b03"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/noether-sea-research/work-queue.md",
+      "sha256": "2fce31a1db362c4d0e27a80805354a36dd66b6757ddde21b1d0778f713e802d2",
+      "previous_sha256": "92a4eda11ad0fd2e569ca06619c0529a93344b9d2b39445554ae0c9e9a0288a6",
+      "changed_since_previous_inventory": true,
+      "review_disposition": "changed current-control passages and decisive owner/evidence transitions checked; historical bodies retain scope",
+      "diff_baseline": {
+        "kind": "prior-scratch",
+        "exact_previous_final": true
+      },
+      "final_sha256": "2fce31a1db362c4d0e27a80805354a36dd66b6757ddde21b1d0778f713e802d2"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/README.md",
+      "sha256": "ae3802f4ff37b46f30878873055544cc94de1d5731f62fd934d0afe26f7b83d7",
+      "previous_sha256": "ae3802f4ff37b46f30878873055544cc94de1d5731f62fd934d0afe26f7b83d7",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "ae3802f4ff37b46f30878873055544cc94de1d5731f62fd934d0afe26f7b83d7"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/work-queue.md",
+      "sha256": "5005b15d836ee626cf994d8e9b6829be1cb27b1c0b0ce39dd8fa30330208c18a",
+      "previous_sha256": "5005b15d836ee626cf994d8e9b6829be1cb27b1c0b0ce39dd8fa30330208c18a",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "5005b15d836ee626cf994d8e9b6829be1cb27b1c0b0ce39dd8fa30330208c18a"
+    },
+    {
+      "path": "reference/priorities/README.md",
+      "sha256": "08d1117de1c7f85686d465ab4928f8eb326716c41ba3d30aa85398a39016bf55",
+      "previous_sha256": "08d1117de1c7f85686d465ab4928f8eb326716c41ba3d30aa85398a39016bf55",
+      "changed_since_previous_inventory": false,
+      "review_disposition": "unchanged final hash; previous scoped control disposition reused",
+      "final_sha256": "08d1117de1c7f85686d465ab4928f8eb326716c41ba3d30aa85398a39016bf55"
+    }
+  ],
+  "next_weekly": "2026-11-01",
+  "next_monthly": "2026-11-13",
+  "next_evaluation": "2026-12-12",
+  "unchanged_rotation": "app-topo",
+  "next_unchanged_candidate": "app-ui-guidelines",
+  "unfinished": [],
+  "initial_to_final_changed": [
+    "reference/priorities/aaa-corpus-rewrite/corpus-review-status.md",
+    "reference/priorities/aaa-operations/priorities.md",
+    "reference/priorities/aaa-operations/work-queue.md"
+  ],
+  "next": {
+    "weekly": "2026-11-01",
+    "monthly": "2026-11-13",
+    "evaluation": "2026-12-12"
+  },
+  "rotation": {
+    "directory": "app-topo",
+    "scope": "Whole current tracker and empty queue, contract/status routing; whole-directory tracked/untracked census unchanged; no full scientific body or UI certification",
+    "next_candidate": "app-ui-guidelines"
+  },
+  "selected_delta_count": 87,
+  "changed_or_new_count": 34,
+  "reused_unchanged_count": 53,
+  "total_versioned_controls": 89,
+  "unchanged_rotation_controls": [
+    "reference/priorities/app-topo/priorities.md",
+    "reference/priorities/app-topo/work-queue.md"
+  ],
+  "parent_coverage": [
+    "reference/priorities/aaa-corpus-rewrite/corpus-review-status.md",
+    "reference/priorities/aaa-corpus-rewrite/priorities.md",
+    "reference/priorities/aaa-corpus-rewrite/work-queue.md",
+    "reference/priorities/aaa-operations/priorities.md",
+    "reference/priorities/aaa-operations/work-queue.md"
+  ],
+  "parent_coverage_note": "Coordinator checked its current corpus/operations changes against exact closure and OPS031 receipts; final source identities can be refreshed after its scheduled current-control update.",
+  "supporting_reference_hashes": [
+    {
+      "path": "reference/priorities/master-equation-closure/README.md",
+      "sha256": "ae3802f4ff37b46f30878873055544cc94de1d5731f62fd934d0afe26f7b83d7"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/manuscript.md",
+      "sha256": "b60e067ddbd182093a50e1945c4e64276baedb32097f81d23f6ccf8a3c7e4d07"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/manuscript.md",
+      "sha256": "c78da043363ff119ccaf170043915144b4aa121f56ac487dcf57f1bf962bc6ed"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/binary-research/evidence/saturday-binary-inout-asymmetry-2026-10-21/review/chunk4-reply-round2.md",
+      "sha256": "8188e95b13c696fe2eb807f1b3e37bcd3746f43bc4ddeb044152d1d66bd35a5b"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/manuscript.md",
+      "sha256": "43f00de66e3a6782b2e359e8bf05624e9b60917be34e8183bbdb7faff66066d8"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/saturday-lattice-odd-remainder-2026-10-21/review/chunk2-reply-round2.md",
+      "sha256": "f6a97b1f54cca75b8df0e28b0280570695ac62c6de310b32743eeef8761db1ca"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-post-turn-claude-synthesis.md",
+      "sha256": "919457fd0be9e70bf23542ddca93fdba3897fb56e76a614674a060511b4866af"
+    },
+    {
+      "path": "reference/priorities/app-solver/analysis/surface-route-bit-identical-speedups-2026-10-20.md",
+      "sha256": "93fe10da139d05dc3d367358d95431b53c056810964d65c73308de4194f1fd86"
+    },
+    {
+      "path": "reference/priorities/app-simulation/priorities.md",
+      "sha256": "87c76ee745703932d6062525a2bab8a454a81c54f505b4e4830271f1c8adce4f"
+    },
+    {
+      "path": "reference/priorities/app-simulation/work-queue.md",
+      "sha256": "797c7f1e32a1f8502f78b4658f06fe1e63deb72350bf5b467c0e8b8c972987fb"
+    },
+    {
+      "path": "reference/op/simulation-protocol-routing-index.md",
+      "sha256": "d32f0cd356891dc3d36b8e0064e8024a301c5f27b609f2029476ee698e073565"
+    }
+  ]
+}

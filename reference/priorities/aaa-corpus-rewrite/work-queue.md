@@ -3795,3 +3795,20 @@ October 14 BRS13-01 verification: the [combined repair record](../aaa-operations
 | CFG19-02 | ✓ Resolved / Low clarification | Separate finite record relabelings from continuous neutral tangent directions, as already reserved for this review by the October 12 closure. |
 
 No unequal-height balanced branch, retained assembly, global stability, observed weak-sector recovery or new root threshold follows. The valid two-plane lemma, kernel covariance, centered-position rank and finite quotient remain intact. Scientific construction obligations stay with their existing owners. The original receipts preserve the proposed before/after scope. Eighteen exact fragments implement the six accepted groups; all displayed equations, viewer links, headings and Markdown link targets remain unchanged. No further repair remains in this referral.
+
+### OPS-031 — October 23 braid methods referrals
+
+**Status:** ✓ Done — all six groups accepted, implemented and separately verified October 23; see the [integration record](evidence/ops-031-braid-methods-integration-2026-10-23.md) and [separate verification](evidence/ops-031-braid-methods-verification-2026-10-23.md). The [batch record](../aaa-operations/evidence/ops-031-braid-methods-review-2026-10-23.md) and its two whole-chapter receipts retain source hashes, exact before passages, bounded proposed replacements, independent references and falsifiers. Existing corpus maintenance owns disposition and any accepted integration; operations owns coverage. CRW-005 stays closed.
+
+| Group | Status / severity | Implemented bounded correction |
+| --- | --- | --- |
+| BM23-01 | ✓ Resolved / Medium | Restrict axial exclusion to fixed two-plane balance; do not imply a dynamical history becomes planar. |
+| BM23-02 | ✓ Resolved / Medium | Require appropriate residual rank after removing continuous gauge freedoms before concluding local isolation; analyticity alone is insufficient. |
+| BM23-03 | ✓ Resolved / Medium | State the transverse observer budget as a conditional recovery target, with separately justified quadrature and clock-export premises. |
+| BM23-04 | ✓ Resolved / Low notation | Separate internal hinge speed from reserved group speed and use absolute time T in the rotating-wave display. |
+| BAM23-01 | ✓ Resolved / Medium | Separate persistent member identities from auxiliary axial ordering, permit co-height members, and scope strict-gap sampling as a selected subset. |
+| BAM23-02 | ✓ Resolved / Medium | Retain independent endpoint frequencies in the generic two-component parent; pair-shared frequency applies only to selected constrained members. |
+
+The optional hinge coefficient clarification BM23-C1 is not a demonstrated required correction and is excluded from these six groups. No retained assembly, physical stability, observer-clock recovery or globally discrete spectrum is proved by these reviews. Previous accepted repairs survive; attribution of the new omissions to any editor or edit is unresolved.
+
+Exactly 18 approved fragments implement the six groups across two chapters. All headings and link targets are preserved; four displays receive only their approved time/index corrections. The current methodology binding is refreshed after scoped impact review; all 29 analytical measure definitions and reduction versions remain unchanged. No further repair remains in this referral.

@@ -44,7 +44,7 @@ The primitive speed $c_f$ is used for wake-intersection and self-hit geometry. T
 
 When a retained moving branch is exported to a clock, ruler, or photon-synchronization channel, the branch must declare the channel speed used by that export. The primitive branch chart solves causal roots with $c_f$. A dressed clock/ruler comparison uses $c_\star=c_{\text{eff}}(\mathbf X,T)$ after the Noether sea dressing map has been declared, while a photon synchronization comparison uses its declared photon-channel speed $c_\gamma(\mathbf X,T)$. The weak homogeneous measured limit may identify the declared channel speed with $c_0$ only after the clock, ruler, and photon rows collapse to one observer-accessible speed within the preferred-frame leakage budget.
 
-For a branch whose response center moves through the local Noether sea with material group velocity $\mathbf w$, the transverse budget is
+For a branch whose response center moves through the local Noether sea with material group velocity $\mathbf w$, the transverse-budget recovery target is
 $$
 c_\star^2
 =
@@ -57,7 +57,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-813718eb5b450e1e)
 
-Thus an observer-export clock or ruler row must extract
+If the same admitted branch and its declared observer export supply that quadrature, its algebraic consequence is
 $$
 \frac{c_{\perp}}{c_\star}
 =
@@ -66,7 +66,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-06d44856fc2aaa8a)
 
-from the same retained branch record, not append it as an independent Lorentz factor. The lemma fails as a citation target if a calculation solves primitive roots with $c_f$ and then reports an observer-level clock, ruler, or photon speed without the declared dressing map, or if the clock, ruler, and photon rows are sourced from different branch ledgers.
+This ratio must come from the same retained branch record rather than an independently appended Lorentz factor. Identifying it with a clock or ruler response remains a recovery requirement. Finite wake speed and a declared channel speed alone establish neither that response nor a pinned transverse constituent speed; the internal-motion hypotheses below are separate. The lemma fails as a citation target if a calculation solves primitive roots with $c_f$ and then reports an observer-level clock, ruler, or photon speed without the declared dressing map, or if the clock, ruler, and photon rows are sourced from different branch ledgers.
 
 ### Transverse Internal-Motion Speed-Budget Premise and Consequence
 
@@ -152,7 +152,7 @@ where $E_{\text{internal}}(A)$ is the closed internal causal-history energy ledg
 
 ## Hinge Equation Sketch
 
-**Equation of motion near the hinge ($v \approx c_f$)** For each architrino $i$ interacting with its partner $j$:
+**Equation of motion near the site-speed hinge ($\|\mathbf V_i\|\approx c_f$)** For each architrino $i$ interacting with its partner $j$:
 $$
 \frac{d^2\mathbf X_i}{dT^2}(T)=\mathbf{a}_{i,j}(T;\{T_{p,k}\})+\mathbf{a}_{i,i}^{\mathrm{active}}(T;\{T_{s,m}\})+\mathbf{a}_{\text{ext}}(T)
 $$
@@ -261,10 +261,10 @@ The constructive consequence is a sharpened mathematical target. The scoped nega
 If persistent braids exist, the family should have a spectrum: a discrete set of admissible internal configurations, the way a bounded resonator has modes. The natural first ansatz is the rotating wave — a relative equilibrium of the delayed dynamics on the body-diagonal channel,
 
 $$
-\mathbf X_\ell(t)
+\mathbf X_\ell(T)
 =
-\operatorname{Rot}(\hat{\mathbf n},\omega t)\,\mathbf X_\ell(0)
-+u\,\hat{\mathbf n}\,t
+\operatorname{Rot}(\hat{\mathbf n},\omega T)\,\mathbf X_\ell(0)
++u\,\hat{\mathbf n}\,T
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-cee7b95fd49948bc)
@@ -285,11 +285,11 @@ $$
 
 is a fixed transcendental function of the lag $\tau$, and causal roots are its zeros: constant phase lags. The superscript distinguishes this squared-distance residual from the unsquared causal-root residual used in the fold analysis below. The same argument covers same-transmitter root records. The consequence is structural: on this ansatz the state-dependent delay system collapses to a finite algebraic problem, and the infinite-dimensional history disappears from the unknowns.
 
-The spectrum system is then a theorem target. An admissible rotating-wave row is a solution of a finite residual system: for each representative receiver, the kinematic identity that the kernel sum over all constant-lag roots equals the ansatz acceleration; the root equations $F^{\mathrm{sq}}_{ij}(\tau_r)=0$ for every retained lag in the declared root-topology class; and the admissibility inequalities — sub-field speed or declared hinge occupancy, positive Jacobian floors, transmitter-side acceleration-weight floors, noncollision margins. Solutions form the **eigen-braid spectrum**: for fixed group velocity and fixed root-topology class, a solution set $\{(\omega_k,R_k)\}$ indexed by root topology and winding data. Discreteness is a target rather than an assumption — the residuals are real-analytic away from caustics and collisions, so solution sets are generically isolated, and a degenerate continuum would itself be a reportable structure.
+The spectrum system is then a theorem target. An admissible rotating-wave row is a solution of a finite residual system: for each representative receiver, the kinematic identity that the kernel sum over all constant-lag roots equals the ansatz acceleration; the root equations $F^{\mathrm{sq}}_{ij}(\tau_r)=0$ for every retained lag in the declared root-topology class; and the admissibility inequalities — sub-field speed or declared hinge occupancy, positive Jacobian floors, transmitter-side acceleration-weight floors, noncollision margins. Solutions form the **eigen-braid spectrum**: for fixed group velocity and fixed root-topology class, a solution set $\{(\omega_k,R_k)\}$ indexed by root topology and winding data. Discreteness is a target rather than an assumption. Away from caustics and collisions, local isolation must be established for the declared residual system after continuous freedoms are fixed, for example by a full-column-rank residual derivative. Real analyticity alone does not establish isolation; a continuous solution family would itself be a reportable structure.
 
 A second interface target concerns transitions between spectrum rows. Each row carries a definite screw pitch and helicity sign. Whether admissible rows form a discrete pitch ladder, and whether transitions between them require root-topology changes, must be established from the branch family. Integer root counts alone determine neither an action unit nor the action exchanged in a transition.
 
-The axial no-balance derivation above forces the tested fixed-coordinate single-frequency family planar, and the anti-damping indications, where they hold, disfavor it further. The spectrum question is therefore posed for relative periodic orbits — breathing against rotation with periodic rather than constant delays — and for hinge-occupying and sea-embedded rows. A found row would still be a relative equilibrium or relative periodic orbit only; transverse stability, action and wake balance, and the same-record rows of [Braid Recovery Requirements](braid-recovery-requirements.md) all remain between a spectrum row and a retained branch.
+Within the polarity-segregated two-fixed-plane family, the axial no-balance derivation excludes fixed-height acceleration balance at nonzero separation; its planar boundary is not excluded by that argument. This does not force a dynamical history to become planar. The anti-damping indications, where they hold, impose separate restrictions. The spectrum question is therefore posed for relative periodic orbits — breathing against rotation with periodic rather than constant delays — and for hinge-occupying and sea-embedded rows. A found row would still be a relative equilibrium or relative periodic orbit only; transverse stability, action and wake balance, and the same-record rows of [Braid Recovery Requirements](braid-recovery-requirements.md) all remain between a spectrum row and a retained branch.
 
 ## Action Clicks at the Fold Set
 

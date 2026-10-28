@@ -5126,7 +5126,7 @@ The primitive speed $c_f$ is used for wake-intersection and self-hit geometry. T
 
 When a retained moving branch is exported to a clock, ruler, or photon-synchronization channel, the branch must declare the channel speed used by that export. The primitive branch chart solves causal roots with $c_f$. A dressed clock/ruler comparison uses $c_\star=c_{\text{eff}}(\mathbf X,T)$ after the Noether sea dressing map has been declared, while a photon synchronization comparison uses its declared photon-channel speed $c_\gamma(\mathbf X,T)$. The weak homogeneous measured limit may identify the declared channel speed with $c_0$ only after the clock, ruler, and photon rows collapse to one observer-accessible speed within the preferred-frame leakage budget.
 
-For a branch whose response center moves through the local Noether sea with material group velocity $\mathbf w$, the transverse budget is
+For a branch whose response center moves through the local Noether sea with material group velocity $\mathbf w$, the transverse-budget recovery target is
 $$
 c_\star^2
 =
@@ -5139,7 +5139,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-813718eb5b450e1e)
 
-Thus an observer-export clock or ruler row must extract
+If the same admitted branch and its declared observer export supply that quadrature, its algebraic consequence is
 $$
 \frac{c_{\perp}}{c_\star}
 =
@@ -5148,7 +5148,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-06d44856fc2aaa8a)
 
-from the same retained branch record, not append it as an independent Lorentz factor. The lemma fails as a citation target if a calculation solves primitive roots with $c_f$ and then reports an observer-level clock, ruler, or photon speed without the declared dressing map, or if the clock, ruler, and photon rows are sourced from different branch ledgers.
+This ratio must come from the same retained branch record rather than an independently appended Lorentz factor. Identifying it with a clock or ruler response remains a recovery requirement. Finite wake speed and a declared channel speed alone establish neither that response nor a pinned transverse constituent speed; the internal-motion hypotheses below are separate. The lemma fails as a citation target if a calculation solves primitive roots with $c_f$ and then reports an observer-level clock, ruler, or photon speed without the declared dressing map, or if the clock, ruler, and photon rows are sourced from different branch ledgers.
 
 #### Transverse Internal-Motion Speed-Budget Premise and Consequence
 
@@ -5234,7 +5234,7 @@ where $E_{\text{internal}}(A)$ is the closed internal causal-history energy ledg
 
 ### Hinge Equation Sketch
 
-**Equation of motion near the hinge ($v \approx c_f$)** For each architrino $i$ interacting with its partner $j$:
+**Equation of motion near the site-speed hinge ($\|\mathbf V_i\|\approx c_f$)** For each architrino $i$ interacting with its partner $j$:
 $$
 \frac{d^2\mathbf X_i}{dT^2}(T)=\mathbf{a}_{i,j}(T;\{T_{p,k}\})+\mathbf{a}_{i,i}^{\mathrm{active}}(T;\{T_{s,m}\})+\mathbf{a}_{\text{ext}}(T)
 $$
@@ -5342,10 +5342,10 @@ The constructive consequence is a sharpened mathematical target. The scoped nega
 If persistent braids exist, the family should have a spectrum: a discrete set of admissible internal configurations, the way a bounded resonator has modes. The natural first ansatz is the rotating wave — a relative equilibrium of the delayed dynamics on the body-diagonal channel,
 
 $$
-\mathbf X_\ell(t)
+\mathbf X_\ell(T)
 =
-\operatorname{Rot}(\hat{\mathbf n},\omega t)\,\mathbf X_\ell(0)
-+u\,\hat{\mathbf n}\,t
+\operatorname{Rot}(\hat{\mathbf n},\omega T)\,\mathbf X_\ell(0)
++u\,\hat{\mathbf n}\,T
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-cee7b95fd49948bc)
@@ -5366,11 +5366,11 @@ $$
 
 is a fixed transcendental function of the lag $\tau$, and causal roots are its zeros: constant phase lags. The superscript distinguishes this squared-distance residual from the unsquared causal-root residual used in the fold analysis below. The same argument covers same-transmitter root records. The consequence is structural: on this ansatz the state-dependent delay system collapses to a finite algebraic problem, and the infinite-dimensional history disappears from the unknowns.
 
-The spectrum system is then a theorem target. An admissible rotating-wave row is a solution of a finite residual system: for each representative receiver, the kinematic identity that the kernel sum over all constant-lag roots equals the ansatz acceleration; the root equations $F^{\mathrm{sq}}_{ij}(\tau_r)=0$ for every retained lag in the declared root-topology class; and the admissibility inequalities — sub-field speed or declared hinge occupancy, positive Jacobian floors, transmitter-side acceleration-weight floors, noncollision margins. Solutions form the **eigen-braid spectrum**: for fixed group velocity and fixed root-topology class, a solution set $\{(\omega_k,R_k)\}$ indexed by root topology and winding data. Discreteness is a target rather than an assumption — the residuals are real-analytic away from caustics and collisions, so solution sets are generically isolated, and a degenerate continuum would itself be a reportable structure.
+The spectrum system is then a theorem target. An admissible rotating-wave row is a solution of a finite residual system: for each representative receiver, the kinematic identity that the kernel sum over all constant-lag roots equals the ansatz acceleration; the root equations $F^{\mathrm{sq}}_{ij}(\tau_r)=0$ for every retained lag in the declared root-topology class; and the admissibility inequalities — sub-field speed or declared hinge occupancy, positive Jacobian floors, transmitter-side acceleration-weight floors, noncollision margins. Solutions form the **eigen-braid spectrum**: for fixed group velocity and fixed root-topology class, a solution set $\{(\omega_k,R_k)\}$ indexed by root topology and winding data. Discreteness is a target rather than an assumption. Away from caustics and collisions, local isolation must be established for the declared residual system after continuous freedoms are fixed, for example by a full-column-rank residual derivative. Real analyticity alone does not establish isolation; a continuous solution family would itself be a reportable structure.
 
 A second interface target concerns transitions between spectrum rows. Each row carries a definite screw pitch and helicity sign. Whether admissible rows form a discrete pitch ladder, and whether transitions between them require root-topology changes, must be established from the branch family. Integer root counts alone determine neither an action unit nor the action exchanged in a transition.
 
-The axial no-balance derivation above forces the tested fixed-coordinate single-frequency family planar, and the anti-damping indications, where they hold, disfavor it further. The spectrum question is therefore posed for relative periodic orbits — breathing against rotation with periodic rather than constant delays — and for hinge-occupying and sea-embedded rows. A found row would still be a relative equilibrium or relative periodic orbit only; transverse stability, action and wake balance, and the same-record rows of [Braid Recovery Requirements](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md) all remain between a spectrum row and a retained branch.
+Within the polarity-segregated two-fixed-plane family, the axial no-balance derivation excludes fixed-height acceleration balance at nonzero separation; its planar boundary is not excluded by that argument. This does not force a dynamical history to become planar. The anti-damping indications, where they hold, impose separate restrictions. The spectrum question is therefore posed for relative periodic orbits — breathing against rotation with periodic rather than constant delays — and for hinge-occupying and sea-embedded rows. A found row would still be a relative equilibrium or relative periodic orbit only; transverse stability, action and wake balance, and the same-record rows of [Braid Recovery Requirements](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md) all remain between a spectrum row and a retained branch.
 
 ### Action Clicks at the Fold Set
 
@@ -6089,9 +6089,9 @@ The coordinate types recur across the taxonomy, but they are not all independent
 
 | Coordinate type | Status across the studied six- and twelve-architrino configurations | Constraint or interpretation |
 | --- | --- | --- |
-| Binary radius $R_a$ and transverse orbit radius $\rho_a$ | Present in every binary record | $R_a$ and $\rho_a$ coincide only when $h_a=0$. An axial binary with $\rho_a=0$ has no circular path even if $R_a>0$. |
-| Binary frequency $f_a$ | Present in every binary record | The two endpoints of one neutral binary share a frequency. Equal-frequency and fixed-ratio members reduce several frequency coordinates to one scale. At $\rho_a=0$, frequency remains a record label but does not change the path. |
-| Binary phase $\phi_a$ | Present in every binary record and required in addition to radius and frequency | Phase is measured relative to the common braid-level zero point. Some members fix the relative phases. At $\rho_a=0$, phase does not change the path. |
+| Radius coordinates | Required for every declared circular worldline | In three-binary circular charts, $R_a$ and $\rho_a$ coincide only when $h_a=0$; an axial binary with $\rho_a=0$ has no circular path even if $R_a>0$. Generic twelve-worldline two-component records instead retain individual endpoint orbit radii unless the selected member constrains them. |
+| Frequency coordinates | Required for every declared circular worldline | In three-binary circular charts, both endpoints of each binary share its declared frequency $f_a$. Generic twelve-worldline two-component records retain one frequency per worldline; the counterpart map alone does not equate them. Apply a shared frequency only when the selected member requires it. Equal-frequency and fixed-ratio constraints reduce the corresponding free coordinates. For a worldline with zero transverse orbit radius, frequency remains a record label but does not change its path. |
+| Phase coordinates | Required in addition to radius and frequency | Phase is measured relative to the common braid-level zero point. Three-binary circular charts use the binary phases $\phi_a$; generic twelve-worldline two-component records retain individual endpoint phases unless the selected member constrains them. For a worldline with zero transverse orbit radius, phase does not change its path. |
 | Binary midpoint and axis data | Present in every braid record | Orthogonal-axis three-binary configurations constrain three axes through $\lambda_A$; the coincident-axis three-binary locus makes the three axes and midpoints coincide; two-component circular configurations order twelve architrino worldlines on one common axis. |
 | Group velocity $\mathbf V_{\mathrm{grp}}$ | Present at assembly level | The common scalar taxonomy coordinate is $s_{\mathrm{grp}}=\|\mathbf V_{\mathrm{grp}}\|$. Orthogonal-axis three-binary configurations fix its direction to $\hat{\mathbf u}_A$; the axial coincident-axis three-binary locus is a specialization rather than the whole coincident-axis three-binary locus class. |
 | Circulation sense and endpoint polarity assignment | Required discrete source choices | A member may lock circulation within or between braids. Neutrality fixes one electrino and one positrino per binary, but which persistent endpoint carries each polarity still changes the signed source record. |
@@ -6117,7 +6117,7 @@ The member-level inventory below describes the admissible taxonomy space. An ort
 | Axial-transverse coincident-axis interior record | One axial/transverse decomposition coordinate per binary in addition to $R_a$ | One common midpoint, axis, frequency, and circulation; $h_a>0$ and $\rho_a>0$. Axial orbit-plane order is derived from the resulting signed offsets. |
 | High-axial coincident-axis interior record | The same coincident-axis decomposition coordinates | The inequalities $h_a>\rho_a>0$ further restrict the domain. |
 | Planar common-center three-binary record | No additional continuous internal coordinate beyond the common columns | The all-equatorial boundary fixes $h_a=0$ and $\rho_a=R_a$; frequency and circulation are common. |
-| Coincident-center two-component records | Eleven positive spacings after fixing the common axial origin, twelve radii, twelve frequencies, twelve phases, and an explicit six-binary counterpart map | One record fixes common circulation; its peer fixes opposite senses on the two ordered six-index subsets. Equal radii, equal spacings, reflection symmetry, and component-braid decomposition are additional characteristics rather than inherited relations. |
+| Coincident-center two-component records | Eleven nonnegative ordered spacings and the member-assignment permutation after fixing the common axial origin, twelve radii, twelve frequencies, twelve phases, and an explicit six-binary counterpart map | One record fixes common circulation; its peer fixes opposite senses on two declared six-member subsets whose membership is independent of height sorting. Equal radii, equal spacings, reflection symmetry, and component-braid decomposition are additional characteristics rather than inherited relations. |
 | Coaxial-separated two-component records | Two coincident-axis three-binary coordinate sets, positive axial component-center separation $d_C$, and the relative transverse-frame/phase relation | Both components are coaxial. One peer fixes equal component circulation senses and the other fixes opposite senses; equality of the two component frequencies is not required. |
 | Coaxial-separated two-planar-braid records | Two planar common-center three-binary coordinate sets, positive axial component-center separation $d_C$, and the relative transverse-frame/phase relation | Both components are coaxial and all-equatorial. One peer fixes equal component circulation senses and the other fixes opposite senses; equality of the two component frequencies is not required. |
 
@@ -6143,6 +6143,8 @@ A deterministic counter-based sampler supplies a reproducible bounded reference 
 | Coaxial-separated two-component and two-planar-braid component spacing | For either circulation relation, multiply the reference coaxial component-center separation by a uniform factor in $[0.65,0.80]$. |
 | Circulation and polarity | Draw every permitted independent sign from a balanced two-point distribution, then impose exact same-sense or opposite-sense member relations. |
 | Common translation | Draw a permitted direction and a speed uniformly from zero to one-half of the conservative envelope-safe speed. Orthogonal-axis three-binary configurations use their declared translation direction. The resulting exact source must remain inside radius $0.99$ through the retained record. |
+
+For the generic coincident-center two-component records, this positive-gap, adjacent-counterpart sampling rule selects a distinct-height subset of the parent chart; it does not cover every allowed counterpart assignment or co-height boundary. Planar and other constrained members retain their exact height relations under their own sampling rules.
 
 The sampler constructs the constrained coordinates directly and checks the defining member relations. A draw that violates those relations is a sampling error, not evidence against that member. Reproducibility requires the seed, member identifier, sample ordinal, complete drawn coordinates, and results of the constraint checks.
 
@@ -6235,10 +6237,10 @@ The analysis reports the distribution of each objective, the frequency of each f
 
 #### Common-Axis Architrino-Worldline Chart
 
-The common-axis chart supplies a six-worldline coincident-axis three-binary dimension extension and the twelve-worldline two-component circular parent geometry. Let $\hat{\mathbf n}$ be the oriented translation axis, with transverse orthonormal vectors $\hat{\mathbf e}_1,\hat{\mathbf e}_2$. Assign persistent architrino-worldline indices $m=1,\ldots,N_w$, ordered axial coordinates
+The common-axis chart supplies a six-worldline coincident-axis three-binary dimension extension and the twelve-worldline two-component circular parent geometry. Let $\hat{\mathbf n}$ be the oriented translation axis, with transverse orthonormal vectors $\hat{\mathbf e}_1,\hat{\mathbf e}_2$. Assign persistent architrino-worldline indices $m=1,\ldots,N_w$ and member-resolved axial coordinates $\xi_m$. Equal heights are permitted when the transverse paths remain admissible. Choose an auxiliary ordering permutation $\sigma$ with
 
 $$
-\xi_1<\xi_2<\cdots<\xi_{N_w},
+\xi_{\sigma(1)}\le\xi_{\sigma(2)}\le\cdots\le\xi_{\sigma(N_w)},
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-cf756e051aab49c9)
@@ -6246,10 +6248,13 @@ $$
 and spacings
 
 $$
-d_m=\xi_{m+1}-\xi_m>0.
+d_j=\xi_{\sigma(j+1)}-\xi_{\sigma(j)}\ge0,
+\qquad j=1,\ldots,N_w-1.
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-79c627eaede20738)
+
+This sorting does not change persistent identities, binary partners or component membership. Ties use a declared order and contribute zero spacing. Strictly positive gaps select the distinct-height subspace rather than the whole common-axis chart.
 
 For group speed $0\le s_{\mathrm{grp}}<c_f$, architrino worldline $m$ is
 
@@ -6291,9 +6296,9 @@ and every pair must declare its polarities, radii, frequencies, phases, circulat
 For an even ordered chart, adjacent-pair association slots may be declared as
 
 $$
-P_k=(2k-1,2k),
+P_k=(\sigma(2k-1),\sigma(2k)),
 \qquad
-\mu_k=\frac{\xi_{2k-1}+\xi_{2k}}{2}.
+\mu_k=\frac{\xi_{\sigma(2k-1)}+\xi_{\sigma(2k)}}{2}.
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4f111536748b6e55)
