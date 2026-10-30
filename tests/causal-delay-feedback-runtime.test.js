@@ -331,6 +331,20 @@ function createMockEomReplayDataset(fixtureId, overrides = {}) {
   };
 }
 
+test("binary lessons use a finite cursor and their declared segment without wrapping", () => {
+  const { runtime } = createRuntimeForReadout();
+  runtime.learnerState.mode = "story";
+  runtime.learnerState.lessonScenario = "binary-pair";
+  runtime.learnerState.storyStep = 1;
+  runtime.setGuidedReplayCursor(1 / 6);
+  assert.equal(runtime.getCurrentReplayTime(), 1 / 6);
+  runtime.setGuidedReplayCursor(0.5);
+  assert.equal(runtime.getCurrentReplayTime(), 0.5);
+  runtime.learnerState.storyStep = 2;
+  runtime.setGuidedReplayCursor(1);
+  assert.equal(runtime.getCurrentReplayTime(), 1);
+});
+
 test("causal delay feedback readout summarizes selected path history point", () => {
   const { runtime, readout } = createRuntimeForReadout();
   const point = runtime.dataset.history.positrino[0];

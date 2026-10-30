@@ -2,13 +2,13 @@ import {
   createWakeDisplayGeometry,
 } from "./CausalDelayFeedbackWakeRenderer.js";
 import {
-  STORY_ACTIVE_STEPS,
-  STORY_CONTINUATION_STEPS,
   STORY_MOTION_SPEED_FRACTIONS,
-  STORY_PREVIEW_STEPS,
-  createStoryView,
-  STORY_STEPS,
 } from "./CausalDelayFeedbackStoryMode.js";
+import {
+  LESSON_SCENARIOS, getLessonScenario, isBinaryLesson,
+  createLessonView as createStoryView,
+} from "./CausalDelayFeedbackLessonScenarios.js";
+import { BINARY_COMPARISON_NOTE, BREATHING_COMPARISON_NOTE } from "./CausalDelayFeedbackBinaryLessons.js";
 import {
   createCausalHistoryLedger,
 } from "./CausalDelayFeedbackHistoryMode.js";
@@ -97,6 +97,12 @@ export class CausalDelayFeedbackModeController {
     this.onPlayToggle = onPlayToggle;
     this.onReplay = onReplay;
     this.boundClick = (event) => this.handleClick(event);
+    this.boundChange = (event) => {
+      if (event.target.dataset?.causalLessonSelect != null) {
+        this.selectLesson(Number(event.target.value));
+        this.dom.tabs.querySelector("[data-causal-lesson-select]")?.focus?.();
+      }
+    };
   }
 
   init() {
@@ -121,12 +127,14 @@ export class CausalDelayFeedbackModeController {
       throw new Error("Missing Causal Delay Feedback learner-journey elements.");
     }
     this.dom.journey.addEventListener("click", this.boundClick);
+    this.dom.journey.addEventListener("change", this.boundChange);
     this.render();
     return this;
   }
 
   destroy() {
     this.dom?.journey?.removeEventListener("click", this.boundClick);
+    this.dom?.journey?.removeEventListener("change", this.boundChange);
   }
 
   setState(state) {
@@ -138,6 +146,12 @@ export class CausalDelayFeedbackModeController {
     if (!CAUSAL_DELAY_FEEDBACK_MODES.some((candidate) => candidate.id === mode)) {
       return false;
     }
+    if (mode !== "story" && getLessonScenario(this.state).id !== "path-history") {
+      this.state.lessonSteps ??= {};
+      this.state.lessonSteps[getLessonScenario(this.state).id] = this.state.storyStep;
+      this.state.lessonScenario = "path-history";
+      this.state.storyStep = this.state.lessonSteps?.["path-history"] ?? 0;
+    }
     this.state.mode = mode;
     this.onModeChange?.(mode, this.state);
     this.render();
@@ -145,21 +159,23 @@ export class CausalDelayFeedbackModeController {
   }
 
   handleClick(event) {
+    const motionButton = event.target.closest("[data-binary-motion]");
+    if (motionButton && isBinaryLesson(this.state) &&
+        ["near-radial", "reversal"].includes(motionButton.dataset.binaryMotion)) {
+      this.prepareStoryStepChange();
+      this.state.binaryMotionCase = motionButton.dataset.binaryMotion;
+      this.onModeChange?.("story", this.state);
+      this.render();
+      return;
+    }
+    const scenarioButton = event.target.closest("[data-causal-scenario]");
+    if (scenarioButton) {
+      this.setScenario(scenarioButton.dataset.causalScenario);
+      return;
+    }
     const lessonButton = event.target.closest("[data-causal-lesson]");
     if (lessonButton) {
-      const lessonIndex = Number(lessonButton.dataset.causalLesson);
-      if (
-        Number.isInteger(lessonIndex) &&
-        lessonIndex >= 0 &&
-        lessonIndex < STORY_ACTIVE_STEPS.length
-      ) {
-        this.prepareStoryStepChange();
-        this.state.storyStep = lessonIndex;
-        this.state.mode = "story";
-        this.onModeChange?.("story", this.state);
-        this.render();
-        this.onStateChange?.(this.state);
-      }
+      this.selectLesson(Number(lessonButton.dataset.causalLesson));
       return;
     }
     const modeButton = event.target.closest("[data-causal-mode]");
@@ -216,6 +232,33 @@ export class CausalDelayFeedbackModeController {
     }
   }
 
+  selectLesson(lessonIndex) {
+    if (!Number.isInteger(lessonIndex) || lessonIndex < 0 ||
+        lessonIndex >= getLessonScenario(this.state).lessons.length) return false;
+    this.prepareStoryStepChange();
+    this.state.storyStep = lessonIndex;
+    this.state.mode = "story";
+    this.onModeChange?.("story", this.state);
+    this.render();
+    this.onStateChange?.(this.state);
+    return true;
+  }
+
+  setScenario(id) {
+    if (!LESSON_SCENARIOS.some((scenario) => scenario.id === id)) return false;
+    if (id === getLessonScenario(this.state).id && this.state.mode === "story") return false;
+    this.prepareStoryStepChange();
+    this.state.lessonSteps ??= {};
+    this.state.lessonSteps[getLessonScenario(this.state).id] = this.state.storyStep;
+    this.state.lessonScenario = id;
+    this.state.storyStep = this.state.lessonSteps[id] ?? 0;
+    this.state.mode = "story";
+    this.onModeChange?.("story", this.state);
+    this.render();
+    this.onStateChange?.(this.state);
+    return true;
+  }
+
   goBack() {
     if (this.state.mode === "story" && this.state.storyStep > 0) {
       this.prepareStoryStepChange();
@@ -223,7 +266,7 @@ export class CausalDelayFeedbackModeController {
     } else if (this.state.mode === "roots") {
       this.prepareStoryStepChange();
       this.state.mode = "story";
-      this.state.storyStep = STORY_ACTIVE_STEPS.length - 1;
+      this.state.storyStep = getLessonScenario(this.state).lessons.length - 1;
       this.onModeChange?.("story", this.state);
     } else if (this.state.mode === "sandbox") {
       this.setMode("roots");
@@ -236,10 +279,11 @@ export class CausalDelayFeedbackModeController {
   }
 
   goNext() {
-    if (this.state.mode === "story" && this.state.storyStep < STORY_ACTIVE_STEPS.length - 1) {
+    if (this.state.mode === "story" && this.state.storyStep < getLessonScenario(this.state).lessons.length - 1) {
       this.prepareStoryStepChange();
       this.state.storyStep += 1;
     } else if (this.state.mode === "story") {
+      if (isBinaryLesson(this.state)) return;
       this.setMode("roots");
       return;
     } else if (this.state.mode === "roots") {
@@ -269,6 +313,7 @@ export class CausalDelayFeedbackModeController {
     this.dom.app?.classList.toggle("is-guided-mode", !isSandbox);
     this.dom.app?.classList.toggle("is-sandbox-mode", isSandbox);
     this.dom.journey.dataset.mode = this.state.mode;
+    this.dom.app.dataset.scenario = getLessonScenario(this.state).id;
     this.dom.panel.hidden = isSandbox;
     this.renderTabs();
     if (isSandbox) {
@@ -300,10 +345,30 @@ export class CausalDelayFeedbackModeController {
   }
 
   renderTabs() {
+    const active = this.document.activeElement;
+    const focusSelector = active?.dataset?.causalScenario
+      ? `[data-causal-scenario="${active.dataset.causalScenario}"]`
+      : active?.dataset?.causalLesson != null
+        ? `[data-causal-lesson="${active.dataset.causalLesson}"]` : null;
+    const scenario = getLessonScenario(this.state);
+    const chooser = createElement(this.document, "div", {
+      className: "causal-scenario-selector",
+      attributes: { role: "group", "aria-label": "Lesson scenario" },
+    });
+    LESSON_SCENARIOS.forEach((candidate) => {
+      chooser.append(createElement(this.document, "button", {
+        className: "causal-mode-tab",
+        text: candidate.label,
+        attributes: {
+          type: "button", "data-causal-scenario": candidate.id,
+          "aria-pressed": candidate.id === scenario.id ? "true" : "false",
+        },
+      }));
+    });
     const list = createElement(this.document, "ol", {
       className: "causal-lesson-toc-list",
     });
-    STORY_STEPS.forEach((lesson, lessonIndex) => {
+    scenario.lessons.forEach((lesson, lessonIndex) => {
       const item = this.document.createElement("li");
       item.append(createElement(this.document, "button", {
         className: "causal-mode-tab",
@@ -320,43 +385,9 @@ export class CausalDelayFeedbackModeController {
       }));
       list.append(item);
     });
-    STORY_PREVIEW_STEPS.forEach((lesson, previewIndex) => {
-      const item = this.document.createElement("li");
-      item.append(createElement(this.document, "button", {
-        className: "causal-mode-tab",
-        text: `${STORY_STEPS.length + previewIndex + 1}. ${lesson.title} — Coming soon`,
-        attributes: {
-          type: "button",
-          disabled: true,
-          "data-causal-preview": lesson.id,
-          "aria-controls": "causal-delay-feedback-lesson-panel",
-          "aria-label": `${lesson.title}, coming soon and not yet available`,
-        },
-      }));
-      list.append(item);
-    });
-    STORY_CONTINUATION_STEPS.forEach((lesson, continuationIndex) => {
-      const lessonIndex = STORY_STEPS.length + continuationIndex;
-      const lessonNumber =
-        STORY_STEPS.length + STORY_PREVIEW_STEPS.length + continuationIndex + 1;
-      const item = this.document.createElement("li");
-      item.append(createElement(this.document, "button", {
-        className: "causal-mode-tab",
-        text: `${lessonNumber}. ${lesson.title}`,
-        attributes: {
-          type: "button",
-          "data-causal-lesson": lessonIndex,
-          "aria-controls": "causal-delay-feedback-lesson-panel",
-          "aria-current":
-            this.state.mode === "story" && this.state.storyStep === lessonIndex
-              ? "step"
-              : null,
-        },
-      }));
-      list.append(item);
-    });
     CAUSAL_DELAY_FEEDBACK_MODES
       .filter((mode) => mode.id !== "story")
+      .filter(() => scenario.id === "path-history")
       .forEach((mode) => {
         const item = this.document.createElement("li");
         item.append(createElement(this.document, "button", {
@@ -371,12 +402,50 @@ export class CausalDelayFeedbackModeController {
         }));
         list.append(item);
       });
-    this.dom.tabs.replaceChildren(list);
+    this.dom.tabs.replaceChildren(chooser, list);
+    if (scenario.id === "binary-pair") {
+      const label = createElement(this.document, "label", { className: "causal-binary-picker", text: "Lesson" });
+      const picker = createElement(this.document, "select", {
+        attributes: { "data-causal-lesson-select": "", "aria-label": "Binary pair lesson" },
+      });
+      scenario.lessons.forEach((lesson, index) => picker.append(createElement(this.document, "option", {
+        text: `${index + 1}. ${lesson.title}`, attributes: { value: index },
+      })));
+      picker.value = String(this.state.storyStep);
+      label.append(picker);
+      this.dom.tabs.append(label);
+    }
+    if (focusSelector) this.dom.tabs.querySelector(focusSelector)?.focus?.();
   }
 
   renderStory() {
     const view = createStoryView(this.state);
     this.state.storyStep = view.stepIndex;
+    if (isBinaryLesson(this.state)) {
+      this.setLessonCopy({
+        title: view.title, body: view.body,
+        meta: view.geometry === "breathing" ? "Binary pair · prescribed geometry" : "Binary pair · slow comparison",
+        status: view.geometry === "breathing" ? BREATHING_COMPARISON_NOTE : BINARY_COMPARISON_NOTE,
+      });
+      this.dom.content.replaceChildren(createElement(this.document, "p", {
+        className: "causal-binary-readout",
+        attributes: { "data-binary-readout": "", "aria-live": "off" },
+      }));
+      if (view.id === "binary-reversal") {
+        const choices = createElement(this.document, "div", { className: "causal-scenario-selector",
+          attributes: { role: "group", "aria-label": "Prescribed turning case" } });
+        [["near-radial", "Nearly radial"], ["reversal", "Turning reverses"]].forEach(([id, label]) => {
+          choices.append(createElement(this.document, "button", {
+            className: "causal-mode-tab", text: label,
+            attributes: { type: "button", "data-binary-motion": id,
+              "aria-pressed": (this.state.binaryMotionCase ?? "reversal") === id ? "true" : "false" },
+          }));
+        });
+        this.dom.content.append(choices);
+      }
+      if (this.state.binaryFrame) this.updateBinaryReadout(this.state.binaryFrame);
+      return;
+    }
     this.setLessonCopy({
       title: view.title,
       body: view.body,
@@ -469,6 +538,19 @@ export class CausalDelayFeedbackModeController {
       body.append(tr);
     });
     this.dom.content.replaceChildren(table);
+  }
+
+  updateBinaryReadout(frame) {
+    const readout = this.dom.content.querySelector("[data-binary-readout]");
+    if (!readout) return;
+    if ("separation" in frame) {
+      readout.textContent = frame.available
+        ? `Separation ${frame.separation.toFixed(3)} · Separation rate ${frame.separationRate.toFixed(4)} · Turning rate ${frame.turnRate.toFixed(4)} · Delay ${frame.delay.toFixed(3)} · Emission velocity (${frame.emission.vx.toFixed(4)}, ${frame.emission.vy.toFixed(4)}). Wake speed = 1.`
+        : "Received contribution unavailable: an ordinary causal root was not established.";
+      return;
+    }
+    const signed = (value) => `${value >= 0 ? "+" : ""}${value.toFixed(2)}`;
+    readout.textContent = `${(100 * frame.turn).toFixed(1)}% of a reference turn · Forward ${signed(frame.forward)} · Inward ${signed(frame.inward)} · Net rate ${signed(frame.netRate)} · Speed change ${signed(frame.speedChange)}. Relative units.`;
   }
 
   renderRoots() {
@@ -604,7 +686,8 @@ export class CausalDelayFeedbackModeController {
     const isResumable = storyPlayback && this.state.playback.resumable;
     const isCompleted = storyPlayback && this.state.playback.completed;
     this.dom.back.disabled = this.state.mode === "story" && this.state.storyStep === 0;
-    this.dom.next.disabled = this.state.mode === "sandbox";
+    this.dom.next.disabled = this.state.mode === "sandbox" ||
+      (isBinaryLesson(this.state) && this.state.storyStep === getLessonScenario(this.state).lessons.length - 1);
     this.dom.play.disabled = isCompleted;
     const playLabel = storyPlayback
       ? isPlaying
@@ -636,6 +719,12 @@ export class CausalDelayFeedbackModeController {
   }
 
   updateCanvasSummary() {
+    if (isBinaryLesson(this.state)) {
+      this.state.wakeGeometry = [];
+      const view = createStoryView(this.state);
+      this.dom.summary.textContent = `${view.body} ${view.geometry === "breathing" ? BREATHING_COMPARISON_NOTE : BINARY_COMPARISON_NOTE}`;
+      return;
+    }
     const root = this.state.roots.find((candidate) => candidate.id === this.state.selectedRootId);
     const reciprocalRoot = this.state.reciprocalRoots?.find(
       (candidate) => candidate.id === this.state.selectedReciprocalRootId,

@@ -10,6 +10,10 @@ SURFACE-001's completed specification/review is recorded in the [work log](work-
 
 ## Ranked Next Objects
 
+The operator-selected linked normal-support plots are delivered in the [implementation/verification account](analysis/normal-support-time-series-design.md#bounded-implementation-verification--october-29-2026) and work log. This readout selection does not start SURFACE-004 or remove its research start condition.
+
+SURFACE-005's exact six-pole preparation, analytical replay, partner accounts and radial-support display are complete in the [delivery account](analysis/six-pole-replay-2026-10-29.md) and [work log](work-log.md). Its independent display review does not expand the original scientific qualification or authorize new evolution.
+
 SURFACE-001's specification/review and SURFACE-002's first spherical calculation/viewer are complete in the [work log](work-log.md). EOM supplies Stages B–D, and [Stage E](../app-solver/analysis/equation-provider-stage-e-2026-10-11.md) supplies the separately reviewed bounded spherical app. The selected oblate app extension and its [bounded browser verification](evidence/oblate-app-browser-delivery-2026-10-14.md) are complete in the work log. The operator-selected bounded oblate scientific subcase of SURFACE-003 is qualified and recorded in the [work log](work-log.md) and [calculation](analysis/oblate-qualification-2026-10-12.md). Its selected scientific and app executions are complete. The October 14 continuation closes the previously unfinished browser lifecycle, chooser import and desktop/narrow observations; no selected app execution remains open. The subsequently selected ring-torus scientific subcase is also completed with [independent review](analysis/torus-qualification-review-2026-10-14.md); its execution is retained in the work log, and the [torus consumer delivery](evidence/torus-app-delivery-2026-10-15.md) is also complete. SURFACE-003’s selected comparison/app scope is retained in the work log rather than the live queue.
 
 <a id="surface-002--first-spherical-six-member-evolution-and-viewer"></a>

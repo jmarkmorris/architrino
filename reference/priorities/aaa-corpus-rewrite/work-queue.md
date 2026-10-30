@@ -3812,3 +3812,28 @@ No unequal-height balanced branch, retained assembly, global stability, observed
 The optional hinge coefficient clarification BM23-C1 is not a demonstrated required correction and is excluded from these six groups. No retained assembly, physical stability, observer-clock recovery or globally discrete spectrum is proved by these reviews. Previous accepted repairs survive; attribution of the new omissions to any editor or edit is unresolved.
 
 Exactly 18 approved fragments implement the six groups across two chapters. All headings and link targets are preserved; four displays receive only their approved time/index corrections. The current methodology binding is refreshed after scoped impact review; all 29 analytical measure definitions and reduction versions remain unchanged. No further repair remains in this referral.
+
+### OPS-031 — October 28 reconciled envelope and core referrals
+
+**✓ Done — all four groups approved, implemented October 29 and [separately verified](evidence/ops-031-four-corrections-verification-2026-10-29.md).** [Implementation record](evidence/ops-031-four-corrections-integration-2026-10-29.md). The [October 26 envelope receipt](../aaa-operations/evidence/ops-031-braid-envelope-review-2026-10-26.md) and [October 28 core receipt](../aaa-operations/evidence/ops-031-topology-sea-coupling-review-2026-10-28.md) preserve exact hashes, before passages, minimal proposed replacements, independent references and falsifiers. The interrupted coordinator closeout is reconciled now; historical receipts remain unchanged. Existing corpus maintenance owns disposition and any accepted repairs. CRW-005 stays closed.
+
+| Group | Status / severity | Proposed bounded correction |
+| --- | --- | --- |
+| ENV26-01 | ✓ Separately verified / Medium | Require positive finite interface/ambient normalization sums, nonnegative averaging weights and finite moments; leave zero-evidence values undefined and exclude undefined interface events. |
+| ENV26-02 | ✓ Separately verified / Low | Replace signed force cancellation by signed acceleration cancellation in the root diagnostic. |
+| TC28-01 | ✓ Separately verified / Medium | Treat determinant-floor failure as failure of the selected oriented-frame chart; retain its suspended export without inferring collapse of independent phases or recurrence. |
+| MEX28-01 | ✓ Separately verified / Low naming | Use the stylized theory name for six bare prose occurrences; change no scientific example, equation or deferred finding. |
+
+Molecular Exclusion F1–F6 remain Deferred under their existing explicit reopening conditions; this new naming-only proposal does not reactivate them or the old campaign. The optional angular-scale convention in Envelope Geometry is not counted as a demonstrated defect. No error is attributed to an editor or commit without inspecting its causal transition. Scientific branch, clock, mass, sea-response and species-mapping obligations retain their owners.
+
+### OPS-031 — October 29 Master Equation referrals
+
+**✓ Done — all three groups approved and [implemented](evidence/ops-031-master-corrections-integration-2026-10-29.md); [separate verification](evidence/ops-031-master-corrections-verification-2026-10-29.md) passed.** The [whole-chapter review](../aaa-operations/evidence/ops-031-master-equation-review-2026-10-29.md) records parent adjudication and links exact before/after passages in the [front](../aaa-operations/evidence/ops-031-master-front-review-2026-10-29.md) and [middle](../aaa-operations/evidence/ops-031-master-middle-review-2026-10-29.md) receipts. The [tail](../aaa-operations/evidence/ops-031-master-tail-review-2026-10-29.md) adds no required correction. Existing corpus maintenance owns disposition and any accepted repair; CRW-005 stays closed.
+
+| Group | Status / severity | Proposed correction |
+| --- | --- | --- |
+| MFR29-01 | ✓ Separately verified / Low | Qualify two forward-density explanations by the transmitter-projection domain; preserve the absolute-denominator formula and all-root sum. |
+| ME29-M1 | ✓ Separately verified / Medium | Distinguish setting the first-order group-speed deformation to zero from freezing every internal velocity; preserve the orbiting-branch continuation. |
+| ME29-M2 | ✓ Separately verified / Medium | Distinguish a circular speed-parameter fold from a reception-time transverse caustic; require actual finite-impulse assumptions and qualify the operational bullet. |
+
+No formula, kernel, regulator, scientific branch or accepted singular-event convention is changed. These bounded proposals do not reactivate historical campaigns or replace existing scientific owners.

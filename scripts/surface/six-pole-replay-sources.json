@@ -1,0 +1,241 @@
+[
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave16-sixpole-steps-iv-N4000-run2.json",
+    "role": "history",
+    "sha256": "5349837057633d0c81fd8b20f904a3014c2b0a67196e1f5262b0e180db562784",
+    "firstStep": 1,
+    "lastStep": 10
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-curvature-claude-coverage-wave17-sixpole-steps2-iv-N4000-full.json",
+    "role": "history",
+    "sha256": "0d4743a080f53a22d40382d3ca38ceaede737bba942713b9ae5addcaedcb4c9d",
+    "firstStep": 1,
+    "lastStep": 40
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-a.json",
+    "role": "history",
+    "sha256": "f573be3207dc871f3fde670a176ddf77df512153bfa291bf57db927630f6a396",
+    "firstStep": 1,
+    "lastStep": 11
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-antipodal-claude-continuation-steps3-iv-N4000-three-b3.json",
+    "role": "history",
+    "sha256": "7d0b1fa98384314b247b20e93a863bb8bdb14ea719974ba35b721f774ec55c20",
+    "firstStep": 12,
+    "lastStep": 21
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s1a2.json",
+    "role": "history",
+    "sha256": "c1e6cb51cb9fba49c6b779a1b2cc72718426fc0154800397fd23fa9c4b85e5c5",
+    "firstStep": 22,
+    "lastStep": 30
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s1b.json",
+    "role": "history",
+    "sha256": "97643d7c01eda6ac1f8ad52980c6bb48537f16e7aed13f0bc1641e781a7c60ae",
+    "firstStep": 31,
+    "lastStep": 44
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s2a.json",
+    "role": "history",
+    "sha256": "d44513232f30bf7e7361448d0a539294ee97822c99e43b063dc818531fe0f4d6",
+    "firstStep": 45,
+    "lastStep": 56
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s2b3.json",
+    "role": "history",
+    "sha256": "95d4cd7c7508d3d02219fa04cb5af2a9fa2f18d27910a12597f08c846f46c47b",
+    "firstStep": 57,
+    "lastStep": 64
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s3a.json",
+    "role": "history",
+    "sha256": "45374b5ed8e5567fae67235226675d185e10e7503d13392f0aaf74fa88e202d1",
+    "firstStep": 65,
+    "lastStep": 69
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s3b2.json",
+    "role": "history",
+    "sha256": "2d11c6c370703a9cf853eaa4a38d8da9c93461d5668d57d9f12c8af17f73d18f",
+    "firstStep": 70,
+    "lastStep": 78
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s3c.json",
+    "role": "history",
+    "sha256": "1f9e6628c97fe1f6d042143eb1a26e6857ce2db6f7f66251977574716bd05ba6",
+    "firstStep": 79,
+    "lastStep": 86
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-late-feedback-claude-continuation-steps4-iv-N4000-s3d.json",
+    "role": "history",
+    "sha256": "2763577d643ccfbddc8f71385af6174c90771d965e93b0e939d4ec5fc14f5edb",
+    "firstStep": 87,
+    "lastStep": 94
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-like-reception-claude-continuation-steps6-iv-N4000-s1a2.json",
+    "role": "history",
+    "sha256": "c059922a4c6a3582527fab0566b4f00bdfe8615869240b0fcd06198d363dd68b",
+    "firstStep": 95,
+    "lastStep": 104
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-like-reception-claude-continuation-steps6-iv-N4000-s1b2.json",
+    "role": "history",
+    "sha256": "aadc2f06eaeb36b195d20733f7d7b241006e5906f0826519ee05e4f066b02328",
+    "firstStep": 105,
+    "lastStep": 114
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-like-reception-claude-continuation-steps6-iv-N4000-s2a3.json",
+    "role": "history",
+    "sha256": "2656b289ecaea6fc077e8a16be915e0dd16b6ac3cd0d180fa07b53521da71ab5",
+    "firstStep": 115,
+    "lastStep": 124
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-like-reception-claude-continuation-steps6-iv-N4000-s2b2.json",
+    "role": "history",
+    "sha256": "c134f95b9c67e8b6c0bc7ba79ec0449154216d737adfa2a8200d23dcd631649d",
+    "firstStep": 125,
+    "lastStep": 134
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-like-reception-claude-continuation-steps6-iv-N4000-s3a.json",
+    "role": "history",
+    "sha256": "148bdb000deeda4d3b1a2f898be97cf01f1bcbeb1a0eb8247543d66d4ec1213d",
+    "firstStep": 135,
+    "lastStep": 144
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-like-reception-claude-continuation-steps6-iv-N4000-s3b.json",
+    "role": "history",
+    "sha256": "012f94488fb08ccf3bd0696ed9cc6ffb099293ededf6a98905f321f9c233f163",
+    "firstStep": 145,
+    "lastStep": 154
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-post-turn-claude-continuation-steps10-cm49-R1.json",
+    "role": "history",
+    "sha256": "f81012daaaf76d660ec76fd731193a020c078d26e6487aa0e4ba2477874869ce",
+    "firstStep": 155,
+    "lastStep": 220
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-post-turn-claude-continuation-steps10-cm49-R2.json",
+    "role": "history",
+    "sha256": "93eb668c642752b3077102e03acad2b216d929c4a0a39158559b450fb9a263dd",
+    "firstStep": 221,
+    "lastStep": 295
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-post-turn-claude-continuation-steps10-cm49-R3.json",
+    "role": "history",
+    "sha256": "034afdb7660197afaf7c38bc7126ce3ecfe1ff5e03887b45970882a7f4029d79",
+    "firstStep": 296,
+    "lastStep": 385
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-post-turn-claude-continuation-steps10-cm49-R4.json",
+    "role": "history",
+    "sha256": "051f2252c883a7eca7c2c3d78189827acbf2a6a7a32c56055842bf36b1feb5c0",
+    "firstStep": 386,
+    "lastStep": 475
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-post-turn-claude-continuation-steps10-cm49-R5.json",
+    "role": "history",
+    "sha256": "acbafff3e4f45711f18ed66b13256c5ff14dfa793ec4b941f895d3eab234015f",
+    "firstStep": 476,
+    "lastStep": 550
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-post-turn-claude-continuation-steps10-cm49-R6.json",
+    "role": "history",
+    "sha256": "c1454e398553ca639a2ed2412472602b2c3c3d7d8459942f3d599bc764c48c2e",
+    "firstStep": 551,
+    "lastStep": 570
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-post-turn-claude-continuation-steps10-cm49-P4.json",
+    "role": "history",
+    "sha256": "4fc261379d8d4a2f9b21f9f8c1f106e14913b6d3f68a8d0df5416345dfb04c08",
+    "firstStep": 571,
+    "lastStep": 615
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-post-turn-claude-continuation-steps10-cm49-P5.json",
+    "role": "history",
+    "sha256": "22629d11da8a32445e043b1f9911fecdf53a43aa9e9251c9fac29dd600261fe2",
+    "firstStep": 616,
+    "lastStep": 660
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-post-turn-claude-continuation-steps10-cm49-P6.json",
+    "role": "history",
+    "sha256": "0bd1084778c126ce67f74bd820a9aaea3a1707d568b3adf769379dddb965996d",
+    "firstStep": 661,
+    "lastStep": 688
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-post-turn-claude-synthesis.md",
+    "role": "review",
+    "sha256": "919457fd0be9e70bf23542ddca93fdba3897fb56e76a614674a060511b4866af"
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-post-turn-claude-review-adjudication-15.md",
+    "role": "review",
+    "sha256": "342062ff2b7fe56d4730915adc969c056951d9049f3b3a1e4a574dc1da1e091e"
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-post-turn-claude-review-adjudication-16.md",
+    "role": "review",
+    "sha256": "fcfcd0a7eff18dae80ba814da5d614a16390d17058d900edec1fcf3fd549834a"
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-post-turn-claude-review-adjudication-17.md",
+    "role": "review",
+    "sha256": "4c7ecb77845f2ebe499883993e478b2bee9e658fbb97b0ca4032617db37782d3"
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-post-turn-claude-review-adjudication-18.md",
+    "role": "review",
+    "sha256": "28cb55dccb0659d1a42425166c16bb59efcf6945d35982974885b9144d1c7005"
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-post-turn-claude-review-adjudication-19.md",
+    "role": "review",
+    "sha256": "1c10a6ade5bf4b8a9dac5f893788610faba11bfab72a056153da04c42057c2fb"
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-post-turn-claude-review-adjudication-20.md",
+    "role": "review",
+    "sha256": "5dd97ef5607c2139973b51c66b827c7e8c7e2714652a6c8d30b838389663ad01"
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-post-turn-claude-review-adjudication-21.md",
+    "role": "review",
+    "sha256": "6e7882a5315753725e0efadcd96cf110a9ba66298c2b65f152d2001f6d53668e"
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-antipodal-claude-review-adjudication-6.md",
+    "role": "review",
+    "sha256": "5db05d66494f0ffacb9c336d9c9d5110e2510605083e1c4468b32cdb18df8a65"
+  },
+  {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-antipodal-claude-review-adjudication-10.md",
+    "role": "review",
+    "sha256": "c88e3e55e67125f32b25f33295c2ff8d0a5ebbdf88a3833971ddbbdaf8b692d9"
+  }
+]

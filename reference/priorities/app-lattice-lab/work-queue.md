@@ -1,6 +1,15 @@
 # Architrino Lattice Lab Work Queue
 
-This is the canonical execution ledger for the exploratory display-only workstream. [priorities.md](priorities.md) owns the app purpose and claim boundary.
+This is the canonical execution ledger for the static educational gallery and separately scoped finite-patch disturbance section. [priorities.md](priorities.md) owns the app purpose and claim boundary.
+
+## LAT-106 — Finite-patch disturbance experiments
+
+- **Status:** Implemented locally and checked at bounded engineering scope, October 30, 2026; no deployment selected. Removed from executable follow-ups.
+- **Operator direction:** Add lattice disturbances with the solver; after the infinite-history/interface distinction was explained, Op explicitly selected a finite-patch simulator first and the infinite study shown separately.
+- **Result:** `lattice-lab.html?section=disturbances` prepares 8, 27 or 64 moving members with one displaced central site, a held finite past, open edges, unit spacing, coupling 16 and wake speed 1. The shared EOM client owns inspect/calculate/cancel and model binding. The viewer replays only published accepted cubics and supports saved runs and export/import. The [design](contracts/disturbance-experiments.md) and work log retain the complete scope and verification.
+- **Boundary:** No infinite exterior, periodic wrapping, artificial restoring mechanism, new solver or approximation-error claim. Saturday's exact ancient infinite family remains a separate analytical result. Numerical EOM output and imported producer records do not gain independent scientific acceptance. GitHub Pages supports the interface and imported replay; live calculation needs a local EOM service. No publication, production-kernel change, canonical score or other assignment is made.
+
+The inventory below retains the existing gallery queue and its historical acceptance counts; LAT-106 is the separate completed addition above.
 
 ## Current Status
 

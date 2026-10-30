@@ -76,6 +76,8 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-c4bd1ce4ef31d222)
 
+This ratio is defined only when both contribution norms are finite and their sum is positive. If both contributions vanish, the channel supplies no dominance value at that event. Such an event is left undefined and excluded from the interface level set rather than assigned ambient or locked dominance.
+
 The first computable form comes from the same causal-root flux used in the Master Equation. Fix a coarse-graining kernel $K_\ell$, a channel $X$ being tested, and a sample event $(\mathbf X,T)$. For a transmitter constituent $j$ at emission time $T_t$, define
 
 $$
@@ -252,6 +254,8 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-88dcff7b795a752a)
+
+For the ambient window average, use nonnegative coarse-window weights with positive finite total weight and finite weighted moments for the quantities being averaged. If the selected ambient population has zero total window weight, its mean, variance and cadence-based acceptance are undefined; enlarge or change the declared window before evaluating that projector rather than supplying a default cadence.
 
 For any neutral braid branch quantity $f_k(T)$, write the ambient window average after resolved assembly ledgers have been removed as
 
@@ -704,7 +708,7 @@ $$
 
 Here $d_{\mathrm{disc}}=0$ when the discrete closure labels are compatible and $d_{\mathrm{disc}}=\infty$ when they are incompatible; $\operatorname{dist}_{S^1}$ is phase distance; $d_{\mathrm{root}}$ compares active causal-root ledgers; $d_{\mathrm{prov}}$ compares participating-source provenance; and $\Delta\mathcal{N}_{j\to a}$ collects the energy, momentum, angular-momentum, polarity, and other conserved-increment residuals needed by the assembly ledger. This makes $\zeta_a$ a branch-admission test. If any term has to be chosen separately for clock, corridor, packing, and penetration benchmarks, the interface diagnostic has reverted to a fitted surface rather than a closure-ledger projection.
 
-For regularized simulations, the branch sum is replaced by the corresponding finite-width integral with $\delta_\eta(g_{\mathbf Xj})$. The important constraint is that the numerator and denominator of $D_{a,X}$ use the same channel $X$, the same causal-width rule, and the same coarse-graining window. Signed force cancellation belongs in acceleration calculations; interface dominance uses retained channel magnitude so that a cancellation in one direction is not mistaken for absence of wake activity.
+For regularized simulations, the branch sum is replaced by the corresponding finite-width integral with $\delta_\eta(g_{\mathbf Xj})$. The important constraint is that the numerator and denominator of $D_{a,X}$ use the same channel $X$, the same causal-width rule, and the same coarse-graining window. Signed acceleration cancellation belongs in acceleration calculations; interface dominance uses retained channel magnitude so that a cancellation in one direction is not mistaken for absence of wake activity.
 
 Then the effective assembly-Noether sea interface for a declared stability threshold $D_X$ is the level set
 

@@ -1,0 +1,35 @@
+# Finite lattice disturbance experiments
+
+## Operator-selected scope
+
+On October 29, 2026, Op requested a new Lattice Lab section for disturbances advanced with the EOM solver. After the existing finite explicit-history interface and the absence of a numerical carrier for Saturday's infinite ancient family were identified, Op selected: “Finite-patch simulator first; show the infinite study separately.” This adds a separate execution section to the existing app. It does not replace the static gallery, revive an expired research campaign, change the equation, create another solver or authorize publication.
+
+The separate breathing-pair lesson requirement was delivered through the app's thread tool to the existing **CDF** chat `01a15b1d-95ac-7773-98ca-152d3cc4584c`. Its visible response accepts the scenario as explicitly prescribed breathing/shared-motion illustrations within its binary lessons. CDF owns those files and validation; this task does not edit them. The scientific sources are the binary manuscript's Sections 9.1 and 9.4–9.9, with their linked accepted subjects and independent reviews. A prescribed lesson curve is not a repeating full-law solution, and the older eight-member Borg counter-breather is not this two-member study.
+
+## Preparation and equation
+
+The new section is `lattice-lab.html?section=disturbances`. Choose two, three or four sites along each Cartesian axis, giving 8, 27 or 64 distinct moving members. Unit-spaced coordinates are centered about the origin, with charge sign alternating by the parity of the three integer labels. An odd patch has unequal polarity counts; the interface reports the actual counts rather than asserting neutrality.
+
+One central member is displaced by 0–0.2 spacings along the selected axis. For an even patch, this is the member with each integer coordinate equal to half the side count, one of the central sites. Every member is held at its displayed displaced or undisplaced position throughout the supplied finite past and has zero initial velocity. The past starts before the largest initial pair distance, with an additional two time units of margin at normalized wake speed. This provides the declared finite preparation; future history completeness remains an EOM admission obligation. It is not the infinite theorem's complete ancient nonlinear past.
+
+Release occurs at absolute time zero. The request uses `eom_evolution_request/v2`, `canonical/v1`, no constraint, unrestricted speed, coupling 16 and wake speed 1. The existing C++ EOM solver owns every future step. No JavaScript integration, guide curve, restoring spring, artificial damping, pinned exterior or automatic periodic wrapping is added. There are no sources outside this finite patch. Consequently edge members can accelerate even at zero selected displacement. Neither that control nor a larger patch establishes an error bound relative to an infinite lattice.
+
+The interface bounds requested duration by 0.1, uses initial/maximum step .002 and minimum step .00003125, and declares numerical tolerances and finite resource/attempt budgets in the exported request. These are execution choices, not a proof of reachable duration or scientific correctness. Unsupported roots, history, charts, budgets or numerical gates must retain their actual halt status and accepted prefix.
+
+## User workflow and retained evidence
+
+Prepare a patch, inspect the model, then calculate. Editing invalidates inspection; a calculation cannot use an old model identity. The shared `EomV2HttpClient` reinspects before launch and binds the response to the resolved model. Stop uses its cooperative cancellation and waits for the terminal accepted prefix. Switching back to the gallery is blocked while the request is active; page exit requests cancellation. The viewer provides mouse/touch and keyboard rotation and zoom.
+
+Playback evaluates only the returned accepted cubics through the shared EOM cubic evaluator. It neither extrapolates nor loops at an unproved period. Solid red and blue spheres identify positrinos and electrinos. Every marker has the same radius and appears the same size at every depth through orthographic projection; there is no selected-member enlargement or wireframe reference overlay. Displayed motion since release and speed come from retained polynomial evaluation. The uncertainty display identifies its combined component-bound scope. Those diagnostics are numerical displays, not independent trajectory certification.
+
+Run export/import uses `lattice_patch_record/v1`, carrying settings, the complete preparation and the producer response. Import requires a supported request, canonical normalized model, unique complete population, contiguous coverage, finite cubic coefficients and nonnegative uncertainty. Imported records are producer-reported evidence; validation checks display admission, not independent mathematical truth or tamper-proof provenance. The 12 MiB record limit and 32 MiB session budget bound browser retention. Complete evidence remains downloadable from the source EOM host when its retained raw record is available. A rehosted import cannot make an original host's raw artifact locally available.
+
+GitHub Pages can serve the app and replay an imported file. Live calculation needs the local EOM service; the static site does not host a C++ process. Service failure is reported with an actionable local-start instruction, without substituting browser-generated motion.
+
+## Separate infinite study
+
+The explanatory section states that Saturday's localized family has infinitely many dynamical labels, a complete nonlinear ancient past, the original eight-source grouping, every required causal root and infinite tail. Its accepted continuation and conditional-growth bounds remain analytical results. There is no numerical trajectory for this app to replay. The finite patch is an explicitly different experiment, with no claimed convergence or approximation error to that family. The scientific authority is [lattice research Section 1.30](../../master-equation-closure/lattice-research/manuscript.md#130-localized-nonlinear-histories-and-a-guaranteed-forward-interval), including the October 21 successor and its independent reviews.
+
+## Verification scope
+
+The current consumer is the changed app journey. One-time qualification uses known 2-cube counts/polarities, an independently evaluated cubic polynomial, corrupted-record refusals, an isolated stationary member on the actual EOM service before a disturbed eight-member target, and browser preparation/inspection/calculation/replay/import/export and cancellation checks. The existing five focused Lattice Lab test files check preservation of the static gallery. The obsolete whole-file prohibition on Play is scoped to the static gallery; the new section is expressly authorized to replay accepted motion. No new recurring numerical test, schedule, hook or CI gate is added. Exact results, failures and remaining coverage are recorded in the work log; numerical execution does not establish the infinite theorem or physical stability.

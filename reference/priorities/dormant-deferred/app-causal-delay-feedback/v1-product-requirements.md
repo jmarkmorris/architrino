@@ -7,7 +7,8 @@ This document is the durable authority for the accepted Causal Delay Feedback le
 - Route: `causal-delay-feedback.html`
 - Direct Roots link: `causal-delay-feedback.html?mode=roots`
 - Default learner mode: `story`
-- Live surface: eight ordered lessons followed by Roots and Laboratory
+- Live surface: a Path history scenario with eight ordered lessons followed by Roots and Laboratory, and a Binary pair scenario with six guided lessons
+- Direct binary link: `causal-delay-feedback.html?scenario=binary-pair`; a named `lesson` query opens a specific lesson
 - Product posture: canvas-first, low-control, public teaching surface
 - Implementation posture: one shared runtime, learner state, causal-root evaluator, timed-path sampler, and wake renderer
 - Evidence posture: display-only
@@ -40,9 +41,26 @@ The Laboratory title is exactly `Causal Delay Laboratory`. Lesson Four’s selec
 
 Plainly: source, accessible summaries, tests, and browser-proof expectations must move together whenever an authorized copy change occurs.
 
+## Binary Pair Scenario — Operator-Directed Addition, 2026-10-29
+
+The operator requested a second geometry for the two-tilt demonstration, with a scenario boundary that can receive further binary lessons. A related operator-authorized handoff supplied the breathing/common-motion examples. Preserve the eight Path history lessons and their Roots/Laboratory tools. The new scenario has its own ordered lesson data within the existing Story mode, shared learner state, canvas, transport and navigation. The exact new titles and bodies live in [CausalDelayFeedbackBinaryLessons.js](../../../../src/apps/causal-delay-feedback/CausalDelayFeedbackBinaryLessons.js).
+
+| Lesson id | Subject | Display authority |
+| --- | --- | --- |
+| `binary-release` | Initial speed increase from circular release; first sixth of a reference turn | First-order slow-binary comparison, schematic geometry |
+| `binary-tilts` | Outward velocity tilt competing with inward acceleration; first balance through half a turn | Same analytical comparison |
+| `binary-cycle` | Oscillating speed change through a full reference revolution | Same analytical comparison |
+| `binary-average` | Forward mean +1, inward mean −2, net mean −1 | Same analytical comparison |
+| `binary-breathing` | Separation change, turning and shared midpoint motion; received contribution from an earlier emission | Prescribed geometry, evaluated contribution, no EOM evolution |
+| `binary-reversal` | Nearly radial and reversing-turn examples, regular through zero turning | Same prescribed geometry; no transferred orbit-average sign |
+
+The two-tilt diagram enlarges widening and arrow angles; it is not a numerical trajectory. Its speed graph and instantaneous contribution readout use the first-order functions specified in [the mathematical treatment](manuscript.md#7-a-second-scenario-binary-pair-motion). The two later lessons instead use finite prescribed breathing/drifting paths and the unchanged Master Equation contribution with unit reduced coupling and $c_f=1$. They show the earlier partner position and emission-time velocity. They neither inherit the mirror-pair secular law nor assert a repeating solution, scattering observation or existence result.
+
+Scenario selection stops playback, clears completion/resume state and restores the selected scenario's last lesson. Lesson selection starts the selected lesson at its declared first frame. First frame, Play/Pause/Resume, Last frame, scrubbing and keyboard frame stepping share the existing transport. The original Roots/Laboratory views remain scoped to Path history. Browser Back/Forward and direct links restore scenario and lesson while preserving unrelated replay queries and fragments. Desktop shows the lesson list; narrow screens show a labeled native lesson selector so the binary geometry remains visible. Future binary lessons extend the scenario's lesson data and focused geometry modules, rather than creating another application shell or animation loop.
+
 ## Accepted Surface
 
-- Keep the persistent lesson-and-tools list in the order above, followed by Roots and Laboratory.
+- Keep the persistent Path history lesson-and-tools list in the order above, followed by Roots and Laboratory. The scenario selector additionally offers Binary pair and its separate lesson sequence.
 - Keep the standard top-right Home, Search, previous-view, and next-view controls.
 - Keep one shared bottom timeline rail with First frame, Play/Pause, Last frame, and the scrubber.
 - Keep the timeline aligned to the chart’s time axis and clear of the chart, copy panel, and app controls at desktop and phone widths.
@@ -61,7 +79,7 @@ Plainly: source, accessible summaries, tests, and browser-proof expectations mus
 
 The live learner route has three modes:
 
-1. `story` renders the eight lessons.
+1. `story` renders the selected scenario's lessons: the original eight Path history lessons or the six Binary pair lessons.
 2. `roots` renders the existing causal-root exploration through the shared learner state and evaluator.
 3. `sandbox` renders Laboratory.
 
@@ -71,6 +89,8 @@ The implementation is organized around:
 - `CausalDelayFeedbackRuntime.js` for the single canvas runtime and interaction state;
 - `CausalDelayFeedbackModeController.js` for the ordered lesson/Roots/Laboratory surface;
 - `CausalDelayFeedbackStoryMode.js`, `CausalDelayFeedbackInverseSquareMode.js`, and `CausalDelayFeedbackSuperpositionMode.js` for declared lesson fixtures;
+- `CausalDelayFeedbackLessonScenarios.js` for scenario, lesson and direct-link selection;
+- `CausalDelayFeedbackBinaryLessons.js` for binary lesson copy and the analytical comparison, `CausalDelayFeedbackBreathingGeometry.js` for prescribed breathing inputs and received-row evaluation through the shared causal-root evaluator, and `CausalDelayFeedbackBinaryRenderer.js` for the binary canvas projection;
 - `CausalDelayFeedbackCausalHistory.js` for normalized causal-root evaluation and display authority;
 - `CausalDelayFeedbackRootsMode.js` for the Roots projection of that shared evaluation;
 - `CausalDelayFeedbackTimedPath.js` for the shared path sampler; and

@@ -6362,7 +6362,7 @@ $$
 
 This density is independent of the transmitter's state of motion. In the normalization used here, $\lambda_{\mathrm{em}}$ is absorbed into $\kappa$, so the path-history integral uses $\mathrm dT_t$ directly. The causal surfaces are continuously indexed by $T_t$; an equal-$\Delta T$ sequence is only a numerical discretization of this continuum, not the substrate emission law. This emission measure is inherited from the transceiver postulate in [Architrino: Constant-Time Emission Measure](../../../../markdown/aaa/foundations/architrino.md#constant-time-emission-measure-postulate), its canonical home, and is a declared conditionality of the canonical boxed law above, not a derived result of this chapter.
 
-Under the continuous uniform-emission rule stated above, transmitter motion maps the uniform $\mathrm dT_t$ measure onto a history-dependent family of expanding causal surfaces. Along a simple branch, surfaces with nearby emission labels $T_t$ and $T_t+\mathrm dT_t$ have local normal separation $\lvert D_t\rvert\,\mathrm dT_t$, where $D_t=c_f-\hat{\mathbf r}_{ij}\cdot\mathbf V_j(T_t)$. The received causal-surface density per unit local normal distance is therefore proportional to $\lambda_{\mathrm{em}}/\lvert D_t\rvert$. Motion of the transmitter toward the active branch increases that density; motion away from the branch decreases it. After static-transmitter normalization, the geometric acceleration weight is
+Under the continuous uniform-emission rule stated above, transmitter motion maps the uniform $\mathrm dT_t$ measure onto a history-dependent family of expanding causal surfaces. Along a simple branch, surfaces with nearby emission labels $T_t$ and $T_t+\mathrm dT_t$ have local normal separation $\lvert D_t\rvert\,\mathrm dT_t$, where $D_t=c_f-\hat{\mathbf r}_{ij}\cdot\mathbf V_j(T_t)$. The received causal-surface density per unit local normal distance is therefore proportional to $\lambda_{\mathrm{em}}/\lvert D_t\rvert$. At fixed local line direction, increasing the transmitter velocity projection toward the receiver increases this density while the projection remains below $c_f$; a negative projection lowers it relative to a stationary transmitter. Above $c_f$, increasing that projection instead increases $|D_t|$ and decreases the per-root density. The simple-root expression does not apply at $D_t=0$. After static-transmitter normalization, the geometric acceleration weight is
 $$
 W_{ij}^{\mathrm{acc}}
 =
@@ -6477,7 +6477,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-45facc4ba4712e59)
 
-so transmitter motion compresses the emitted surface density in forward directions and dilates it in trailing directions. This is a transmitter-history effect, not a receiver-cadence multiplier and not an imported observer-level field law.
+so, for $0\le\beta_f<1$, transmitter motion compresses the emitted surface density in forward directions and dilates it in trailing directions. For super-field-speed motion, the absolute denominator governs each retained branch, and a forward direction need not have greater weight than the stationary normalization. This is a transmitter-history effect, not a receiver-cadence multiplier and not an imported observer-level field law.
 
 **Proposition 5 (exact transverse projection for a uniformly translating point cloud; derived).** Let two architrinos translate with the same constant velocity $\mathbf V=V\hat{\mathbf e}$, where $V=\|\mathbf V\|$ and $0\leq\beta_f=V/c_f<1$. At a reception time $T_r$, write their instantaneous ordered separation as
 $$
@@ -6866,7 +6866,7 @@ $$
 
 after the neutral translation, phase, and allowed relabeling modes are fixed. Here $\mathcal L$ is the full delayed linearization about the rest branch and $\mathbf B_{\hat{\mathbf e}}$ is the constant-group-velocity defect.
 
-The first question is whether the internal orbit can deform slightly so that all delayed accelerations still close. Freezing that deformation to zero recovers the fixed point-cloud restriction, not a necessary condition for the moving branch.
+The first question is whether the internal orbit can deform slightly so that all delayed accelerations still close. Setting the first-order deformation to zero tests an undeformed translating copy of the rest orbit. The fixed point-cloud restriction additionally sets all internal velocities to zero, so its residual is not a necessary condition for an orbiting moving branch.
 
 > Claim grade: derived for the relative-periodic conditions as necessary acceptance conditions, not for the existence of any branch. Falsifier: a genuine relative-periodic solution of the full Master Equation that fails one of these conditions would refute its necessity; failure of a frozen point-cloud overlay does not.
 
@@ -7382,12 +7382,12 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-864cdc4c73133e01)
 
-On a generic off-circular branch, $D_{t,ii}\to0$ makes the ideal branch-resolved pointwise response diverge whenever the remaining geometry stays regular. A uniform-circular retained root is a special chart: the circular root-playback identity gives $D_{r,ii}=D_{t,ii}$, so both factors vanish together and the event must be handled as a fold rather than under a bounded-nonzero-$D_r$ hypothesis. In either case, the divergence should not be treated as a literal state pinned at infinite acceleration. Across a simple caustic transit, [Caustic Transit and Finite Impulse](#caustic-transit-and-finite-impulse) shows that the integrated velocity change can remain finite; with finite numerical regularization $\eta > 0$, the event appears as a large but finite impulse that sharpens as $\eta\to 0$.
+On a generic off-circular branch, $D_{t,ii}\to0$ makes the ideal branch-resolved pointwise response diverge whenever the remaining geometry stays regular. On a uniform-circular chart, $D_{r,ii}=D_{t,ii}$, so a degenerate root also has vanishing reception derivative. A fold of the circular root equation in its speed parameter is not thereby a reception-transverse caustic transit; at a fixed threshold speed the degeneracy persists under time translation. The finite-impulse result in [Caustic Transit and Finite Impulse](#caustic-transit-and-finite-impulse) applies only when the actual evolving history satisfies its nondegenerate reception-unfolding and positive-separation assumptions. Other approaches, including persistent circular tangency and coincident endpoint birth, require a separately defined regularization and a proved finite accepted transition. No divergent simple-root value defines a state pinned at infinite acceleration.
 
 This transmitter-side fold is therefore an **amplitude pole** for the self branch. It is not, by itself, a theorem of circular closure. The same transmitter-side acceleration weight multiplies every projection of the self-hit acceleration, including the tangential component, so contact with $D_{t,ii}=0$ requires a certified event treatment and does not by itself establish a periodic orbit or zero net cycle-averaged kinetic-rate change.
 
 **Operational characterization of MCB:**
-- The inner branch evolves by caustic grazing near $J_{ii}=0$, with finite impulses across the regularized boundary rather than exact pinning on an infinite-acceleration surface.
+- A candidate inner branch approaches the declared Jacobian boundary. Finite impulses across it require certification for the actual evolving history; neither circular parameter-fold geometry nor finite regularization alone establishes that transition.
 - The minimum radius $R_{\min}$ is the smallest orbit radius compatible with $J_{ii}\ge 0$ on active roots.
 - Tangential power must be controlled separately; near-zero cycle-average power is an additional closure condition, not a consequence of $J_{ii}=0$ alone.
 
@@ -25535,6 +25535,8 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c4bd1ce4ef31d222)
 
+This ratio is defined only when both contribution norms are finite and their sum is positive. If both contributions vanish, the channel supplies no dominance value at that event. Such an event is left undefined and excluded from the interface level set rather than assigned ambient or locked dominance.
+
 The first computable form comes from the same causal-root flux used in the Master Equation. Fix a coarse-graining kernel $K_\ell$, a channel $X$ being tested, and a sample event $(\mathbf X,T)$. For a transmitter constituent $j$ at emission time $T_t$, define
 
 $$
@@ -25711,6 +25713,8 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-88dcff7b795a752a)
+
+For the ambient window average, use nonnegative coarse-window weights with positive finite total weight and finite weighted moments for the quantities being averaged. If the selected ambient population has zero total window weight, its mean, variance and cadence-based acceptance are undefined; enlarge or change the declared window before evaluating that projector rather than supplying a default cadence.
 
 For any neutral braid branch quantity $f_k(T)$, write the ambient window average after resolved assembly ledgers have been removed as
 
@@ -26163,7 +26167,7 @@ $$
 
 Here $d_{\mathrm{disc}}=0$ when the discrete closure labels are compatible and $d_{\mathrm{disc}}=\infty$ when they are incompatible; $\operatorname{dist}_{S^1}$ is phase distance; $d_{\mathrm{root}}$ compares active causal-root ledgers; $d_{\mathrm{prov}}$ compares participating-source provenance; and $\Delta\mathcal{N}_{j\to a}$ collects the energy, momentum, angular-momentum, polarity, and other conserved-increment residuals needed by the assembly ledger. This makes $\zeta_a$ a branch-admission test. If any term has to be chosen separately for clock, corridor, packing, and penetration benchmarks, the interface diagnostic has reverted to a fitted surface rather than a closure-ledger projection.
 
-For regularized simulations, the branch sum is replaced by the corresponding finite-width integral with $\delta_\eta(g_{\mathbf Xj})$. The important constraint is that the numerator and denominator of $D_{a,X}$ use the same channel $X$, the same causal-width rule, and the same coarse-graining window. Signed force cancellation belongs in acceleration calculations; interface dominance uses retained channel magnitude so that a cancellation in one direction is not mistaken for absence of wake activity.
+For regularized simulations, the branch sum is replaced by the corresponding finite-width integral with $\delta_\eta(g_{\mathbf Xj})$. The important constraint is that the numerator and denominator of $D_{a,X}$ use the same channel $X$, the same causal-width rule, and the same coarse-graining window. Signed acceleration cancellation belongs in acceleration calculations; interface dominance uses retained channel magnitude so that a cancellation in one direction is not mistaken for absence of wake activity.
 
 Then the effective assembly-Noether sea interface for a declared stability threshold $D_X$ is the level set
 
@@ -26795,7 +26799,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4d637ca60065d414)
 
-When this floor fails, the three phases no longer supply an independent return chart, so $c_1$ must be suspended rather than compared across the degeneracy.
+When this floor fails, the selected rank-three oriented-frame chart is inadmissible, so its $c_1$ export must be suspended pending a separately certified continuation or lower-rank chart. Dependence of the retained plane normals alone does not show that phase variables collapse or that recurrence or frequency lock is lost.
 
 #### Candidate Definition
 
@@ -28327,9 +28331,9 @@ This is a hypothesis note, not a closed derivation. The chapter's claim is limit
 
 ### Molecular Exclusion and Noether Sea Response
 
-This chapter is an exploratory mapping note, not an AAA derivation of chemistry. It compares effective molecular exclusion with the separate question of medium-level propagation, asking whether a future map from AAA assembly and medium primitives could recover both behaviors. It complements [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md), [Molecular Geometry](../../../../markdown/aaa/nuclear-atomic/molecular-geometry.md), [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md), and [Gravitational Waves](../../../../markdown/aaa/spacetime/gravitational-waves.md). The molecular data below are observer-level or Standard Model comparison inputs; they are not substrate premises.
+This chapter is an exploratory mapping note, not an $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation of chemistry. It compares effective molecular exclusion with the separate question of medium-level propagation, asking whether a future map from $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly and medium primitives could recover both behaviors. It complements [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md), [Molecular Geometry](../../../../markdown/aaa/nuclear-atomic/molecular-geometry.md), [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md), and [Gravitational Waves](../../../../markdown/aaa/spacetime/gravitational-waves.md). The molecular data below are observer-level or Standard Model comparison inputs; they are not substrate premises.
 
-The guiding distinction is ordinary occupancy versus medium availability. At effective grade, molecules exclude one another through the atomic and chemical structure recovered by the Standard Model. The exploratory AAA question is whether a future assembly-level map can reproduce that exclusion while keeping photon, neutrino-like, gravitational-wave, clock, and Noether-sea response channels distinct. A tiny molecular hard-core packing fraction is therefore comparison background, not evidence that every channel sees empty space. The native content of the medium question is the channel-specific visibility/response test in [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md#composition); this chapter supplies no molecular-level coupling law.
+The guiding distinction is ordinary occupancy versus medium availability. At effective grade, molecules exclude one another through the atomic and chemical structure recovered by the Standard Model. The exploratory $\mathbb{A}\mathbb{A}\mathbb{A}$ question is whether a future assembly-level map can reproduce that exclusion while keeping photon, neutrino-like, gravitational-wave, clock, and Noether-sea response channels distinct. A tiny molecular hard-core packing fraction is therefore comparison background, not evidence that every channel sees empty space. The native content of the medium question is the channel-specific visibility/response test in [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md#composition); this chapter supplies no molecular-level coupling law.
 
 > **Assembly-emergence hypothesis.** It is a visionary, unverified hypothesis that molecular shape, bonding, exclusion, and channel-specific boundary behavior may emerge from stable Architrino assembly geometry and retained causal-wake history. This chapter does not derive that emergence or map it uniquely to protons, neutrons, molecules, or any effective interaction. The molecular and chemistry descriptions below are effective comparison inputs until an Architrino-level derivation connects them to the Master Equation and the relevant assembly response.
 
@@ -28385,7 +28389,7 @@ Notes:
 - Trace constituents scale by their volume fraction and do not change the packing conclusion.
 - Despite high number densities, the hard-core geometric occupancy is only about $0.06\%$ of the volume under the declared $\mathrm N_2$ union-of-spheres rule. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, ordinary molecular exclusion occupies only a small fraction of the available Euclidean volume. That result leaves any deeper Noether sea response undetermined.
 
-This gives an observer-level geometric baseline for how much space a molecule excludes under the declared convention. A possible AAA mapping would have to recover the effective boundary from lower-level assembly records; bonding, compression, temperature, pressure, and channel dependence remain inputs or recovery targets here, not established substrate causes.
+This gives an observer-level geometric baseline for how much space a molecule excludes under the declared convention. A possible $\mathbb{A}\mathbb{A}\mathbb{A}$ mapping would have to recover the effective boundary from lower-level assembly records; bonding, compression, temperature, pressure, and channel dependence remain inputs or recovery targets here, not established substrate causes.
 
 The kinetic baseline is not just occupied volume; it is also the collision length compared with the scale being probed. For a dilute molecular species with number density $n_m$ and effective hard-core diameter $d_m$, the order-of-magnitude mean free path is
 $$
@@ -28435,7 +28439,7 @@ A low $\phi_{\mathrm{VdW}}$ or high $\mathrm{Kn}_m$ may explain molecular sparsi
 
 Geometric VdW volume is the radius-and-overlap estimate: it is tied to tabulated radii and molecular geometry, not to the gas pressure or temperature in the worked example. Effective excluded volume is more flexible. Neighboring molecules can compress, stretch, or reorganize electron density, and hydrogen bonding, solvation shells, or $\pi$-$\pi$ stacking can alter the apparent space occupied. Raising $T$ usually increases vibration and loosens structures; raising $P$ can compress electron distributions slightly and reduce the effective excluded volume.
 
-Macroscopic boundaries are effective, channel-specific comparisons, not AAA-level mechanisms. At an air-water boundary, visible photons mostly pass while molecular transport is governed by the effective interface and species-dependent solubility. A lipid membrane can transmit oxygen by passive diffusion while restricting other solutes; permeability depends on molecular properties and membrane composition. At a metal-skin boundary, copper atoms in a wire do not freely diffuse into biological tissue, while infrared and visible photons can still cross or reflect at the boundary.
+Macroscopic boundaries are effective, channel-specific comparisons, not $\mathbb{A}\mathbb{A}\mathbb{A}$-level mechanisms. At an air-water boundary, visible photons mostly pass while molecular transport is governed by the effective interface and species-dependent solubility. A lipid membrane can transmit oxygen by passive diffusion while restricting other solutes; permeability depends on molecular properties and membrane composition. At a metal-skin boundary, copper atoms in a wire do not freely diffuse into biological tissue, while infrared and visible photons can still cross or reflect at the boundary.
 
 ---
 
@@ -28445,7 +28449,7 @@ Maximally packed van der Waals volumes define exclusion domains for ordinary ato
 
 In many ordinary laboratory columns, neutrino transmission is a useful effective comparison, but transmission depends on channel, energy, material column, and the observable counted; compare [Neutrinos](../../../../markdown/aaa/assemblies/fermions/neutrinos.md) for the assembly-level channel picture. Hypothetical WIMPs, axions, or gravitons belong only to standard-comparison language here and do not supply an Architrino-level mapping. Compare [Dark Matter](../../../../markdown/aaa/cosmology/dark-matter.md) for the cosmological inference side and [Gravitational Waves](../../../../markdown/aaa/spacetime/gravitational-waves.md) for the effective propagation layer.
 
-The effective spacetime comparison has the same lesson. In standard GR language, matter changes the metric rather than blocking spacetime as a substance; this is a recovery comparison, not an AAA premise. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Euclidean void remains fixed, while a future effective-metric map may use Noether sea response. That mapping remains exploratory and must be tested independently of the molecular occupancy estimate.
+The effective spacetime comparison has the same lesson. In standard GR language, matter changes the metric rather than blocking spacetime as a substance; this is a recovery comparison, not an $\mathbb{A}\mathbb{A}\mathbb{A}$ premise. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Euclidean void remains fixed, while a future effective-metric map may use Noether sea response. That mapping remains exploratory and must be tested independently of the molecular occupancy estimate.
 
 ---
 

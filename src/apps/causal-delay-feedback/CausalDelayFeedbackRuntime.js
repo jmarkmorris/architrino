@@ -65,11 +65,15 @@ import {
   createStoryTimeAxisPath,
   createStoryMotionWakeComparisonFixture,
   createStoryContinuousDelayedFeedbackFrame,
-  createStoryScene,
   createStorySampledWakeFronts,
   STORY_SHARED_PATH_PLAYBACK_SECONDS,
   STORY_TWO_THREE_HANDOFF_PATH_PROGRESS,
 } from "./CausalDelayFeedbackStoryMode.js";
+import {
+  createLessonScene as createStoryScene, getLessonLocation,
+  createLessonLocationHref, isBinaryLesson,
+} from "./CausalDelayFeedbackLessonScenarios.js";
+import { drawBinaryLesson } from "./CausalDelayFeedbackBinaryRenderer.js";
 import {
   INVERSE_SQUARE_BODY_PROGRESS,
   createInverseSquareSpreadingFrame,
@@ -284,6 +288,11 @@ class CausalDelayFeedbackRuntime {
     });
     this.lastStoryMotionSpeedFraction =
       Number(this.learnerState.storyMotionSpeedFraction);
+    const initialLesson = getLessonLocation(this.window?.location?.href);
+    this.learnerState.lessonScenario = this.learnerState.mode === "story"
+      ? initialLesson.scenario : "path-history";
+    this.learnerState.storyStep = this.learnerState.mode === "story" ? initialLesson.step : 0;
+    this.learnerState.lessonSteps = {};
     this.lastStoryStep = Number(this.learnerState.storyStep);
     if (this.learnerState.mode !== "sandbox") {
       this.isPlaying = false;
@@ -624,11 +633,17 @@ class CausalDelayFeedbackRuntime {
 
   restoreLearnerModeFromLocation() {
     const mode = getCausalDelayFeedbackModeFromHref(this.window?.location?.href);
-    if (mode === this.learnerState?.mode) {
+    const lesson = getLessonLocation(this.window?.location?.href);
+    const scenario = mode === "story" ? lesson.scenario : "path-history";
+    if (mode === this.learnerState?.mode && scenario === this.learnerState.lessonScenario &&
+        (mode !== "story" || lesson.step === this.learnerState.storyStep)) {
       return false;
     }
     this.suppressModeHistoryUpdate = true;
     try {
+      this.setPlaying(false);
+      this.learnerState.lessonScenario = scenario;
+      this.learnerState.storyStep = lesson.step;
       return this.setLearnerMode(mode);
     } finally {
       this.suppressModeHistoryUpdate = false;
@@ -640,7 +655,8 @@ class CausalDelayFeedbackRuntime {
       return false;
     }
     const currentHref = this.window?.location?.href;
-    const nextHref = createCausalDelayFeedbackModeHref(currentHref, mode);
+    const modeHref = createCausalDelayFeedbackModeHref(currentHref, mode);
+    const nextHref = modeHref ? createLessonLocationHref(modeHref, this.learnerState) : null;
     const historyLike = this.window?.history;
     if (
       !nextHref ||
@@ -698,6 +714,13 @@ class CausalDelayFeedbackRuntime {
   }
 
   getReplayStatusState() {
+    if (isBinaryLesson(this.learnerState)) {
+      const prescribed = createStoryScene(this.learnerState).geometry === "breathing";
+      return { state: prescribed ? "prescribed-geometry" : "analytical-comparison",
+        label: prescribed ? "Prescribed geometry" : "Analytical comparison",
+        help: prescribed ? "Prescribed breathing paths; received acceleration evaluated without evolving the paths."
+          : "Finite-time first-order slow-binary comparison; schematic geometry, not EOM output." };
+    }
     const loadState =
       this.replayLoadState === "loading" && this.usesFallbackReplayOnly()
         ? "ready"
@@ -1075,7 +1098,7 @@ class CausalDelayFeedbackRuntime {
   }
 
   resetStoryScenarioPlayback() {
-    if (this.learnerState.storyStep === 1) {
+    if (!isBinaryLesson(this.learnerState) && this.learnerState.storyStep === 1) {
       const [startTime, endTime] = this.getReplayTimeRange();
       this.refreshLearnerState({
         receiverTime:
@@ -1085,7 +1108,7 @@ class CausalDelayFeedbackRuntime {
     }
     let scene = createStoryScene(this.learnerState);
     if (
-      this.learnerState.storyStep === 0 &&
+      !isBinaryLesson(this.learnerState) && this.learnerState.storyStep === 0 &&
       Math.abs(this.learnerState.receiverTime - scene.playbackStartTime) >
         TIME_EPSILON
     ) {
@@ -1110,6 +1133,8 @@ class CausalDelayFeedbackRuntime {
   }
 
   handleLearnerStateChange() {
+    this.pushLearnerModeHistory(this.learnerState.mode);
+    this.updateReplayStatus();
     const storyStep = Number(this.learnerState?.storyStep);
     const didStoryStepChange =
       this.learnerState?.mode === "story" &&
@@ -1120,7 +1145,7 @@ class CausalDelayFeedbackRuntime {
       Number(this.learnerState?.storyMotionSpeedFraction);
     const didStoryMotionSpeedChange =
       this.learnerState?.mode === "story" &&
-      this.learnerState?.storyStep === 3 &&
+      !isBinaryLesson(this.learnerState) && this.learnerState?.storyStep === 3 &&
       Number.isFinite(storyMotionSpeedFraction) &&
       storyMotionSpeedFraction !== this.lastStoryMotionSpeedFraction;
     this.lastStoryMotionSpeedFraction = storyMotionSpeedFraction;
@@ -1466,7 +1491,9 @@ class CausalDelayFeedbackRuntime {
     const span = end - start;
     const phase = span > 0 ? clamp((replayTime - start) / span, 0, 1) : 0;
     this.dom.nowInput.value = String(Math.round(phase * NOW_SLIDER_MAX));
-    const replayTimeLabel = `Replay time ${formatCompactNumber(replayTime)}`;
+    const replayTimeLabel = isBinaryLesson(this.learnerState)
+      ? `${(100 * replayTime).toFixed(1)}% of ${createStoryScene(this.learnerState).geometry === "breathing" ? "the prescribed demonstration" : "one reference revolution"}`
+      : `Replay time ${formatCompactNumber(replayTime)}`;
     this.dom.nowInput.setAttribute("aria-valuetext", replayTimeLabel);
     if (this.dom.nowValue) {
       this.dom.nowValue.textContent = replayTimeLabel;
@@ -1510,6 +1537,14 @@ class CausalDelayFeedbackRuntime {
     const step = Math.sign(Number(direction) || 0);
     if (step === 0) {
       return false;
+    }
+    if (isBinaryLesson(this.learnerState)) {
+      const [start, end] = this.getReplayTimeRange();
+      const current = this.storyHeldFrame?.replayTime ?? this.getCurrentReplayTime();
+      const next = clamp(current + step / 240, start, end);
+      if (next === current) return false;
+      this.setReplayNowSliderValue(NOW_SLIDER_MAX * (next - start) / (end - start));
+      return true;
     }
     const times = this.getReplayFrameStepTimes();
     if (times.length === 0) {
@@ -2068,6 +2103,10 @@ class CausalDelayFeedbackRuntime {
   }
 
   render(replayTime = this.getCurrentReplayTime()) {
+    if (isBinaryLesson(this.learnerState)) {
+      this.renderBinaryScene(replayTime);
+      return;
+    }
     const ctx = this.context;
     this.updateViewportForRender();
     this.alignBottomRailToTimeAxis();
@@ -2174,6 +2213,47 @@ class CausalDelayFeedbackRuntime {
     this.drawSelection(ctx);
     this.drawSandboxTransmissionGhost(ctx, visibleWakeSeries);
     this.drawLiveMarkers(ctx, replayTime);
+  }
+
+  renderBinaryScene(replayTime) {
+    const scene = createStoryScene(this.learnerState);
+    const held = !this.isPlaying && this.storyHeldFrame?.scene?.id === scene.id
+      ? this.storyHeldFrame : null;
+    const displayTime = this.isPlaying ? replayTime : held?.replayTime ?? scene.displayTime;
+    const ctx = this.context;
+    ctx.setTransform(this.pixelRatio, 0, 0, this.pixelRatio, 0, 0);
+    ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+    ctx.fillStyle = FIXED_CANVAS_COLOR;
+    ctx.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
+    const rect = this.dom.canvas.getBoundingClientRect();
+    const panel = this.modeController.dom.panel.getBoundingClientRect();
+    const tabs = this.modeController.dom.tabs.getBoundingClientRect();
+    const rail = this.dom.bottomRail.getBoundingClientRect();
+    const narrow = this.canvasWidth <= 820;
+    const bounds = {
+      left: 18, right: this.canvasWidth - 18,
+      top: (narrow ? tabs.bottom : Math.max(panel.bottom, tabs.bottom)) - rect.top + 12,
+      bottom: (narrow ? Math.min(panel.top, rail.top) : rail.top) - rect.top - 16,
+    };
+    this.dom.bottomRail.style.left = "18px";
+    this.dom.bottomRail.style.right = "18px";
+    this.dom.bottomRail.style.width = "auto";
+    const frame = drawBinaryLesson(ctx, bounds, displayTime, scene);
+    this.learnerState.binaryFrame = frame;
+    this.dom.canvas.dataset.causalScene = `binary-pair:${scene.id}`;
+    this.dom.canvas.dataset.binaryTurn = String(frame.turn);
+    if (scene.geometry !== "breathing") {
+      this.dom.canvas.dataset.binarySpeedChange = String(frame.speedChange);
+      this.dom.canvas.dataset.binaryNetRate = String(frame.netRate);
+    } else {
+      delete this.dom.canvas.dataset.binarySpeedChange;
+      delete this.dom.canvas.dataset.binaryNetRate;
+    }
+    this.dom.canvas.dataset.binaryChartBounds = JSON.stringify(bounds);
+    this.setCanvasDisplayAuthority(scene.displayAuthority);
+    this.learnerState.receiverTime = displayTime;
+    this.setGuidedReplayCursor(displayTime);
+    this.modeController.updateBinaryReadout(frame);
   }
 
   setCanvasDisplayAuthority(authority = this.dataset?.displayAuthority) {
@@ -5253,7 +5333,7 @@ class CausalDelayFeedbackRuntime {
   getReplayTimeForElapsedSeconds(elapsedSeconds) {
     const [start, end] = this.getReplayTimeRange();
     const loopSeconds = this.getReplayLoopSeconds();
-    const phase = this.learnerState?.mode === "sandbox"
+    const phase = this.learnerState?.mode === "sandbox" || isBinaryLesson(this.learnerState)
       ? clamp(elapsedSeconds / loopSeconds, 0, 1)
       : (elapsedSeconds % loopSeconds) / loopSeconds;
     return start + (end - start) * phase;
@@ -5266,6 +5346,10 @@ class CausalDelayFeedbackRuntime {
   }
 
   getReplayTimeRange() {
+    if (isBinaryLesson(this.learnerState)) {
+      const scene = createStoryScene(this.learnerState);
+      return [scene.playbackStartTime, scene.playbackEndTime];
+    }
     if (this.replayTimeRangeCache) {
       return this.replayTimeRangeCache;
     }
