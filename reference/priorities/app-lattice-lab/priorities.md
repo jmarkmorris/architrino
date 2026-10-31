@@ -12,9 +12,9 @@
 
 This active folder owns the complete planning, requirements, certificates, random finite-configuration contract, accepted presentation design, queue, and work history for **Architrino Lattice Lab**. The accepted executable app remains in its canonical runtime locations: `lattice-lab.html`, `src/apps/lattice-lab/`, the focused `tests/lattice-lab-*.test.js` files, and the `scripts/verify-lattice-lab-*.mjs` validators.
 
-The static gallery distinguishes periodic repeating-pattern certificates from the Random 50/50 finite nonperiodic calculation. Its displayed crop and presentation-only visibility filters do not define the deterministic calculation scope. Those results imply no motion, stability, conservation, energy, or physical void-filling medium. The operator-selected [finite-patch disturbance section](contracts/disturbance-experiments.md) separately advances an explicitly finite held-past preparation with the EOM solver and replays accepted coverage. It is not a numerical realization of Saturday's infinite ancient family and supplies no independent trajectory or stability acceptance.
+The static gallery distinguishes periodic repeating-pattern certificates from the Random 50/50 finite nonperiodic calculation. Its displayed crop and presentation-only visibility filters do not define the deterministic calculation scope. Those results imply no motion, stability, conservation, energy, or physical void-filling medium. The operator-selected [finite-patch disturbance section](contracts/disturbance-experiments.md) separately advances an explicitly finite timed-pulse or held-past preparation with the EOM solver and replays accepted coverage. It is not a numerical realization of Saturday's infinite ancient family and supplies no independent trajectory or stability acceptance.
 
-[work-queue.md](work-queue.md) is the active execution ledger. Its four queued rows are executable in ranked order; its two explicitly deferred rows remain non-executable until their own reopening conditions are met. The product brief lives in [requirements-design.md](contracts/requirements-design.md), focused mathematical and provenance authorities remain sibling files, and [work-log.md](work-log.md) records the accepted implementation history.
+[work-queue.md](work-queue.md) is the active execution ledger. Its five queued rows are executable in local order; its four explicitly deferred rows remain non-executable until their own reopening conditions are met. The product brief lives in [requirements-design.md](contracts/requirements-design.md), focused mathematical and provenance authorities remain sibling files, and [work-log.md](work-log.md) records the accepted implementation history.
 
 ## Objective
 
@@ -22,7 +22,9 @@ Advance the accepted educational app through its ranked queue while preserving i
 
 ## Active State
 
-The operator reactivated this owner on 2026-09-02. Four queued objects are executable in the order recorded in [work-queue.md](work-queue.md); LAT-009 and LAT-075 remain explicitly deferred and are not reopened by the directory promotion.
+The operator selected long-horizon disturbance simulation as the next local investigation on October 31, 2026: [LAT-107](work-queue.md#lat-107--long-horizon-lattice-disturbance-simulations). Determine how to obtain useful, numerically checked evolution across several lattice crossing times, including causal-root certification, accumulated history uncertainty, checkpoint/storage growth, finite-edge effects and measured run cost. The October 31 paired-run records and refinement comparison summarized in [the disturbance contract](contracts/disturbance-experiments.md#completed-propagation-demonstration-and-limits--october-31-2026) establish completion through 1.5 crossing times and later certification stops; increasing the requested endpoint alone does not extend accepted coverage. This is a queued feasibility investigation, not a completed long-horizon capability or a new compute launch.
+
+The four existing gallery objects retain their relative order behind LAT-107. LAT-009 and LAT-075 remain explicitly deferred. LAT-108 records the deferred exact infinite-family numerical bridge; LAT-109 records publication follow-through for a separately designated runner. The queue links the scientific obligations retained by Saturday and their current owners without taking them over. These recorded follow-ups do not block closure of the completed local implementation task. The workstream remains globally unranked; no canonical score changes are selected.
 
 ## Boundaries
 

@@ -67,6 +67,24 @@ The current preferred style for live priority docs is:
 - if a task is done, record any durable result in the work log or focused evidence packet, remove it from the live queue, and renumber the list.
 - keep history only when it supports active triage, auditability, or a current proof/certificate decision; otherwise rely on GitHub and git history.
 
+## Operator files and agent supporting records
+
+The operator directs each priority area through its standard files. Agents maintain these files as a usable current account and manage supporting records themselves. This arrangement applies to every current owner, including nested research owners.
+
+| File | Operator-facing responsibility |
+| --- | --- |
+| `priorities.md` | Concise objective, present findings, ownership, main blockers and next accepted work; preserve required scoring metadata. |
+| `work-queue.md` | Accepted tasks, explicit lifecycle state, next concrete step and completion condition. Distinguish local ordering from readiness, and show blocked dependencies without presenting them as work to execute now. |
+| `manuscript.md` | Coherent developed explanation, including assumptions, negative results, evidence grades and unresolved scientific questions. |
+| `brainstorming.md` | Provisional ideas and alternatives, with their reasoning and selection status. Move developed material to the manuscript and remove duplicate accepted tasks when they enter the queue. |
+| `work-log.md` | Brief dated chronology and review dispositions; agents consult the history when needed. Routine completion does not need a separate report. |
+
+Each file contains the substance needed for its purpose. Links supply derivations or evidence detail; they do not replace an intelligible task, finding or decision. Keep the tracker short enough to read at entry, and put the next work near the start of the queue. Keep long execution narratives, hash inventories and closed-task histories out of those live summaries.
+
+Agents retain source inventories, detailed review coverage, execution checkpoints, exact identities and raw validation in the established supporting owners. Use `.tmp/<task>/` only for disposable scratch and established ignored `.local-data/` owners for retained local evidence and continuity under the [retention policy](../op/machine-artifact-retention.md). Evidence required for a scientific claim retains its declared authority and preservation rules. Keep necessary support discoverable from the owning task or work log; successor agents retrieve it themselves. Local storage is not a second queue and must not be the only place containing a useful finding, accepted decision or material blocker.
+
+Update the existing owner before creating a document. A new supporting file requires a concrete scientific question, contract or consumer that an existing file cannot adequately serve. A new agent, chat, review date or completion does not by itself justify one. Integrate results, resolve or remove completed queue items, and maintain the support before reporting completion. Preserve frozen evidence, existing anchors and concurrent work when simplifying files; this arrangement grants no deletion or scientific execution authority.
+
 ## Workstream Directory Layout
 
 The maintenance pattern above governs which document owns which material. This section governs where those documents sit, because a workstream that files every supporting document as a top-level sibling eventually presents the operator with a directory listing in which the live control surface is indistinguishable from years of superseded process records.

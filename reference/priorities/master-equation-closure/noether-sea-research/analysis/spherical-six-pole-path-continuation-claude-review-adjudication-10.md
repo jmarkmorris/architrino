@@ -8,8 +8,8 @@ Written 2026-10-20 by the review role, after my granted invocation G2.
 
 | output | sha256 |
 |---|---|
-| [json](../evidence/spherical-six-pole-path-continuation-claude-review-audit10-G2-P2.json) | `99e5b87329c171760bc5d9d3d65cf255528caa2bbf0240fa2c4137f1f132e733` |
-| [consistency](../evidence/spherical-six-pole-path-continuation-claude-review-audit10-G2-P2.json.consistency.json) | `14c8e3aa33123fbe82ec4b479c527c334f1cec3b7268b3d9d0df7ac0dea5395c` |
+| [json](../evidence/spherical-six-pole-path-and-post-turn-review-audit-pairs-v1.md) | `99e5b87329c171760bc5d9d3d65cf255528caa2bbf0240fa2c4137f1f132e733` |
+| [consistency](../evidence/spherical-six-pole-path-and-post-turn-review-audit-pairs-v1.md) | `14c8e3aa33123fbe82ec4b479c527c334f1cec3b7268b3d9d0df7ac0dea5395c` |
 | [out](../evidence/spherical-six-pole-path-continuation-claude-review-audit10-G2-P2.out) | `9a3fcae740826edceaf6476487df5620346aee1dad20964cdaa8376012d179af` |
 | out.time | `cc661e314029f31d7f0880fe8e7d951dbc9faa221ce3d8f612f399096e7a92f5` |
 

@@ -6,6 +6,9 @@ const RELOCATIONS = locations.directoryMoves;
 const ANALYSIS_RELOCATIONS = new Map(Object.entries(locations.fileMoves));
 const FROZEN_ORIGINS = locations.frozenOrigins;
 const SECTION_RELOCATIONS = locations.sectionMoves;
+// Navigation can point at archive retrieval instructions without pretending
+// that a guide's bytes are the original scientific record.
+const DOCUMENT_RELOCATIONS = new Map(Object.entries(locations.documentMoves ?? {}));
 
 function relocatedPath(logicalPath) {
   if (ANALYSIS_RELOCATIONS.has(logicalPath)) return ANALYSIS_RELOCATIONS.get(logicalPath);
@@ -15,12 +18,12 @@ function relocatedPath(logicalPath) {
   return logicalPath;
 }
 
-function resolveLocation(logicalPath, fragment) {
+function resolveLocation(logicalPath, fragment, documentNavigation = false) {
   let current = { path: logicalPath, fragment };
   const visited = new Set();
   // Each relocation may be followed by a later filing or section extraction.
   // The bound also rejects a malformed prefix rule that grows its own input.
-  const limit = ANALYSIS_RELOCATIONS.size + RELOCATIONS.length + SECTION_RELOCATIONS.length + 1;
+  const limit = ANALYSIS_RELOCATIONS.size + RELOCATIONS.length + SECTION_RELOCATIONS.length + DOCUMENT_RELOCATIONS.size + 1;
   for (let step = 0; step < limit; step += 1) {
     const key = JSON.stringify([current.path, current.fragment]);
     if (visited.has(key)) throw new Error(`Cyclic research source relocation: ${logicalPath}`);
@@ -30,7 +33,8 @@ function resolveLocation(logicalPath, fragment) {
       (destination !== source || target !== anchor));
     const next = section
       ? { path: section[2], fragment: section[3] }
-      : { path: relocatedPath(current.path), fragment: current.fragment };
+      : { path: documentNavigation && DOCUMENT_RELOCATIONS.has(current.path)
+        ? DOCUMENT_RELOCATIONS.get(current.path) : relocatedPath(current.path), fragment: current.fragment };
     if (next.path === current.path && next.fragment === current.fragment) return current;
     current = next;
   }
@@ -44,6 +48,13 @@ export function researchSourceLocation(logicalPath) {
   return location.path + (hash >= 0 || location.fragment ? `#${location.fragment}` : '');
 }
 
+export function researchDocumentLocation(logicalPath) {
+  const hash = logicalPath.indexOf('#');
+  const location = resolveLocation(hash < 0 ? logicalPath : logicalPath.slice(0, hash),
+    hash < 0 ? '' : logicalPath.slice(hash + 1), true);
+  return location.path + (hash >= 0 || location.fragment ? `#${location.fragment}` : '');
+}
+
 export function frozenResearchSourceOrigin(currentPath) {
   const destination = researchSourceLocation(currentPath);
   return FROZEN_ORIGINS.find((source) => researchSourceLocation(source) === destination) ?? currentPath;
@@ -51,7 +62,7 @@ export function frozenResearchSourceOrigin(currentPath) {
 
 export function resolveResearchDocumentLink(documentPath, href) {
   const recorded = recordedResearchLinkTarget(documentPath, href);
-  if (recorded) return resolveLocation(recorded, '');
+  if (recorded) return resolveLocation(recorded, '', true);
   if (!href || /^[a-z][\w+.-]*:/iu.test(href) || href.startsWith('/')) return null;
   const hash = href.indexOf('#');
   const rawPath = hash < 0 ? href : href.slice(0, hash);
@@ -64,7 +75,7 @@ export function resolveResearchDocumentLink(documentPath, href) {
     else segments.push(part);
   }
   const logicalPath = segments.join('/');
-  return resolveLocation(logicalPath, fragment);
+  return resolveLocation(logicalPath, fragment, true);
 }
 
 // Captured independent review replies retain their original chat-link bytes.

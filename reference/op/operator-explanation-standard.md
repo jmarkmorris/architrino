@@ -14,9 +14,9 @@ The academic style guide’s audience rule applies to the material’s purpose. 
 
 | Surface | Reader and purpose | Required explanation |
 | --- | --- | --- |
-| Chat response | The operator, following the current discussion | Follow the [flexible response structure](#flexible-response-structure): lead with the main result or idea, explain its significance and the reasoning needed for the immediate discussion, identify material limitations, and link directly to the full treatment. Close substantive final responses with [Next possible actions](#next-possible-actions), numbered and accompanied by a recommendation and reason for each. |
+| Chat response | The operator, following the current discussion | Lead with the result, explain what the operator needs to assess it, and name a decision or next step only when useful. Follow [Next possible actions](#next-possible-actions) when a choice is actually needed. |
 | Academic treatment in a working document | The intended eventual reader, independently of the chat | Complete definitions, assumptions, reasoning, equations, evidence, and limitations needed to understand and assess the subject |
-| Additional working material | Operator and repository agents maintaining the work | Open questions, alternatives, decisions, task status, and validation records, clearly separated from the academic treatment |
+| Agent supporting records | Repository agents continuing or checking the work | Source inventories, exact identities, execution checkpoints, detailed validation and handoffs. Agents maintain these records and bring consequential findings into the standard files. |
 
 In chat, established shared knowledge may shorten the explanation when comprehension is preserved. In the full academic treatment, do not omit necessary definitions or reasoning because the operator already knows them or has just used a term. Use the academic guide’s chapter and explanatory-reference audience rules for material intended for corpus promotion. Define the concepts and symbols the eventual reader needs, and make assumptions and evidence boundaries explicit. An operational queue row may link to that treatment; the treatment must not require reconstruction from queue entries or chat history.
 
@@ -32,7 +32,7 @@ This standard governs the agent’s chat responses and the ongoing maintenance o
 
 Choose the appropriate destinations according to the material and the task:
 
-- **Working documents:** Keep the relevant analyses, procedures, requirements, designs, priority trackers, and evidence records current as the discussion develops. These usually live under `reference/`, but the existing subject owner may be elsewhere. Write their explanatory content under the academic style guide.
+- **Working documents:** Keep the existing subject owner and standard priority files current when the discussion produces a useful finding, decision, developed explanation, or accepted task. Ordinary discussion does not require a new document or a full academic treatment of every idea. Develop explanations to the depth their subject and reader require, using the academic style guide.
 - **Reader-facing corpus:** When the task authorizes changes under `content/markdown/aaa`, write ready corrections, improvements, or insights directly into the appropriate document. Follow the corpus authoring and promotion rules; an intermediate working copy is not required for material already ready for publication.
 - **Application content:** When the task authorizes application changes, update the relevant content. Use the academic style guide for substantive explanations and the UI guidance named below for interface wording and controls.
 - **Edit boundaries:** Routine discussion capture authorizes maintenance of working documents. It does not, by itself, expand the task to include corpus or application edits. Use authority already granted by the task without asking again, and respect explicit read-only instructions.
@@ -63,7 +63,7 @@ Lead with the answer or outcome, develop the reasoning and evidence needed to as
 
 There is no separate completion-report template. Completion uses the same flexible structure, with changes, validation, and remaining limitations included when they matter. Avoid repeating the outcome in an executive summary, a completed-work list, and a closing recap.
 
-Progress updates explain a meaningful finding, change of direction, or unresolved dependency. They need no closing block. A substantive final response closes with the numbered next-action list defined below. Acknowledgments and routine tool-progress notices are not substantive final responses.
+Progress updates explain a meaningful finding, change of direction, or unresolved dependency. They need no closing block. Final responses state the outcome, material limits and any useful next step; use an action list only under the rule below.
 
 ## Explanation length and the primary review surface
 
@@ -81,7 +81,11 @@ This document governs response mechanics within higher-priority instructions and
 
 ## Live discussion and priority capture
 
-Substantive working discussion is captured automatically as it develops. This standard provides standing direction to maintain the relevant non-reader-facing documents; a separate implementation request is not needed merely to record an idea, explanation, finding, recommendation, correction, decision, or unresolved question. Present the main result and discussion-relevant reasoning in the thread, and maintain the full academic treatment in its subject owner, using working documents or an authorized reader-facing destination as described above. A file link alone is not an explanation, and substantive work left only in chat has not been captured.
+Maintain the information the operator needs in the existing standard files: `priorities.md` for the objective and current state, `work-queue.md` for accepted work and completion conditions, `manuscript.md` for the coherent subject account, and `brainstorming.md` for provisional ideas. Keep chronology in `work-log.md`. The [priority guidance](../priorities/README.md#operator-files-and-agent-supporting-records) owns their detailed responsibilities and the placement of agent records. The operator should be able to understand current findings and direct work from these files without reconstructing chats, receipts or handoffs.
+
+This is standing authority to integrate useful changes into existing working owners within the task's scope. It is not a requirement to transcribe every conversation or create a document for each question, review, checkpoint or completion. A finding is integrated when the existing files explain its significance, evidence grade and remaining consequence; a link alone is insufficient. Full scientific arguments remain complete in their manuscript or established derivation owner.
+
+Agents own continuity and supporting records. Keep exact source identities, coverage inventories, raw validation output and restart details in their established supporting owners, using ignored local storage where the retention policy permits. These records are accessible to successor agents and linked from the relevant task or log when needed. They do not form a second task queue or conceal an accepted decision, material uncertainty or blocker from the operator.
 
 An explicit read-only or no-file-edit instruction takes precedence within its stated scope. Do not treat a request for an explanation or review as an automatic exemption from capture. A restriction on editing the reviewed document still permits capture elsewhere when that is within the request’s boundaries; a restriction on all repository writes does not. When capture is prohibited or unavailable, provide the proposed capture and destination in the thread and state the limitation. Acknowledgments, transient logistics, and information already recorded accurately need no duplicate artifact.
 
@@ -92,17 +96,18 @@ Update the existing document that owns the subject. Read the relevant guidance a
 | Material discussed | Destination |
 | --- | --- |
 | A publication-ready correction, improvement, or insight within the task’s reader-facing edit authority | The appropriate reader-facing document, with development records retained in non-reader-facing owners |
-| An explanation, derivation, or provisional idea | Full academic treatment in the existing analysis, `brainstorming.md`, or focused working document, with provisional claims identified explicitly |
+| Developed explanation or derivation | Integrate into `manuscript.md` or its existing derivation owner at the supported grade |
+| Provisional idea or alternative | `brainstorming.md`, with enough reasoning to assess it; promotion to accepted work is a separate decision |
 | A procedure or accepted operating decision | The document that owns that procedure or decision; proposals remain visibly provisional in working material until accepted |
 | Current priorities and unresolved choices | `priorities.md`, with a readable synthesis and links to the full account |
 | Accepted executable work | `work-queue.md`, following the priority guide’s acceptance and ranking rules |
 | Chronology and validation history | `work-log.md` or the existing evidence record |
 
-Keep substantive ideas discoverable from the relevant `priorities.md` with enough explanation to understand their significance, current disposition, and remaining decision. The tracker provides an organized reading path; fuller explanation belongs in its subject owner and is linked from the tracker without duplicating the entire account. When no owner exists, create the smallest appropriate working document under the applicable guidance, within the authorized scope. Do not create a competing owner or a separate completion report.
+Keep the tracker concise: explain the present objective, strongest findings, main limitation and next accepted work. Put the substance in the standard file that owns it, rather than appending a second account to every file. Before creating a supporting document, identify its standing question or concrete consumer and explain why an existing owner cannot hold it. A new session, reviewer, date or status update alone does not justify a new file. Use the existing work log for a short review disposition or completion entry. Do not create a competing owner or a separate completion report.
 
 ### Keeping the discussion and documents current
 
-- **Capture during the discussion.** Develop the full academic treatment in the relevant working document as each substantive idea emerges, before moving to the next substantial topic and before the final response. A transcript, summary, or file link does not substitute for the complete explanation. Do not defer the treatment until completion.
+- **Integrate useful outcomes.** Before reporting completion, update the standard files affected by the result. Preserve developed reasoning in its subject owner, provisional alternatives in brainstorming, and accepted tasks in the queue. Transient discussion and already recorded information need no duplicate capture.
 - **Organize when capturing.** Integrate by subject, dependencies, and established priority rules. Merge duplicates, connect related ideas, and revise the current synthesis as understanding changes. Preserve concurrent work; reread the exact live passage before patching shared documents.
 - **Preserve status and authority.** Distinguish proposals, accepted decisions, open questions, rejected ideas, and deferred work. Capture does not accept a claim, authorize implementation, change a score, reactivate a deferred task, or grant permission to alter controlled canon. Preserve assumptions, evidence limits, claim grades, and falsifiers where relevant.
 - **Keep both surfaces consistent.** Keep the thread’s result, scope, and limitations faithful to the full treatment. State corrections explicitly in the thread and update the current written account. Preserve earlier evidence and chronology in their proper records. Link the affected owner and priority entry so the operator can review the organized material directly.
@@ -114,7 +119,7 @@ Keep open questions, alternatives, operational status, decisions, and validation
 
 Before reporting a substantive research milestone, handoff or completion, reconcile the existing operator-facing research account with the evidence obtained. State the current findings, assumptions, verification status, limitations and unresolved questions, and link the supporting artifacts. Include negative, failed and inconclusive results when they affect the conclusion. Update the owning synthesis/manuscript and affected status surfaces within authority; a work-log append or chat summary alone does not complete integration. Keep frozen subject/reference outputs and original observations unchanged, documenting corrections and supersession in accompanying records.
 
-Each researcher owns capture within its assigned scope; the coordinator owns integration across workers and records any outstanding integration explicitly. A read-only worker returns precise findings and receiving paths without violating its write boundary. At meaningful checkpoints and before closeout, apply the [evidence retention requirements](machine-artifact-retention.md#preservation-from-creation-through-closeout), including the accepted local-storage boundary for new evidence and unknown regeneration cost. Name incomplete capture, integration or missing evidence and its receiving owner; do not label administrative closeout complete while these obligations remain. Lack of a separate backup is not an incomplete handoff when the retention owner's accepted local-storage conditions are satisfied. Use existing records, not a separate reporting system. The publication runner verifies the scoped integration and retention account before publication; a validator pass does not establish either obligation.
+Each researcher integrates findings within its assigned scope; the coordinator integrates workers' results into the existing account. Agents manage continuity and supporting evidence, resolve routine reconciliation themselves, and surface incomplete integration or missing evidence when it affects a conclusion or blocks work. A read-only worker returns precise findings and receiving paths without violating its write boundary. At meaningful checkpoints and before closeout, apply the [evidence retention requirements](machine-artifact-retention.md#preservation-from-creation-through-closeout). Lack of a separate backup is not an incomplete handoff when the retention owner's accepted local-storage conditions are satisfied. Use existing records, not a separate reporting system. The publication runner verifies scoped integration and retention; a validator pass does not establish either obligation.
 
 ## Action-item status display
 
@@ -124,11 +129,11 @@ Mark an item done only when its full stated scope and completion evidence are sa
 
 ## Next possible actions
 
-End every substantive final response with `Next possible actions:` followed by a numbered list. Each item states a concrete action, the agent’s recommendation for that action, and a brief reason. Put the preferred immediate action first. Recommendations may be to proceed, review, discuss, defer until a named condition, or take no further action.
+End with a useful next step only when one exists. State a single recommendation directly; use `Next possible actions:` and a numbered list only when the operator has materially different choices to make. Give a recommendation and brief reason for each choice. A completed task needs no menu of further reviews or administrative work.
 
-Distinguish decisions required now from optional follow-ups. For a required decision, state what is needed and what remains blocked if it is deferred or declined. Optional suggestions do not create approval gates. Continue already-authorized work without stopping at an action menu.
+Bring the operator decisions requiring their judgment: scientific or scope choices, competing goals, substantial commitments, or actual permission boundaries. Resolve routine evidence navigation, bookkeeping, reconciliation and already-authorized dependent work autonomously. For a required decision, state what is needed and what remains blocked. Optional suggestions do not create approval gates. An interesting open question stays in brainstorming until selected; it does not automatically become another queue item or suggested task.
 
-Keep outstanding durable decisions recorded in their appropriate working documents and indexed in the relevant priority material until resolved, subject to explicit read-only boundaries. Carry current blockers into the numbered list; link deferred decisions when relevant rather than repeating an accumulating backlog. Do not repeat completed actions as possible next actions. When no useful continuation remains, use one numbered item recommending no further action and briefly explain why.
+Keep outstanding decisions and blockers in their standard owners. Mention them in chat when relevant to the present request, without repeating the whole backlog. Do not repeat completed work as possible next actions or add a ceremonial recommendation to take no further action.
 
 There is no separate `Open items:` block or required `Closure goal:` line. Generated and recommended prompts begin directly with a concrete task; no fixed opening label is required. Provide a detailed reusable prompt only when it helps the operator act, rather than expanding every next action into a full prompt.
 
@@ -165,17 +170,9 @@ These examples illustrate response mechanics and routine working-document captur
 
 “The condition excludes this case because [mechanism and necessary reasoning]. Its scope is [assumptions and limitation]. The full academic treatment is in [working document and section], with the open question indexed in [owning priority entry].”
 
-Next possible actions:
-
-1. Examine the remaining case. Recommendation: proceed; it is the unresolved part of the argument.
-
 ### Completed edit
 
 “Updated [document] to implement [accepted decision]. [Relevant check] passed. The decision and its supporting material are recorded in [owning priority entry].”
-
-Next possible actions:
-
-1. Review the revised passage. Recommendation: review it now; it is ready for the requested operator review.
 
 ### Review
 
@@ -190,18 +187,14 @@ Next possible actions:
 
 “My earlier statement [claim] was incorrect because [reason]. The supported statement is [correction], which changes [consequence]. I updated the current synthesis in [owning priority entry] and preserved the earlier evidence record.”
 
-Next possible actions:
-
-1. Reassess [affected conclusion]. Recommendation: proceed using the corrected premise.
-
 ## Self-check
 
 1. The response answers the request directly and follows the academic style guide.
 2. The chat supports the immediate discussion and links directly to the full treatment; the working document supplies the complete academic explanation for its intended eventual reader, independently of the chat.
-3. Substantive working discussion appears in both the response and its appropriate, organized working documents, with a readable route from the relevant priority material. Explicit read-only boundaries are respected, and transient or already-recorded information has not produced duplicate artifacts.
+3. Useful findings, decisions and accepted work are integrated into existing standard owners. Agent supporting records contain continuity detail; transient or already-recorded discussion has not produced duplicate artifacts. Explicit read-only boundaries are respected.
 4. Proposals, decisions, deferred work, and accepted tasks retain their actual status and authority.
 5. Reported quantities were verified, corrections are explicit, and validation claims name checks actually performed.
-6. The final response ends with numbered next possible actions, each with a recommendation and reason; necessary decisions are distinct from optional follow-ups.
+6. The final response names a next step only when useful. A numbered action menu appears only for material operator choices, with a recommendation and reason; routine dependent work has been completed autonomously.
 7. No separate completion report or repeated closing summary is needed to understand the response.
 
 ## Existing documents

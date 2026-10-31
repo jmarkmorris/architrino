@@ -1,0 +1,62 @@
+{
+  "schema": "architrino/frozen-navigation-originals.v1",
+  "reason": "Preserve original independent reports byte for byte while replacing only archive link targets in their navigable copies; operator-authorized audit-pair adoption, 2026-10-31.",
+  "reports": [
+    {
+      "logicalPath": "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-path-continuation-claude-review-adjudication-10.md",
+      "originalPath": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-audit-link-originals/spherical-six-pole-path-continuation-claude-review-adjudication-10.md",
+      "originalBytes": 6318,
+      "originalSha256": "a3ec10189cadce73901bd4609dcbf38aeb61fbaeeab48ef32458d2a834370738",
+      "navigationSha256": "0b4c234180b2b5bbbbcb26fac5494cf58776d632f880f17c3666cbe1ecf47ace",
+      "changedLinks": 2
+    },
+    {
+      "logicalPath": "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-path-continuation-claude-review-adjudication-11.md",
+      "originalPath": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-audit-link-originals/spherical-six-pole-path-continuation-claude-review-adjudication-11.md",
+      "originalBytes": 8982,
+      "originalSha256": "a1e34ae842760e4a4538c11a2eb53c05ee07403dc49a4ea3b6c5516773a1dccf",
+      "navigationSha256": "81f14cc05a539d95523d2e05ac2611ff09c3f82db54c8f121b356d4e2269ad38",
+      "changedLinks": 1
+    },
+    {
+      "logicalPath": "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-path-continuation-claude-review-adjudication-9.md",
+      "originalPath": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-audit-link-originals/spherical-six-pole-path-continuation-claude-review-adjudication-9.md",
+      "originalBytes": 7560,
+      "originalSha256": "f3f69c2a922939d5a4123beca50759f19922b723803141b5266f82c71c2acbf9",
+      "navigationSha256": "4cfbde50ae78072c69bf645536d2fc1fc3dd3dbd36322a9c19be90565f9208fb",
+      "changedLinks": 2
+    },
+    {
+      "logicalPath": "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-post-turn-claude-review-adjudication-14.md",
+      "originalPath": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-audit-link-originals/spherical-six-pole-post-turn-claude-review-adjudication-14.md",
+      "originalBytes": 3144,
+      "originalSha256": "12800117ab73c09c82cd3c5f3199b076e87c122a4cd7cb0cc7b582acb2493b5e",
+      "navigationSha256": "b1340b78ff9a358d3ed3894da4a10beec1fc3830451ad7401b84ce22eff759f4",
+      "changedLinks": 1
+    },
+    {
+      "logicalPath": "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-post-turn-claude-review-adjudication-15.md",
+      "originalPath": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-audit-link-originals/spherical-six-pole-post-turn-claude-review-adjudication-15.md",
+      "originalBytes": 4816,
+      "originalSha256": "342062ff2b7fe56d4730915adc969c056951d9049f3b3a1e4a574dc1da1e091e",
+      "navigationSha256": "b0cc9fdfcdbf6bab6d0a947143bfdd80c7a8d591914fb6f78ebd0ca763332dec",
+      "changedLinks": 1
+    },
+    {
+      "logicalPath": "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-post-turn-claude-review-adjudication-20.md",
+      "originalPath": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-audit-link-originals/spherical-six-pole-post-turn-claude-review-adjudication-20.md",
+      "originalBytes": 5765,
+      "originalSha256": "5dd97ef5607c2139973b51c66b827c7e8c7e2714652a6c8d30b838389663ad01",
+      "navigationSha256": "256a04aa7e66cf522f95b89948309c36ebe27b6ff318b320b1e874668e6502f7",
+      "changedLinks": 1
+    },
+    {
+      "logicalPath": "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-post-turn-claude-review-adjudication-21.md",
+      "originalPath": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-audit-link-originals/spherical-six-pole-post-turn-claude-review-adjudication-21.md",
+      "originalBytes": 2929,
+      "originalSha256": "6e7882a5315753725e0efadcd96cf110a9ba66298c2b65f152d2001f6d53668e",
+      "navigationSha256": "73c6d6d770d2f59a4612b0f1f4fd9da3bc818fcfd867c0cf1c05888722df879d",
+      "changedLinks": 1
+    }
+  ]
+}

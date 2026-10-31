@@ -26,17 +26,18 @@ Find and certify multi-binary and more general multi-architrino braid configurat
 
 ## Directory Layout and Document Classes
 
-The main directory stays small. Five document classes have different lifecycles:
+The main directory stays small. Six document classes have different lifecycles, following the shared [operator-file arrangement](../../README.md#operator-files-and-agent-supporting-records):
 
 | Class | Files | Rule |
 | --- | --- | --- |
-| Live state | [priorities.md](priorities.md) | One page. Rewritten forward-only. The only file an agent must read to join the program. |
+| Live state | [priorities.md](priorities.md), [work-queue.md](work-queue.md) | Read the tracker for the present account and the queue's opening table for next work. Agents read the selected task and its supporting owners before acting. |
 | Reference | this charter, [candidate-registry.md](configurations/candidate-registry.md), [circular-configuration-registry.md](configurations/circular-configuration-registry.md), [method.md](contracts/method.md), [configuration-chart.md](configurations/configuration-chart.md) | Current policy and definitions. The candidate registry is the master name/status/next-action index for admitted braid candidates; the circular-assembly registry separately routes evaluated circular assemblies that do not automatically satisfy a braid inventory. Detailed geometry and evidence remain with their owners. Rewritten forward-only when policy changes. |
-| Editable synthesis | [brainstorming.md](brainstorming.md) | Rewritten forward-only as a coherent academic synthesis. Developed technical material routes to focused owners; the final section records only unresolved ideas. |
-| Append-only log | [work-log.md](work-log.md) | Dated entries, newest last, never rewritten. |
-| Artifacts | `campaigns/`, `evidence/`, `mining/` | Subdirectories only. Campaign specs define one search each; evidence files are write-once results; mining holds staged legacy leads. |
+| Durable synthesis | [manuscript.md](manuscript.md) | Integrated account of the current mathematical and measured findings, with their assumptions, grades, limits, and links to focused owners. |
+| Exploratory notes | [brainstorming.md](brainstorming.md) | Provisional reasoning and unresolved ideas. Developed technical material belongs in the manuscript or its focused owner. |
+| Append-only log | [work-log.md](work-log.md) | Brief dated entries, newest last. Agents retrieve history and support when needed; the operator need not read it to direct current work. |
+| Supporting material | `analysis/`, `contracts/`, `configurations/`, `campaigns/`, `evidence/`, `mining/` and established ignored local owners | Preserve mathematical, contractual and evidence authority. Agents manage exact source inventories, detailed receipts and restart records; decisions, material limits and accepted work remain in the standard files. A routine review or completion does not need a new report. |
 
-The one-sentence hygiene rule: **results land in `evidence/`; the synthesis may explain their meaning and boundaries but does not duplicate their complete receipts or change their grades.**
+The one-sentence hygiene rule: **results land in `evidence/`; the manuscript explains their meaning and boundaries but does not duplicate complete receipts or change their grades.**
 
 ## Relationship to Other Lanes
 

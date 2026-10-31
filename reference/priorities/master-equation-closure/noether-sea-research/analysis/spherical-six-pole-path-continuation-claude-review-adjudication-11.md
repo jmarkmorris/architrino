@@ -8,7 +8,7 @@ Written 2026-10-20 by the review role, after my granted invocation G3. The certi
 
 | output | sha256 |
 |---|---|
-| [json](../evidence/spherical-six-pole-path-continuation-claude-review-audit10-G3-P3.json) | `8b6e4dd04196847817f2e135e6e1e4dcda9cafb35d4475a9e4195f52178fd6e8` |
+| [json](../evidence/spherical-six-pole-path-and-post-turn-review-audit-pairs-v1.md) | `8b6e4dd04196847817f2e135e6e1e4dcda9cafb35d4475a9e4195f52178fd6e8` |
 | consistency | `a178c320bdf2804257c7887e8a72c3395c4eaee766a8874c596c1fd168889d6d` |
 | out | `bb4b501a1c552b4394aedbf6f8ec554b21ef35bea94a00e04d6438b693e318d5` |
 | out.time | `dbd0a80efa7f6da65631ce1c500818a8cd86d62fe086197443fd2b13fccaee3f` |

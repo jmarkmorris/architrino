@@ -3,7 +3,7 @@
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
-import { frozenResearchSourceOrigin, researchSourceLocation, recordedResearchLinkTarget } from "../src/documentation/ResearchSourceLocations.mjs";
+import { frozenResearchSourceOrigin, researchDocumentLocation, recordedResearchLinkTarget } from "../src/documentation/ResearchSourceLocations.mjs";
 import { findTheoryAbbreviationCandidates } from "./lib/theory-abbreviation-audit.mjs";
 import { extractMarkdownLinks, hasReferenceDirectoryIndex } from "./lib/markdown-link-audit.mjs";
 
@@ -786,7 +786,7 @@ function auditMarkdownRelativeLinks(markdownPaths, markdownTextByPath) {
         );
         continue;
       }
-      const resolvedRelativePath = researchSourceLocation(logicalRelativePath);
+      const resolvedRelativePath = researchDocumentLocation(logicalRelativePath).split("#")[0];
       const resolvedAbsolutePath = path.resolve(rootDir, resolvedRelativePath);
       if (path.relative(rootDir, resolvedAbsolutePath).startsWith("..")) {
         errors.push(`${markdownPath}:${link.line}: mapped markdown link target escapes repo "${target}"`);

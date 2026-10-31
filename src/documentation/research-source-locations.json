@@ -1,5 +1,21 @@
 {
   "schema": "architrino/research-source-locations.v1",
+  "documentMoves": {
+    "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-continuation-claude-review-audit10-G1-P1.json": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-and-post-turn-review-audit-pairs-v1.md",
+    "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-continuation-claude-review-audit10-G1-P1.json.consistency.json": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-and-post-turn-review-audit-pairs-v1.md",
+    "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-continuation-claude-review-audit10-G2-P2.json": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-and-post-turn-review-audit-pairs-v1.md",
+    "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-continuation-claude-review-audit10-G2-P2.json.consistency.json": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-and-post-turn-review-audit-pairs-v1.md",
+    "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-continuation-claude-review-audit10-G3-P3.json": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-and-post-turn-review-audit-pairs-v1.md",
+    "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-continuation-claude-review-audit10-G3-P3.json.consistency.json": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-and-post-turn-review-audit-pairs-v1.md",
+    "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-post-turn-claude-review-audit10-GP2-R1R2R3.json": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-and-post-turn-review-audit-pairs-v1.md",
+    "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-post-turn-claude-review-audit10-GP2-R1R2R3.json.consistency.json": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-and-post-turn-review-audit-pairs-v1.md",
+    "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-post-turn-claude-review-audit10-GP3-R4R5R6.json": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-and-post-turn-review-audit-pairs-v1.md",
+    "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-post-turn-claude-review-audit10-GP3-R4R5R6.json.consistency.json": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-and-post-turn-review-audit-pairs-v1.md",
+    "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-post-turn-claude-review-audit10-GP6-P4P5.json": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-and-post-turn-review-audit-pairs-v1.md",
+    "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-post-turn-claude-review-audit10-GP6-P4P5.json.consistency.json": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-and-post-turn-review-audit-pairs-v1.md",
+    "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-post-turn-claude-review-audit10-GP7-P6.json": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-and-post-turn-review-audit-pairs-v1.md",
+    "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-post-turn-claude-review-audit10-GP7-P6.json.consistency.json": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-and-post-turn-review-audit-pairs-v1.md"
+  },
   "directoryMoves": [
     [
       "reference/priorities/braid-program/",
@@ -15,6 +31,13 @@
     ]
   ],
   "fileMoves": {
+    "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-path-continuation-claude-review-adjudication-10.md": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-audit-link-originals/spherical-six-pole-path-continuation-claude-review-adjudication-10.md",
+    "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-path-continuation-claude-review-adjudication-11.md": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-audit-link-originals/spherical-six-pole-path-continuation-claude-review-adjudication-11.md",
+    "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-path-continuation-claude-review-adjudication-9.md": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-audit-link-originals/spherical-six-pole-path-continuation-claude-review-adjudication-9.md",
+    "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-post-turn-claude-review-adjudication-14.md": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-audit-link-originals/spherical-six-pole-post-turn-claude-review-adjudication-14.md",
+    "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-post-turn-claude-review-adjudication-15.md": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-audit-link-originals/spherical-six-pole-post-turn-claude-review-adjudication-15.md",
+    "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-post-turn-claude-review-adjudication-20.md": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-audit-link-originals/spherical-six-pole-post-turn-claude-review-adjudication-20.md",
+    "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-post-turn-claude-review-adjudication-21.md": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-audit-link-originals/spherical-six-pole-post-turn-claude-review-adjudication-21.md",
     "reference/priorities/mapping-electromagnetism/analysis/adaptive-cubic-medium-kinematics-and-ledger-contract.md": "reference/priorities/master-equation-closure/lattice-research/analysis/adaptive-cubic-medium-kinematics-and-ledger-contract.md",
     "reference/priorities/mapping-electromagnetism/analysis/f6c-cubic-lattice.md": "reference/priorities/master-equation-closure/lattice-research/analysis/f6c-cubic-lattice.md",
     "reference/priorities/master-equation-closure/analysis/finite-perturbation-release-compatibility.md": "reference/priorities/master-equation-closure/lattice-research/analysis/finite-perturbation-release-compatibility.md",
@@ -233,6 +256,13 @@
     "reference/priorities/master-equation-closure/analysis/logarithmic-inclusive-ceiling-independent-check.md": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-inclusive-ceiling-independent-check.md"
   },
   "frozenOrigins": [
+    "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-path-continuation-claude-review-adjudication-10.md",
+    "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-path-continuation-claude-review-adjudication-11.md",
+    "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-path-continuation-claude-review-adjudication-9.md",
+    "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-post-turn-claude-review-adjudication-14.md",
+    "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-post-turn-claude-review-adjudication-15.md",
+    "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-post-turn-claude-review-adjudication-20.md",
+    "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-post-turn-claude-review-adjudication-21.md",
     "reference/priorities/braid-program/analysis/braid-candidate-requirement-adjudication.md",
     "reference/priorities/braid-program/evidence/2026-08-26-f5-enclosed-root-restart-predeclaration.md",
     "reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md",

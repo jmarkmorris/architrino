@@ -1,0 +1,69 @@
+{
+  "schema": "architrino/audit-pair-adoption.v1",
+  "date": "2026-10-31",
+  "authorization": "Operator: adopt the bundle, resolve the historical links and retrieval instructions, and remove the fourteen originals once verified.",
+  "bundle": {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-and-post-turn-review-audit-pairs-v1.json.gz",
+    "bytes": 2896907,
+    "sha256": "a335f6e817d768f05c0e2a9c63ec577e3a28a9f5b0c872ceaae96ea82bc3108f"
+  },
+  "manifest": {
+    "path": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-and-post-turn-review-audit-pairs-v1.manifest.json",
+    "bytes": 5435,
+    "sha256": "b6e68196b2d055eca24b2116b9b8b53f15f2c17be163524ec14c5790bb3177f5"
+  },
+  "originalScope": "reference/priorities/aaa-operations/evidence/ops-033-audit-pair-scope-2026-10-31.json",
+  "retrievalGuide": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-and-post-turn-review-audit-pairs-v1.md",
+  "reportIdentityIndex": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-and-post-turn-review-audit-pairs-v1.reports.json",
+  "preRemoval": {
+    "nativeCmpPasses": 14,
+    "preservedReportHashes": 7,
+    "surfacePinnedSources": 37,
+    "resolvedLocalLinks": 69
+  },
+  "removed": [
+    "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-continuation-claude-review-audit10-G1-P1.json",
+    "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-continuation-claude-review-audit10-G1-P1.json.consistency.json",
+    "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-continuation-claude-review-audit10-G2-P2.json",
+    "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-continuation-claude-review-audit10-G2-P2.json.consistency.json",
+    "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-continuation-claude-review-audit10-G3-P3.json",
+    "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-continuation-claude-review-audit10-G3-P3.json.consistency.json",
+    "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-post-turn-claude-review-audit10-GP2-R1R2R3.json",
+    "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-post-turn-claude-review-audit10-GP2-R1R2R3.json.consistency.json",
+    "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-post-turn-claude-review-audit10-GP3-R4R5R6.json",
+    "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-post-turn-claude-review-audit10-GP3-R4R5R6.json.consistency.json",
+    "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-post-turn-claude-review-audit10-GP6-P4P5.json",
+    "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-post-turn-claude-review-audit10-GP6-P4P5.json.consistency.json",
+    "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-post-turn-claude-review-audit10-GP7-P6.json",
+    "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-post-turn-claude-review-audit10-GP7-P6.json.consistency.json"
+  ],
+  "originalPayloadBytes": 20839994,
+  "archiveAndManifestBytes": 2902342,
+  "sourcePayloadReductionBytes": 17937652,
+  "limits": "Logical payload comparison excludes navigation/provenance/tool overhead; no Git history rewrite, commit, remote publication or scientific replay.",
+  "status": "adopted; all fourteen expanded originals removed after verification",
+  "postRemoval": {
+    "headReference": "79e3ce9a21b92a65fce482292084d1a95faf5791",
+    "removedOriginalsAbsent": 14,
+    "postRemovalNativeCmpAgainstGit": 14,
+    "preservedOriginalReportHashes": 7,
+    "surfacePinsVerified": 37,
+    "historicalEvidenceEntriesVerified": 231
+  },
+  "finalVerification": {
+    "originalReportGitCmp": 7,
+    "focusedTestsPassed": 5,
+    "retentionBlockingChecks": "passed; 96 advisory findings across snapshots",
+    "localLinkCheck": {
+      "documents": 18,
+      "links": 98,
+      "missing": 0
+    },
+    "browser": "Local reference.html: preserved GP2 report json link opens archive guide with working bundle/manifest URLs",
+    "tool": {
+      "path": "scripts/retention/audit-pair-bundle.mjs",
+      "sha256": "a581ac6750ab10e044a42263ac0b89a558c4192077105882a22f760040aaad3f"
+    }
+  },
+  "disposableCopies": "Three expanded restore trees and one repack tree removed after exact checks; detailed receipts retained in local operations owner."
+}

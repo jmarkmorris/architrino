@@ -18,7 +18,7 @@ Written 2026-10-21 by the review role, after my granted run GP2.
 - **Process:** PID 94690, 03:18:13–03:18:50 UTC, exit 0, 37.40 s, peak RSS 128,040,960 B.
 - **Census:** no Python process present.
 - **Outputs:**
-  - [json](../evidence/spherical-six-pole-post-turn-claude-review-audit10-GP2-R1R2R3.json) `47f11448c741c8345314c00137555e93308e5dced77c20fba61569acf2ae9229`;
+  - [json](../evidence/spherical-six-pole-path-and-post-turn-review-audit-pairs-v1.md) `47f11448c741c8345314c00137555e93308e5dced77c20fba61569acf2ae9229`;
   - consistency `2f6d0ef3…`;
   - out `595a3008…`;
   - out.time `081914c0…`.

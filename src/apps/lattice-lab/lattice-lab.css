@@ -23,6 +23,10 @@
 .disturbance-controls .disturbance-identity { overflow-wrap:anywhere; }
 .disturbance-controls pre { max-height:240px; overflow:auto; font-size:11px; }
 .disturbance-viewer { position:relative; min-width:0; min-height:0; overflow:hidden; }
+.disturbance-view-labels { position:absolute; inset:0; display:grid; grid-template-columns:1fr 1fr; pointer-events:none; z-index:1; }
+.disturbance-view-labels > div { padding:70px 12px 12px; border-right:1px solid #3b2c50; }
+.disturbance-view-labels h2 { font-size:16px; margin:0 0 8px; }
+.disturbance-view-labels p { color:#c6b6ff; font-size:12px; line-height:1.4; max-width:260px; }
 .disturbance-viewer canvas { display:block; width:100%; height:100%; touch-action:none; }
 @media (max-width:700px) { #lattice-disturbance-app { grid-template-columns:1fr; grid-template-rows:45% 55%; } .disturbance-viewer { grid-row:1; } .disturbance-controls { grid-row:2; border-right:0; border-top:1px solid #3b2c50; } }
 
@@ -912,3 +916,6 @@ button {
     transition: none;
   }
 }
+
+#disturbance-navigation.top-dynamic-control-bar { width:auto; flex-wrap:nowrap; }
+.disturbance-view-labels > div { padding-top:58px; }

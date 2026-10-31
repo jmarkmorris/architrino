@@ -267,15 +267,15 @@ export function createReferenceSurfaceRuntime({
         anchor.title = `Historical citation to retained local evidence; not published: ${recordedTarget}`;
         continue;
       }
-      const [rawPath, fragment] = href.split("#");
-      if (!(recordedTarget ?? rawPath).endsWith(".md")) {
-        if (recordedTarget) anchor.setAttribute("href", `./${recordedTarget}`);
+      const [, fragment] = href.split("#");
+      const target = resolveResearchDocumentLink(documentPath, href);
+      if (!target?.path.endsWith(".md")) {
+        if (target) anchor.setAttribute("href", `./${target.path}${target.fragment ? `#${target.fragment}` : ""}`);
         continue;
       }
-      const target = resolveResearchDocumentLink(documentPath, href);
-      if (!target) continue;
       const resolved = target.path;
-      if (fileIndex.has(resolved)) {
+      // Newly authored retrieval guides work before the next generated index.
+      if (fileIndex.has(resolved) || resolved.startsWith("reference/")) {
         anchor.setAttribute("href", `#/doc/${encodeURIComponent(resolved)}`);
         anchor.classList.add("reference-internal-link");
       } else {

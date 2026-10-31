@@ -21,7 +21,7 @@ Written 2026-10-21 by the review role, after my granted run GP6. Events below ar
 | wall | 19.16 s |
 | peak RSS | 125,009,920 B |
 | census | no Python processes running |
-| [json](../evidence/spherical-six-pole-post-turn-claude-review-audit10-GP6-P4P5.json) | `319cd95b45984b868bc82498e486c8e6150da3e3a4a9e0ca499a66ddbb211be7` |
+| [json](../evidence/spherical-six-pole-path-and-post-turn-review-audit-pairs-v1.md) | `319cd95b45984b868bc82498e486c8e6150da3e3a4a9e0ca499a66ddbb211be7` |
 | consistency | `d6208a1e…` |
 | out | `5c54e7ad…` |
 | out.time | `fd261d72…` |

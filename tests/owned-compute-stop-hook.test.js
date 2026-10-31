@@ -1,15 +1,45 @@
-import test from "node:test";
+import test, { after } from "node:test";
 import assert from "node:assert/strict";
 import { execFile } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
+import { tmpdir } from "node:os";
 import { fileURLToPath } from "node:url";
 
 import { evaluateStopHook } from "../scripts/dev/owned-compute-stop-hook.mjs";
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const SOURCE_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const ROOT = fs.realpathSync(fs.mkdtempSync(path.join(tmpdir(), "owned-compute-stop-controls-")));
 const HOOK = path.join(ROOT, "scripts/dev/owned-compute-stop-hook.mjs");
 const SUPERVISOR = path.join(ROOT, "scripts/dev/owned-compute-supervisor.mjs");
+fs.mkdirSync(path.dirname(HOOK), { recursive: true });
+for (const name of ["owned-compute-stop-hook.mjs", "owned-compute-supervisor.mjs"]) {
+  const source = path.join(SOURCE_ROOT, "scripts/dev", name);
+  const copy = path.join(ROOT, "scripts/dev", name);
+  fs.copyFileSync(source, copy);
+  assert.deepEqual(fs.readFileSync(copy), fs.readFileSync(source));
+}
+after(async () => {
+  const leases = path.join(ROOT, ".local-data/owned-compute/leases");
+  if (fs.existsSync(leases)) for (const name of fs.readdirSync(leases)) {
+    const lease = JSON.parse(fs.readFileSync(path.join(leases, name)));
+    assert.equal(lease.processGroupClosed, true, `Retain unresolved test evidence at ${ROOT}`);
+    for (const pid of [lease.targetIdentity?.pgid && -lease.targetIdentity.pgid, lease.sidecarIdentity?.pid].filter(Boolean)) {
+      let absent = false;
+      const until = Date.now() + 2500;
+      while (Date.now() < until) {
+        try { process.kill(pid, 0); } catch (error) {
+          if (error.code !== "ESRCH") throw error;
+          absent = true;
+          break;
+        }
+        await new Promise((resolve) => setTimeout(resolve, 25));
+      }
+      assert.equal(absent, true, `Retain surviving test identity ${pid} at ${ROOT}`);
+    }
+  }
+  fs.rmSync(ROOT, { recursive: true, force: true });
+});
 
 function invoke(file, args, { input, expectFailure = false, timeout = 15_000 } = {}) {
   return new Promise((resolve, reject) => {
@@ -41,7 +71,7 @@ function hookEvent(sessionId) {
 }
 
 test("project Stop hook invokes the canonical owner-aware closeout adapter", () => {
-  const configuration = JSON.parse(fs.readFileSync(path.join(ROOT, ".codex/hooks.json"), "utf8"));
+  const configuration = JSON.parse(fs.readFileSync(path.join(SOURCE_ROOT, ".codex/hooks.json"), "utf8"));
   const stop = configuration.hooks.Stop;
   assert.equal(stop.length, 1);
   assert.equal(stop[0].hooks.length, 1);

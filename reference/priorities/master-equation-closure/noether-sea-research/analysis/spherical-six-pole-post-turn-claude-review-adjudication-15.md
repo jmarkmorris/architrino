@@ -25,7 +25,7 @@ Written 2026-10-21 by the review role, after my granted run GP3.
 
 | output | sha256 |
 |---|---|
-| [json](../evidence/spherical-six-pole-post-turn-claude-review-audit10-GP3-R4R5R6.json) | `89f6e7a04809c577446a1e78ee817da513eb068d85f1b0d0266dca29d8cfe5d3` |
+| [json](../evidence/spherical-six-pole-path-and-post-turn-review-audit-pairs-v1.md) | `89f6e7a04809c577446a1e78ee817da513eb068d85f1b0d0266dca29d8cfe5d3` |
 | consistency | `06ed4ff6…` |
 | out | `1e3cf117…` |
 | out.time | `d7eeaa29…` |

@@ -4,6 +4,7 @@ import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import assert from 'node:assert/strict';
+import {resolveResearchSourcePath} from '../../src/documentation/ResearchSourcePaths.mjs';
 import {decimalSum} from '../../src/apps/surface/SurfaceGeometry.js';
 import {createSixPolePreparation,validateSixPoleReplay,SIX_POLE_CASE,SIX_POLE_SCHEMA} from '../../src/apps/surface/SurfaceSixPoleReplay.js';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
@@ -27,8 +28,8 @@ function controls(){
 export function build(){
   controls();
   const pins=JSON.parse(fs.readFileSync(path.join(root,'scripts/surface/six-pole-replay-sources.json')));
-  const sources=pins.map(p=>{const bytes=fs.readFileSync(path.join(root,p.path));if(sha(bytes)!==p.sha256)throw Error('Source identity mismatch: '+p.path);return p;});
-  const files=pins.filter(p=>p.role==='history').map(p=>({p,d:JSON.parse(fs.readFileSync(path.join(root,p.path))),source:sources.indexOf(p)}));
+  const sources=pins.map(p=>{const bytes=fs.readFileSync(resolveResearchSourcePath(root,p.path));if(sha(bytes)!==p.sha256)throw Error('Source identity mismatch: '+p.path);return p;});
+  const files=pins.filter(p=>p.role==='history').map(p=>({p,d:JSON.parse(fs.readFileSync(resolveResearchSourcePath(root,p.path))),source:sources.indexOf(p)}));
   const window=files[0].d;
   const record={schema:SIX_POLE_SCHEMA,caseId:SIX_POLE_CASE,title:'Radius 10 · six poles released from rest',preparation:createSixPolePreparation(),
     provenance:{kind:'reviewed-analytical-history',method:'Retained interval analytical method of steps; signed-v49 reconstruction. Display conversion only.',

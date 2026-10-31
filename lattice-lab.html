@@ -297,18 +297,21 @@
     <div id="lattice-disturbance-app" hidden>
       <div id="disturbance-navigation" class="lattice-lab-navigation"></div>
       <aside class="disturbance-controls" aria-label="Disturbance experiment controls">
-        <header><a id="disturbance-back" href="lattice-lab.html">← Static lattice gallery</a><h1>Lattice disturbances</h1><p>Release a displaced finite patch into the EOM solver.</p></header>
+        <header><a id="disturbance-back" href="lattice-lab.html">← Static lattice gallery</a><h1>Lattice disturbances</h1><p>Follow a timed pulse through a finite patch with the EOM solver.</p></header>
         <section class="lattice-lab-card">
           <h2>Finite-patch experiment</h2>
           <p>Every displayed member moves. There are no exterior sources, fixed boundary members or periodic copies. Edge members can accelerate even when the displacement is zero.</p>
           <fieldset id="disturbance-fields">
             <label>Sites per edge<select id="disturbance-side"><option value="2">2 × 2 × 2 · 8 members</option><option value="3" selected>3 × 3 × 3 · 27 members</option><option value="4">4 × 4 × 4 · 64 members</option></select></label>
-            <label>One-site displacement<input id="disturbance-amplitude" type="number" min="0" max="0.2" step="0.01" value="0.02"></label>
+            <label>Preparation<select id="disturbance-preparation"><option value="pulse" selected>Timed smooth pulse, then release</option><option value="held">Held displacement throughout past</option></select></label>
+            <label>Lattice spacing<select id="disturbance-spacing"><option value="1">1 · original compact patch</option><option value="16">16</option><option value="64">64</option><option value="256" selected>256 · propagation demonstration</option></select></label>
+            <label>One-site displacement (fraction of spacing)<input id="disturbance-amplitude" type="number" min="0" max="0.2" step="0.01" value="0.02"></label>
             <label>Displacement axis<select id="disturbance-axis"><option>x</option><option>y</option><option>z</option></select></label>
-            <label>Future duration<input id="disturbance-duration" type="number" min="0.001" max="0.1" step="0.001" value="0.01"></label>
+            <label>Future duration (initial-spacing crossing times)<input id="disturbance-duration" type="number" min="0.01" max="4" step="0.25" value="1.5"></label>
+            <label>Numerical quality<select id="disturbance-quality"><option value="display">Display · declared error budgets</option><option value="refined">Refined · budgets four times tighter</option></select></label>
           </fieldset>
           <p id="disturbance-population"></p><p id="disturbance-past"></p>
-          <p>Unit spacing · coupling 16 · wake speed 1. The displaced member is the central site; on an even-sized patch it is one of the central sites. All markers have the same display size.</p>
+          <p>Coupling 16 · wake speed 1. Spacing is an explicit scenario parameter. Larger spacing gives delayed arrivals more time before the finite patch contracts. The pulse is prescribed preparation, not unforced motion; all members evolve after release.</p>
           <div class="disturbance-buttons"><button id="disturbance-prepare">Prepare patch</button><button id="disturbance-inspect">Inspect solver</button><button id="disturbance-calculate" disabled>Calculate</button><button id="disturbance-stop" disabled>Stop</button></div>
           <p id="disturbance-message" role="status" aria-live="polite"></p>
           <p id="disturbance-model" class="disturbance-identity"></p><p id="disturbance-coverage"></p>
@@ -317,20 +320,23 @@
           <h2>Accepted motion</h2>
           <label>Saved runs<select id="disturbance-saved"><option value="">Current preparation</option></select></label>
           <button id="disturbance-play" disabled>Play accepted motion</button>
+          <label>Replay window<select id="disturbance-replay-window"><option value="response">Delayed response (skip the initial quiet interval)</option><option value="full">Full preparation and future</option></select></label>
+          <label>Replay duration<select id="disturbance-replay-seconds"><option value="8">8 seconds</option><option value="16" selected>16 seconds</option><option value="32">32 seconds</option></select></label>
+          <label>Motion magnification <output id="disturbance-gain-value">×1000</output><input id="disturbance-gain" type="range" min="1" max="1000" step="1" value="1000"></label>
           <label>Absolute time<input id="disturbance-timeline" type="range" min="0" max="0.01" step="any" value="0" disabled></label>
           <p id="disturbance-time"></p><p id="disturbance-metrics"></p>
-          <p>Solid red: positrinos. Solid blue: electrinos. All markers appear the same size at every depth. Trails show only accepted future coverage. Replay is slowed for inspection.</p>
+          <p>Solid red: positrinos. Solid blue: electrinos. Left: true positions. Right: magnified motion since release, with the undisplaced run subtracted. Gold arrows show display displacement, not acceleration or additional trajectories. Magnification does not change the calculation.</p>
           <button id="disturbance-export" disabled>Export run</button>
           <label>Import exported run<input id="disturbance-import" type="file" accept=".json,application/json"></label><p id="disturbance-raw"></p>
         </section>
         <section class="lattice-lab-card">
           <h2>The separate infinite-lattice study</h2>
           <p>The research constructs a localized disturbance with a complete nonlinear past in an infinite population. All members remain dynamical; contributions from the infinite exterior are included through the stated summation and tail bounds.</p>
-          <p>That same solution has proven continuation and conditional growth bounds. It has not supplied a numerical trajectory for this viewer. This finite patch has a held, displaced past and open edges; it is a separate numerical experiment, with no claimed approximation error to the infinite solution.</p>
+          <p>That same solution has proven continuation and conditional growth bounds. It has not supplied a numerical trajectory for this viewer. This finite patch has an explicitly prescribed finite past and open edges; it is a separate numerical experiment, with no claimed approximation error to the infinite solution.</p>
         </section>
         <details class="lattice-lab-card"><summary>Solver access and preparation</summary><p>Live calculation requires the local EOM service. GitHub Pages can display this section and replay imported run files, but it does not host a C++ solver.</p><p>From the checkout, start <code>node scripts/dev/start-local-dev.mjs</code>, then open this page on that local server.</p><pre id="disturbance-request"></pre></details>
       </aside>
-      <main id="disturbance-viewer" class="disturbance-viewer" aria-label="Finite lattice disturbance view"></main>
+      <main id="disturbance-viewer" class="disturbance-viewer" aria-label="Synchronized true and magnified lattice views"><div class="disturbance-view-labels"><div><h2>True positions</h2><p>Physical coordinates; no magnification.</p></div><div><h2 id="disturbance-magnified-title">Magnified motion ×1000</h2><p id="disturbance-magnified-caption">Added motion since release, with the undisplaced run subtracted.</p></div></div></main>
     </div>
     <script type="module" src="./src/apps/lattice-lab/main.js"></script>
   </body>
