@@ -1,0 +1,77 @@
+{
+ "polynomial | slow2.make_f": {
+  "count": 7,
+  "certified": true,
+  "expected": 7,
+  "upper_arg_over_pi": 7.0,
+  "err_over_pi": 1.6513948138558072e-18,
+  "segments": 204,
+  "bisections": 0,
+  "failed_segments": 0,
+  "parity_consistent": true,
+  "pass": true
+ },
+ "polynomial | slow_all.make_f_qp": {
+  "count": 7,
+  "certified": true,
+  "expected": 7,
+  "upper_arg_over_pi": 7.0,
+  "err_over_pi": 1.6513948138558072e-18,
+  "segments": 204,
+  "bisections": 0,
+  "failed_segments": 0,
+  "parity_consistent": true,
+  "pass": true
+ },
+ "lambert | slow2.make_f": {
+  "count": 5,
+  "certified": true,
+  "expected": 5,
+  "upper_arg_over_pi": 5.0,
+  "err_over_pi": 5.76619583668297e-19,
+  "segments": 534,
+  "bisections": 0,
+  "failed_segments": 0,
+  "parity_consistent": true,
+  "pass": true
+ },
+ "lambert | slow_all.make_f_qp": {
+  "count": 5,
+  "certified": true,
+  "expected": 5,
+  "upper_arg_over_pi": 5.0,
+  "err_over_pi": 5.76619583668297e-19,
+  "segments": 534,
+  "bisections": 0,
+  "failed_segments": 0,
+  "parity_consistent": true,
+  "pass": true
+ },
+ "zero_on_edge_refusal | slow2.make_f": {
+  "count": 1,
+  "certified": false,
+  "expected": null,
+  "upper_arg_over_pi": 1.4999555929291128,
+  "err_over_pi": 2.4288311308444625e-20,
+  "segments": 82,
+  "bisections": 9,
+  "failed_segments": 1,
+  "parity_consistent": false,
+  "pass": true
+ },
+ "zero_on_edge_refusal | slow_all.make_f_qp": {
+  "count": 1,
+  "certified": false,
+  "expected": null,
+  "upper_arg_over_pi": 1.4999555929291128,
+  "err_over_pi": 2.4288311308444625e-20,
+  "segments": 82,
+  "bisections": 9,
+  "failed_segments": 1,
+  "parity_consistent": false,
+  "pass": true
+ },
+ "all_pass": true,
+ "driver_sha256": "111ca68a6948e9032a463f3614d4a6d16872839d6d594d397036ddcdf29a00c8",
+ "slow2_sha256": "5ce5348b0feaae1932e58f5f0544f3e999bef4be4801c38eb4434bf738babb2b"
+}

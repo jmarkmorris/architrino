@@ -1,0 +1,44 @@
+{
+ "region": {
+  "s0": 0.3,
+  "X": 3.2865,
+  "Y": 3.2865
+ },
+ "count": 0,
+ "certified": true,
+ "upper_arg_over_pi": 1.9833515727389446e-50,
+ "err_over_pi": 2.458605053681056e-05,
+ "segments": 224,
+ "bisections": 32,
+ "failed_segments": [],
+ "min_segment": 0.01244886363636355,
+ "evaluations": 481,
+ "end_sign_product": 1,
+ "parity_consistent": true,
+ "seconds": 195.92435717582703,
+ "q": "pi",
+ "p": -1,
+ "box": {
+  "R": "1000",
+  "delta": [
+   "3.34503529238",
+   "3.34503529306"
+  ],
+  "eps": [
+   "0.0138408142416",
+   "0.0138408143198"
+  ]
+ },
+ "N_max": 1000,
+ "Ns": 50000,
+ "precompute_s": 139.45574116706848,
+ "root_bound": {
+  "b0": 0.8289112406772703,
+  "b1": 0.786037104801865,
+  "Mstar_Lam": 3.1223335915313433,
+  "Lambda_bound": 3.13,
+  "statement": "no root with Re Lam >= 0 and |Lam| >= Lambda_bound, any q, p (Frobenius bound)"
+ },
+ "module_sha256": "08768074feb8ac9ede6317e0b76b8c57c06b9632b367b49e7086f14102920e4f",
+ "driver_sha256": "117adbcaa8f0b32d34cdd90007a58e22753f5c63eee10cbe1683859d818c5d0a"
+}

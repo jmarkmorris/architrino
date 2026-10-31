@@ -210,7 +210,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4d637ca60065d414)
 
-When this floor fails, the three phases no longer supply an independent return chart, so $c_1$ must be suspended rather than compared across the degeneracy.
+When this floor fails, the selected rank-three oriented-frame chart is inadmissible, so its $c_1$ export must be suspended pending a separately certified continuation or lower-rank chart. Dependence of the retained plane normals alone does not show that phase variables collapse or that recurrence or frequency lock is lost.
 
 ## Candidate Definition
 

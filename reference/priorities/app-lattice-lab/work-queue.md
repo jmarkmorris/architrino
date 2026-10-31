@@ -1,32 +1,52 @@
 # Architrino Lattice Lab Work Queue
 
-This is the canonical execution ledger for the exploratory display-only workstream. [priorities.md](priorities.md) owns the app purpose and claim boundary.
+This is the canonical execution ledger for the static educational gallery and separately scoped finite-patch disturbance section. [priorities.md](priorities.md) owns the app purpose and claim boundary.
+
+## LAT-106 — Finite-patch disturbance experiments
+
+- **Status:** Implemented locally, extended with timed-pulse propagation and synchronized comparison views, and checked at bounded engineering scope, October 31, 2026; no deployment selected. Removed from executable follow-ups.
+- **Operator direction:** Add lattice disturbances with the solver; after the infinite-history/interface distinction was explained, Op explicitly selected a finite-patch simulator first and the infinite study shown separately.
+- **Result:** `lattice-lab.html?section=disturbances` prepares 8, 27 or 64 moving members with open edges, selectable spacing, coupling 16 and wake speed 1. A timed smooth pulse is prescribed before release; held displacement remains available. The local default 27-member paired calculation completed through T=384 at spacing 256, or 1.5 initial-spacing crossing times. An undisplaced comparison separates edge motion from added motion; synchronized true-position and labelled magnified-response views share a timeline and camera. Duration, adaptive controls, bounded checkpoint continuation and compact checkpoint references remove the earlier app-level limits. Later root-certification failures remain explicit. The [design](contracts/disturbance-experiments.md) and work log retain numerical budgets, refinement reach and preserved failures.
+- **Boundary:** No infinite exterior, periodic wrapping, artificial restoring mechanism, new solver or approximation-error claim. Saturday's exact ancient infinite family remains a separate analytical result. Numerical EOM output and imported producer records do not gain independent scientific acceptance. GitHub Pages supports the interface and imported replay; live calculation needs a local EOM service. No publication, production-kernel change, canonical score or other assignment is made.
+
+The inventory below includes the newly selected long-horizon investigation and the existing gallery queue; LAT-106 is the separate completed addition above.
 
 ## Current Status
 
 | Status | Count |
 | --- | ---: |
-| Queued/requested | 4 |
+| Queued/requested | 5 |
 | In progress | 0 |
 | Awaiting verification | 0 |
-| Explicitly deferred/blocked | 2 |
-| **Unresolved total** | **6** |
+| Explicitly deferred/blocked | 4 |
+| **Unresolved total** | **9** |
 | Verified historical entries | 33 |
 
 The 2026-09-02 low-risk passes removed sixty-six unresolved rows: forty-eight verified rows are recorded in six consolidated entries, and eighteen stale or removed-surface requests are recorded in two supersession entries. These bounded passes changed no geometry or evidence authority; geometry-changing, topology-changing, calculation, certificate, and evidence-authority work remains unresolved.
 
 ## Ranked Next Objects
 
-1. LAT-013 — Design and independently verify an optional primitive-cell tiling demonstration.
-2. LAT-104 — Add verified periodic 50/50 polarity-pattern families.
-3. LAT-105 — Add exact shared-vertex Platonic cell complexes and incidence ledgers.
-4. LAT-063 — Supply independent periodic zero-acceleration proofs for every named deterministic case.
+1. LAT-107 — Determine a validated, practical route to long-horizon lattice disturbance simulations.
+2. LAT-013 — Design and independently verify an optional primitive-cell tiling demonstration.
+3. LAT-104 — Add verified periodic 50/50 polarity-pattern families.
+4. LAT-105 — Add exact shared-vertex Platonic cell complexes and incidence ledgers.
+5. LAT-063 — Supply independent periodic zero-acceleration proofs for every named deterministic case.
 
 ## Queued
 
+### LAT-107 — Long-horizon lattice disturbance simulations
+
+- **Status:** Queued by operator direction, October 31, 2026; next local investigation. This entry schedules the work and launches no calculation or solver modification.
+- **Goal:** Determine how Lattice Lab can follow a localized disturbance for several initial-spacing crossing times with useful numerical accuracy and practical runtime, so spreading, finite-edge response and later evolution can be distinguished.
+- **Measured starting point:** The retained paired browser record reaches T=384 at spacing 256, or 1.5 crossing times. Separate display and refined requests stop under root-completeness certification near T=385.099 and T=325.154 respectively. The existing work log and [contract](contracts/disturbance-experiments.md#completed-propagation-demonstration-and-limits--october-31-2026) name the records and refinement reach. These are numerical limits, not physical endpoints. Spacing 1 is a distinct, more compact scenario and must be evaluated separately.
+- **First step:** Inspect the retained halt diagnostics, actual EOM obligations and current app/solver code. Separate wall-time and continuation limits from causal-root completeness, interpolation/history uncertainty, adaptive-step behavior, playback size and retained-checkpoint growth. Profile wall time, accepted progress, memory and artifact size rather than infer cost from population alone. Coordinate any solver-level repair with its live owner; this task does not grant blanket production-kernel or contract write authority.
+- **Investigation:** Declare a useful target horizon before target runs, initially testing whether four crossing times is attainable for the existing 27-member spacing-256 preparation. Keep the pulse and undisplaced comparison matched and retain the completed 1.5-crossing baseline. Compare tighter numerical settings over common accepted coverage; use independently known controls before new instruments or numerical changes. Study patch-size and boundary effects separately from tolerance effects, and measure compact-spacing feasibility without silently changing its physical preparation. Assess checkpoint continuation, history/storage scaling and a sustainable local or offline-run-to-replay workflow without bypassing certification stops.
+- **Completion:** Record a reproducible recommended configuration and measured cost/accuracy envelope, together with either a paired demonstration to the declared horizon or a precise reproducible obstruction and scoped remedy handed to its owner. State the longest accepted interval, refinement agreement and its limits, evidence retention/resume procedure, and what the central region can support before finite edges dominate. Update the existing contract and app guidance only to match demonstrated capability; a longer requested duration or a slower replay is not completion.
+- **Boundary:** Preserve the unchanged Master Equation, coupling 16 and wake speed 1, full finite moving population, causal-root accounting, accepted-history checks and explicit open edges. No artificial damping, restoring law, browser-generated trajectory, unqualified tolerance relaxation or certification bypass. Keep finite numerical evidence distinct from Saturday's exact infinite ancient family, scientific trajectory acceptance and physical stability. Exact infinite-lattice simulation remains separately unimplemented; it requires numerical complete-history construction and justified infinite-tail treatment, not just a larger finite patch. No publication or global reprioritization is selected.
+
 ### LAT-013 — Visual tiling demonstration
 
-- **Status:** Next queued object after verified LAT-014; design/prototype task only
+- **Status:** Queued behind LAT-107; first remaining gallery object after verified LAT-014; design/prototype task only
 - **Problem:** The current repeat-cell visualization correctly states translation tiling but still asks a learner to imagine how adjacent copies join.
 - **Standard object:** Use crystallographic primitive-cell notation: the owned basis/sites, three labeled primitive lattice vectors $\mathbf a_1,\mathbf a_2,\mathbf a_3$, and their parallelepiped fundamental domain. Distinguish that primitive translation tile from both a conventional high-symmetry cell and a Wigner-Seitz/Voronoi cell; the latter may explain local-neighbor geometry but is not necessarily the primitive translation tile.
 - **Goal:** Explore a restrained optional teaching view for at least the simple-cubic checkerboard, showing one adjacent translated copy with a clearly distinct but non-semantic treatment and the actual cross-boundary nearest-neighbor joins. Optional ghost copies may be generated only by integer combinations of the same three primitive vectors.
@@ -343,6 +363,19 @@ Plainly: adjacent cells in this gallery meet through the same architrinos. The l
 
 ## Deferred / blocked
 
+### LAT-108 — Exact infinite-family numerical simulation
+
+- **Status:** ○ Deferred — finite-patch simulation was selected first; no infinite-family implementation or computation is released.
+- **Remaining work:** Determine whether the same analytical ancient localized family can be represented numerically with its complete nonlinear past, all dynamical labels, original eight-source blocks, every required causal root and justified infinite tails. A larger finite patch is not this object. The [lattice research queue](../master-equation-closure/lattice-research/work-queue.md) owns the mathematical family and its current accepted results; [App Solver](../app-solver/work-queue.md) owns reusable capabilities and scientific trajectory qualification. Its fixed-control reproduction task concerns a separate preparation and must not be relabelled as reproduction of this family.
+- **Reopening condition:** Op selects a bounded feasibility/specification stage after the finite-patch findings are available, with explicit scientific and solver owners, numerical history construction, tail/error requirements and an independent reference. Keep the infinite study explanatory in the app until these obligations are met.
+- **Completion:** An independently checked numerical construction and solver interface admit the declared same-family history and infinite contribution with a stated error bound, followed by an explicitly scoped app integration. If this cannot yet be supplied, record the exact missing capability without substituting a finite-patch claim.
+
+### LAT-109 — Publish and verify the disturbance app changes
+
+- **Status:** ○ Deferred — local implementation is complete at the scope of LAT-106; publication has not been invoked. This is retained follow-through, not a blocker to closing the implementation chat.
+- **Remaining work:** When Op designates a publication runner, include the intended Lattice Lab changes and their shared EOM checkpoint-presentation dependencies in the normal publication inventory. Preserve the existing validation evidence and concurrent work. CDF's completed breathing-pair lessons remain with their own owner and enter a combined publication only if included in the runner's selected scope.
+- **Completion:** The selected changes pass the live publication procedure, and a deployed-browser check confirms the intended disturbance interface and imported replay. Preserve the distinction between static Pages replay and live calculation through a local EOM service. No commit, push, deployment, hosted solver or public simulation service is authorized by this queue entry.
+
 ### LAT-009 — Polarity-edit interaction
 
 - **Status:** Removed from the first-version UI; deferred
@@ -353,6 +386,16 @@ Plainly: adjacent cells in this gallery meet through the same architrinos. The l
 - **Status:** Deferred; do not begin implementation or research without renewed operator authorization
 - **Future obligation:** For deformed HCP at β>0, derive an all-space periodic Ledger result from the canonical deformed repeating pattern. Declare the complete periodic contribution accounting and convergence/exhaustion rule, cover every inequivalent target-site orbit, and validate the result with an independently authored verifier. The spherical display crop and any finite truncation have no calculation authority and cannot substitute for the periodic proof.
 - **Current boundary:** Preserve the certified periodic HCP result at β=0 and the verified not-established Ledger state for every β>0 until this future obligation is completed and independently verified. Equal population, purple endpoint aggregation, visual symmetry, or deterministic replay does not establish acceleration cancellation or any force, motion, stability, conservation, energy, or broader physics claim.
+
+## Scientific follow-through retained with other owners
+
+These references close this chat's bookkeeping without creating duplicate app assignments or changing the receiving owners' status, rank or current releases. The [accepted Saturday handover](../aaa-work-threads/analysis/saturday-ownership-handover-2026-10-18.md) retains research follow-through; the live queues below supersede its older stage-specific numerical endpoints.
+
+| Remaining obligation | Disposition and owning queue |
+| --- | --- |
+| ○ Open — later evolution, uniform growth and larger-amplitude fate of the same infinite localized family | Retained with [lattice research](../master-equation-closure/lattice-research/work-queue.md#sharpen-the-summed-odd-remainder-of-the-localized-family). Its October 20–21 bounded growth/continuation results are completed; do not reopen them. The remaining global questions are not LAT-107's finite-patch experiment and no new successor is launched here. |
+| ◐ Partial — general binary recurrence and actual signed-correlation/travel control | Retained with the [binary periodic-history task](../master-equation-closure/binary-research/work-queue.md#decide-whether-two-members-below-wake-speed-can-have-a-periodic-history), including its later accepted results and separately recorded follow-up. The CDF prescribed lessons do not close this scientific question. |
+| ○ Open dependencies — generic trajectory qualification and cross-geometry transfer | Reusable history/error acceptance stays with [App Solver](../app-solver/work-queue.md); broader transfer and fate questions retain the boundaries in the [Saturday handover](../aaa-work-threads/analysis/saturday-ownership-handover-2026-10-18.md#remaining-science-and-recommended-order). The completed stationary-fixture repair is not reopened. These are dependencies to track, not new Lattice Lab implementation assignments. |
 
 ## Superseded / withdrawn
 

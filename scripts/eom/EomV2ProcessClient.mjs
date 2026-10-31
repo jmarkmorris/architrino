@@ -26,7 +26,8 @@ export function createEomV2ProcessClient({ binaryPath, checkpointRoot, recordRoo
     state.cancelled = true;
     return state.ready ? state.worker.kill('SIGUSR1') : true;
   }
-  function execute(raw, { runId = randomUUID(), onProgress = () => {}, retainRecord = false } = {}) {
+  function execute(raw, { runId = randomUUID(), onProgress = () => {}, retainRecord = false, checkpointMode = "inline" } = {}) {
+    if (!["inline", "reference"].includes(checkpointMode) || (checkpointMode === "reference" && !retainRecord)) throw new TypeError("Checkpoint references require a retained record operation.");
     if (active.has(runId)) throw new Error('This run is already active.');
     if (disposing || active.size >= 4) throw Object.assign(new Error('EOM worker admission unavailable.'), { code: 'worker_budget_exhausted' });
     if (typeof raw !== 'string' || Buffer.byteLength(raw) > 32 * 1024 * 1024) throw new TypeError('One bounded JSON document required.');
@@ -105,7 +106,7 @@ export function createEomV2ProcessClient({ binaryPath, checkpointRoot, recordRoo
             payload.checkpoint.id = checkpointId;
           }
           if (retainRecord) {
-            const view = createEomResponseView(payload, { ...artifact, durable: true });
+            const view = createEomResponseView(payload, { ...artifact, durable: true }, { checkpointMode });
             const marker = join(recordRoot, `${checkpointId}.complete.json`);
             writeFileSync(marker, JSON.stringify({ ...artifact, complete: true }), { mode: 0o600 });
             const markerFd = openSync(marker, 'r'); try { fsyncSync(markerFd); } finally { closeSync(markerFd); }

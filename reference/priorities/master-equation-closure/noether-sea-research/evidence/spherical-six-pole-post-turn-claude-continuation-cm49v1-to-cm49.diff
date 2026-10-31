@@ -1,0 +1,8 @@
+5c5
+< #  READER: deser49 = the v4.4 line 391 text (mpf((m, e)) with a signed m), now the only reader; FORMAT TAG: every record written by cm49 carries "affine_format": "signed-v49",
+---
+> #  READER: deser49 = the v4.4 line 391 text (mpf((m, e)) with a signed m), now the only reader (the resume uses _aff_deser49, the v4.4 aff_deser text, because aff_deser is defined only after the controls; fixed after the K49 NameError, run copy kept as cm49-v1.py); FORMAT TAG: every record written by cm49 carries "affine_format": "signed-v49",
+321c321
+<     return aff_deser(prev["affine_last"])
+---
+>     return _aff_deser49(prev["affine_last"])   # v4.9 (fix after K49): the v4.4 aff_deser text with deser49, defined before the modes section

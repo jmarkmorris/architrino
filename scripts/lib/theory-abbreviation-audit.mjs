@@ -33,13 +33,18 @@ export function findTheoryAbbreviationCandidates(text) {
     // not its whole line; a nearby theory nickname must still be reported.
     const beforeCube = text.slice(mathSpan?.bodyStart ?? start, index);
     const afterCube = text.slice(index + match[0].length, mathSpan?.bodyEnd ?? (next < 0 ? text.length : next));
-    const cubicCoefficient = /c_(?:\{[a-zA-Z0-9]+\}|[a-zA-Z0-9]+)\s*(?:\\cdot|[·*])?\s*$/.test(beforeCube);
+    const cubicCoefficient = /c_(?:\{[a-zA-Z0-9]+\}|[a-zA-Z0-9]+)(?:\^\*)?\s*(?:X\^3)?\s*(?:\\cdot|[·*])?\s*$/.test(beforeCube)
+      || /X\^2\\left\[c_\d+\+[0-9A-Za-z_{}^*()+\-\s]+\\right\]\s*$/.test(beforeCube);
     const textBearing = mathSpan && /\\(?:text|textrm|textbf|mathrm|operatorname)\b/.test(mathSpan.body);
-    const summedCubic = /[=≤≥<>]/.test(beforeCube) && /^\s*\+\s*(?:[A-Za-zΣ½]|\\[A-Za-z]+)/.test(afterCube);
+    const summedCubic = /[=≤≥<>]|\\(?:leq?|geq?)\b/.test(beforeCube) && /^\s*\+\s*(?:[A-Za-zΣ½\d]|\\[A-Za-z]+)/.test(afterCube);
     const evaluatedCubic = mathSpan && /^\s*\\approx\s*\d/.test(afterCube);
     const namedCubic = !span && /\breceiver cubic\s+c_[a-zA-Z0-9]+[·*]\s*$/.test(beforeCube)
       && /^\s+is unpaired\b/.test(afterCube);
-    if (cubicCoefficient && !textBearing && (summedCubic || evaluatedCubic || namedCubic)) continue;
+    const plainPolynomial = !span && /\|E\|\s*<=\s*X\^2\s*\(c_\d+\s*\+\s*c_\d+\s+[a-z]+\^2\)\s*$/.test(beforeCube)
+      && /^\s*[;,.]/.test(afterCube);
+    if (plainPolynomial) continue;
+    const polynomialEnd = mathSpan && /\\le\b/.test(beforeCube) && /^\s*[.,]?\s*$/.test(afterCube);
+    if (cubicCoefficient && !textBearing && (summedCubic || evaluatedCubic || namedCubic || polynomialEnd)) continue;
     // In d_A^3 the A is a one-token TeX subscript, not the cubed base.
     // Limit this lexical distinction to math and an actual subscripted symbol.
     const subscript = mathSpan && /(?:[a-zA-Z]|\\[a-zA-Z]+)_$/.test(text.slice(span.start, index))
@@ -67,7 +72,7 @@ export function findTheoryAbbreviationCandidates(text) {
         || /^\s*[-+*/]\s*(?:\d|[a-zA-Z](?![a-zA-Z]))/.test(text.slice(index + match[0].length, span.bodyEnd)))
       // A denominator may end in a brace; TeX juxtaposition is multiplication.
       // Do not accept arbitrary words after the cube as implicit products.
-      && /^\s*(?:$|[-+*/=<>}\])]|[a-zA-Z](?![a-zA-Z])|\\(?:cdot|times|leq?|geq?|alpha|beta|gamma|delta|epsilon|eta|theta|lambda|mu|nu|rho|sigma|tau|phi|psi|omega)\b)/.test(text.slice(index + match[0].length, span.bodyEnd));
+      && /^\s*(?:[.,]?\s*$|[-+*/=<>}\])]|[a-zA-Z](?![a-zA-Z])|\\(?:cdot|times|leq?|geq?|alpha|beta|gamma|delta|epsilon|eta|theta|lambda|mu|nu|rho|sigma|tau|phi|psi|omega)\b)/.test(text.slice(index + match[0].length, span.bodyEnd));
     if (!algebra) findings.push({ index, label: match[0] });
   }
   return findings;

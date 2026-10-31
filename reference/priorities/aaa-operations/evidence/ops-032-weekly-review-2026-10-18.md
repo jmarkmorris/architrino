@@ -46,3 +46,29 @@ The substantive monthly reviews retain November 13; this pass adds no monthly sa
 ## Final checks and versions
 
 The existing known-case-first strict TeX/local-file checker passed this receipt, both child receipts and the nine named edited tracker/queue/index surfaces; output is `.tmp/ops-032-oct18/validation.out`. Scoped `git diff --check` on the edited current controls and their logs emitted no diagnostics. These are syntax, file-target and whitespace checks, not fragment certification, browser behavior or scientific validation. The final version inventory was refreshed after coordinator edits: its only changed initial-to-final control identities are the nine expected operations, solver/Barnes-Hut and MEC/current scientific-summary paths. No otherwise unexpected concurrent control change occurred within that selected 72-path inventory. New inputs after this observation require their own intake; the receipt is not a live guarantee.
+
+## Subsequent owner-integration verification — October 18
+
+**✓ Done — both previously outstanding integration follow-ups are resolved at their accepted bounded scopes.** The operator selected the recommended check after the weekly pass. Live owner logs show subsequent integration authorization and execution; separate read-only reviewers compared each manuscript, task, current tracker and README to its accepted analysis and final corrected review. Earlier partial dispositions above remain the historical state at the initial weekly snapshot; the version inventory's hashes remain that snapshot rather than being relabeled as these later bytes.
+
+Binary [manuscript Section 9.7](../../master-equation-closure/binary-research/manuscript.md#97-actual-common-motion-correlations-and-necessary-radial-travel) and its existing periodicity task preserve the exact K2 identity, multi-period boundary treatment, all-J-sign domain, necessary mean-radial-speed bounds and strict upper-travel criterion. The four-million positive-numerator cutoff is not promoted to necessary extent or radial dominance. Its accepted analysis matches the frozen corrected subject by native SHA-256 and `cmp -s`. General periodicity, signed correlation and useful actual excursion/travel remain open. Reviewer `ops_032_binary_integration_check` finds no blocker in this bounded integration.
+
+Lattice [manuscript Section 1.30](../../master-equation-closure/lattice-research/manuscript.md#a-summed-signed-remainder-and-continuation-beyond-the-profile-interval), completed task and current summaries preserve the complete signed assembly, same-history later endpoint, exact numerical bounds, original infinite population/root/tail/seed hypotheses and primitive-enclosure conditionality. Actual growth, order-one fate and arrival remain open. Reviewer `ops_032_lattice_integration_check` finds the scientific integration resolved but identifies residual current tracker wording still calling the completed task queued/remaining. The coordinator makes four exact administrative replacements, preserving a before copy at `.tmp/ops-032-integration-check-oct18/lattice-priorities-before.md`; the same separate reviewer then reads the complete diff and confirms the administrative remainder resolved without changed formulas, constants, hypotheses or active assignments. No new scientific proof or evolution is claimed.
+
+Native `shasum -a 256` records the inspected integration identities:
+
+| Owner path | SHA-256 |
+| --- | --- |
+| Binary manuscript | `a6ea89f34403ffe07f97f9cb97e65eab524ca0e852451d2c158bb89088cff4de` |
+| Binary tracker | `55146d0fce932f47359b1db51630a2fa7b843f763ae8fa6fc4262139dec3f653` |
+| Binary queue | `517032237102b76c7fbb2e438a0133607cfdefa0c0dda075adaaad72ee16d918` |
+| Binary README | `0026e728b3ea7f9d52b6b40d993926efac6fdb50fc21385758a9c6ee9d4c6e53` |
+| Binary accepted analysis | `80b307d99ce5bf5c17f2281291ca5d59792a2346eaa25c83176494c7d7b32886` |
+| Lattice manuscript | `f06f39967798d4d3a308f9b28828166c7a13cad7245fb34cde0ccd2f030b336b` |
+| Lattice tracker before reconciliation | `98c4e6a01a551e649623db8e18c198585b21d88761515eae1d14921ddbb95d6d` |
+| Lattice tracker after reconciliation | `9832c04302167f16aeef6f87f0fbb532a91ead5bb339586b7d8a7e95e008a97d` |
+| Lattice queue | `76ad7130584f68141ff154498da767be4fdeffc9763c28d048b68f4e00c27ef4` |
+| Lattice README | `8621a882bc803a8e2a6c5323727f2a6f743e86ea9f04da4f23fd51b46a67e8d0` |
+| Lattice accepted analysis | `9dbdc4d555bb5dd01107e11acdfceda456606657151f1e947f295d72d1f8f0f3` |
+
+The existing known-case-first strict TeX/local-target checker passes the reconciled Lattice tracker at 106 math spans and 116 local-file occurrences; scoped `git diff --check` emits no diagnostics. No raw instrument, trajectory, primitive enclosure, general theorem, browser journey or published state is rerun/certified by this fidelity check. A changed accepted reference, altered hypothesis/constant or source mismatch would reopen the corresponding conclusion. No new research successor, publication, regeneration or cadence change is selected. CRW-005 remains closed.

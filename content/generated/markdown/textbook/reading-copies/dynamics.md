@@ -1792,7 +1792,7 @@ $$
 
 This density is independent of the transmitter's state of motion. In the normalization used here, $\lambda_{\mathrm{em}}$ is absorbed into $\kappa$, so the path-history integral uses $\mathrm dT_t$ directly. The causal surfaces are continuously indexed by $T_t$; an equal-$\Delta T$ sequence is only a numerical discretization of this continuum, not the substrate emission law. This emission measure is inherited from the transceiver postulate in [Architrino: Constant-Time Emission Measure](../../../../markdown/aaa/foundations/architrino.md#constant-time-emission-measure-postulate), its canonical home, and is a declared conditionality of the canonical boxed law above, not a derived result of this chapter.
 
-Under the continuous uniform-emission rule stated above, transmitter motion maps the uniform $\mathrm dT_t$ measure onto a history-dependent family of expanding causal surfaces. Along a simple branch, surfaces with nearby emission labels $T_t$ and $T_t+\mathrm dT_t$ have local normal separation $\lvert D_t\rvert\,\mathrm dT_t$, where $D_t=c_f-\hat{\mathbf r}_{ij}\cdot\mathbf V_j(T_t)$. The received causal-surface density per unit local normal distance is therefore proportional to $\lambda_{\mathrm{em}}/\lvert D_t\rvert$. Motion of the transmitter toward the active branch increases that density; motion away from the branch decreases it. After static-transmitter normalization, the geometric acceleration weight is
+Under the continuous uniform-emission rule stated above, transmitter motion maps the uniform $\mathrm dT_t$ measure onto a history-dependent family of expanding causal surfaces. Along a simple branch, surfaces with nearby emission labels $T_t$ and $T_t+\mathrm dT_t$ have local normal separation $\lvert D_t\rvert\,\mathrm dT_t$, where $D_t=c_f-\hat{\mathbf r}_{ij}\cdot\mathbf V_j(T_t)$. The received causal-surface density per unit local normal distance is therefore proportional to $\lambda_{\mathrm{em}}/\lvert D_t\rvert$. At fixed local line direction, increasing the transmitter velocity projection toward the receiver increases this density while the projection remains below $c_f$; a negative projection lowers it relative to a stationary transmitter. Above $c_f$, increasing that projection instead increases $|D_t|$ and decreases the per-root density. The simple-root expression does not apply at $D_t=0$. After static-transmitter normalization, the geometric acceleration weight is
 $$
 W_{ij}^{\mathrm{acc}}
 =
@@ -1907,7 +1907,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-45facc4ba4712e59)
 
-so transmitter motion compresses the emitted surface density in forward directions and dilates it in trailing directions. This is a transmitter-history effect, not a receiver-cadence multiplier and not an imported observer-level field law.
+so, for $0\le\beta_f<1$, transmitter motion compresses the emitted surface density in forward directions and dilates it in trailing directions. For super-field-speed motion, the absolute denominator governs each retained branch, and a forward direction need not have greater weight than the stationary normalization. This is a transmitter-history effect, not a receiver-cadence multiplier and not an imported observer-level field law.
 
 **Proposition 5 (exact transverse projection for a uniformly translating point cloud; derived).** Let two architrinos translate with the same constant velocity $\mathbf V=V\hat{\mathbf e}$, where $V=\|\mathbf V\|$ and $0\leq\beta_f=V/c_f<1$. At a reception time $T_r$, write their instantaneous ordered separation as
 $$
@@ -2296,7 +2296,7 @@ $$
 
 after the neutral translation, phase, and allowed relabeling modes are fixed. Here $\mathcal L$ is the full delayed linearization about the rest branch and $\mathbf B_{\hat{\mathbf e}}$ is the constant-group-velocity defect.
 
-The first question is whether the internal orbit can deform slightly so that all delayed accelerations still close. Freezing that deformation to zero recovers the fixed point-cloud restriction, not a necessary condition for the moving branch.
+The first question is whether the internal orbit can deform slightly so that all delayed accelerations still close. Setting the first-order deformation to zero tests an undeformed translating copy of the rest orbit. The fixed point-cloud restriction additionally sets all internal velocities to zero, so its residual is not a necessary condition for an orbiting moving branch.
 
 > Claim grade: derived for the relative-periodic conditions as necessary acceptance conditions, not for the existence of any branch. Falsifier: a genuine relative-periodic solution of the full Master Equation that fails one of these conditions would refute its necessity; failure of a frozen point-cloud overlay does not.
 
@@ -2812,12 +2812,12 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-864cdc4c73133e01)
 
-On a generic off-circular branch, $D_{t,ii}\to0$ makes the ideal branch-resolved pointwise response diverge whenever the remaining geometry stays regular. A uniform-circular retained root is a special chart: the circular root-playback identity gives $D_{r,ii}=D_{t,ii}$, so both factors vanish together and the event must be handled as a fold rather than under a bounded-nonzero-$D_r$ hypothesis. In either case, the divergence should not be treated as a literal state pinned at infinite acceleration. Across a simple caustic transit, [Caustic Transit and Finite Impulse](#caustic-transit-and-finite-impulse) shows that the integrated velocity change can remain finite; with finite numerical regularization $\eta > 0$, the event appears as a large but finite impulse that sharpens as $\eta\to 0$.
+On a generic off-circular branch, $D_{t,ii}\to0$ makes the ideal branch-resolved pointwise response diverge whenever the remaining geometry stays regular. On a uniform-circular chart, $D_{r,ii}=D_{t,ii}$, so a degenerate root also has vanishing reception derivative. A fold of the circular root equation in its speed parameter is not thereby a reception-transverse caustic transit; at a fixed threshold speed the degeneracy persists under time translation. The finite-impulse result in [Caustic Transit and Finite Impulse](#caustic-transit-and-finite-impulse) applies only when the actual evolving history satisfies its nondegenerate reception-unfolding and positive-separation assumptions. Other approaches, including persistent circular tangency and coincident endpoint birth, require a separately defined regularization and a proved finite accepted transition. No divergent simple-root value defines a state pinned at infinite acceleration.
 
 This transmitter-side fold is therefore an **amplitude pole** for the self branch. It is not, by itself, a theorem of circular closure. The same transmitter-side acceleration weight multiplies every projection of the self-hit acceleration, including the tangential component, so contact with $D_{t,ii}=0$ requires a certified event treatment and does not by itself establish a periodic orbit or zero net cycle-averaged kinetic-rate change.
 
 **Operational characterization of MCB:**
-- The inner branch evolves by caustic grazing near $J_{ii}=0$, with finite impulses across the regularized boundary rather than exact pinning on an infinite-acceleration surface.
+- A candidate inner branch approaches the declared Jacobian boundary. Finite impulses across it require certification for the actual evolving history; neither circular parameter-fold geometry nor finite regularization alone establishes that transition.
 - The minimum radius $R_{\min}$ is the smallest orbit radius compatible with $J_{ii}\ge 0$ on active roots.
 - Tangential power must be controlled separately; near-zero cycle-average power is an additional closure condition, not a consequence of $J_{ii}=0$ alone.
 

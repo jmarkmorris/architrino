@@ -1778,7 +1778,9 @@ test("Lattice Lab mounts the canonical standalone navigation runtime without Bor
   assert.match(navigationRuntimeSource, /createStandaloneAppNavigationRuntime/u);
   assert.doesNotMatch(navigationRuntimeSource, /createStandaloneAppSceneSearchRuntime/u);
   assert.equal(html.includes("diagnostics-toggle"), false);
-  assert.equal(/\bPlay\b/u.test(html), false);
+  // The static gallery still has no dynamics transport. The separately
+  // selected finite-patch section has accepted-history replay controls.
+  assert.equal(/\bPlay\b/u.test(html.split('<div id="lattice-disturbance-app"')[0]), false);
   assert.equal(html.includes("data-lattice-view"), false);
   assert.equal(html.includes("lattice-lab-view-controls"), false);
   assert.equal(html.includes("lattice-lab-display-crop-note"), false);
@@ -2321,20 +2323,20 @@ test("shared panel collapse icon preserves the established open and closed treat
   assert.match(equationRuntime, /createPanelCollapseIconSvg\(this\.indexCollapsed\)/u);
 });
 
-test("Applications keeps the operator-selected fourteen-app sequence", () => {
+test("Applications keeps the operator-selected fifteen-app sequence", () => {
   const applications = JSON.parse(
     readRepoFile("content/scenes/archie/applications.json"),
   );
   const expectedOrder = [
     "animator", "greek_letter_match", "molecule", "periodic_table",
     "hyde_periodic_table", "atom", "standard_model", "causal_delay_feedback",
-    "borg", "topo", "ideal_braid", "lattice_lab", "photon", "equation_mapping",
+    "borg", "surface", "topo", "ideal_braid", "lattice_lab", "photon", "equation_mapping",
   ];
 
   assert.equal(applications.scene.layout.type, "rings");
   assert.equal(applications.scene.layout.order, "objects");
-  assert.equal(applications.scene.children.length, 14);
-  assert.equal(applications.objects.length, 14);
+  assert.equal(applications.scene.children.length, 15);
+  assert.equal(applications.objects.length, 15);
   assert.deepEqual(
     applications.scene.children.map((entry) => entry.nodeId),
     expectedOrder,

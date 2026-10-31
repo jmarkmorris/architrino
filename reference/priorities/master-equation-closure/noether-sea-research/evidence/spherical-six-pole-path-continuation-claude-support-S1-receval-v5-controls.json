@@ -1,0 +1,144 @@
+{
+ "controls": [
+  {
+   "name": "(P1) reconstructed chain: all joins pass and every reconstructed end box meets the frozen end box of the same step",
+   "recon_steps": [
+    155,
+    492
+   ],
+   "skipped": [
+    [
+     "spherical-six-pole-correlated-continuation-claude-continuation-steps10-cm-v44-C22-r5.json",
+     493,
+     false
+    ]
+   ],
+   "join_failures": [],
+   "meet_failures": [],
+   "pass": true
+  },
+  {
+   "name": "(P2) known: the intersected lookup is non-empty and lies inside each separate lookup on a request inside both chains",
+   "how": "intersected",
+   "pass": true
+  },
+  {
+   "name": "(P4) negatives: a reconstructed record with a shifted origin fails the join check; an end box shifted off the frozen one is detected as non-meeting (unjustified intersection refused)",
+   "pass": true
+  },
+  {
+   "name": "(P3) replay consistency: whole-step dl/dt on frozen steps 360-370 (through the intersected lookup) is proved negative, as certified in the turning-point campaign",
+   "pass": true
+  },
+  {
+   "name": "(P5) negative: receiver sub-intervals with a wrong origin (two steps late) refuse",
+   "outcome": "sub-interval outside the receiver step",
+   "pass": true
+  },
+  {
+   "name": "(P6) KNOWN positive control of the sub-interval route: receiver cubic with acceleration 1 and jerk 2000 and an uncertain origin (1e-3), stationary partners (exact roots t - r_c(q(t), 0)); on all 4 sub-intervals the exact q and w ranges and the exact root range of each class lie inside the route's boxes; sub-intervals cover the uncertain step without a gap; the hull of the q boxes contains the exact whole-step range and lies inside the whole-step box",
+   "detail": [
+    [
+     0,
+     true,
+     true,
+     true
+    ],
+    [
+     1,
+     true,
+     true,
+     true
+    ],
+    [
+     2,
+     true,
+     true,
+     true
+    ],
+    [
+     3,
+     true,
+     true,
+     true
+    ]
+   ],
+   "no_gap": true,
+   "whole_step_ok": true,
+   "pass": true
+  },
+  {
+   "name": "(P7) negative: the rate remainder dropped (stored rate bound set to 0) misses the known path on some sub-interval (or refuses)",
+   "pass": true
+  },
+  {
+   "name": "(P8) negative: the origin uncertainty dropped (origin told as the point T0 while the true origin is T0 + 1e-3) misses the known path or roots (or refuses)",
+   "pass": true
+  },
+  {
+   "name": "(P9) negative: an initial source bracket shifted off the true root (by 0.1, beyond the 0.03 search widening) is refused by the residual-sign containment check",
+   "outcome": "start interval not proved to contain the root",
+   "pass": true
+  },
+  {
+   "name": "(V0) outward decimal reading: the floor/ceiling box of each known decimal contains it exactly (rational check); NEGATIVE: the nearest-rounded point box of 0.1 does not contain 0.1, and the rational check detects it",
+   "pass": true
+  },
+  {
+   "name": "(V1) KNOWN positive of the end-instant cover and root path: stationary partners (exact roots t - r_c(q, 0)), end time [5.0, 5.001], end box q [0.30, 0.50] x w [0.20, 0.26], known law q + 2w with exact image [0.7, 1.02]; the route's hull contains the exact image and exceeds it by < 1e-25 at each end; on all 9 pieces the exact root range of every class lies inside the piece's contracted source range; the pieces reach the decimal box edges",
+   "outcome": "ok",
+   "image": [
+    "0.7",
+    "1.02"
+   ],
+   "roots_per_piece": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "pass": true
+  },
+  {
+   "name": "(V2) NEGATIVE dropped edge: a cover missing a top strip (width/1000) of the box is detected and the end evaluation refused; with the check bypassed the same cover misses the known exact image (the check has teeth)",
+   "outcome": "cover of the q end box refused: last edge is not up(x)",
+   "bypassed_image": [
+    "0.7",
+    "1.01968"
+   ],
+   "pass": true
+  },
+  {
+   "name": "(V3) NEGATIVE interior strip: a cover with a gap between pieces 0 and 1 is detected and refused",
+   "outcome": "cover of the q end box refused: gap between pieces 0 and 1",
+   "pass": true
+  },
+  {
+   "name": "(V4) NEGATIVE union larger than the box: a piece extending beyond up(x) is refused (the check enforces union == box, not only union >= box)",
+   "outcome": "cover of the q end box refused: piece 1 outside the box",
+   "pass": true
+  }
+ ],
+ "n_sub": 2,
+ "steps": [],
+ "instrument": "receval v5",
+ "diagnostics": {
+  "v4_edge_formula_on_known_boxes": {
+   "q": [
+    true,
+    "ok"
+   ],
+   "w": [
+    true,
+    "ok"
+   ]
+  }
+ },
+ "controls_all_pass": true,
+ "wall_s": 2.8623080253601074
+}

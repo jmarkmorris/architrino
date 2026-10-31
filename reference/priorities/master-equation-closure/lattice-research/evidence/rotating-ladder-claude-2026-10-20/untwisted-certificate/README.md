@@ -1,0 +1,25 @@
+# untwisted certificate — retained records
+
+Navigation added during publication. The original files below retain their bytes, claim grades and review history. This index adds no scientific acceptance; consult the [owning account](../../../analysis/rotating-ladder-claude-2026-10-20-pi-account.md) for dispositions and limitations.
+
+- [branch_cover_A_receipt.json](branch_cover_A_receipt.json)
+- [branch_cover_B_receipt.json](branch_cover_B_receipt.json)
+- [branch_cover_C_receipt.json](branch_cover_C_receipt.json)
+- [branch_glue_check.py](branch_glue_check.py)
+- [branch_glue_receipt.json](branch_glue_receipt.json)
+- [branch_selftest_receipt.json](branch_selftest_receipt.json)
+- [certificate_receipt.json](certificate_receipt.json)
+- [certificate_receipt_N3000_check.json](certificate_receipt_N3000_check.json)
+- [certify_untwisted_branch.py](certify_untwisted_branch.py)
+- [certify_untwisted_fast.py](certify_untwisted_fast.py)
+- [certify_untwisted_r1000.py](certify_untwisted_r1000.py)
+- [controls.py](controls.py)
+- [controls_fast.py](controls_fast.py)
+- [controls_fast_receipt.json](controls_fast_receipt.json)
+- [controls_receipt.json](controls_receipt.json)
+- [fast_R0p4_receipt.json](fast_R0p4_receipt.json)
+- [fast_R1_receipt.json](fast_R1_receipt.json)
+- [fast_known_case_R1000_receipt.json](fast_known_case_R1000_receipt.json)
+- [ladder_interval_kernel.py](ladder_interval_kernel.py)
+- [root_samples.py](root_samples.py)
+- [root_samples_receipt.json](root_samples_receipt.json)

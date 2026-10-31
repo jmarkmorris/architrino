@@ -1,0 +1,19 @@
+{
+ "all_pass": true,
+ "pieces": 57,
+ "joins": 57,
+ "contact_piece_matches": [
+  55
+ ],
+ "contact_alpha_over_pi": "8801/10000",
+ "contact_delta_K": [
+  "2.979992982704494401965",
+  "2.979995287212758175829"
+ ],
+ "max_weighted_contraction_upper": 0.27140532443376675,
+ "combined_requested_domain": [
+  "2.8700",
+  "2.981"
+ ],
+ "claim": "Continuous exact balance curve, conditional on the frozen interval kernel and its reviewed lemmas; no global endpoint claim"
+}

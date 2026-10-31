@@ -40,6 +40,10 @@ The locally ranked execution order, including deferred workflows, lives in [work
 
 The operator requires circular and noncircular instantaneous Weber bound pairs in Borg. [BORG-019](work-queue.md#borg-019--instantaneous-weber-bound-pair-visualizations) owns the catalog and visualization acceptance, including a stable circle, a near-circular rosette and the eccentric WP-2 case. Reuse the independently confirmed completed benchmark with its exact equation and source records; this app addition leaves Weber research dormant. The [motion explanation](brainstorming.md#noncircular-weber-bound-pairs) describes what the noncircular examples show.
 
+## Accepted alternating-ladder visualization addition
+
+The operator selected [BORG-020](work-queue.md#borg-020--alternating-ladder-geometry-and-prescribed-motion) on October 31 to incorporate the alternating ladder as prescribed geometry, queued after BORG-019. The [saved animation and visual guide](../master-equation-closure/lattice-research/analysis/rotating-ladder-visual-guide.md) explain spinning, spinning with axial travel, and translation without rotation. The app task owns a finite visual crop, source-bound replay and accompanying findings; the infinite-population research and pending review of the October 29 connection proof retain their separate scientific grades. This is accepted app work, not a new solver run or a change to the deferred scored objects.
+
 ## Proposed research integration
 
 The [alternative-equation assembly proposal](brainstorming.md#assemblies-under-alternative-master-equations) describes source-bound equation selection, research-record replay and comparisons, followed separately by validated EOM support for selected variants. Beyond the accepted Weber pair addition above, this broader design remains provisional. Its proposed first step is an intake inventory for one released-balance comparison under the canonical and field-speed-ceiling equations; no additional implementation task, research execution, score change or reactivation is selected.

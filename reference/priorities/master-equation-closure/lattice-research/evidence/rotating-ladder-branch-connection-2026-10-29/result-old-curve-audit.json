@@ -1,0 +1,23 @@
+{
+ "all_pass": true,
+ "principal_pieces": 218,
+ "patches": 217,
+ "unselected_attempt_records": 109,
+ "exact_requested_domain": [
+  "2.8700",
+  "2.9245"
+ ],
+ "binary_outer_domain": [
+  "12925330930553323/4503599627370496",
+  "13170777110245017/4503599627370496"
+ ],
+ "max_weighted_contraction_upper": 0.140301686262126,
+ ".878pi_roots_on_curve": {
+  "lower": [
+   "2.870375"
+  ],
+  "upper": [
+   "2.924125"
+  ]
+ }
+}

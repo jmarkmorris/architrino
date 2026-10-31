@@ -7219,8 +7219,11 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
     const std::string& end_time,
     NativeAtomicStepTiming* timing,
     const NativeAccelerationSnapshotCertificate* reusable_start_snapshot,
-    bool defer_endpoint_root_precision_escalation) {
-  validate_request(request);
+    bool defer_endpoint_root_precision_escalation,
+    bool revalidate_request) {
+  if (revalidate_request) {
+    validate_request(request);
+  }
   validate_step_inputs(request, histories, start_time, end_time);
   auto full = corrected_substep(
       request, histories, start_time, end_time, reusable_start_snapshot,
@@ -7584,14 +7587,20 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
   };
 }
 
-NativeAtomicStepCertificate certify_native_atomic_coupled_step(
+namespace {
+
+// Shared by the public step entry, which always revalidates its request, and
+// by the evolution loop, which may skip a revalidation that would repeat a
+// completed check on identical request data.
+NativeAtomicStepCertificate certify_native_atomic_coupled_step_checked(
     const NativeCoupledEvolutionRequest& request,
     const std::vector<NativePublishedPath>& histories,
     std::size_t step_index,
     const std::string& start_time,
     const std::string& end_time,
     const NativeAccelerationSnapshotCertificate* reusable_start_snapshot,
-    bool defer_endpoint_root_precision_escalation) {
+    bool defer_endpoint_root_precision_escalation,
+    bool revalidate_request) {
   require_native_ordinary_method(request, "the ordinary atomic step");
   if (request.matched_pair_enclosure_policy != kMatchedPairPolicyDisabled) {
     throw EquationAdmissionError(
@@ -7602,13 +7611,30 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step(
   NativeAtomicStepTiming timing;
   auto certificate = certify_native_atomic_coupled_step_impl(
       request, histories, step_index, start_time, end_time, &timing,
-      reusable_start_snapshot, defer_endpoint_root_precision_escalation);
+      reusable_start_snapshot, defer_endpoint_root_precision_escalation,
+      revalidate_request);
   timing.total_wall_seconds = elapsed_seconds(timing_start);
   if (certificate.status == "rejected") {
     timing.rejection_wall_seconds = timing.total_wall_seconds;
   }
   certificate.timing = timing;
   return certificate;
+}
+
+}  // namespace
+
+NativeAtomicStepCertificate certify_native_atomic_coupled_step(
+    const NativeCoupledEvolutionRequest& request,
+    const std::vector<NativePublishedPath>& histories,
+    std::size_t step_index,
+    const std::string& start_time,
+    const std::string& end_time,
+    const NativeAccelerationSnapshotCertificate* reusable_start_snapshot,
+    bool defer_endpoint_root_precision_escalation) {
+  return certify_native_atomic_coupled_step_checked(
+      request, histories, step_index, start_time, end_time,
+      reusable_start_snapshot, defer_endpoint_root_precision_escalation,
+      true);
 }
 
 void accumulate_snapshot_timing(
@@ -7956,10 +7982,22 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
     step_request.adjudicated_finite_width_pairs.assign(
         adjudicated_finite_width_pairs.begin(),
         adjudicated_finite_width_pairs.end());
-    auto step = certify_native_atomic_coupled_step(
+    // validate_request(request) passed before this loop. step_request is a
+    // copy of request that differs only in joint_histories and
+    // adjudicated_finite_width_pairs. When both are empty in both requests,
+    // step_request equals the validated request, so revalidation would repeat
+    // the same deterministic check on identical data, including the dense
+    // Surface certification of the unchanged prepared past.
+    const bool step_request_equals_validated_request =
+        request.joint_histories.empty() &&
+        step_request.joint_histories.empty() &&
+        request.adjudicated_finite_width_pairs.empty() &&
+        step_request.adjudicated_finite_width_pairs.empty();
+    auto step = certify_native_atomic_coupled_step_checked(
         step_request, histories, initial_attempt_count + steps.size(),
         current_time_token, attempted_end,
-        reusable_start_snapshot, certificate_cost_probe);
+        reusable_start_snapshot, certificate_cost_probe,
+        !step_request_equals_validated_request);
     const CertificateCostSignal cost_signal = certificate_cost_signal(step);
     step.certificate_cost_probe = certificate_cost_probe;
     step.certificate_cost_deferred_pair_count =

@@ -464,6 +464,77 @@ test("prune requires an explicit age threshold", { skip: process.platform === "w
   assert.match(result.stderr, /--older-than-seconds is required/u);
 });
 
+test("scoped prune leaves unrelated unsafe historical records intact", { skip: process.platform === "win32" }, async () => {
+  const safe = createPruneFixture();
+  const outside = path.join(ROOT, "foreign-log");
+  const foreign = createPruneFixture({ stdoutPath: outside });
+  writeFixtureLogs(safe);
+  writeFixtureLogs(foreign);
+  try {
+    const report = await invoke(["prune", "--older-than-seconds", "10000000000", "--run-id", safe.runId, "--apply"]);
+    assert.deepEqual(report.deleted.map(row => row.runId), [safe.runId]);
+    assert.equal(fs.existsSync(foreign.filePath), true);
+    assert.equal(fs.readFileSync(outside, "utf8"), "stdout\n");
+  } finally {
+    removeFixture(safe);
+    removeFixture(foreign);
+  }
+});
+
+test("scoped prune still refuses the entire selected batch on an unsafe target", { skip: process.platform === "win32" }, async () => {
+  const safe = createPruneFixture();
+  const foreign = createPruneFixture({ stdoutPath: path.join(ROOT, "unsafe-selected-log") });
+  writeFixtureLogs(safe);
+  writeFixtureLogs(foreign);
+  try {
+    const result = await invoke(["prune", "--older-than-seconds", "10000000000", "--run-id", safe.runId, "--run-id", foreign.runId, "--apply"], { expectFailure: true });
+    const report = JSON.parse(result.stdout);
+    assert.equal(report.status, "refused");
+    assert.equal(report.deleted.length, 0);
+    assert.equal(fs.existsSync(safe.filePath), true);
+    assert.equal(fs.existsSync(foreign.stdoutPath), true);
+  } finally {
+    removeFixture(safe);
+    removeFixture(foreign);
+  }
+});
+
+test("scoped prune rejects absent or malformed identities before deleting anything", { skip: process.platform === "win32" }, async () => {
+  const fixture = createPruneFixture();
+  writeFixtureLogs(fixture);
+  try {
+    for (const options of [
+      ["--run-id", fixture.runId, "--run-id", randomUUID()],
+      ["--run-id", "../outside"],
+      ["--run-id", fixture.runId, "--run-id", fixture.runId],
+      ["--status", "running"],
+    ]) {
+      await invoke(["prune", "--older-than-seconds", "10000000000", ...options, "--apply"], { expectFailure: true });
+      assert.equal(fs.existsSync(fixture.filePath), true);
+      assert.equal(fs.existsSync(fixture.stdoutPath), true);
+    }
+  } finally {
+    removeFixture(fixture);
+  }
+});
+
+test("prune status selection preserves failed records during completed-run cleanup", { skip: process.platform === "win32" }, async () => {
+  const completed = createPruneFixture();
+  const failed = createPruneFixture({ status: "failed" });
+  writeFixtureLogs(completed);
+  writeFixtureLogs(failed);
+  try {
+    const report = await invoke(["prune", "--older-than-seconds", "10000000000", "--status", "completed", "--apply"]);
+    assert.equal(report.deleted.some(row => row.runId === completed.runId), true);
+    assert.equal(report.deleted.some(row => row.runId === failed.runId), false);
+    assert.equal(report.retained.find(row => row.runId === failed.runId).reason, "status_not_selected");
+    assert.equal(fs.existsSync(failed.stdoutPath), true);
+  } finally {
+    removeFixture(completed);
+    removeFixture(failed);
+  }
+});
+
 test("prune retains terminal records newer than the explicit age", { skip: process.platform === "win32" }, async () => {
   const fixture = createPruneFixture({ terminalAtUtc: new Date().toISOString() });
   writeFixtureLogs(fixture);

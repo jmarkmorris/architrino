@@ -3,7 +3,7 @@
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
-import { frozenResearchSourceOrigin, researchSourceLocation } from "../src/documentation/ResearchSourceLocations.mjs";
+import { frozenResearchSourceOrigin, researchDocumentLocation, recordedResearchLinkTarget, localResearchEvidence } from "../src/documentation/ResearchSourceLocations.mjs";
 import { findTheoryAbbreviationCandidates } from "./lib/theory-abbreviation-audit.mjs";
 import { extractMarkdownLinks, hasReferenceDirectoryIndex } from "./lib/markdown-link-audit.mjs";
 
@@ -756,10 +756,17 @@ function auditMarkdownRelativeLinks(markdownPaths, markdownTextByPath) {
     const sourceAbsolutePath = path.join(rootDir, frozenResearchSourceOrigin(markdownPath));
     for (const link of extractMarkdownLinks(markdownText)) {
       const target = link.target;
+      const recordedTarget = recordedResearchLinkTarget(markdownPath, target);
+      // A frozen chat citation to retained local evidence is not a deployed
+      // download. Publication readiness checks its local retention separately.
+      if (recordedTarget?.startsWith(".local-data/")) {
+        notes.push(`${markdownPath}:${link.line}: historical local evidence citation (not deployed): ${recordedTarget}`);
+        continue;
+      }
       if (!target || isExternalMarkdownLinkTarget(target)) {
         continue;
       }
-      if (target.startsWith("/")) {
+      if (target.startsWith("/") && !recordedTarget) {
         errors.push(
           `${markdownPath}:${link.line}: markdown link target must be relative, not "${target}"`
         );
@@ -769,7 +776,9 @@ function auditMarkdownRelativeLinks(markdownPaths, markdownTextByPath) {
       if (!pathTarget) {
         continue;
       }
-      const logicalAbsolutePath = path.resolve(path.dirname(sourceAbsolutePath), pathTarget);
+      const logicalAbsolutePath = recordedTarget
+        ? path.resolve(rootDir, recordedTarget)
+        : path.resolve(path.dirname(sourceAbsolutePath), pathTarget);
       const logicalRelativePath = normalizePath(path.relative(rootDir, logicalAbsolutePath));
       if (logicalRelativePath.startsWith("..")) {
         errors.push(
@@ -777,7 +786,12 @@ function auditMarkdownRelativeLinks(markdownPaths, markdownTextByPath) {
         );
         continue;
       }
-      const resolvedRelativePath = researchSourceLocation(logicalRelativePath);
+      const localEvidence = localResearchEvidence(markdownPath, logicalRelativePath);
+      if (localEvidence) {
+        notes.push(`${markdownPath}:${link.line}: registered local evidence citation (not deployed): ${localEvidence.path}`);
+        continue;
+      }
+      const resolvedRelativePath = researchDocumentLocation(logicalRelativePath).split("#")[0];
       const resolvedAbsolutePath = path.resolve(rootDir, resolvedRelativePath);
       if (path.relative(rootDir, resolvedAbsolutePath).startsWith("..")) {
         errors.push(`${markdownPath}:${link.line}: mapped markdown link target escapes repo "${target}"`);

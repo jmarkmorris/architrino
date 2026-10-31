@@ -8,13 +8,13 @@ The status discipline of the braid stack binds throughout. The coincident-axis t
 
 The fixed-coordinate co-rotation hypothesis is motivated by a structural argument; the argument does not select the coincident-axis three-binary locus antipodal geometry, and its quantitative force is untested. A circular orbit's kinematic requirement is a single-harmonic rotating vector, so only the time-constant part of the received causal wake in the co-rotating frame can supply it. Common-frequency co-rotation puts all wake power into exactly that part. Any relative binary motion — frequency locks between binaries, counter-rotation, or speed modulation — moves wake power into oscillating harmonics that circular kinematics cannot absorb, and the lowest-mode orbit deformations add kinematic harmonics faster than they match wake harmonics.
 
-Causal delay is what would make this principle decisive rather than a soft preference. During one antipodal wake transit, the swept angle is approximately $2v/c_f=2\beta_f$ radians; near $\beta_f=\pi/3$ this is roughly one third of a turn. Static-binding intuition — including the naive Kepler-third-law scaling for frequency-separated binaries — therefore does not transfer to the delayed dynamics. Claim level: analytic structural argument; the comparative strength of common-frequency co-rotation against the other taxonomy members is not established.
+Causal delay is what would make this principle decisive rather than a soft preference. For internal orbital speed $s_a$, using the instantaneous antipodal diameter as a rough transit-distance scale gives a swept-angle scale of $2s_a/c_f$. The actual angle follows from the delayed source-to-receiver chord, rather than from the assembly group speed. Static-binding intuition — including the naive Kepler-third-law scaling for frequency-separated binaries — therefore does not transfer to the delayed dynamics. Claim level: analytic structural argument; the comparative strength of common-frequency co-rotation against the other taxonomy members is not established.
 
 The fixed-coordinate prescription has a second, exact consequence: every pairwise alignment scalar between sites is time-constant, so any alignment condition arranged once in the geometry holds around the entire cycle, sustained by the co-rotation itself rather than by a separate phase-locking mechanism.
 
 ## Cyclic-Symmetric Orthogonal-Axis/Coincident-Axis Overlap
 
-The face-opposite phase-compensated equal-geometry orthogonal-axis three-binary configuration seed has a second exact chart on the body-diagonal axis $\hat{\mathbf n}=(1,1,1)/\sqrt3$. Every site has axial height magnitude
+The instantaneous face-opposite phase-compensated equal-geometry orthogonal-axis three-binary configuration seed has a second exact positional chart on the body-diagonal axis $\hat{\mathbf n}=(1,1,1)/\sqrt3$. Every site has axial height magnitude
 $$
 h=\frac{R}{\sqrt3}
 $$
@@ -30,9 +30,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-fdf6b8e61333862d)
 
-The three equal-radius path pairs have that axis, one angular frequency and circulation sense, and phases separated by $120^\circ$. Under common-frequency co-rotation about $\hat{\mathbf n}$ they therefore occupy a cyclic-symmetric coincident-axis three-binary sublocus. The same prescribed worldlines admit a phase-compensated orthogonal-axis description and a coincident-axis description; these are coordinate structures over one physical inventory, not duplicate assemblies.
+The three equal-radius path pairs have that axis, one angular frequency and circulation sense, and phases separated by $120^\circ$. Under common-frequency co-rotation about $\hat{\mathbf n}$ they therefore occupy a cyclic-symmetric coincident-axis three-binary sublocus. The six positions share an instantaneous seed with the phase-compensated orthogonal-axis fixture, while the body-diagonal co-rotation defines a distinct prescribed history of that inventory; it is not the fixture's static own-axis motion.
 
-This overlap is independent of the orthogonal-axis three-binary $\lambda_A=1$ boundary. It also does not certify retention. The face-opposite seed is polarity-segregated by ring, so the fixed-plane lemma below excludes fixed-height acceleration balance for that prescribed two-ring history on every ordinary simple-root branch chart within the lemma's scope, without imposing a member-speed ceiling. The all-equatorial boundary remains the only fixed-coordinate coincident-axis three-binary locus not excluded by that axial argument, but it still requires the full retained-branch certificate.
+This overlap is independent of the orthogonal-axis three-binary $\lambda_A=1$ boundary. It also does not certify retention. The face-opposite seed is polarity-segregated by ring, so the fixed-plane lemma below excludes fixed-height acceleration balance for that prescribed two-ring history on every ordinary simple-root branch chart within the lemma's scope, without imposing a member-speed ceiling. Within the equal-height, polarity-segregated two-ring family, the all-equatorial boundary is the only fixed-height limit not excluded by this axial argument. Unequal-height and mixed-polarity charts are outside the lemma's scope, and every surviving candidate still requires the full retained-branch certificate.
 
 ### Fixed-Plane Axial No-Balance Lemma
 
@@ -72,7 +72,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-fb282f2daf21e3eb)
 
-the declared chiral invariant of that prescribed member. Its transformation law is forced by the vector characters above:
+the declared chiral invariant of that prescribed member on the domain $\mathbf p\cdot\mathbf S\ne0$. Its transformation law is forced by the vector characters above:
 
 | operation | $\mathbf p$ | $\mathbf S$ | $\chi_{\mathrm{pol}}$ |
 | --- | --- | --- | --- |
@@ -82,7 +82,7 @@ the declared chiral invariant of that prescribed member. Its transformation law 
 
 So $C$ and $P$ each reverse $\chi_{\mathrm{pol}}$, while $CP$ preserves it. For the declared polarity-product radial kernel, the $C$-, $P$-, and $CP$-transforms of any solution are degenerate transformed solutions. This is an exact covariance of the declared kernel; it does not establish formation into an $\iota$-fixed history, branch retention, or $CP$ conservation in weak reaction channels. Claim level: derivation grade for the declared kernel.
 
-The pro/anti ordered orientation is a separate sign. Let $o_{\mathrm{PA}}$ denote the deformation-stable orientation extracted from the indexed coincident-axis three-binary locus path or angular-momentum-frame record. It is not a high/middle/low radius order. Because $C$ leaves worldlines fixed, $o_{\mathrm{PA}}$ is $C$-even; because $P$ mirrors the orientation, it is $P$-odd. The polarity-assignment sign on this chart is therefore
+The pro/anti ordered orientation is a separate sign. Let $o_{\mathrm{PA}}$ denote the deformation-stable orientation extracted from the indexed coincident-axis three-binary locus path record using a declared nondegenerate polar frame. A frame formed only from angular-momentum axial vectors is parity-even and does not define this sign. It is not a high/middle/low radius order. Because $C$ leaves worldlines fixed, $o_{\mathrm{PA}}$ is $C$-even; because $P$ mirrors the orientation, it is $P$-odd. This sign and the following factorization apply only where the polar frame is nondegenerate and $\mathbf p\cdot\mathbf S\ne0$. The polarity-assignment sign on this chart is therefore
 
 $$
 c_{\mathrm{pol}}
@@ -98,7 +98,7 @@ Thus $C$ reverses $c_{\mathrm{pol}}$ at fixed $o_{\mathrm{PA}}$, while $P$ rever
 
 **Any axial polarity-orientation selection must be $C$-covariant.** If a dynamical mechanism selects a preferred group-velocity orientation relative to the axial polarity dipole — one polarity-leading side — the kernel evenness forces the selection to lock to $\chi_{\mathrm{pol}}$ rather than to an absolute polarity: a braid and its $C$-image would lead with opposite polarities, and the two configurations would be exactly degenerate under the kernel covariance. Whether any such selection mechanism exists is an open question; none is asserted here.
 
-**The crossing order is the observable face of $o_{\mathrm{PA}}$, not of $\chi_{\mathrm{pol}}$ alone.** An observer stationed on the incoming group-velocity axis, watching the three binary paths cross a reference meridian as the braid rotates, records a fixed cyclic order — $1{:}2{:}3$ or $1{:}3{:}2$ — whose sign is $o_{\mathrm{PA}}$; the two orders are the $P$-image enantiomers. Polarity conjugation leaves that sequence unchanged while reversing $\chi_{\mathrm{pol}}$. For a prescribed common-frequency co-rotating chart this order is a structural invariant, and its invariance is also a representability marker: a genuine closed braid preserves the order, whereas a differential- or counter-rotating configuration lets the binaries lap and the order scramble.
+**The crossing order is the observable face of $o_{\mathrm{PA}}$, not of $\chi_{\mathrm{pol}}$ alone.** On a declared nondegenerate polar-frame chart with a specified viewing direction and meridian convention, the crossing-order interpretation of $o_{\mathrm{PA}}$ uses the cyclic order $1{:}2{:}3$ or $1{:}3{:}2$. When the group velocity is nonzero, its incoming axis can supply that viewing direction; the assignment of the two orders to the orientation signs must use the same polar-frame convention. Polarity conjugation leaves that sequence unchanged while reversing $\chi_{\mathrm{pol}}$. For a prescribed common-frequency co-rotating chart this order is a structural invariant, and its invariance is also a representability marker: a genuine closed braid preserves the order, whereas a differential- or counter-rotating configuration lets the binaries lap and the order scramble.
 
 **Which channels could read the glove.** Effective channels that do not resolve the internal lock are candidates to inherit the declared kernel's parity covariance. A weak-flavored transaction channel that reorganizes the internal lock is a candidate route by which a maximal coincident-axis three-binary locus lock could produce maximal parity selectivity, but no weak-transaction operator has yet been derived from a retained branch record. The primitive kernel remains $CP$-covariant; reproducing the measured nonzero $CP$ asymmetries therefore requires a separate $CP$-odd effective event or branch residual. Candidate sources include Noether sea polarity/chirality texture and interference between transaction paths at different group-velocity-dependent internal angles, but these are hypotheses rather than established next-order terms. The combined $CPT$ benchmark is carried in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md).
 

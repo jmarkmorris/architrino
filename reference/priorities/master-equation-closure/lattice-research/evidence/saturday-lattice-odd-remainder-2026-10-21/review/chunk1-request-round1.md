@@ -1,0 +1,30 @@
+You are an independent reviewer (Codex, gpt-6.1-sol) for the Architrino repository at /Users/markmorris/vibe/architrino. Do not edit any file. Read AGENTS.md's physics rules and the canonical Master Equation passages you need (content/markdown/aaa/dynamics/master-equation.md: "Per-Hit Acceleration", "Total Acceleration", "Conventions and Exclusions"). Read the files under review in full and the cited accepted sources. Reconstruct every derivation and every numerical claim independently; do not trust the author's statements or instruments. Report: (a) what you read; (b) for each claim, supported / not supported / needs correction, with the reason; (c) a numbered list of actionable corrections, each labelled with a short ID; (d) an overall disposition: ACCEPT, ACCEPT AFTER CORRECTIONS, or REJECT. Be specific about scope: what is derived, what is only sampled, what is conditional.
+
+You may run read-only commands, including `/Users/markmorris/vibe/.venv/bin/python` for independent arithmetic (SciPy is broken on this machine; numpy, mpmath and the standard library work). Do not import or execute the author's instrument; write your own checks.
+
+# Chunk 1, round 1: the exact cubic of the reflected odd row and its signed lattice sums
+
+## Files under review (bytes, SHA-256)
+
+- `reference/priorities/master-equation-closure/lattice-research/analysis/saturday-lattice-odd-remainder-2026-10-21.md` — 29,950 bytes, `247c44b5537d23d2696f033a0ca9e38d50f5c10281ba554eae82ae18b5906706`
+- `reference/priorities/master-equation-closure/lattice-research/evidence/saturday-lattice-odd-remainder-2026-10-21/odd_cubic.py` — 17,492 bytes, `153208b4545c5e6fcc7c92e99ff15b3839e7946e37e384c045a4d71c578d0c8f`
+- `reference/priorities/master-equation-closure/lattice-research/evidence/saturday-lattice-odd-remainder-2026-10-21/README.md` — 5,794 bytes, `036dec6a621cc464d6b6f5696a5c372bac50f8ef6add32df5da099e741ca1029`
+- run output `.local-data/aaa-work-threads/saturday-agents-2026-10-21/lattice/oc_run1.json` — 4,506 bytes, `1f410dc3f7453a5d80c9b673808eac6f7c2ef3cfc9b1f57e3d15171b196bd657`; `oc_run1.out` — 1,548 bytes, `e9a8f08789807721eb90727e39e4e898f4c30e4d27bd6cc8893ea0e623a554e0`; supervisor receipt `oc_run1.supervisor.json` — 2,307 bytes, `82a73ee50b072c78d4ab563d2525c15dad7114a9123ffc5ee85a9097f6ea45d5`
+
+## Accepted sources to read (all in `reference/priorities/master-equation-closure/lattice-research/analysis/` unless stated)
+
+- `saturday-summed-signed-lattice-remainder-2026-10-18.md` (Lemma L.1, Lemma L.2 and its proof, Theorem L.4) and its review `saturday-summed-signed-lattice-remainder-codex-review-2026-10-18.md`.
+- `saturday-localized-beyond-evolved-endpoint-2026-10-14.md`, Lemma S.3 and Proposition S.4 (the pair decomposition and the seed envelope).
+- `saturday-lattice-growth-2026-10-20.md`, Lemma B.1, Lemma B.2 (mode form, positive semidefinite residues, band envelope), Corollary B.3.
+- `saturday-lattice-growth-2026-10-20-tube.md`, Lemma T.1 (tube sizes, including item 4 on the comparison histories) and Proposition T.2.
+- `saturday-lattice-growth-2026-10-20-sharp.md`, Lemma H.1 (row constants; their values at zero source speed are used in Section 3.1).
+- `saturday-localized-forward-quantification-2026-10-11.md`, Lemma Q1 (for the structure of the row derivatives).
+
+## Specific claims to check
+
+1. **Lemma O.1.** The homogeneous parts $O_2$, $O_3$ of $\Psi(\ell+h,k)$, including the derivative formulas of $R/\lvert R\rvert^3$ and of $n(R)$; the delay expansion $\delta=\lambda\delta_1+\lambda^2\delta_2+O(\lambda^3)$; the sampled argument $z(\lambda)=\lambda z_1+\lambda^2z_2+O(\lambda^3)$; that the linear parts leave exactly the delay brackets; the cubic coefficient $C_\ell$ as displayed; smoothness of $g$; and the integral form of $\mathcal R_\ell$. Please verify the formula for $C_\ell$ independently, for example by your own high-precision evaluation of $[f_\ell(s\alpha,s\bar\Phi)-f_\ell(-s\alpha,-s\bar\Phi)]/(2s^3)$ for a pure exponential source.
+2. **Lemma O.2.** Items (1)–(3): the bound $\lvert\psi_0\rvert\le\rho_PdX$; the pair-variation bound $r^2/800$; the positive-semidefinite splitting argument for the spread of rates and the bound on its oscillation $\tilde\omega_k(r)$; the use of the majorant difference for the deviation; the sign algebra producing $\sigma_iK_{21}$, $K_{12}$, $\sigma_iK_{03}$; absolute convergence.
+3. **Section 3.1.** That $M_\ell(a;p)$ majorizes every multilinear monomial of $C_\ell$ with the rest-tensor norms quoted (and that those norms are correct at zero source speed), so that both $\lvert C_\ell\rvert\le M_\ell$ and the difference bound used in Lemma O.2(3) hold.
+4. **Lemma O.3.** Covariance under signed permutations (including $\sigma_{g\ell}=\sigma_\ell$); the invariant component patterns; the identities expressing $K_{21}$, $K_{12}$, $K_{03}$ through a symmetric four-form plus an asymmetric remainder; the bound on the remainder; and the symmetric-form norm $\max\{\lvert k_1\rvert,\lvert k_1+6k_2\rvert/3\}$.
+5. **Proposition O.4.** The component enclosures and the norm bounds $N_{21}=10.9259$, $N_{12}=1.9832$, $N_{03}=0.0962$, including the extraction of each component from the six input pairs, the degree separation, the shell weights $e^{-j\Lambda\sqrt N}$, and the tail bound $6.13\times10^{-5}$ (sites with largest coordinate $m\ge6$, counted as $24m^2+2$, majorant decreasing in $r$, inputs of length at most $\sqrt2$). An independent reconstruction of at least $\kappa_1$, $\kappa_2$ for $K_{21}$ and $\kappa_1'$ for $K_{12}$ would be most valuable.
+6. **Scope and wording.** That Section 5's orientation figure ($\approx0.0011461$ at $(0.047,0.011045)$, $A=0.058045$, $\rho_P=0.09085/0.0983$) is arithmetic on the declared constants and is not presented as a bound on the odd sum; that the exploration figure in Section 5 is labelled as exploration; that no claim about the solution, about a barrier, or about order-one motion is made in this chunk; and that the instrument account in the README (known cases before targets, single run, flag coverage) is accurate.

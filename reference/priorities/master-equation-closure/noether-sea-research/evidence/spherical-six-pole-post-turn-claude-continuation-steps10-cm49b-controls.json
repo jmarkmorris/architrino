@@ -1,0 +1,2933 @@
+{
+ "g": "1/10",
+ "N_window": 4000,
+ "campaign": "correlated-continuation",
+ "runmode": "controls",
+ "args": [],
+ "steps9_v3c1_sha256_verified": "62174fb9b274821c6e53f26808e663ce659e791cce90d175c0b269f1e75f90bb",
+ "controls": [
+  {
+   "name": "v3c1 (frozen block) v3 (frozen block) v5 (frozen block, 204-record chain) (R) rate-jump records: exactly three records contain a class's first reading of source time 0 (wave-16 step 1 unlike, wave-17 step 1 like, antipodal b3 step 13 antipode); their stored delayed hulls include the rest state, the frozen history sources contain the two-regime acceleration line and the frozen step evaluates the rate on that hull, and their ap intersects both neighbours: the stored ap is the two-regime enclosure, so the polynomial form would be admissible on them; v5 nevertheless returns their whole-step box (condition (h), conservative)",
+   "pass": true,
+   "detail": {
+    "records": [
+     {
+      "record_index": 0,
+      "label": "wave16 step 1",
+      "class": "unlike",
+      "stored_delayed_range": [
+       "-0.0000001102643276621463240000001",
+       "0.010735896319111062194305"
+      ],
+      "stored_two_regime_flag": null,
+      "stored_history_q_lower_is_rest": null,
+      "stored_history_qdot_lower_is_rest": true,
+      "ap": [
+       "0.002465895023123449789229771",
+       "0.006203606305756320868294832"
+      ],
+      "ap_previous_record": null,
+      "ap_next_record": [
+       "0.005332093916555786486833707",
+       "0.006250591259164821672907"
+      ],
+      "ap_intersects_previous": null,
+      "ap_intersects_next": true
+     },
+     {
+      "record_index": 10,
+      "label": "wave17 step 1",
+      "class": "like",
+      "stored_delayed_range": [
+       "-0.001088209768863977413449",
+       "0.009644202017696092408584"
+      ],
+      "stored_two_regime_flag": null,
+      "stored_history_q_lower_is_rest": true,
+      "stored_history_qdot_lower_is_rest": true,
+      "ap": [
+       "0.003622972849399951557436924",
+       "0.007200053199315117540053504"
+      ],
+      "ap_previous_record": [
+       "0.00584345584578147802115179",
+       "0.006807512909357551600615819"
+      ],
+      "ap_next_record": [
+       "0.003678767792360719338827131",
+       "0.005470151094311974691062671"
+      ],
+      "ap_intersects_previous": true,
+      "ap_intersects_next": true
+     },
+     {
+      "record_index": 62,
+      "label": "antipodal-b3 step 13",
+      "class": "antipode",
+      "stored_delayed_range": [
+       "-0.003477876718478597403118",
+       "0.006727814731966849395301"
+      ],
+      "stored_two_regime_flag": true,
+      "stored_history_q_lower_is_rest": true,
+      "stored_history_qdot_lower_is_rest": true,
+      "ap": [
+       "0.004683379686019355669342441",
+       "0.007513725126830072557722369"
+      ],
+      "ap_previous_record": [
+       "0.004766131460349166674827393",
+       "0.007420866195961344360424847"
+      ],
+      "ap_next_record": [
+       "0.004691596514290512507414025",
+       "0.007530217336608227300903567"
+      ],
+      "ap_intersects_previous": true,
+      "ap_intersects_next": true
+     }
+    ],
+    "sources": {
+     "wave16": true,
+     "wave17": true,
+     "antipodal (v10)": true
+    },
+    "flagged": [
+     [
+      "wave16 step 1",
+      "unlike"
+     ],
+     [
+      "wave17 step 1",
+      "like"
+     ],
+     [
+      "antipodal-b3 step 13",
+      "antipode"
+     ]
+    ],
+    "expected": [
+     [
+      "wave16 step 1",
+      "unlike"
+     ],
+     [
+      "wave17 step 1",
+      "like"
+     ],
+     [
+      "antipodal-b3 step 13",
+      "antipode"
+     ]
+    ],
+    "neg_ordinary_record_not_flagged": true,
+    "neg_hull_without_rest_detected": true,
+    "known_ordinary_post_reading_record_hull_excludes_rest": false
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) v3 (frozen block) v5 (frozen block, 204-record chain) (L1) sub-range lookup on a hand-known cubic slab (nonzero acceleration-rate remainder): point and interior sub-ranges, uncertain origin, multi-slab join contain the truth; negatives (missing remainder, wrong initial state, wrong time origin, point origin for an uncertain one, wrong acceleration) exclude it",
+   "pass": true,
+   "detail": {
+    "point_subrange_contains_truth": true,
+    "point_box_q_width": "7.4667e-11",
+    "interior_subrange_contains_truth_grid": true,
+    "interior_box_narrower_than_whole_step": true,
+    "interior_vs_whole_q_width": [
+     "0.00075135",
+     "0.002505"
+    ],
+    "uncertain_origin_contains_truth_for_every_origin": true,
+    "multi_slab_join_contains_truth_both_sides": true,
+    "neg_missing_remainder_excludes_truth": true,
+    "neg_wrong_initial_state_excludes_truth": true,
+    "neg_wrong_time_origin_excludes_truth": true,
+    "neg_point_origin_for_an_uncertain_origin_excludes_truth": true,
+    "neg_wrong_acceleration_excludes_truth": true,
+    "outside_slab_not_touched": true
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) v3 (frozen block) v5 (frozen block, 204-record chain) (L2) chain known case: on every certified record the sub-range evaluation at sigma = Delta reproduces the record's certified end strings to 1e-18 and at sigma = 0 returns its start state",
+   "pass": true,
+   "detail": {
+    "max_end_abs_diff": {
+     "wave16": "1.0168e-23",
+     "wave17": "1.0194e-23",
+     "antipodal": "1.0186e-23",
+     "late-feedback": "1.0187e-23",
+     "like-reception": "1.0195e-23"
+    },
+    "all_records": 204
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) v3 (frozen block) v5 (frozen block, 204-record chain) (L3) real chain: window seam (record side contains the window state at T*; two-part hull), new sub-range box inside the old whole-step hull at 8 ranges incl. every family join, point at a record end contains its end strings; negatives refused: beyond coverage, uncertified record, gap, wrong record state, wrong start state (empty intersection)",
+   "pass": true,
+   "detail": {
+    "window_seam_record_side_contains_window_state_at_T_star": true,
+    "window_seam_two_part_hull": true,
+    "new_box_inside_old_hull_at_8_ranges_incl_family_joins": true,
+    "new_over_old_width_ratio_q_and_qddot": [
+     [
+      "1.42",
+      "0.5994",
+      "0.6325"
+     ],
+     [
+      "1.47",
+      "1.0",
+      "1.0"
+     ],
+     [
+      "1.8669",
+      "0.301",
+      "0.6367"
+     ],
+     [
+      "2.0767",
+      "0.3016",
+      "0.6314"
+     ],
+     [
+      "2.3",
+      "0.6024",
+      "0.6909"
+     ],
+     [
+      "2.8067",
+      "0.3066",
+      "0.91"
+     ],
+     [
+      "3.1",
+      "0.6162",
+      "0.8978"
+     ],
+     [
+      "3.40",
+      "0.6339",
+      "0.8684"
+     ]
+    ],
+    "point_at_a_record_end_contains_its_end_strings": true,
+    "neg_beyond_coverage_refused": true,
+    "neg_uncertified_record_refused": [
+     true,
+     "uncertified record refused: synthetic uncertified copy"
+    ],
+    "neg_gap_refused": [
+     true,
+     "gap refused before x step 103"
+    ],
+    "neg_wrong_record_state_refused": [
+     true,
+     "state discontinuity refused at x step 102"
+    ],
+    "neg_wrong_start_state_gives_empty_intersection": [
+     true,
+     "empty intersection of the sub-range box with the whole-step box (like-reception-s1a2 step 101 q)"
+    ]
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) v3 (frozen block) v5 (frozen block, 204-record chain) (A) condition (h): on each of the three rate-jump records an interior query returns exactly the record's whole-step box (S, VS, acceleration hull), a query up to its end contains the frozen end strings, and forcing the polynomial form there is flagged (refused); an ordinary record still uses the polynomial form",
+   "pass": true,
+   "detail": {
+    "wave16 step 1": {
+     "class_with_first_reading": "unlike",
+     "interior_query_returns_exactly_the_whole_step_box": true,
+     "lookup_on_interior_query_returns_exactly_the_whole_step_box": true,
+     "query_up_to_its_end_contains_frozen_end_strings": true,
+     "neg_forcing_the_polynomial_form_is_flagged": [
+      true,
+      "polynomial sub-range form refused on a rate-jump record: wave16 step 1"
+     ],
+     "polynomial_form_would_have_been_narrower_there": true
+    },
+    "wave17 step 1": {
+     "class_with_first_reading": "like",
+     "interior_query_returns_exactly_the_whole_step_box": true,
+     "lookup_on_interior_query_returns_exactly_the_whole_step_box": true,
+     "query_up_to_its_end_contains_frozen_end_strings": true,
+     "neg_forcing_the_polynomial_form_is_flagged": [
+      true,
+      "polynomial sub-range form refused on a rate-jump record: wave17 step 1"
+     ],
+     "polynomial_form_would_have_been_narrower_there": true
+    },
+    "antipodal-b3 step 13": {
+     "class_with_first_reading": "antipode",
+     "interior_query_returns_exactly_the_whole_step_box": true,
+     "lookup_on_interior_query_returns_exactly_the_whole_step_box": true,
+     "query_up_to_its_end_contains_frozen_end_strings": true,
+     "neg_forcing_the_polynomial_form_is_flagged": [
+      true,
+      "polynomial sub-range form refused on a rate-jump record: antipodal-b3 step 13"
+     ],
+     "polynomial_form_would_have_been_narrower_there": true
+    },
+    "ordinary_record_still_uses_the_polynomial_form": true
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) v3 (frozen block) v5 (frozen block, 204-record chain) (B) guaranteed coverage edge: a source range ending just below the lower endpoint of the last record's uncertain end is accepted; a range reaching into (end_lo, end_hi] is refused (the old upper-endpoint check accepted it) and so is a range beyond end_hi",
+   "pass": true,
+   "detail": {
+    "last_record": "like-reception-s3b step 154",
+    "end_lo_guaranteed": "3.406684593623649597167959",
+    "end_hi": "3.406684709182828044891357",
+    "uncertain_end_width": "1.15559e-7",
+    "known_range_up_to_just_below_end_lo_accepted": true,
+    "neg_range_reaching_into_the_uncertain_end_refused": true,
+    "old_upper_endpoint_check_would_have_accepted_that_range": true,
+    "neg_range_beyond_end_hi_refused": true,
+    "ext_lookup_refuses_too": true
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) v3 (frozen block) v5 (frozen block, 204-record chain) (0) closed forms (hit, D_t, r, radial) of all three classes vs direct vector computation at 200 random points each on the EXPANDED box q <= 0.85, q' <= 0.55, v' <= 0.40 (signed forms; the sample includes unlike points with D_t > 1)",
+   "pass": true,
+   "max_abs_diff": {
+    "unlike": "9.8608e-31",
+    "like": "5.9165e-31",
+    "antipode": "3.9443e-31"
+   },
+   "unlike_sample_points_with_Dt_above_one": 19
+  },
+  {
+   "name": "v3c1 (frozen block) v3 (frozen block) v5 (frozen block, 204-record chain) (E7) signed-geometry box q in [0.58, 0.85], q' in [0, 0.55], v' in [0, 0.40] (225 cells): every separation r > 0.8 and every transmitter factor D_c > 0.5 (so one root per sub-wake class); the signs of N and M and the side of one of D_c are reported, not assumed",
+   "pass": true,
+   "box": {
+    "unlike": {
+     "N_range": [
+      "-0.0558035",
+      "0.591468"
+     ],
+     "M_range": [
+      "-0.20704",
+      "0.317641"
+     ],
+     "M_changes_sign_on_box": true,
+     "r_min": "0.945101",
+     "D_range": [
+      "0.882107",
+      "1.08411"
+     ],
+     "D_side_of_one_on_box": "straddles one"
+    },
+    "like": {
+     "N_range": [
+      "-0.0558035",
+      "0.591468"
+     ],
+     "M_range": [
+      "-0.20704",
+      "0.317641"
+     ],
+     "M_changes_sign_on_box": true,
+     "r_min": "1.65963",
+     "D_range": [
+      "0.952072",
+      "1.07656"
+     ],
+     "D_side_of_one_on_box": "straddles one"
+    },
+    "antipode": {
+     "N_range": [
+      "0.0299955",
+      "0.75128"
+     ],
+     "M_range": [
+      "-0.75128",
+      "-0.0299955"
+     ],
+     "M_changes_sign_on_box": false,
+     "r_min": "1.82208",
+     "D_range": [
+      "1.0",
+      "1.16493"
+     ],
+     "D_side_of_one_on_box": "straddles one"
+    }
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) v3 (frozen block) v5 (frozen block, 204-record chain) (2) reconciliation at the accepted step-154 state: g F(q) intersects the fixed-form class tangent sum 2U + 2L + A; the fixed radial sum intersects g n.A",
+   "pass": true,
+   "gF": [
+    "0.1210654358412568022401426",
+    "0.1213603038562573382297206"
+   ],
+   "tangent_sum_fixed": [
+    "0.1211734725754093417368765",
+    "0.1212522012113986817775901"
+   ],
+   "radial_sum_fixed": [
+    "-0.05711095670796714585124484",
+    "-0.05709069079993991831500517"
+   ],
+   "g_nA": [
+    "-0.05724539330709555893164276",
+    "-0.05695626734389118607477527"
+   ]
+  },
+  {
+   "name": "v3c1 (frozen block) v3 (frozen block) v5 (frozen block, 204-record chain) (4) negative: unlike and like terms at the step-154 state with the wrong sign of the velocity term in D_t are disjoint from the correct ones",
+   "pass": true,
+   "detail": {
+    "unlike": {
+     "disjoint": true,
+     "hit_correct": [
+      "0.3177120000147463659630123",
+      "0.3182199768725234686778156"
+     ],
+     "hit_wrong": [
+      "0.2912755900172318462079344",
+      "0.2917386303855783466565075"
+     ],
+     "Dt_correct": [
+      "0.9565347207874568299133038",
+      "0.9566398651955926088256083"
+     ],
+     "Dt_wrong": [
+      "1.043360134804407391174392",
+      "1.043465279212543170086696"
+     ]
+    },
+    "like": {
+     "disjoint": true,
+     "hit_correct": [
+      "0.09263255324254981687215395",
+      "0.09269516769629732407851416"
+     ],
+     "hit_wrong": [
+      "0.09742055394748383554791612",
+      "0.09748658601134658481365155"
+     ],
+     "Dt_correct": [
+      "1.025174994781209048969745",
+      "1.025211857883356480401786"
+     ],
+     "Dt_wrong": [
+      "0.9747881421166435195982139",
+      "0.9748250052187909510302548"
+     ]
+    }
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) v3 (frozen block) v5 (frozen block, 204-record chain) (5) delay-root bracket at the step-154 state with the sub-range lookup: +-0.15 and +-0.20 intersect and agree to 1e-9 for all classes; a non-straddling bracket (+-1e-4) is refused",
+   "pass": true,
+   "detail": {
+    "unlike": {
+     "agree": true,
+     "tau": [
+      "1.034512244294058338009588",
+      "1.034719200452213168485591"
+     ],
+     "tau_width": "0.00020696",
+     "chord_minus_tau": "0.0660965"
+    },
+    "like": {
+     "agree": true,
+     "tau": [
+      "1.694153927604374489719685",
+      "1.694267562111170377965875"
+     ],
+     "tau_width": "0.00011363",
+     "chord_minus_tau": "-0.0243432"
+    },
+    "antipode": {
+     "agree": true,
+     "tau": [
+      "1.941723490201176370384051",
+      "1.941800982046321908686112"
+     ],
+     "tau_width": "7.7492e-5",
+     "chord_minus_tau": "-0.028577"
+    }
+   },
+   "non_straddling_refused": true
+  },
+  {
+   "name": "v3c1 (frozen block) v3 (frozen block) v5 (frozen block, 204-record chain) (1) restart regression (same-chain consistency, not independence): from the frozen step-153 strings the sub-range step intersects the frozen step-154 end, is no wider, and (recorded) lies inside it",
+   "pass": true,
+   "intersects": true,
+   "no_wider": true,
+   "new_end_inside_frozen_end": true,
+   "end_q": [
+    "0.5912383294784371657956563",
+    "0.5915726709665957998449591"
+   ],
+   "frozen_end_q": [
+    "0.5912383062043186217382439",
+    "0.5915726917256567880265456"
+   ],
+   "end_v": [
+    "0.349185444441711937846112",
+    "0.3500670198394861773585056"
+   ],
+   "frozen_end_v": [
+    "0.3491807720407250904899195",
+    "0.3500711716516838136758167"
+   ],
+   "trace_identity": true
+  },
+  {
+   "name": "v3c1 (frozen block) v3 (frozen block) v5 (frozen block, 204-record chain) (6) self-append with the sub-range lookup: the control step (from step 153), appended and enriched through the checked path, is read on a sub-range (inside its whole-step box and narrower), its end point contains its end strings, and a lookup beyond it is refused",
+   "pass": true,
+   "detail": {
+    "records_before": 203,
+    "records_after": 204,
+    "point_at_its_end_contains_its_end_strings": true,
+    "range_just_below_its_guaranteed_end_accepted": true,
+    "range_into_its_uncertain_end_refused": true,
+    "interior_subrange_inside_its_whole_step_box_and_narrower": true,
+    "lookup_beyond_refused": true,
+    "enriched_fields_present": true
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) v3 (frozen block) v5 (frozen block, 204-record chain) (7) restart wrapper: default and explicit selection of step 154 reproduce the exact frozen strings with t0 an interval; wrong g, wrong window, uncertified step, missing step and wrong Delta refused",
+   "pass": true,
+   "detail": {
+    "default_selects_last_certified_step_154_exact_strings": true,
+    "explicit_step_154_exact_strings": true,
+    "t0_interval": [
+     "3.406684593623649597167969",
+     "3.406684709182828044891357"
+    ],
+    "t0_is_interval_not_point": true,
+    "neg_wrong_g": [
+     true,
+     "g mismatch: 1/9"
+    ],
+    "neg_wrong_window": [
+     true,
+     "window mismatch (N or T* strings differ)"
+    ],
+    "neg_uncertified_step": [
+     true,
+     "requested step 154 is not certified"
+    ],
+    "neg_missing_step": [
+     true,
+     "requested step 999 not in the record"
+    ],
+    "neg_wrong_Delta": [
+     true,
+     "Delta mismatch"
+    ]
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) v3 (frozen block) (C1) 264-record chain: 10 + 40 + 21 + 73 + 60 + 60 certified records, every file join exact-string, w-chain files accepted by name and sha256; refused: the provisional and replay files s1, s2, s3, s1r, s1q, s2q, a hash mismatch, an uncertified record, a gap; the three first-reading records are the only whole-step records",
+   "pass": true,
+   "detail": {
+    "records": 264,
+    "families": {
+     "wave16": 10,
+     "wave17": 40,
+     "antipodal": 21,
+     "late-feedback": 73,
+     "like-reception": 60,
+     "subrange-feedback": 60
+    },
+    "joins_all_exact": true,
+    "n_joins": 20,
+    "rate_jump_records": [
+     "wave16 step 1",
+     "wave17 step 1",
+     "antipodal-b3 step 13"
+    ],
+    "neg_provisional_file_refused_s1": [
+     true,
+     "record file refused (not in the accepted list: provisional, replay or unknown): spherical-six-pole-subrange-feedback-claude-continuation-steps7-iv-N4000-s1.json"
+    ],
+    "neg_provisional_file_refused_s2": [
+     true,
+     "record file refused (not in the accepted list: provisional, replay or unknown): spherical-six-pole-subrange-feedback-claude-continuation-steps7-iv-N4000-s2.json"
+    ],
+    "neg_provisional_file_refused_s3": [
+     true,
+     "record file refused (not in the accepted list: provisional, replay or unknown): spherical-six-pole-subrange-feedback-claude-continuation-steps7-iv-N4000-s3.json"
+    ],
+    "neg_provisional_file_refused_s1r": [
+     true,
+     "record file refused (not in the accepted list: provisional, replay or unknown): spherical-six-pole-subrange-feedback-claude-continuation-steps7-iv-N4000-s1r.json"
+    ],
+    "neg_provisional_file_refused_s1q": [
+     true,
+     "record file refused (not in the accepted list: provisional, replay or unknown): spherical-six-pole-subrange-feedback-claude-continuation-steps7-iv-N4000-s1q.json"
+    ],
+    "neg_provisional_file_refused_s2q": [
+     true,
+     "record file refused (not in the accepted list: provisional, replay or unknown): spherical-six-pole-subrange-feedback-claude-continuation-steps7-iv-N4000-s2q.json"
+    ],
+    "neg_hash_mismatch_refused": [
+     true,
+     "record file refused (sha256 mismatch): spherical-six-pole-subrange-feedback-claude-continuation-steps7-iv-N4000-s1w.json"
+    ],
+    "known_accepted_file_loads": true,
+    "neg_uncertified_record_refused": [
+     true,
+     "uncertified record refused: synthetic uncertified copy"
+    ],
+    "neg_gap_refused": [
+     true,
+     "gap refused before x step 203"
+    ]
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) v3 (frozen block) (C2) known chain case on the 60 w-chain records: the sub-range form at sigma = Delta reproduces each certified end to 1e-18 and at sigma = 0 returns its start; the sub-range box lies inside the whole-step hull at five ranges including the like-reception/w-chain join and the w-chain file joins",
+   "pass": true,
+   "max_end_abs_diff": "1.019e-23"
+  },
+  {
+   "name": "v3c1 (frozen block) v3 (frozen block) (C3) guaranteed coverage edge at the 264-record end: a range ending just below the lower endpoint of the last uncertain end is accepted, a range reaching into the possible end and a range beyond it are refused; the window seam still returns the two-part hull",
+   "pass": true,
+   "detail": {
+    "last_record": "subrange-feedback-s3w step 214",
+    "end_lo_guaranteed": "4.006684593623649597167959",
+    "end_hi": "4.006684709182828044891357",
+    "known_range_just_below_end_lo_accepted": true,
+    "neg_range_into_the_possible_end_refused": true,
+    "neg_range_beyond_end_hi_refused": true,
+    "window_seam_two_part_hull": true
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) v3 (frozen block) (C4) signed closed forms (tangent hit, D_t, r, radial) of all three classes vs direct vector computation at 200 random points each on the NEW box q in [0.81, 1.10], q' in [0, 0.85], v' in [0, 0.45]; the sample exercises both sides of one of D_c and both signs of the class tangents",
+   "pass": true,
+   "max_abs_diff": {
+    "unlike": "1.0847e-30",
+    "like": "5.9165e-31",
+    "antipode": "5.9165e-31"
+   },
+   "sample_counts": {
+    "unlike_D_above_one": 182,
+    "like_D_below_one": 182,
+    "unlike_tangent_negative": 100,
+    "like_tangent_negative": 100,
+    "antipode_qp_above_q": 2
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) v3 (frozen block) (C5) signed-geometry box q in [0.81, 1.10], q' in [0, 0.85], v' in [0, 0.45] (400 cells): every separation r > 0.80 (v2: the smallest unlike chord on the box is the fixed chord 0.860 at the corner q = 1.10, q' = 0, enclosed as 0.845 by the cells; the first criterion 0.85 was a test-condition error) and every transmitter factor D_c > 0.5 (one root per sub-wake class, no singular factor); N, M and the side of one of D_c are reported, not assumed",
+   "pass": true,
+   "box": {
+    "unlike": {
+     "N_range": [
+      "-0.436982",
+      "0.487549"
+     ],
+     "N_changes_sign_on_box": true,
+     "M_range": [
+      "-0.569806",
+      "0.125732"
+     ],
+     "M_changes_sign_on_box": true,
+     "r_min": "0.844705",
+     "D_range": [
+      "0.94107",
+      "1.22509"
+     ],
+     "D_side_of_one_on_box": "straddles one"
+    },
+    "like": {
+     "N_range": [
+      "-0.436982",
+      "0.487549"
+     ],
+     "N_changes_sign_on_box": true,
+     "M_range": [
+      "-0.569806",
+      "0.125732"
+     ],
+     "M_changes_sign_on_box": true,
+     "r_min": "1.6261",
+     "D_range": [
+      "0.842314",
+      "1.0327"
+     ],
+     "D_side_of_one_on_box": "straddles one"
+    },
+    "antipode": {
+     "N_range": [
+      "-0.0399893",
+      "0.891207"
+     ],
+     "N_changes_sign_on_box": true,
+     "M_range": [
+      "-0.891207",
+      "0.0399893"
+     ],
+     "M_changes_sign_on_box": true,
+     "r_min": "1.70505",
+     "D_range": [
+      "0.991001",
+      "1.23521"
+     ],
+     "D_side_of_one_on_box": "straddles one"
+    }
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) v3 (frozen block) (C6) derivative identities of the rate function on the new box: exact hand-known case (source at rest: d hit/dt = hit_fixed'(q) qdot and taudot = chord'(q) qdot) for all classes at three q; labelled numerical prescribed-history cases (quadratic path, delay solved, central difference) agree to 1e-7; negatives detected: source acceleration omitted, velocity-term sign flipped",
+   "pass": true,
+   "detail": {
+    "hand_known": {
+     "unlike": true,
+     "like": true,
+     "antipode": true
+    },
+    "numerical": {
+     "unlike": {
+      "pass": true,
+      "receiver_q": "1.076125",
+      "source_q": "0.59388533",
+      "source_qdot": "0.41082486",
+      "delay": "1.04175139497",
+      "analytic": "-0.259480856518892",
+      "central_difference": "-0.25948085653184",
+      "abs_diff": "1.2947e-11",
+      "neg_acceleration_omitted_diff": "0.0041912",
+      "neg_velocity_sign_flipped_diff": "0.21165"
+     },
+     "like": {
+      "pass": true,
+      "receiver_q": "1.076125",
+      "source_q": "0.3230241",
+      "source_qdot": "0.33853334",
+      "delay": "1.7646666276",
+      "analytic": "-0.116285028661125",
+      "central_difference": "-0.11628502866491",
+      "abs_diff": "3.7846e-12",
+      "neg_acceleration_omitted_diff": "0.0001634",
+      "neg_velocity_sign_flipped_diff": "0.010195"
+     },
+     "antipode": {
+      "pass": true,
+      "receiver_q": "1.076125",
+      "source_q": "0.29473463",
+      "source_qdot": "0.33007109",
+      "delay": "1.84928907091",
+      "analytic": "0.0206627663280994",
+      "central_difference": "0.0206627663281001",
+      "abs_diff": "7.9035e-16",
+      "neg_acceleration_omitted_diff": "0.003556",
+      "neg_velocity_sign_flipped_diff": "0.022904"
+     }
+    }
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) v3 (frozen block) (C7) reconciliation at the accepted step-214 state: g F(q) intersects the fixed-form class tangent sum 2U + 2L + A; the fixed radial sum intersects g n.A",
+   "pass": true,
+   "gF": [
+    "0.1308794793606235821236796",
+    "0.132150509819246001157958"
+   ],
+   "tangent_sum_fixed": [
+    "0.1313437687871735586626895",
+    "0.131685096588893660612375"
+   ],
+   "radial_sum_fixed": [
+    "-0.07123095833679398607389382",
+    "-0.07115767061527295984505438"
+   ],
+   "g_nA": [
+    "-0.07183292026220756376851671",
+    "-0.07055620970636860143481266"
+   ]
+  },
+  {
+   "name": "v3c1 (frozen block) v3 (frozen block) (C8) negative: with the wrong sign of the velocity term in D_t the class term is disjoint from the correct one for the unlike and antipode classes at the step-214 state and for the like class at the step-174 state (at step 214 the like factor is too close to one for this probe; recorded, not required)",
+   "pass": true,
+   "detail": {
+    "unlike at step 214": {
+     "disjoint": true,
+     "hit_correct": [
+      "0.05044869972812367340099075",
+      "0.05174260487738964791765532"
+     ],
+     "hit_wrong": [
+      "0.05445643948173998251251753",
+      "0.05585519101020616282856428"
+     ],
+     "Dt_correct": [
+      "1.037972165539926841272307",
+      "1.038453138125564555517481"
+     ],
+     "Dt_wrong": [
+      "0.9615468618744354444825194",
+      "0.9620278344600731587276926"
+     ]
+    },
+    "like at step 214": {
+     "disjoint": false,
+     "hit_correct": [
+      "0.04706973970452964723316416",
+      "0.0472644485058165969236468"
+     ],
+     "hit_wrong": [
+      "0.04691312008712898687256057",
+      "0.04710715779058297495087389"
+     ],
+     "Dt_correct": [
+      "0.9982594508163977381344564",
+      "0.9984073626707232662858172"
+     ],
+     "Dt_wrong": [
+      "1.001592637329276733714183",
+      "1.001740549183602261865544"
+     ],
+     "required": false,
+     "reason": "D_L within 0.2 percent of one at this state: the probe cannot resolve the sign of the velocity term; recorded only"
+    },
+    "antipode at step 214": {
+     "disjoint": true,
+     "hit_correct": [
+      "0.07513769632374329731075937",
+      "0.07532142874827379094789473"
+     ],
+     "hit_wrong": [
+      "0.08509282060727938461749992",
+      "0.08530237244138360081820019"
+     ],
+     "Dt_correct": [
+      "1.062064954436428741903031",
+      "1.062203693729710033692368"
+     ],
+     "Dt_wrong": [
+      "0.9377963062702899663076321",
+      "0.9379350455635712580969687"
+     ]
+    },
+    "like at step 174": {
+     "disjoint": true,
+     "hit_correct": [
+      "0.07766854080118829749892642",
+      "0.07776536080044032215764367"
+     ],
+     "hit_wrong": [
+      "0.08062811710578381341883594",
+      "0.08072881478687277673749523"
+     ],
+     "Dt_correct": [
+      "1.018665791451802871104966",
+      "1.018728157765584813771056"
+     ],
+     "Dt_wrong": [
+      "0.981271842234415186228944",
+      "0.9813342085481971288950342"
+     ]
+    }
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) v3 (frozen block) (C9) delay-root bracket at the step-214 state: half-widths 0.15 and 0.30 give intersecting delay enclosures agreeing to 1e-9 for all classes; a non-straddling bracket (1e-4, antipode) is refused",
+   "pass": true,
+   "detail": {
+    "unlike": {
+     "agree": true,
+     "tau": [
+      "0.9853124073014628623671523",
+      "0.9857583789308973137590183"
+     ],
+     "chord_minus_tau": "0.000246594"
+    },
+    "like": {
+     "agree": true,
+     "tau": [
+      "1.748116467361465529305666",
+      "1.748394775525376523211464"
+     ],
+     "chord_minus_tau": "-0.008119"
+    },
+    "antipode": {
+     "agree": true,
+     "tau": [
+      "1.912494491218537064654176",
+      "1.912804062512802058736838"
+     ],
+     "chord_minus_tau": "-0.0760671"
+    }
+   },
+   "non_straddling_refused": true
+  },
+  {
+   "name": "v3c1 (frozen block) v3 (frozen block) (C10) restart regression (same-chain consistency, not independence): from the frozen step-213 strings the step intersects the frozen step-214 end strings and agrees to 1e-15 at N = 4000; trace identity true",
+   "pass": true,
+   "geometry_box_flag_of_this_control_step_recorded_not_required": false,
+   "geometry_box_note": "step 214 itself has receiver q from 0.8096, below the new box lower end 0.81; the box applies from the restart (q >= 0.8133)",
+   "source_candidates_in_box": {
+    "unlike": true,
+    "like": true,
+    "antipode": true
+   },
+   "intersects": true,
+   "max_endpoint_abs_diff": "3.0642e-18",
+   "end_q": [
+    "0.813384608250982976296051",
+    "0.8144991287777617099854763"
+   ],
+   "frozen_end_q": [
+    "0.8133846082509829763113406",
+    "0.8144991287777617099871676"
+   ],
+   "end_v": [
+    "0.3850091496059063663030166",
+    "0.3868893027880675258001227"
+   ],
+   "frozen_end_v": [
+    "0.3850091496059063693672473",
+    "0.3868893027880675261383852"
+   ]
+  },
+  {
+   "name": "v3c1 (frozen block) v3 (frozen block) (C11) self-append: the control step (from step 213), appended and enriched through the checked path, is read on a sub-range inside its whole-step box and narrower; a range just below its guaranteed end is accepted; a range into its possible end and a range beyond it are refused",
+   "pass": true,
+   "detail": {
+    "records_before": 263,
+    "records_after": 264,
+    "end_point_contains_its_end_strings": true,
+    "range_just_below_its_guaranteed_end_accepted": true,
+    "range_into_its_possible_end_refused": true,
+    "interior_subrange_inside_its_whole_step_box_and_narrower": true,
+    "lookup_beyond_refused": true,
+    "enriched_fields_present": true
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) v3 (frozen block) (C12) restart wrapper: the accepted terminal record (name and sha256) is resumed with the exact step-214 strings and t0 an interval; refused: provisional resume files (s3, s2q), wrong g, wrong window, uncertified step, missing step, wrong Delta",
+   "pass": true,
+   "detail": {
+    "default_selects_last_certified_step_214_exact_strings": true,
+    "explicit_step_214_exact_strings": true,
+    "t0_interval": [
+     "4.006684593623649597167969",
+     "4.006684709182828044891357"
+    ],
+    "t0_is_interval_not_point": true,
+    "neg_provisional_resume_file_refused_s3": [
+     true,
+     "resume file refused (neither an accepted predecessor record nor a completed record of this campaign): spherical-six-pole-subrange-feedback-claude-continuation-steps7-iv-N4000-s3.json"
+    ],
+    "neg_provisional_resume_file_refused_s2q": [
+     true,
+     "resume file refused (neither an accepted predecessor record nor a completed record of this campaign): spherical-six-pole-subrange-feedback-claude-continuation-steps7-iv-N4000-s2q.json"
+    ],
+    "neg_wrong_g": [
+     true,
+     "g mismatch: 1/9"
+    ],
+    "neg_wrong_window": [
+     true,
+     "window mismatch (N or T* strings differ)"
+    ],
+    "neg_uncertified_step": [
+     true,
+     "requested step 214 is not certified"
+    ],
+    "neg_missing_step": [
+     true,
+     "requested step 999 not in the record"
+    ],
+    "neg_wrong_Delta": [
+     true,
+     "Delta mismatch"
+    ]
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) v3 (frozen block) (C13) synthetic EVENT controls: positive-to-negative qddot detected as one maximum (also through an undecided end, with the speed hull over the bracket); negative-to-positive reported as a minimum, not a maximum; zero-containing boxes reported undecided with no event; a maximum without a proved negative rate is not called unique; a sign change without proved positive qdot is not called a speed maximum; a crossing of the wrong boundary (2.8067) is not reported as the reception of L; a passage through L is detected; below-then-straddling is not a reception",
+   "pass": true,
+   "detail": {
+    "known_positive_to_negative_detected_as_one_maximum": true,
+    "neg_negative_to_positive_reported_as_minimum_not_maximum": true,
+    "neg_zero_containing_boxes_reported_undecided_no_event": true,
+    "known_maximum_through_an_undecided_end_brackets_from_last_positive_to_first_negative": true,
+    "known_maximum_without_proved_negative_rate_is_not_called_unique": true,
+    "neg_sign_change_without_proved_positive_qdot_not_called_a_speed_maximum": true,
+    "neg_crossing_of_the_wrong_boundary_2.8067_not_reported_as_reception_of_L": true,
+    "known_passage_through_L_with_a_straddling_end_detected": true,
+    "neg_below_then_straddling_only_is_not_a_reception": true
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) (D1) 324-record chain: 10 + 40 + 21 + 73 + 60 + 60 + 60 certified records, every file join exact-string (including the three new t1b, t2, t3 joins), files accepted by name and sha256; refused: the controls and sample files of the speed-maximum campaign, an earlier provisional file, a hash mismatch, an uncertified record, a gap; the three first-reading records are the only whole-step records",
+   "pass": true,
+   "detail": {
+    "records": 324,
+    "families": {
+     "wave16": 10,
+     "wave17": 40,
+     "antipodal": 21,
+     "late-feedback": 73,
+     "like-reception": 60,
+     "subrange-feedback": 60,
+     "speed-maximum-feedback": 60
+    },
+    "joins_all_exact": true,
+    "n_joins": 23,
+    "new_joins": [
+     {
+      "join": "step 214 -> speed-maximum-t1b resume",
+      "pass": true,
+      "end_q": [
+       "0.8133846082509829763113406",
+       "0.8144991287777617099871676"
+      ],
+      "start_q": [
+       "0.8133846082509829763113406",
+       "0.8144991287777617099871676"
+      ]
+     },
+     {
+      "join": "step 234 -> speed-maximum-t2 resume",
+      "pass": true,
+      "end_q": [
+       "0.8907550765325773249668731",
+       "0.8923011509524853535198775"
+      ],
+      "start_q": [
+       "0.8907550765325773249668731",
+       "0.8923011509524853535198775"
+      ]
+     },
+     {
+      "join": "step 254 -> speed-maximum-t3 resume",
+      "pass": true,
+      "end_q": [
+       "0.968281713352896680636546",
+       "0.9703936155781856481774028"
+      ],
+      "start_q": [
+       "0.968281713352896680636546",
+       "0.9703936155781856481774028"
+      ]
+     }
+    ],
+    "rate_jump_records": [
+     "wave16 step 1",
+     "wave17 step 1",
+     "antipodal-b3 step 13"
+    ],
+    "neg_non_step_or_sample_file_refused_N4000-controls": [
+     true,
+     "record file refused (not in the accepted list: provisional, replay or unknown): spherical-six-pole-speed-maximum-feedback-claude-continuation-steps8-iv-N4000-controls.json"
+    ],
+    "neg_non_step_or_sample_file_refused_val-N500": [
+     true,
+     "record file refused (not in the accepted list: provisional, replay or unknown): spherical-six-pole-speed-maximum-feedback-claude-continuation-steps8-iv-val-N500.json"
+    ],
+    "neg_non_step_or_sample_file_refused_val2-N500": [
+     true,
+     "record file refused (not in the accepted list: provisional, replay or unknown): spherical-six-pole-speed-maximum-feedback-claude-continuation-steps8-iv-val2-N500.json"
+    ],
+    "neg_earlier_campaign_provisional_file_refused_s2q": [
+     true,
+     "record file refused (not in the accepted list: provisional, replay or unknown): spherical-six-pole-subrange-feedback-claude-continuation-steps7-iv-N4000-s2q.json"
+    ],
+    "neg_hash_mismatch_refused": [
+     true,
+     "record file refused (sha256 mismatch): spherical-six-pole-speed-maximum-feedback-claude-continuation-steps8-iv-N4000-t1b.json"
+    ],
+    "known_accepted_file_loads": true,
+    "neg_uncertified_record_refused": [
+     true,
+     "uncertified record refused: synthetic uncertified copy"
+    ],
+    "neg_gap_refused": [
+     true,
+     "gap refused before x step 253"
+    ]
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) (D2) known chain case on the 60 records of steps 215-274: the sub-range form at sigma = Delta reproduces each certified end to 1e-18 and at sigma = 0 returns its start; the sub-range box lies inside the whole-step hull at five ranges including the w-chain/steps-215 join and the t1b/t2/t3 joins",
+   "pass": true,
+   "max_end_abs_diff": "1.086e-23"
+  },
+  {
+   "name": "v3c1 (frozen block) (D3) guaranteed coverage edge at the 324-record end: a range ending just below the lower endpoint of the last uncertain end is accepted, a range reaching into the possible end and one beyond it are refused; the window seam returns the two-part hull",
+   "pass": true,
+   "detail": {
+    "last_record": "speed-maximum-t3 step 274",
+    "end_lo_guaranteed": "4.606684593623649597167959",
+    "end_hi": "4.606684709182828044891357",
+    "known_range_just_below_end_lo_accepted": true,
+    "neg_range_into_the_possible_end_refused": true,
+    "neg_range_beyond_end_hi_refused": true,
+    "window_seam_two_part_hull": true
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) (D4) signed closed forms (tangent hit, D_t, r, radial) of all three classes vs direct vector computation at 200 random points each on the v3 box q in [1.04, 1.80], q' in [0, 1.20], w' in [-0.05, 0.45] (negative source velocity included)",
+   "pass": true,
+   "max_abs_diff": {
+    "unlike": "8.8747e-31",
+    "like": "8.8747e-31",
+    "antipode": "5.4234e-31"
+   },
+   "sample_counts": {
+    "negative_wprime_points": 21,
+    "unlike_D_below_one": 21,
+    "unlike_D_above_one": 185,
+    "like_D_above_one": 21,
+    "like_D_below_one": 185,
+    "antipode_qp_above_q": 2
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) (D5) signed-geometry box (v3) q in [1.04, 1.80], q' in [0, 1.20], w' in [-0.05, 0.45] (400 cells): every separation r > 0.70 (the smallest unlike chord on the box is the fixed chord 2 - sqrt 2 at q = pi/2, q' = 0, about 0.765) and every D_c > 0.3; N, M and the side of one reported, not assumed",
+   "pass": true,
+   "box": {
+    "unlike": {
+     "N_range": [
+      "-0.708426",
+      "0.357952"
+     ],
+     "M_range": [
+      "-0.968983",
+      "-0.0724744"
+     ],
+     "r_min": "0.765367",
+     "D_range": [
+      "0.955721",
+      "1.39851"
+     ],
+     "D_side_of_one_on_box": "straddles one"
+    },
+    "like": {
+     "N_range": [
+      "-0.708426",
+      "0.357952"
+     ],
+     "M_range": [
+      "-0.968983",
+      "-0.0724744"
+     ],
+     "r_min": "1.13337",
+     "D_range": [
+      "0.640663",
+      "1.03993"
+     ],
+     "D_side_of_one_on_box": "straddles one"
+    },
+    "antipode": {
+     "N_range": [
+      "-0.159318",
+      "1.0"
+     ],
+     "M_range": [
+      "-1.0",
+      "0.159318"
+     ],
+     "r_min": "1.24322",
+     "D_range": [
+      "0.960128",
+      "1.35885"
+     ],
+     "D_side_of_one_on_box": "straddles one"
+    }
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) (D6) radial-derivative identities on the new box: exact rest-source case for all classes at q = 1.10, 1.30, 1.45, pi/2, 1.75; labelled numerical prescribed-history cases (quadratic path q = 0.2 + 0.3 t + 0.05 t^2 at t = 2.55, receiver q = 1.290125) per class and for the total dl/dt = -2 w a - da_r/dt agree to 1e-7; negatives detected: source acceleration omitted, velocity-term sign flipped, geometric term omitted",
+   "pass": true,
+   "detail": {
+    "hand_known": {
+     "unlike": true,
+     "like": true,
+     "antipode": true
+    },
+    "numerical": {
+     "unlike": {
+      "pass": true,
+      "receiver_q": "1.290125",
+      "source_q": "0.71366352",
+      "source_w": "0.43901333",
+      "delay": "1.15986669908",
+      "analytic": "0.146151769764788",
+      "central_difference": "0.146151769763809",
+      "abs_diff": "9.7909e-13",
+      "neg_acceleration_omitted_diff": "0.010235",
+      "neg_velocity_sign_flipped_diff": "0.091924"
+     },
+     "like": {
+      "pass": true,
+      "receiver_q": "1.290125",
+      "source_q": "0.48597752",
+      "source_w": "0.38366066",
+      "delay": "1.71339338587",
+      "analytic": "0.123221697030003",
+      "central_difference": "0.123221697038711",
+      "abs_diff": "8.7077e-12",
+      "neg_acceleration_omitted_diff": "0.015571",
+      "neg_velocity_sign_flipped_diff": "0.13713"
+     },
+     "antipode": {
+      "pass": true,
+      "receiver_q": "1.290125",
+      "source_q": "0.44423947",
+      "source_w": "0.37262299",
+      "delay": "1.82377008939",
+      "analytic": "0.00609240000085331",
+      "central_difference": "0.00609240000084315",
+      "abs_diff": "1.0152e-14",
+      "neg_acceleration_omitted_diff": "0.0090149",
+      "neg_velocity_sign_flipped_diff": "0.044585"
+     }
+    },
+    "total_dl_dt": {
+     "analytic": "-0.165483933359044",
+     "central_difference": "-0.165483933360588",
+     "abs_diff": "1.5447e-12",
+     "neg_geometric_term_omitted_diff": "0.111"
+    }
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) (D7) reconciliation at the accepted step-274 state: g F(q) intersects the fixed-form class tangent sum 2U + 2L + A; the fixed radial sum intersects g n.A",
+   "pass": true,
+   "gF": [
+    "0.1307212952764896527280655",
+    "0.1342609316789013266212477"
+   ],
+   "tangent_sum_fixed": [
+    "0.1319614191854965083116643",
+    "0.1330178750392784158106036"
+   ],
+   "radial_sum_fixed": [
+    "-0.08681173494187806059642524",
+    "-0.08662272033524455685257477"
+   ],
+   "g_nA": [
+    "-0.08861007349999950304359045",
+    "-0.08483296598060817678300342"
+   ]
+  },
+  {
+   "name": "v3c1 (frozen block) (D8) negative: at the step-274 state the D_t factor with the wrong sign of the velocity term is disjoint from the correct one for all three classes, and the class tangent term is disjoint for the unlike and antipode classes (v2: the like tangent term is too small at this state to resolve the shift; recorded only)",
+   "pass": true,
+   "detail": {
+    "unlike": {
+     "disjoint": true,
+     "hit_correct": [
+      "-0.1746608312524102343081362",
+      "-0.171425502834664391470259"
+     ],
+     "hit_wrong": [
+      "-0.235077306216553710071494",
+      "-0.2306048464146186885961519"
+     ],
+     "Dt_correct": [
+      "1.146476905994303051981414",
+      "1.148175497518290428028045"
+     ],
+     "Dt_wrong": [
+      "0.8518245024817095719719555",
+      "0.8535230940056969480185858"
+     ],
+     "Dt_disjoint": true
+    },
+    "like": {
+     "disjoint": false,
+     "hit_correct": [
+      "-0.004853345511453140244262905",
+      "-0.004323831862688323810990687"
+     ],
+     "hit_wrong": [
+      "-0.004358676594062468641611292",
+      "-0.003883352727041501847680344"
+     ],
+     "Dt_correct": [
+      "0.9460528543654236022302367",
+      "0.9465790188272788753568072"
+     ],
+     "Dt_wrong": [
+      "1.053420981172721124643193",
+      "1.053947145634576397769763"
+     ],
+     "Dt_disjoint": true,
+     "hit_disjoint_required": false,
+     "reason": "v2: at this state the like tangent term is small (about -0.0046) and its enclosure width (set by the q width of the uncertain state) exceeds the shift produced by the wrong sign; the like D_t factor itself is disjoint, which is the object the sign enters; recorded only"
+    },
+    "antipode": {
+     "disjoint": true,
+     "hit_correct": [
+      "0.0844781865520101031101529",
+      "0.08498938162395199060072736"
+     ],
+     "hit_wrong": [
+      "0.101633516687094092437692",
+      "0.1022577340977095297103688"
+     ],
+     "Dt_correct": [
+      "1.091957726023761982867652",
+      "1.092442124665316113539825"
+     ],
+     "Dt_wrong": [
+      "0.9075578753346838864601752",
+      "0.9080422739762380171323481"
+     ],
+     "Dt_disjoint": true
+    }
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) (D9) delay-root bracket at the step-274 state: half-widths 0.30 and 0.45 give intersecting delay enclosures agreeing to 1e-9 for all classes; a non-straddling bracket (1e-4, unlike) is refused",
+   "pass": true,
+   "detail": {
+    "unlike": {
+     "agree": true,
+     "tau": [
+      "1.055397081358728121907678",
+      "1.056115352725612025439934"
+     ],
+     "chord_minus_tau": "-0.175259"
+    },
+    "like": {
+     "agree": true,
+     "tau": [
+      "1.748316632457764795501594",
+      "1.748642541411286673237171"
+     ],
+     "chord_minus_tau": "0.0470489"
+    },
+    "antipode": {
+     "agree": true,
+     "tau": [
+      "1.887596650723955844955212",
+      "1.888471172362482514587732"
+     ],
+     "chord_minus_tau": "-0.155979"
+    }
+   },
+   "non_straddling_refused": true
+  },
+  {
+   "name": "v3c1 (frozen block) (D10) restart regression (same-chain consistency, not independence): from the frozen step-273 strings the step intersects the frozen step-274 end strings and agrees to 1e-15 at N = 4000; trace identity true",
+   "pass": true,
+   "intersects": true,
+   "max_endpoint_abs_diff": "9.3537e-19",
+   "dl_dt_over_step": [
+    "-0.02022699313856022313829175",
+    "-0.01284226580148708858858242"
+   ],
+   "dl_dt_start": [
+    "-0.01936264813220776832281231",
+    "-0.0141178990613277196011863"
+   ]
+  },
+  {
+   "name": "v3c1 (frozen block) (D11) self-append: the control step (from step 273), appended and enriched through the checked path, is read on a sub-range inside its whole-step box and narrower; a range just below its guaranteed end is accepted; a range into its possible end and one beyond it are refused",
+   "pass": true,
+   "detail": {
+    "records_before": 323,
+    "records_after": 324,
+    "range_just_below_its_guaranteed_end_accepted": true,
+    "range_into_its_possible_end_refused": true,
+    "interior_subrange_inside_its_whole_step_box_and_narrower": true,
+    "lookup_beyond_refused": true,
+    "family": "turning-point"
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) (D12) restart wrapper: the accepted terminal record (name and sha256) is resumed with the exact step-274 strings and t0 an interval; refused: the speed-maximum controls file, an earlier-campaign record, wrong g, wrong window, uncertified step, missing step, wrong Delta",
+   "pass": true,
+   "detail": {
+    "default_selects_last_certified_step_274_exact_strings": true,
+    "explicit_step_274_exact_strings": true,
+    "t0_interval": [
+     "4.606684593623649597167969",
+     "4.606684709182828044891357"
+    ],
+    "t0_is_interval_not_point": true,
+    "neg_controls_file_as_resume_refused": [
+     true,
+     "resume file refused (neither an accepted predecessor record nor a completed record of this campaign): spherical-six-pole-speed-maximum-feedback-claude-continuation-steps8-iv-N4000-controls.json"
+    ],
+    "neg_earlier_campaign_record_refused": [
+     true,
+     "resume file refused (neither an accepted predecessor record nor a completed record of this campaign): spherical-six-pole-subrange-feedback-claude-continuation-steps7-iv-N4000-s3w.json"
+    ],
+    "neg_wrong_g": [
+     true,
+     "g mismatch: 1/9"
+    ],
+    "neg_wrong_window": [
+     true,
+     "window mismatch (N or T* strings differ)"
+    ],
+    "neg_uncertified_step": [
+     true,
+     "requested step 274 is not certified"
+    ],
+    "neg_missing_step": [
+     true,
+     "requested step 999 not in the record"
+    ],
+    "neg_wrong_Delta": [
+     true,
+     "Delta mismatch"
+    ]
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) (D13) synthetic EVENT controls: w positive-to-negative detected as a PATH TURN (q maximum, |w| minimum), not as a speed maximum; a reversed crossing reported as a reverse turn; flat or zero-containing w boxes undecided; no uniqueness without proved negative a; dl/dt negative-to-positive detected as a signed-support minimum (also through an undecided end), positive-to-negative as a maximum; a support zero is not a support turn; a zero of a is not a support turn; an undecided dl/dt stays undecided; a sign change across a derivative seam is kept one-sided and not certified",
+   "pass": true,
+   "detail": {
+    "known_w_positive_to_negative_is_a_path_turn_with_q_max_and_abs_w_min_not_a_speed_maximum": true,
+    "reversed_crossing_reported_as_reverse_turn": true,
+    "neg_flat_or_zero_containing_w_undecided_no_turn": true,
+    "turn_without_proved_negative_a_not_called_unique": true,
+    "known_dl_negative_to_positive_is_a_signed_support_minimum_through_an_undecided_end": true,
+    "known_dl_positive_to_negative_is_a_signed_support_maximum": true,
+    "neg_support_zero_is_not_a_support_turn": true,
+    "neg_zero_of_a_is_not_a_support_turn": true,
+    "neg_undecided_dl_box_stays_undecided": true,
+    "missing_end_evaluation_is_not_counted_as_undecided": true,
+    "derivative_seam_handled_one_sidedly": true
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) (D9b) v3 bracket [chord - 0.45, chord + 0.90] at the step-274 state gives delay enclosures intersecting and agreeing to 1e-9 with the v2 bracket +-0.45 for all classes",
+   "pass": true,
+   "detail": {
+    "unlike": true,
+    "like": true,
+    "antipode": true
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) (D15, v3c) like-class bracket [chord - 0.90, chord + 0.90]: agrees with the v3b bracket to 1e-9 at the step-405 end for all classes; at the step-406 end the v3b bracket is refused for like and the v3c bracket encloses the root; a like bracket whose lower end would read beyond guaranteed coverage is refused and the actual lower-end read lies inside it; uniqueness h' = 1 + r_q' w' >= 1 - |w'| > 0 enclosed over the whole like bracket; the missing step-406 end evaluation computed; v3c1 review controls: a lower end above a known root and a like upper end below a known root are refused, a lower-end read into the possible but unguaranteed end is refused while one just below the guaranteed end is accepted, a gap is refused at append and a point read inside an injected gap is refused (a range across an injected gap is not refused by the lookup alone: recorded as a finding; contiguity is enforced at construction), an injected source speed of one refuses uniqueness, the sub-wake hull over the whole covered history has margin below one, and the touched records per class at the step-406 end are listed",
+   "pass": true,
+   "detail": {
+    "agree_v3b_v3c_at_405_unlike": true,
+    "agree_v3b_v3c_at_405_like": true,
+    "agree_v3b_v3c_at_405_antipode": true,
+    "v3b_bracket_refused_at_406_end_like": true,
+    "v3c_bracket_encloses_root_at_406_end_like": true,
+    "tau_406_end_like": [
+     "1.395224840251918010181764",
+     "1.406951516659466597419127"
+    ],
+    "like_chord_minus_0.45_at_406": "1.396964289",
+    "neg_like_lower_end_beyond_guaranteed_coverage_refused": true,
+    "like_lower_end_source_time_max": "4.97972042013",
+    "guaranteed_coverage_end": "5.92668459362",
+    "lower_end_inside_guaranteed_coverage": true,
+    "uniqueness_like": {
+     "source_time_range": [
+      "3.179349221",
+      "4.97972042"
+     ],
+     "w_prime_hull": [
+      "0.3277850470831653272386466",
+      "0.3906494822615375360101537"
+     ],
+     "one_minus_abs_w_prime_lower": "0.60935052",
+     "h_prime_enclosure_lower": "0.67299742",
+     "pass": true
+    },
+    "step_406_end_evaluation": {
+     "evaluated": true,
+     "w_end": [
+      "0.3037536220237899465410253",
+      "0.3255414907330208065586614"
+     ],
+     "qddot_end": [
+      "-0.08556326146075830983427395",
+      "-0.07966071590161560085511725"
+     ],
+     "lambda_hat_end": [
+      "-0.1195819595659215582222932",
+      "-0.1031919726071899620144325"
+     ],
+     "a_rad_end": [
+      "0.01092570971461851315582096",
+      "0.01360469737724408654875685"
+     ],
+     "da_r_dt_end": [
+      "0.04958440480013585810323862",
+      "0.05888551999843242411480819"
+     ],
+     "dl_dt_end": [
+      "-0.01049105802218470694647339",
+      "0.006124378575693117178933143"
+     ],
+     "dl_dt_end_sign": "spans zero",
+     "tau_like": [
+      "1.395224840251918010181764",
+      "1.406951516659466597419127"
+     ],
+     "consistent": true
+    },
+    "neg_lower_end_above_known_root_refused_like": true,
+    "neg_upper_end_below_known_root_refused_like": true,
+    "neg_lower_end_read_into_possible_but_unguaranteed_end_refused": true,
+    "known_lower_end_read_just_below_guaranteed_end_accepted": true,
+    "gap_injected_record": "speed-maximum-t3 step 264",
+    "neg_gap_append_refused": true,
+    "neg_point_read_inside_gap_refused": true,
+    "finding_range_across_gap_not_refused_by_lookup_alone": true,
+    "known_uniqueness_like_ok": true,
+    "neg_injected_source_speed_ge_one_refuses_uniqueness": true,
+    "subwake_hull_whole_covered_history": {
+     "source_time_range": [
+      "1.366684594",
+      "5.92668459362"
+     ],
+     "w_hull": [
+      "0.1373057801796165107074306",
+      "0.3906494822615375360101537"
+     ],
+     "margin_below_one": "0.60935052",
+     "stationary_past_before_range": "w = 0 (rest prehistory)",
+     "pass": true
+    },
+    "touched_records_at_406_end": {
+     "unlike": {
+      "source_time": [
+       "4.500783554114690301188091",
+       "4.507927738831955329906727"
+      ],
+      "records": [
+       "speed-maximum-t3 step 264",
+       "speed-maximum-t3 step 265"
+      ]
+     },
+     "like": {
+      "source_time": [
+       "4.519733076964182999748842",
+       "4.531459868930910034709593"
+      ],
+      "records": [
+       "speed-maximum-t3 step 266",
+       "speed-maximum-t3 step 267"
+      ]
+     },
+     "antipode": {
+      "source_time": [
+       "4.040727790024026804510093",
+       "4.046263400057131052483444"
+      ],
+      "records": [
+       "speed-maximum-t1b step 218"
+      ]
+     }
+    }
+   }
+  },
+  {
+   "name": "v3c1 (frozen block) (D14) with the own records p1-p7 appended (name and sha256): the v2 and v3 brackets agree to 1e-9 at the step-334 state for all classes; at the step-347 end state the v2 bracket +-0.45 is refused for the unlike class (the failing inequality of slice 4) and the v3 bracket encloses the root; negatives: an upper end below the root and a lower end beyond the guaranteed coverage are refused; root uniqueness on the whole v3 bracket rests on h' = 1 + r_q' w' >= 1 - |w'| > 0, both enclosed over the full bracket source-time range for every class",
+   "pass": true,
+   "detail": {
+    "agree_at_334_unlike": true,
+    "agree_at_334_like": true,
+    "agree_at_334_antipode": true,
+    "v2_bracket_refused_at_347_end_unlike": true,
+    "v3_bracket_encloses_root_at_347_end_unlike": true,
+    "tau_347_end_unlike": [
+     "1.244230251541999344314654",
+     "1.247420332757264933614683"
+    ],
+    "chord_plus_0.45_at_q_hi": "1.245299106",
+    "neg_upper_end_below_root_refused": true,
+    "neg_lower_end_beyond_guaranteed_coverage_refused": true,
+    "upper_end_far_in_the_past_t0_minus_b_about_minus_5_result": "accepted (the generated history extends to early times; the root is still unique, see the h' bound)",
+    "uniqueness_unlike": {
+     "source_time_range": [
+      "3.641385487",
+      "4.99318655"
+     ],
+     "w_prime_hull": [
+      "0.366753651238927259827026",
+      "0.3906494822615375360101537"
+     ],
+     "one_minus_abs_w_prime_lower": "0.60935052",
+     "h_prime_enclosure_lower": "1.1182335",
+     "pass": true
+    },
+    "uniqueness_like": {
+     "source_time_range": [
+      "2.600830386",
+      "4.401609961"
+     ],
+     "w_prime_hull": [
+      "0.266724211085104359237214",
+      "0.3906494822615375360101537"
+     ],
+     "one_minus_abs_w_prime_lower": "0.60935052",
+     "h_prime_enclosure_lower": "0.76072519",
+     "pass": true
+    },
+    "uniqueness_antipode": {
+     "source_time_range": [
+      "2.852451274",
+      "4.20738439"
+     ],
+     "w_prime_hull": [
+      "0.2937826906298528263064968",
+      "0.3904095145718089209971084"
+     ],
+     "one_minus_abs_w_prime_lower": "0.60959049",
+     "h_prime_enclosure_lower": "1.0613109",
+     "pass": true
+    },
+    "records_with_p1_p4": 456
+   }
+  },
+  {
+   "name": "(E1) 486-record admitted chain: 324 frozen plus 162 certified steps 275-436 from p1-p4, v3b p5-p7, v3c1 q1-q2 by name and sha256, every file join exact-string, step 437 (uncertified) refused, a hash mismatch refused, the chain end equals the accepted step-436 strings",
+   "pass": true,
+   "detail": {
+    "records": 486,
+    "joins": [
+     {
+      "file": "spherical-six-pole-turning-point-claude-continuation-steps9-iv-N4000-p1.json",
+      "after_step": 274,
+      "q_equal": true,
+      "qdot_equal": true
+     },
+     {
+      "file": "spherical-six-pole-turning-point-claude-continuation-steps9-iv-N4000-p2.json",
+      "after_step": 294,
+      "q_equal": true,
+      "qdot_equal": true
+     },
+     {
+      "file": "spherical-six-pole-turning-point-claude-continuation-steps9-iv-N4000-p3.json",
+      "after_step": 314,
+      "q_equal": true,
+      "qdot_equal": true
+     },
+     {
+      "file": "spherical-six-pole-turning-point-claude-continuation-steps9-iv-N4000-p4.json",
+      "after_step": 334,
+      "q_equal": true,
+      "qdot_equal": true
+     },
+     {
+      "file": "spherical-six-pole-turning-point-claude-continuation-steps9-iv-v3b-N4000-p5.json",
+      "after_step": 347,
+      "q_equal": true,
+      "qdot_equal": true
+     },
+     {
+      "file": "spherical-six-pole-turning-point-claude-continuation-steps9-iv-v3b-N4000-p6.json",
+      "after_step": 367,
+      "q_equal": true,
+      "qdot_equal": true
+     },
+     {
+      "file": "spherical-six-pole-turning-point-claude-continuation-steps9-iv-v3b-N4000-p7.json",
+      "after_step": 387,
+      "q_equal": true,
+      "qdot_equal": true
+     },
+     {
+      "file": "spherical-six-pole-turning-point-claude-continuation-steps9-iv-v3c1-N4000-q1.json",
+      "after_step": 406,
+      "q_equal": true,
+      "qdot_equal": true
+     },
+     {
+      "file": "spherical-six-pole-turning-point-claude-continuation-steps9-iv-v3c1-N4000-q2.json",
+      "after_step": 426,
+      "q_equal": true,
+      "qdot_equal": true
+     }
+    ],
+    "joins_all_exact": true,
+    "uncertified_steps_excluded": 1,
+    "last": "turning-point step 436",
+    "end_hi": "6.226684709182828044891357",
+    "guaranteed_end": "6.226684593623649597167959",
+    "neg_hash_mismatch_refused": [
+     true,
+     "record file refused (sha256 mismatch): spherical-six-pole-turning-point-claude-continuation-steps9-iv-N4000-p1.json"
+    ],
+    "neg_uncertified_step_437_refused": [
+     true,
+     "uncertified record refused: q2 step 437"
+    ],
+    "end_equals_accepted_step_436": true
+   }
+  },
+  {
+   "name": "(E2) KNOWN exact affine flow: q'' = -q, 60 steps of 0.01 from a 2e-4 box; the exact corner and centre solutions lie in the affine SET (2x2 membership) and hull and in the box iteration; the anchor part of the affine q width equals the exact image of the step map (J^60 computed exactly) to 1e-20 relative (the rest of the width is the stated Taylor remainder and rounding), and the box iteration of the same map is wider (wrapping)",
+   "pass": true,
+   "detail": {
+    "affine_hull_width_q": "0.000312676",
+    "affine_hull_width_w": "0.000389727",
+    "exact_ode_image_hull_width": "0.000277996",
+    "exact_step_map_image_hull_width": "0.000278130164924",
+    "box_iteration_width_q": "0.000557514",
+    "box_iteration_width_w": "0.00131267",
+    "exact_corners_in_affine_hull": true,
+    "exact_corners_in_affine_set": true,
+    "exact_corners_in_box_iteration": true,
+    "anchor_part_of_affine_q_width": "0.00027813016",
+    "remainder_part_of_affine_q_width": "3.45459e-5"
+   }
+  },
+  {
+   "name": "(E3) NEGATIVE with a known truth: on the exact second-order step map (no remainder), the interior near-corner (q0 + 0.9e-4, w0 - 0.9e-4) propagated 60 steps in 60-digit arithmetic lies in the two-symbol affine set and OUTSIDE the set in which q and w are tied to one parameter; the instrument never ties them",
+   "pass": true,
+   "two_symbol_set_contains": true,
+   "tied_set_contains": false
+  },
+  {
+   "name": "(E4) KNOWN explicitly correlated polynomial image: one step q+ = q + w D - q^2 D^2/2, w+ = w - q^2 D from a correlated parallelogram (shared symbols); the exact images of 15 INTERIOR latent points (|x| <= 0.9 on the same latent parameters; v4.4: corner images lie on a facet and are correctly undecided) are certified inside the affine set",
+   "pass": true
+  },
+  {
+   "name": "(E5) receiver derivative of the class term including the delay-root dependence tau_q = r_q/(1 + r_q' w'): hand case (source at rest) for all classes at three points against the fixed-source partial; labelled numerical prescribed-history case (quadratic path, t = 2.55, consistency only) agrees to 1e-8; NEGATIVE: the fixed-source partial (source/receiver correlation dropped) misses by more than 1e-5",
+   "pass": true,
+   "detail": {
+    "unlike": {
+     "pass": true,
+     "analytic_total": "0.045358933825295",
+     "central_difference_total (consistency)": "0.045358933825211",
+     "neg_fixed_source_partial": "0.03717074589",
+     "delay": "1.159833297"
+    },
+    "like": {
+     "pass": true,
+     "analytic_total": "-0.13923612999089",
+     "central_difference_total (consistency)": "-0.13923612999092",
+     "neg_fixed_source_partial": "-0.1271796058",
+     "delay": "1.713410844"
+    },
+    "antipode": {
+     "pass": true,
+     "analytic_total": "0.12986289758058",
+     "central_difference_total (consistency)": "0.12986289758061",
+     "neg_fixed_source_partial": "0.1512850207",
+     "delay": "1.823814587"
+    }
+   }
+  },
+  {
+   "name": "(E6) one-sided seam (known Lipschitz mean-value inclusion): a source path with an acceleration jump of 0.8; for receiver intervals whose source times straddle the seam, the exact difference quotient of each class term lies in the derivative enclosure built with the hull of the one-sided source accelerations",
+   "pass": true,
+   "detail": {
+    "unlike": {
+     "source_range_straddles_seam": true,
+     "difference_quotient": "0.03582858514",
+     "enclosure": [
+      "-0.02270711124",
+      "0.09795188564"
+     ],
+     "contained": true
+    },
+    "like": {
+     "source_range_straddles_seam": true,
+     "difference_quotient": "-0.1404101685",
+     "enclosure": [
+      "-0.1523878788",
+      "-0.1297310626"
+     ],
+     "contained": true
+    },
+    "antipode": {
+     "source_range_straddles_seam": true,
+     "difference_quotient": "0.1241302056",
+     "enclosure": [
+      "0.09916892774",
+      "0.1484571902"
+     ],
+     "contained": true
+    }
+   }
+  },
+  {
+   "name": "(N-R) NEGATIVE: with the Taylor-remainder and rounding symbols dropped, the exact solution of the known flow from a 1e-12 box (60 steps) is EXCLUDED while the full set contains it; E2's corner exclusions are reported",
+   "pass": true,
+   "full_contains_exact": true,
+   "dropped_excludes_exact": true,
+   "E2_corners_excluded_info": [
+    true,
+    false,
+    true,
+    true
+   ]
+  },
+  {
+   "name": "(N-H) NEGATIVE: on a delayed test path, replacing the delayed-read width (history shifted by 1e-4) or the clock-origin width (time shifted by 1e-4) by a point excludes the known true class-term value, while the box evaluation contains it, for every class",
+   "pass": true,
+   "detail": {
+    "unlike": {
+     "box_contains_true_history_value": true,
+     "point_history_excludes_it": true,
+     "origin_box_contains_true_time_value": true,
+     "point_origin_excludes_it": true
+    },
+    "like": {
+     "box_contains_true_history_value": true,
+     "point_history_excludes_it": true,
+     "origin_box_contains_true_time_value": true,
+     "point_origin_excludes_it": true
+    },
+    "antipode": {
+     "box_contains_true_history_value": true,
+     "point_history_excludes_it": true,
+     "origin_box_contains_true_time_value": true,
+     "point_origin_excludes_it": true
+    }
+   }
+  },
+  {
+   "name": "(E15) KNOWN cubic path with constant jerk: the exact step end lies in the integral (point-weight) remainder form and the frozen zero-hull form is wider; NEGATIVE: a rate box that excludes the true jerk makes the integral form exclude the exact end; the integral form is used only on steps that touch no first-reading record (recorded per step)",
+   "pass": true,
+   "detail": {
+    "exact_end_in_integral_form": true,
+    "zero_hull_form_wider_q": true,
+    "zero_hull_form_wider_w": true,
+    "width_w_integral": "1.0e-7",
+    "width_w_zero_hull": "2.55e-6",
+    "neg_wrong_rate_box_excludes_exact_end": true
+   }
+  },
+  {
+   "name": "(E16) membership routines: the known false positive (columns (1,0), (0,1), shared (2,2), centre 0, point (3,-3)) is accepted by the RELAXED outer check (which is therefore used only to certify exclusion) and refused by the certified zonotope test; known interior and exterior points are decided correctly",
+   "pass": true,
+   "detail": {
+    "relaxed_check_says_inside_false_positive": true,
+    "certified_test_says_outside": true,
+    "certified_known_inside_2.5_2.5": true,
+    "certified_known_outside_3.5_3.5": true
+   }
+  },
+  {
+   "name": "(E17) certified membership routine (directed intervals): rank one, a point on the segment inside, beside it and beyond its end outside; rank two, an interval point straddling the boundary (half-width 1e-25) undecided (not wrongly decided), interior inside, exterior outside; rank zero handled",
+   "pass": true,
+   "detail": {
+    "rank1_on_segment_inside": true,
+    "rank1_beside_outside": true,
+    "rank1_beyond_end_outside": true,
+    "rank2_near_boundary_undecided": true,
+    "rank2_interior_inside": true,
+    "rank2_exterior_outside": true,
+    "rank0_centre_inside": true,
+    "rank0_offset_outside": true
+   }
+  },
+  {
+   "name": "(E9) intersections: only two PROVED enclosures may be intersected (frozen accepted record, frozen step on a proved start box, reconstructed affine form); NEGATIVES: an unproved midpoint substitution and an empty intersection are refused",
+   "pass": true,
+   "detail": {
+    "neg_unproved_midpoint_refused": true,
+    "neg_empty_refused": true,
+    "known_proved_pair_ok": true
+   }
+  },
+  {
+   "name": "(E10) wider chart receiver q in [0.55, 2.10], source q' in [0, 1.80], w' in [-0.10, 0.45]: closed forms vs direct vectors at 150 points per class (five at q = pi/2) to 1e-24; signed census on 900 cells per class with r > 0.35 required, D_c, N, M and the side of one reported (not assumed; positivity of D_c is checked per step by the frozen sub-wake test on the actual boxes); wrong-sign D_t probes at the step-436 state disjoint for all classes",
+   "pass": true,
+   "max_abs_diff": {
+    "unlike": "9.8608e-31",
+    "like": "1.2622e-29",
+    "antipode": "1.1833e-30"
+   },
+   "census": {
+    "unlike": {
+     "N_range": [
+      "-0.975883",
+      "0.602826"
+     ],
+     "M_range": [
+      "-1.02308",
+      "0.341968"
+     ],
+     "r_min": "0.765367",
+     "D_range": [
+      "0.805788",
+      "1.43698"
+     ],
+     "D_side_of_one": "straddles one"
+    },
+    "like": {
+     "N_range": [
+      "-0.975883",
+      "0.602826"
+     ],
+     "M_range": [
+      "-1.02308",
+      "0.341968"
+     ],
+     "r_min": "0.355322",
+     "D_range": [
+      "0.408908",
+      "1.26271"
+     ],
+     "D_side_of_one": "straddles one"
+    },
+    "antipode": {
+     "N_range": [
+      "-0.958016",
+      "1.0"
+     ],
+     "M_range": [
+      "-1.0",
+      "0.958016"
+     ],
+     "r_min": "0.995142",
+     "D_range": [
+      "0.731262",
+      "1.41353"
+     ],
+     "D_side_of_one": "straddles one"
+    }
+   },
+   "probes": {
+    "436 unlike": {
+     "disjoint": true,
+     "hit_correct": [
+      "-0.1541311495773150775344852",
+      "-0.1435143896717672450224075"
+     ],
+     "hit_wrong": [
+      "-0.2412854270193440042131305",
+      "-0.2237723189488068046884323"
+     ],
+     "Dt_correct": [
+      "1.215140841744114246608416",
+      "1.223778007855603394574337"
+     ],
+     "Dt_wrong": [
+      "0.7762219921443966054256633",
+      "0.7848591582558857533915838"
+     ],
+     "Dt_disjoint": true
+    },
+    "436 like": {
+     "disjoint": true,
+     "hit_correct": [
+      "-0.4718771506957998857452786",
+      "-0.4238088764837891180229049"
+     ],
+     "hit_wrong": [
+      "-0.2800956911156567147727013",
+      "-0.253578678930943400360278"
+     ],
+     "Dt_correct": [
+      "0.7394689155452025238360649",
+      "0.7542168767191064474063507"
+     ],
+     "Dt_wrong": [
+      "1.245783123280893552593649",
+      "1.260531084454797476163935"
+     ],
+     "Dt_disjoint": true
+    },
+    "436 antipode": {
+     "disjoint": true,
+     "hit_correct": [
+      "0.07844481089310440251538243",
+      "0.08329675123927221210690893"
+     ],
+     "hit_wrong": [
+      "0.1011262929845276758558774",
+      "0.1075617677140833101009615"
+     ],
+     "Dt_correct": [
+      "1.123458497566869528193114",
+      "1.129984147822615843607485"
+     ],
+     "Dt_wrong": [
+      "0.8700158521773841563925153",
+      "0.8765415024331304718068859"
+     ],
+     "Dt_disjoint": true
+    }
+   }
+  },
+  {
+   "name": "(E7) refusals on the reader truncated at the anchor: a read into the possible (unguaranteed) end, a gap at append, an uncertified record, and any read after the anchor (the frozen records after the anchor are NOT in the reader; only reconstructed records appended before consumption are)",
+   "pass": true,
+   "detail": {
+    "neg_read_into_possible_end_refused": true,
+    "known_read_below_guaranteed_end_accepted": true,
+    "neg_gap_append_refused": true,
+    "neg_uncertified_refused": true,
+    "neg_frozen_record_after_anchor_not_in_reader": true
+   }
+  },
+  {
+   "name": "(E11) delay roots at the anchor state: the v3c1 bracket encloses the root of every class and agrees with a +-0.30 bracket where that straddles; uniqueness h' >= 1 - |w'| > 0 with |w| enclosed over the whole covered history up to the anchor",
+   "pass": true,
+   "detail": {
+    "unlike": {
+     "agree_or_v3c1_only": true,
+     "tau": [
+      "1.034512244294058178175936",
+      "1.034719200452213181230984"
+     ],
+     "bracket_0.30_straddles": true
+    },
+    "like": {
+     "agree_or_v3c1_only": true,
+     "tau": [
+      "1.694153927604374459335052",
+      "1.694267562111170292648316"
+     ],
+     "bracket_0.30_straddles": true
+    },
+    "antipode": {
+     "agree_or_v3c1_only": true,
+     "tau": [
+      "1.941723490201176413994641",
+      "1.941800982046322754357946"
+     ],
+     "bracket_0.30_straddles": true
+    },
+    "w_hull_covered_history_to_anchor": [
+     "0.1373057801796165107074306",
+     "0.3500711716516838136758267"
+    ],
+    "uniqueness_margin_below_one": "0.64992883"
+   }
+  },
+  {
+   "name": "(E13) one reconstruction step from the anchor: the frozen step closes on the anchor box, the affine end and the frozen-step end intersect (empty would refuse), the reconstructed end meets the frozen accepted record of the next step in q and w (consistency of two proved enclosures), and the record appends through the checked path",
+   "pass": true,
+   "detail": {
+    "refusal": null,
+    "affine_q_width": "0.000343302",
+    "box_q_width": "0.000343327",
+    "affine_w_width": "0.000894484",
+    "box_w_width": "0.000899116",
+    "meets_frozen_record_of_next_step_q": true,
+    "meets_frozen_record_of_next_step_w": true,
+    "corr": {
+     "affine_end_q": [
+      "0.5947345147670543751855125",
+      "0.5950778162735240497776863"
+     ],
+     "affine_end_w": [
+      "0.3500594657193253242161857",
+      "0.3509539494715070550578298"
+     ],
+     "box_end_q": [
+      "0.5947345021299898492261397",
+      "0.5950778289153357732428378"
+     ],
+     "box_end_w": [
+      "0.3500571498561586508471371",
+      "0.3509562662841132295826249"
+     ],
+     "end_q_used": [
+      "0.5947345147670543751855125",
+      "0.5950778162735240497776863"
+     ],
+     "end_w_used": [
+      "0.3500594657193253242161857",
+      "0.3509539494715070550578298"
+     ],
+     "A_centre": [
+      "0.08825895507193176867776561",
+      "0.08826716597894261478140901"
+     ],
+     "A_prime": [
+      "-0.06349559238713201043658721",
+      "-0.06303484928505023836447559"
+     ],
+     "Qd": [
+      "0.5912383062043186217382439",
+      "0.5915726917256567880265456"
+     ],
+     "rE": "4.14397e-6",
+     "budget_w_row": {
+      "delayed_reads_and_origin_D_rA": "4.10545e-8",
+      "derivative_radius_D_rj_dq": "3.85165e-10",
+      "remainder_radius_ap": "1.89486e-6",
+      "rounding_and_remainder_Rw": "1.89486e-6"
+     },
+     "symbols": 5,
+     "integral_remainder_used": false,
+     "first_reading_records_touched": [
+      "wave17 step 1 (like first reading of s = 0)"
+     ],
+     "time_frozen_step_s": 0.125,
+     "time_affine_s": 0.226,
+     "delay_roots": {
+      "unlike": {
+       "tau_centre": [
+        "1.034608425141553897901821",
+        "1.034623015406581667165971"
+       ],
+       "tau_box": [
+        "1.034512244294058178175936",
+        "1.034719200452213181230984"
+       ]
+      },
+      "like": {
+       "tau_centre": [
+        "1.694210120986648604734025",
+        "1.69421137800125294781035"
+       ],
+       "tau_box": [
+        "1.694153927604374459335052",
+        "1.694267562111170292648316"
+       ]
+      },
+      "antipode": {
+       "tau_centre": [
+        "1.941762184056493552570324",
+        "1.941762300462019396816923"
+       ],
+       "tau_box": [
+        "1.941723490201176413994641",
+        "1.941800982046322754357946"
+       ]
+      }
+     }
+    },
+    "append_ok": true
+   }
+  },
+  {
+   "name": "(E12) event directions and first-turn status: the frozen v3c1 synthetic event controls (D13) are carried; a support minimum is called FIRST only if every earlier over-step dl/dt is proved negative, an earlier undecided step makes it LOCAL",
+   "pass": true,
+   "detail": {
+    "all_earlier_negative_is_first": true,
+    "earlier_undecided_makes_it_local": true
+   }
+  },
+  {
+   "name": "(B1) KNOWN constructed stationary like source: exact root = direct-vector chord (frozen (0b) embedding, independent of geom); the frozen v3c1 bracket refuses (root below chord - 0.90); the v4.6 ladder encloses it (width < 1e-15, centre within 1e-15) on the expected rung (1 at Q = 1.74, q' = 1.60; 2 at Q = 1.82, q' = 1.77)",
+   "pass": true,
+   "detail": {
+    "1.74/1.60": {
+     "Q0": "1.74",
+     "q_source": "1.6",
+     "r_direct_vector": [
+      "0.8578741617541819201661939",
+      "0.8578741617541819201661939"
+     ],
+     "old_lower_end": "0.942285925529",
+     "frozen_bracket_refused": true,
+     "tau": [
+      "0.8578741617541819196228607",
+      "0.8578741617541819213142161"
+     ],
+     "rung": 1,
+     "width": "1.6914e-18",
+     "meets_direct_root": true,
+     "centre_diff": "3.0234e-19"
+    },
+    "1.82/1.77": {
+     "Q0": "1.82",
+     "q_source": "1.77",
+     "r_direct_vector": [
+      "0.6610221334967528636487848",
+      "0.6610221334967528636487848"
+     ],
+     "old_lower_end": "0.935899581536",
+     "frozen_bracket_refused": true,
+     "tau": [
+      "0.6610221334967528634050516",
+      "0.6610221334967528652265112"
+     ],
+     "rung": 2,
+     "width": "1.8215e-18",
+     "meets_direct_root": true,
+     "centre_diff": "6.67e-19"
+    }
+   }
+  },
+  {
+   "name": "(B2) KNOWN uniform like source paths (constructed, exact, |u| = 0.30): the enclosure is proved by an INDEPENDENT direct-vector sign test (h < 0 just below, h > 0 just above, width < 1e-15); approaching source below the frozen lower end enclosed by the ladder; RISING root (receding source) enclosed below the frozen lower end at t0 = 5.0 and by the unchanged frozen bracket at t0 = 6.2, the root having risen",
+   "pass": true,
+   "detail": {
+    "approaching u = +0.30": {
+     "Q0": "1.8",
+     "q1": "1.78",
+     "u": "0.3",
+     "t0": "5.0",
+     "frozen_bracket_refused": true,
+     "tau": [
+      "0.8858671247544958125301016",
+      "0.885867124754495814221457"
+     ],
+     "rung": 1,
+     "width": "1.6914e-18",
+     "h_direct_below": [
+      "-4.29786e-19",
+      "-4.29786e-19"
+     ],
+     "h_direct_above": [
+      "8.61905e-19",
+      "8.61905e-19"
+     ]
+    },
+    "receding u = -0.30, t0 = 5.0": {
+     "Q0": "1.8",
+     "q1": "1.4",
+     "u": "-0.3",
+     "t0": "5.0",
+     "frozen_bracket_refused": true,
+     "tau": [
+      "0.786162094893150210300227",
+      "0.7861620948931502121216867"
+     ],
+     "rung": 2,
+     "width": "1.8215e-18",
+     "h_direct_below": [
+      "-5.31942e-19",
+      "-5.31942e-19"
+     ],
+     "h_direct_above": [
+      "1.7628e-18",
+      "1.7628e-18"
+     ]
+    },
+    "receding u = -0.30, t0 = 6.2 (root risen above the frozen lower end)": {
+     "Q0": "1.8",
+     "q1": "1.4",
+     "u": "-0.3",
+     "t0": "6.2",
+     "frozen_bracket_refused": false,
+     "tau": [
+      "1.021589126383939287707493",
+      "1.021589126383939289268744"
+     ],
+     "rung": 0,
+     "width": "1.5613e-18",
+     "h_direct_below": [
+      "-6.97628e-19",
+      "-6.97628e-19"
+     ],
+     "h_direct_above": [
+      "1.26226e-18",
+      "1.26226e-18"
+     ]
+    }
+   }
+  },
+  {
+   "name": "(B3) NEGATIVES (constructed stationary like source, root about 0.661 at rung 2): a ladder capped at 1 rung refuses; an upper end below the root refuses (lowering cannot rescue an upper failure); an injected |w'| = 1.2 refuses uniqueness; a rung-2 read 1e-9 past the coverage end refuses (minimum admissible delay) and one 1e-6 inside is accepted on rung 2 and meets the direct root; the class sign exchanged (unlike geometry on the like source) is DETECTED: it refuses or gives an enclosure disjoint from the like direct-vector root",
+   "pass": true,
+   "detail": {
+    "kmax_1_refused": {
+     "refused": {
+      "class": "like",
+      "k": 1,
+      "tried": [
+       {
+        "k": 0,
+        "a": "0.935899581536",
+        "h_a": [
+         "0.27487745",
+         "0.27487745"
+        ]
+       },
+       {
+        "k": 1,
+        "a": "0.785899581536",
+        "h_a": [
+         "0.12487745",
+         "0.12487745"
+        ]
+       }
+      ],
+      "failing": "no rung up to k = 1 proved sup h(a_k) < 0"
+     }
+    },
+    "upper_end_below_root_refused": {
+     "refused": {
+      "class": "like",
+      "k": 2,
+      "tried": [
+       {
+        "k": 0,
+        "a": "0.935899581536",
+        "h_a": [
+         "0.27487745",
+         "0.27487745"
+        ]
+       },
+       {
+        "k": 1,
+        "a": "0.785899581536",
+        "h_a": [
+         "0.12487745",
+         "0.12487745"
+        ]
+       }
+      ],
+      "failing": "frozen bracket on [a_k, b] refused: inf h(b) > 0 not proved or a read undefined; h(b) = ['-0.025122552', '-0.025122552'] at b = 0.635899581536"
+     }
+    },
+    "injected_speed_1.2_uniqueness_refused": {
+     "refused": {
+      "class": "like",
+      "k": 2,
+      "tried": [
+       {
+        "k": 0,
+        "a": "0.935899581536",
+        "h_a": [
+         "0.27487745",
+         "0.27487745"
+        ]
+       },
+       {
+        "k": 1,
+        "a": "0.785899581536",
+        "h_a": [
+         "0.12487745",
+         "0.12487745"
+        ]
+       }
+      ],
+      "failing": "uniqueness not proved: sup|w'| over source times [2.264100418, 4.364100418] = 1.2 is not < 1"
+     }
+    },
+    "rung2_read_past_cover_end_refused": {
+     "refused": {
+      "class": "like",
+      "k": 2,
+      "tried": [
+       {
+        "k": 0,
+        "a": "0.935899581536",
+        "h_a": [
+         "0.27487745",
+         "0.27487745"
+        ]
+       },
+       {
+        "k": 1,
+        "a": "0.785899581536",
+        "h_a": [
+         "0.12487745",
+         "0.12487745"
+        ]
+       }
+      ],
+      "failing": "lower end a_k = 0.635899581536 is not > max(0, up(t0) - t_G) = 0.635899582536 (minimum admissible delay)"
+     }
+    },
+    "rung2_read_just_inside_cover_end_accepted": {
+     "enclosure": [
+      "0.6610221334967528634050516",
+      "0.6610221334967528652265112"
+     ],
+     "rung": 2
+    },
+    "class_sign_exchanged": {
+     "enclosure": [
+      "1.887604232625949859067222",
+      "1.887604232625949860547468"
+     ],
+     "rung": 0
+    },
+    "like_direct_root": [
+     "0.6610221334967528636487848",
+     "0.6610221334967528636487848"
+    ]
+   }
+  },
+  {
+   "name": "(B4) at the anchor state the v4.6 delay root equals the frozen v3c1 root for every class (identical strings of tau, q', w'), through the frozen path (ladder not engaged)",
+   "pass": true,
+   "detail": {
+    "unlike": {
+     "identical": true,
+     "tau": [
+      "1.034512244294058178175936",
+      "1.034719200452213181230984"
+     ]
+    },
+    "like": {
+     "identical": true,
+     "tau": [
+      "1.694153927604374459335052",
+      "1.694267562111170292648316"
+     ]
+    },
+    "antipode": {
+     "identical": true,
+     "tau": [
+      "1.941723490201176413994641",
+      "1.941800982046322754357946"
+     ]
+    }
+   }
+  },
+  {
+   "name": "(B7) KNOWN (v4.7) unlike roots above the frozen upper end chord_U + 0.90 (constructed: stationary source, exact root = direct-vector chord about 1.888; uniform source |u| = 0.10, root about 1.83 proved by the independent direct-vector sign test): the frozen v3c1 bracket refuses, the v4.7 fallback encloses on rung 0 (frozen lower end) with b = 2.05",
+   "pass": true,
+   "detail": {
+    "stationary unlike Q = 1.82, q' = 1.77": {
+     "Q0": "1.82",
+     "q_source": "1.77",
+     "r_direct_vector": [
+      "1.887604232625949860488411",
+      "1.887604232625949860488411"
+     ],
+     "old_lower_end": "0.343393172719",
+     "frozen_bracket_refused": true,
+     "tau": [
+      "1.887604232625949859067222",
+      "1.887604232625949860547468"
+     ],
+     "rung": 0,
+     "width": "1.4802e-18",
+     "meets_direct_root": true,
+     "centre_diff": "6.8107e-19",
+     "frozen_upper_end": "1.69339317272"
+    },
+    "uniform unlike Q = 1.80, q1 = 1.78, u = +0.10": {
+     "Q0": "1.8",
+     "q1": "1.78",
+     "u": "0.1",
+     "t0": "5.0",
+     "frozen_bracket_refused": true,
+     "tau": [
+      "1.825223507678498049499343",
+      "1.825223507678498050983262"
+     ],
+     "rung": 0,
+     "width": "1.4839e-18",
+     "h_direct_below": [
+      "-1.19932e-18",
+      "-1.19932e-18"
+     ],
+     "h_direct_above": [
+      "3.59896e-19",
+      "3.59896e-19"
+     ]
+    }
+   }
+  },
+  {
+   "name": "(B8) NEGATIVES (v4.7, constructed stationary unlike source, root about 1.888): a fallback with the upper end forced to 1.80 refuses (inf h(b) > 0 not proved); the like class sign on the unlike source is DETECTED (refuses or disjoint from the unlike direct-vector root)",
+   "pass": true,
+   "detail": {
+    "upper_end_1.80_below_root_refused": {
+     "refused": {
+      "class": "unlike",
+      "k": 0,
+      "tried": [],
+      "failing": "frozen bracket on [a_k, b] refused: inf h(b) > 0 not proved or a read undefined; h(b) = ['-0.087604233', '-0.087604233'] at b = 1.8"
+     }
+    },
+    "like_geometry_on_unlike_source": {
+     "enclosure": [
+      "0.6610221334967528634050516",
+      "0.6610221334967528652265112"
+     ]
+    },
+    "unlike_direct_root": [
+     "1.887604232625949860488411",
+     "1.887604232625949860488411"
+    ]
+   }
+  },
+  {
+   "name": "(B5) consistency (shared code, NOT independent evidence): at the r5 step-474 and step-491 end states, reader truncated to that step, the v4.6 root equals the frozen v3c1 root for every class (identical strings), through the frozen path",
+   "pass": true,
+   "detail": {
+    "step 474 end": {
+     "unlike": {
+      "identical_to_frozen": true,
+      "tau": [
+       "1.60562482319813150112023",
+       "1.608114319375764919930807"
+      ],
+      "margin_to_frozen_lower_end": "1.2823674"
+     },
+     "like": {
+      "identical_to_frozen": true,
+      "tau": [
+       "1.036758832388195828226486",
+       "1.043633959496654311209585"
+      ],
+      "margin_to_frozen_lower_end": "0.092502028"
+     },
+     "antipode": {
+      "identical_to_frozen": true,
+      "tau": [
+       "1.903583601864096003315987",
+       "1.905167055561687247027404"
+      ],
+      "margin_to_frozen_lower_end": "1.0382263"
+     }
+    },
+    "step 491 end": {
+     "unlike": {
+      "identical_to_frozen": true,
+      "tau": [
+       "1.645043054595760327858579",
+       "1.647751406173893894740555"
+      ],
+      "margin_to_frozen_lower_end": "1.3167896"
+     },
+     "like": {
+      "identical_to_frozen": true,
+      "tau": [
+       "0.9457659289732243386361568",
+       "0.9539398981036334065754674"
+      ],
+      "margin_to_frozen_lower_end": "0.0036933469"
+     },
+     "antipode": {
+      "identical_to_frozen": true,
+      "tau": [
+       "1.910900926932714389125663",
+       "1.912569973843949515687235"
+      ],
+      "margin_to_frozen_lower_end": "1.0737484"
+     }
+    }
+   }
+  },
+  {
+   "name": "(B6) the refused state, step-492 end (= step-493 start), reader through 492: the frozen like bracket refuses (sup h(chord - 0.90) < 0 not proved, as in r5); the v4.6 ladder encloses the like root strictly inside [a_k, b] with uniqueness proved over the read source range; unlike and antipode identical to the frozen roots; the step-492 end evaluation missing from r5 completes (reported, not an admitted record)",
+   "pass": true,
+   "detail": {
+    "t0": [
+     "6.786684593623649597167969",
+     "6.786684709182828044891357"
+    ],
+    "q": [
+     "1.740704055106090821270094",
+     "1.745277318753719701924551"
+    ],
+    "w": [
+     "0.1975116310947535889145029",
+     "0.1997870321588674418709122"
+    ],
+    "guaranteed_end": "6.786684593623649597167959",
+    "frozen_like_bracket_refused": true,
+    "frozen_like_h_at_lower_end": [
+     "-0.0051540214",
+     "0.0010139269"
+    ],
+    "frozen_like_lower_end": "0.941939530033",
+    "like_v46": {
+     "tau": [
+      "0.9405800424347079039351734",
+      "0.9488323146158715280531566"
+     ],
+     "rung": 1,
+     "lower_end": "0.791939530033",
+     "upper_end": "2.74224032504",
+     "margin_lower": "0.14864051",
+     "margin_upper": "1.793408",
+     "w_bound_over_source_range": "0.38963734",
+     "uniqueness_margin": "0.61036266",
+     "delayed_source_q": [
+      "1.484803477545209424371419",
+      "1.490425256187440013189004"
+     ],
+     "delayed_source_w": [
+      "0.320043007930350595192758",
+      "0.3221096404331013531555434"
+     ],
+     "tau_width": "0.0082523",
+     "h_at_enclosure_ends": [
+      [
+       "-0.00617087",
+       "-3.26899e-15"
+      ],
+      [
+       "1.31602e-14",
+       "0.00615322"
+      ]
+     ]
+    },
+    "unlike_identical_to_frozen": true,
+    "antipode_identical_to_frozen": true,
+    "end_eval_492": {
+     "end_eval": null,
+     "qddot_end": [
+      "-0.2165396764032616306540006",
+      "-0.2087221595713279348431188"
+     ],
+     "lambda_hat_end": [
+      "-0.1083133130910884095203938",
+      "-0.1049739429044753190892711"
+     ],
+     "w_end": [
+      "0.1975116310947535889145029",
+      "0.1997870321588674418709122"
+     ],
+     "w_sign_end": "positive",
+     "da_r_dt_end": [
+      "0.06682017719252842069263686",
+      "0.07608836771831046986507612"
+     ],
+     "dl_dt_end": [
+      "0.006361740646794360039113895",
+      "0.01970346139396994083053175"
+     ],
+     "dl_dt_end_sign": "positive",
+     "end_classes": {
+      "unlike": {
+       "tau": [
+        "1.647256439819697030202047",
+        "1.649977912890303965142821"
+       ],
+       "Dt": [
+        "1.187935598180518296647175",
+        "1.189561804918851527621091"
+       ],
+       "r": [
+        "1.646742952409697787340454",
+        "1.650491961902571191373654"
+       ],
+       "hist_q": [
+        "1.24401827498464056763337",
+        "1.247070482123063149714171"
+       ],
+       "hist_qdot": [
+        "0.3627654570728028125823374",
+        "0.3640634072885618530141147"
+       ],
+       "delayed_arg": [
+        "5.136706680733345632025148",
+        "5.13942826936313101468931"
+       ],
+       "position_vs_T_star": "above T*",
+       "families_read": [
+        "correlated-reconstruction"
+       ],
+       "position_vs_antipodal_records_end": "above",
+       "position_vs_like_reception_start": "above",
+       "Dt_side_of_one": "above one",
+       "margin_to_like_reception_start": "2.330021971550517587133791",
+       "margin_to_coverage_end": "1.647256439819697030202047",
+       "margin_to_guaranteed_coverage_end": "1.647256324260518582478649",
+       "position_vs_L": "above",
+       "margin_to_L": "1.730021971550517587133791",
+       "history_age": [
+        "1.647256439819697030202047",
+        "1.649977912890303965142821"
+       ],
+       "N_sign": "negative",
+       "M_sign": "negative",
+       "tangent_contribution_sign": "negative",
+       "hist_qddot": [
+        "-0.04977217534012774024141887",
+        "-0.04592896149887628271893505"
+       ],
+       "radial_rate": [
+        "0.003987982053039440387008327",
+        "0.00425936797590242946784671"
+       ]
+      },
+      "like": {
+       "tau": [
+        "0.9405800424347079039351734",
+        "0.9488323146158715280531566"
+       ],
+       "Dt": [
+        "0.744202075504133530444098",
+        "0.749213133489991742234975"
+       ],
+       "r": [
+        "0.9405774846559469845712492",
+        "0.9488350236169527847222257"
+       ],
+       "hist_q": [
+        "1.484803477545209424371419",
+        "1.490425256187440013189004"
+       ],
+       "hist_qdot": [
+        "0.320043007930350595192758",
+        "0.3221096404331013531555434"
+       ],
+       "delayed_arg": [
+        "5.837852279007778069114812",
+        "5.846104666748120140956184"
+       ],
+       "position_vs_T_star": "above T*",
+       "families_read": [
+        "correlated-reconstruction"
+       ],
+       "position_vs_antipodal_records_end": "above",
+       "position_vs_like_reception_start": "above",
+       "Dt_side_of_one": "below one",
+       "margin_to_like_reception_start": "3.031167569824950024223455",
+       "margin_to_coverage_end": "0.940580042434707903935173",
+       "margin_to_guaranteed_coverage_end": "0.940579926875529456211775",
+       "position_vs_L": "above",
+       "margin_to_L": "2.431167569824950024223455",
+       "history_age": [
+        "0.9405800424347079039351734",
+        "0.9488323146158715280531566"
+       ],
+       "N_sign": "negative",
+       "M_sign": "negative",
+       "tangent_contribution_sign": "negative",
+       "hist_qddot": [
+        "-0.07924523800956551256554996",
+        "-0.07406597405088812162791217"
+       ],
+       "radial_rate": [
+        "0.06313806854820772925865336",
+        "0.07205174534338876466390621"
+       ]
+      },
+      "antipode": {
+       "tau": [
+        "1.911362223754157963473616",
+        "1.913036077750608608907357"
+       ],
+       "Dt": [
+        "1.109080146837961742411181",
+        "1.110675410421748435946201"
+       ],
+       "r": [
+        "1.911177471277040507504378",
+        "1.913219459972425529345117"
+       ],
+       "hist_q": [
+        "1.146986816244499803329305",
+        "1.149381888416262035783955"
+       ],
+       "hist_qdot": [
+        "0.374366891278741638560477",
+        "0.3755483073801566194138155"
+       ],
+       "delayed_arg": [
+        "4.873648515873040988260612",
+        "4.875322485428670081417741"
+       ],
+       "position_vs_T_star": "above T*",
+       "families_read": [
+        "correlated-reconstruction"
+       ],
+       "position_vs_antipodal_records_end": "above",
+       "position_vs_like_reception_start": "above",
+       "Dt_side_of_one": "above one",
+       "margin_to_like_reception_start": "2.066963806690212943369255",
+       "margin_to_coverage_end": "1.911362223754157963473616",
+       "margin_to_guaranteed_coverage_end": "1.911362108194979515750218",
+       "position_vs_L": "above",
+       "margin_to_L": "1.466963806690212943369255",
+       "history_age": [
+        "1.911362223754157963473616",
+        "1.913036077750608608907357"
+       ],
+       "N_sign": "positive",
+       "M_sign": "negative",
+       "tangent_contribution_sign": "positive",
+       "hist_qddot": [
+        "-0.04122364035544470338259284",
+        "-0.03743951398771967272419373"
+       ],
+       "radial_rate": [
+        "-0.0003058734087187489530248282",
+        "-0.0002227456009807242666768057"
+       ]
+      }
+     },
+     "v46_bracket_end": {
+      "unlike": {
+       "calls": 2,
+       "k_max": 0,
+       "refused": 0,
+       "fallback_calls": 0,
+       "tau_first": [
+        "1.647256439819697030202047",
+        "1.649977912890303965142821"
+       ],
+       "k_first": 0,
+       "fallback_first": false,
+       "lower_end_first": "0.328556731896",
+       "upper_end_first": "1.67926809745",
+       "min_margin_lower": "1.3186997",
+       "min_margin_upper": "0.029290185"
+      },
+      "like": {
+       "calls": 2,
+       "k_max": 1,
+       "refused": 0,
+       "fallback_calls": 2,
+       "tau_first": [
+        "0.9405800424347079039351734",
+        "0.9488323146158715280531566"
+       ],
+       "k_first": 1,
+       "fallback_first": true,
+       "lower_end_first": "0.791939530033",
+       "upper_end_first": "2.74224032504",
+       "min_margin_lower": "0.14864051",
+       "min_margin_upper": "1.793408",
+       "w_bound_ladder": "0.38963734"
+      },
+      "antipode": {
+       "calls": 2,
+       "k_max": 0,
+       "refused": 0,
+       "fallback_calls": 0,
+       "tau_first": [
+        "1.911362223754157963473616",
+        "1.913036077750608608907357"
+       ],
+       "k_first": 0,
+       "fallback_first": false,
+       "lower_end_first": "0.83561500211",
+       "upper_end_first": "2.18911488489",
+       "min_margin_lower": "1.0757472",
+       "min_margin_upper": "0.27607881"
+      }
+     },
+     "dl_dt_over_step_consistent_with_l_change": true
+    },
+    "end_eval_492_complete": true
+   }
+  },
+  {
+   "name": "(B9) v4.8 chart: the predicates used by accel_parts (in_box) and the frozen step check (in_iv) accept boxes just inside the new edges (q' 1.83, w' -0.20) and refuse boxes 1e-9 past them; q' in [1.805, 1.81] accepted (refused by the old 1.80 edge); the edges w' 0.45 and receiver q [0.55, 2.10] unchanged and still enforced",
+   "pass": true,
+   "detail": {
+    "qp_inside_accepted": true,
+    "qp_past_refused": true,
+    "qp_1.81_accepted_new_box": true,
+    "qp_1.81_refused_by_old_box": true,
+    "vp_inside_accepted": true,
+    "vp_past_refused": true,
+    "vp_upper_unchanged_refused_past": true,
+    "q_unchanged_inside_accepted": true,
+    "q_unchanged_past_refused": true,
+    "box_values": {
+     "q": [
+      "0.55",
+      "2.1"
+     ],
+     "qp": [
+      "0.0",
+      "1.83"
+     ],
+     "vp": [
+      "-0.2",
+      "0.45"
+     ]
+    }
+   }
+  },
+  {
+   "name": "(S-ser) v4.9 serialization: (i) numbers (negative, positive, zero, tiny, irrational) and a whole affine form with a NEGATIVE centre and MIXED-SIGN columns round-trip EXACTLY; (ii) NEGATIVE: the old writer (v4.4 line 390) fails (i) with the centre sign flipped, and a resume file without the signed-v49 tag is refused; (iii, controls mode) KNOWN resume case: from the anchor, two steps uninterrupted versus one step, a JSON save and a resume, then step 2: the resumed form is identical and step 2 is string-for-string identical with the in-run time origin (also reported with the resume-constructed origin)",
+   "pass": true,
+   "detail": {
+    "numbers_round_trip_exact": true,
+    "form_round_trip_exact": true,
+    "old_writer_fails_round_trip": true,
+    "old_writer_cw_read_back": "0.0526",
+    "legacy_resume_refused": true,
+    "iii_form_after_resume_identical": true,
+    "iii_step2_in_run_t0_strings_identical": true,
+    "iii_resume_t0_vs_in_run_t0": {
+     "in_run": [
+      "3.416684593623649597167969",
+      "3.416684709182828044891357"
+     ],
+     "resume": [
+      "3.416684593623649597167969",
+      "3.416684709182828044891357"
+     ]
+    },
+    "iii_step2_resume_t0_strings_identical": true,
+    "iii_step2_end_q": [
+     "0.5982394775756962384135712",
+     "0.5985917330218526773467394"
+    ],
+    "iii_step2_end_w": [
+     "0.350931166610443401468542",
+     "0.3518300408633130925369166"
+    ]
+   }
+  }
+ ],
+ "sample_mode_not_target_evidence": false,
+ "v46": {
+  "version": "4.9",
+  "chart_v48": {
+   "q": [
+    "0.55",
+    "2.10"
+   ],
+   "qp": [
+    "0",
+    "1.83"
+   ],
+   "vp": [
+    "-0.20",
+    "0.45"
+   ]
+  },
+  "base_v44_sha256": "1bcc8a279934bc77b83e164ee4e7e8499d5fb44c173395b8178802fbd31e0540",
+  "ladder_step": "0.15",
+  "upper_half": "0.90 (frozen path); fallback max(0.90, 2.05 - up(chord))",
+  "ladder_first_rung": 0,
+  "lower_half_frozen": {
+   "unlike": "0.45",
+   "like": "0.9",
+   "antipode": "0.45"
+  },
+  "calls": 68,
+  "old_path_calls": 66,
+  "ladder_calls": {
+   "unlike": 0,
+   "like": 2,
+   "antipode": 0
+  },
+  "ladder_rungs_used": {
+   "1": 2
+  },
+  "refusals": [],
+  "controls_note": "B1-B4, B7-B9 run in every mode; B5-B6 only in controls mode (they append r1-r5)"
+ },
+ "chart": {
+  "q": [
+   "0.55",
+   "2.1"
+  ],
+  "qp": [
+   "0.0",
+   "1.83"
+  ],
+  "vp": [
+   "-0.2",
+   "0.45"
+  ]
+ },
+ "tight_remainder": true,
+ "flags": [],
+ "anchor": {
+  "step": 154,
+  "label": "like-reception-s3b step 154",
+  "family": "like-reception",
+  "t0": [
+   "3.406684593623649597167969",
+   "3.406684709182828044891357"
+  ],
+  "q": [
+   "0.5912383062043186217382439",
+   "0.5915726917256567880265456"
+  ],
+  "w": [
+   "0.3491807720407250904899195",
+   "0.3500711716516838136758167"
+  ],
+  "q_width": "0.000334386",
+  "w_width": "0.0008904",
+  "records_in_reader": 204,
+  "guaranteed_end": "3.406684593623649597167959"
+ },
+ "controls_all_pass": true,
+ "wall_s": 8.72216796875,
+ "partial": false
+}

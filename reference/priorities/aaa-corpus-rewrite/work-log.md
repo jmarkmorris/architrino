@@ -2,6 +2,62 @@
 
 This is the chronological completion log for the CRW-005 assurance campaign. The compact live status board is in [priorities.md](priorities.md#crw-005-status-board); detailed findings and receipts remain in [work-queue.md](work-queue.md).
 
+## Subsequent maintenance referrals
+
+### 2026-10-29 — Three Master Equation groups approved and implemented
+
+All three October 29 Master Equation groups are operator-approved and [implemented](evidence/ops-031-master-corrections-integration-2026-10-29.md); [separate verification](evidence/ops-031-master-corrections-verification-2026-10-29.md) passed. Five bounded prose replacements qualify density monotonicity, distinguish undeformed orbital motion from a fixed cloud, and restrict the finite-impulse inference to its actual-history assumptions. Every equation and the canonical acceleration law remain unchanged. Coverage remains early10/15, next Energy November2; CRW-005 stays closed.
+
+### 2026-10-29 — Full Master Equation review; three proposed groups
+
+The October 29 [whole Master Equation review](../aaa-operations/evidence/ops-031-master-equation-review-2026-10-29.md) is complete at its unchanged source identity. Three bounded groups are [proposed](work-queue.md#ops-031--october-29-master-equation-referrals): qualify forward-density monotonicity, distinguish an undeformed orbit from a fixed point cloud, and restrict finite-impulse inference to an actual reception-transverse caustic. No substantive repair is accepted or implemented by this review. Earlier accepted repairs and actual no-change claims survive independent analytical rechecks. Early coverage is 10/15, next Energy November 2; CRW-005 remains closed.
+
+### 2026-10-29 — Four approved maintenance corrections implemented
+
+The operator approved all four October 28 referral groups on October 29. ENV26-01/02, TC28-01 and MEX28-01 are [implemented](evidence/ops-031-four-corrections-integration-2026-10-29.md); [separate verification](evidence/ops-031-four-corrections-verification-2026-10-29.md) passed. Normalization domains, acceleration terminology, frame/phase distinction and six theory-name tokens are corrected across three chapters. Molecular Exclusion F1–F6 remain deferred and CRW-005 remains closed. Operations coverage credits and due dates are unchanged.
+
+### 2026-10-28 — Interrupted closeout reconciled; four proposed groups
+
+The October 28 reconciled OPS-031 pass credits the preserved October 26 [Envelope Geometry review](../aaa-operations/evidence/ops-031-braid-envelope-review-2026-10-26.md), completes carried [Emergence](../aaa-operations/evidence/ops-031-emergence-review-2026-10-28.md) and [Expansion Mechanism](../aaa-operations/evidence/ops-031-expansion-mechanism-review-2026-10-28.md) reviews, and completes the [core trio](../aaa-operations/evidence/ops-031-topology-sea-coupling-review-2026-10-28.md). Four bounded groups are [proposed](work-queue.md#ops-031--october-28-reconciled-envelope-and-core-referrals), not accepted or implemented. Operations owns coverage and capacity, now early 9/15, core 18/46, supporting 15/95 and validation 8/43. CRW-005 remains closed; earlier accepted repairs retain their separate verification.
+
+The October 26 whole-source envelope receipt is preserved; its coordinator interruption left no completed coverage-state or owner referral. This entry performs that reconciliation without inventing an earlier state. October 27 early/supporting reservations complete on October 28. The existing Molecular Exclusion F1–F6 deferred dispositions and their reopening conditions remain intact; the new naming-only group is separate. No source repair, scientific run, generated write or publication.
+
+### 2026-10-25 — Frame chapters periodically reviewed, no new repair
+
+The October 25 OPS-031 [frame detection](../aaa-operations/evidence/ops-031-frame-detection-review-2026-10-25.md) and [frame construction](../aaa-operations/evidence/ops-031-frame-construction-review-2026-10-25.md) reviews complete two unchanged whole chapters without new actionable correction. Accepted repairs and actual earlier no-change claims survive independent analytical rechecks. Operations owns the second early-cycle cursor, now 8/15 with seven uncovered, next Emergence of Structure October 27. Historical CRW-005 accounting and closure remain unchanged; six October 23 repairs retain separate verified closure.
+
+### 2026-10-24 — Absolute Time Defense periodically reviewed, no new repair
+
+The October 24 OPS-031 [Absolute Time Defense review](../aaa-operations/evidence/ops-031-absolute-time-defense-review-2026-10-24.md) completes the whole unchanged chapter with no new actionable correction. F4-2/F4-3 accepted repairs and the earlier affine-metric no-change disposition survive independent claim-level checks. Operations owns the second early-cycle cursor, now 6/15 with nine uncovered; next October 25. Historical CRW-005 accounting and closed status are unchanged; the six October 23 repairs retain separate verified closure.
+
+### 2026-10-23 — Six braid-methods corrections implemented and separately verified
+
+The operator approved all six October 23 braid-methods groups. They are [implemented](evidence/ops-031-braid-methods-integration-2026-10-23.md) and [separately verified](evidence/ops-031-braid-methods-verification-2026-10-23.md) against unchanged mathematical references. No repair remains in this six-group scope; optional BM23-C1 remains outside it. Current methodology provenance is refreshed without changing the 29 analytical measure rows or numerical reducers. Operations coverage credits, independent cycle dates, scientific obligations and CRW-005 closure are unchanged.
+
+### 2026-10-23 — Braid methods: six proposed groups
+
+The October 23 OPS-031 [braid methods batch](../aaa-operations/evidence/ops-031-braid-methods-review-2026-10-23.md) completes Braid Mathematics and Braid Analysis Methodology. Six new groups are proposed in the [existing maintenance queue](work-queue.md#ops-031--october-23-braid-methods-referrals), without implementation. Operations owns the periodic coverage cursor, now 14/46 core with 32 uncovered. Historical CRW-005 counts and closure remain unchanged.
+
+### 2026-10-22 — Four validation chapters periodically reviewed, no new repair
+
+The later October 22 OPS-031 [causal/information](../aaa-operations/evidence/ops-031-causal-information-review-2026-10-22.md) and [energy/numerics](../aaa-operations/evidence/ops-031-delay-energy-numerics-review-2026-10-22.md) reviews complete four validation chapters at unchanged source identities, with no new actionable correction. Accepted repair and prior no-change rechecks survive explicit independent mathematics; existing scientific construction obligations remain open. Operations owns the periodic cursor, now eight of forty-three validation paths, thirty-five uncovered. Historical CRW-005 audit counts and closed status are unchanged.
+
+### 2026-10-21 — Absolute Timespace periodic no-change review
+
+The [October 21 OPS-031 Absolute Timespace review](../aaa-operations/evidence/ops-031-absolute-timespace-review-2026-10-21.md) completes later whole-chapter coverage at unchanged source identity with no new actionable correction. Accepted repair and prior no-change checks survive explicit independent mathematics; physical recovery obligations remain open. Operations owns the second-cycle cursor, now five of fifteen early chapters, ten uncovered. Historical CRW-005 audit counts and its closed status remain unchanged. No substantive source repair is proposed.
+
+### 2026-10-20 — Six core geometry groups integrated and separately verified
+
+The operator approved integration of the outstanding recent findings on October 20. All six October 19 groups are implemented across the two braid chapters and [separately verified](evidence/ops-031-core-geometry-verification-2026-10-20.md), with [exact source identities and preservation checks](evidence/ops-031-core-geometry-integration-2026-10-20.md). No recent review repair remains pending in this six-group scope. Existing scientific obligations and historical CRW-005 closure remain unchanged. The operator instruction authorizes the bounded integration. Eight Coincident-Axis and ten Configuration Space fragments correct the accepted distinctions; the valid axial lemma and all 46 displayed equations/viewer links are preserved. Original receipts and their observed source hashes remain unchanged.
+
+### 2026-10-20 — Cosmology pair periodic review, no new repair
+
+The later October 20 OPS-031 reviews of [Cosmology Ontology](../aaa-operations/evidence/ops-031-cosmology-ontology-review-2026-10-20.md) and [Cosmology Reconstruction](../aaa-operations/evidence/ops-031-cosmology-reconstruction-review-2026-10-20.md) complete whole-chapter coverage at unchanged source identities with no new actionable correction. Previous accepted repairs survive independent checks; scientific cosmology construction and observation-fit obligations remain open. Operations owns the later coverage cursor. The six October 19 proposed maintenance groups and historical CRW-005 closure are unchanged.
+
+### 2026-10-19 — Six core geometry maintenance groups proposed
+
+The [maintenance referral](work-queue.md#ops-031--october-19-core-geometry-referrals) records four medium corrections, one low notation correction and one low clarification from two complete core-chapter reviews. The [operations batch record](../aaa-operations/evidence/ops-031-core-geometry-review-2026-10-19.md) links exact source identities, before/after fragments, independent references and falsifiers. Substantive repairs remain unapproved; no source edit occurred. Operations retains the later coverage cursor and historical CRW-005 accounting remains closed.
+
 ## Completed milestones
 
 ### 2026-10-14 — OPS-031 Bremsstrahlung terminology correction implemented

@@ -21,6 +21,11 @@ import {
   getCausalDelayFeedbackModeFromHref,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackModes.js";
 import {
+  LESSON_SCENARIOS, getLessonLocation, createLessonLocationHref,
+} from "../src/apps/causal-delay-feedback/CausalDelayFeedbackLessonScenarios.js";
+import { sampleBinaryComparison } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackBinaryLessons.js";
+import { prescribedBreathingState, sampleBreathingGeometry } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackBreathingGeometry.js";
+import {
   SPACE_AXIS_TOP_Y,
   TIME_AXIS_BASELINE_Y,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackDisplayContract.js";
@@ -973,7 +978,7 @@ test("page exposes semantic journey controls and one text-equivalent canvas summ
   assert.doesNotMatch(html, /causal-delay-feedback-lesson-search/u);
 });
 
-test("lesson navigation fits twelve uniform entries before ordinary scrolling", async () => {
+test("lesson navigation preserves the original ordered sequence and scrollable layout", async () => {
   const [html, controller] = await Promise.all([
     readFile(new URL("causal-delay-feedback.html", REPO_ROOT), "utf8"),
     readFile(
@@ -1002,20 +1007,83 @@ test("lesson navigation fits twelve uniform entries before ordinary scrolling", 
   assert.match(controller, /"data-causal-mode": mode\.id/u);
   assert.match(controller, /"aria-controls": "causal-delay-feedback-lesson-panel"/u);
   assert.doesNotMatch(controller, /opens for inspection/u);
-  assert.match(
-    controller,
-    /STORY_PREVIEW_STEPS\.forEach[\s\S]*?text: `\$\{STORY_STEPS\.length \+ previewIndex \+ 1\}\. \$\{lesson\.title\} — Coming soon`[\s\S]*?disabled: true[\s\S]*?"data-causal-preview": lesson\.id[\s\S]*?coming soon and not yet available/u,
-  );
-  assert.match(
-    controller,
-    /STORY_CONTINUATION_STEPS\.forEach[\s\S]*?text: `\$\{lessonNumber\}\. \$\{lesson\.title\}`[\s\S]*?"data-causal-lesson": lessonIndex/u,
-  );
+  // The scenario registry now owns the ordered lessons; an empty preview loop
+  // is no longer a navigation obligation. Preserve the original eight lessons.
+  assert.equal(LESSON_SCENARIOS[0].lessons, STORY_ACTIVE_STEPS);
+  assert.equal(LESSON_SCENARIOS[0].lessons.length, 8);
   assert.match(
     html,
     /\.causal-mode-tab\[data-causal-preview\]\s*\{[\s\S]*?background:\s*rgba\(42,\s*42,\s*50,\s*0\.82\)[\s\S]*?color:\s*rgba\(214,\s*216,\s*225,\s*0\.68\)/u,
   );
   assert.doesNotMatch(html, /causal-laboratory-tab/u);
   assert.doesNotMatch(controller, /causal-laboratory-tab/u);
+});
+
+test("binary scenarios switch without carrying completion or replacing canonical replay paths", () => {
+  const state = createState();
+  const paths = state.paths;
+  const controller = new CausalDelayFeedbackModeController({ state });
+  state.storyStep = 4;
+  state.playback.completed = true;
+  assert.equal(controller.setScenario("binary-pair"), true);
+  assert.equal(state.storyStep, 0);
+  assert.equal(state.playback.completed, false);
+  state.storyStep = 2;
+  controller.setScenario("path-history");
+  assert.equal(state.storyStep, 4);
+  controller.setScenario("binary-pair");
+  assert.equal(state.storyStep, 2);
+  assert.equal(state.paths, paths);
+  assert.equal(controller.setScenario("missing"), false);
+  state.storyStep = 5;
+  controller.goNext();
+  assert.equal(state.mode, "story");
+  assert.equal(state.storyStep, 5);
+  controller.setMode("roots");
+  assert.equal(state.lessonScenario, "path-history");
+});
+
+test("scenario and lesson deep links preserve unrelated query and fragment", () => {
+  const href = createLessonLocationHref("https://example.test/causal-delay-feedback.html?replay=mock#kept", {
+    mode: "story", lessonScenario: "binary-pair", storyStep: 3,
+  });
+  assert.deepEqual(getLessonLocation(href), { scenario: "binary-pair", step: 3 });
+  const url = new URL(href);
+  assert.equal(url.searchParams.get("replay"), "mock");
+  assert.equal(url.hash, "#kept");
+  assert.deepEqual(getLessonLocation("https://example.test/?scenario=missing&lesson=missing"), { scenario: "path-history", step: 0 });
+});
+
+test("binary speed comparison matches the independent closed-form phase controls", () => {
+  const release = sampleBinaryComparison(0);
+  const half = sampleBinaryComparison(0.5);
+  const full = sampleBinaryComparison(1);
+  assert.equal(release.netRate, 1);
+  assert.equal(release.speedChange, 0);
+  assert.equal(half.inward, -4);
+  assert.equal(half.netRate, -3);
+  assert.ok(Math.abs(half.speedChange + Math.PI) < 1e-12);
+  assert.equal(full.netRate, 1);
+  assert.ok(Math.abs(full.speedChange + 2 * Math.PI) < 1e-12);
+  assert.ok(sampleBinaryComparison(1 / 6).speedChange > 0);
+  assert.ok(Math.abs(sampleBinaryComparison(1 / 6).netRate) < 1e-12);
+});
+
+test("prescribed breathing reception stays regular at small turning and a turning reversal", () => {
+  for (const motionCase of ["turning", "near-radial", "reversal"]) {
+    for (const progress of [0, 0.25, 0.5, 0.75, 1]) {
+      const frame = sampleBreathingGeometry(progress, motionCase);
+      assert.equal(frame.available, true);
+      assert.ok(frame.delay > 0);
+      assert.ok(Math.abs(frame.residual) < 1e-7);
+      assert.ok(frame.transmitterFactor > 0.9);
+      assert.ok(frame.separation > 0);
+      assert.ok(Number.isFinite(frame.acceleration.x) && Number.isFinite(frame.acceleration.y));
+    }
+  }
+  assert.ok(Math.abs(prescribedBreathingState(40, "reversal").turnRate) < 1e-14);
+  assert.ok(prescribedBreathingState(0, "reversal").turnRate > 0);
+  assert.ok(prescribedBreathingState(80, "reversal").turnRate < 0);
 });
 
 test("guided lesson header leaves sequence and replay provenance out of learner copy", async () => {

@@ -1,0 +1,29 @@
+{
+ "tag": "B",
+ "s0": 0.03,
+ "corners": [
+  [
+   0.03,
+   3.2865
+  ],
+  [
+   0.03,
+   2.2
+  ]
+ ],
+ "N_max": 6000,
+ "Ns": 20000,
+ "precompute_s": 46.73978114128113,
+ "arg_change": "-0.03109689543225508989162053954579120842814",
+ "err": "0.000001726315524270658233130183967107796792786",
+ "arg_over_pi": -0.009898449245710358,
+ "segments": 22,
+ "bisections": 0,
+ "failed": [],
+ "min_segment": 0.05,
+ "evaluations": 45,
+ "real_axis_end_values": {},
+ "seconds": 300.79853224754333,
+ "module_sha256": "08768074feb8ac9ede6317e0b76b8c57c06b9632b367b49e7086f14102920e4f",
+ "driver_sha256": "5ce5348b0feaae1932e58f5f0544f3e999bef4be4801c38eb4434bf738babb2b"
+}

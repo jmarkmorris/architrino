@@ -1,0 +1,158 @@
+<div id="ladder-picture">
+  <div class="viz-controls" role="group" aria-label="Choose a balanced motion">
+    <button type="button" class="btn" data-motion="spin" aria-pressed="true">Spin in place</button>
+    <button type="button" class="btn" data-motion="screw" aria-pressed="false">Spin + travel</button>
+    <button type="button" class="btn" data-motion="slide" aria-pressed="false">Travel only</button>
+  </div>
+  <div class="lp-legend text-small">
+    <span><span class="lp-plus">● +</span> positive architrino</span>
+    <span><span class="lp-minus">◆ −</span> negative architrino</span>
+    <span class="text-muted">Faint lines mark pairs</span>
+  </div>
+  <svg class="lp-scene" role="img" aria-label="A short section of an infinite alternating ladder. Opposite-polarity particles sit across the axis from each other. The selected pair is outlined so its motion can be followed."></svg>
+  <div class="lp-control-line">
+    <button type="button" class="btn btn-primary" data-play>Play motion</button>
+    <label class="form-label lp-time">Time
+      <input class="form-range" data-time type="range" min="0" max="100" step="0.2" value="0" aria-label="Move time from the start to later in the motion">
+    </label>
+    <span class="text-small" data-time-label>Start</span>
+  </div>
+  <div class="text-small" data-detail aria-live="polite">The pattern turns around its axis.</div>
+  <div class="text-small text-muted lp-caption">Short section of an infinite pattern · sizes rescaled · playback speeds differ</div>
+</div>
+<style>
+  #ladder-picture .lp-legend { display:flex; flex-wrap:wrap; gap:6px 18px; margin-top:12px; }
+  #ladder-picture .lp-plus { color:var(--viz-series-1); }
+  #ladder-picture .lp-minus { color:var(--viz-series-2); }
+  #ladder-picture .lp-scene { width:100%; display:block; height:264px; overflow:hidden; }
+  #ladder-picture .lp-scene text { font-size:12px; fill:var(--foreground); }
+  #ladder-picture .lp-scene .lp-polarity { font-size:12px; font-weight:500; fill:var(--background); }
+  #ladder-picture .lp-control-line { display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:12px; }
+  #ladder-picture .lp-time { flex:1; min-width:135px; }
+  #ladder-picture .lp-caption { margin-top:6px; }
+</style>
+<script>
+(function () {
+  const root = document.getElementById('ladder-picture');
+  const svg = root.querySelector('.lp-scene');
+  const slider = root.querySelector('[data-time]');
+  const play = root.querySelector('[data-play]');
+  const detail = root.querySelector('[data-detail]');
+  const timeLabel = root.querySelector('[data-time-label]');
+  const choices = Array.from(root.querySelectorAll('[data-motion]'));
+  const ns = 'http://www.w3.org/2000/svg';
+  // Prescribed geometry from the reviewed balances, using distance/R and c_f = 1.
+  // The finite drawing is a window on an infinite population, not a finite assembly.
+  const profiles = {
+    spin: { delta:3.3450352927, twist:Math.PI, eps:0.01384081428, u:0,
+      detail:'The pattern turns around its axis.' },
+    screw: { delta:3.147703014, twist:0.9*Math.PI, eps:0.01364617543, u:-0.005089044718,
+      detail:'The pattern turns and travels along its axis.' },
+    slide: { delta:2.5083135333, twist:Math.PI, eps:0, u:-0.8433854761,
+      detail:'The pattern travels while keeping its orientation.' }
+  };
+  let mode='spin', progress=0, frame=0;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  function element(tag,attrs,text) {
+    const el=document.createElementNS(ns,tag);
+    Object.entries(attrs||{}).forEach(function (entry) { el.setAttribute(entry[0],String(entry[1])); });
+    if(text!==undefined) el.textContent=text;
+    return el;
+  }
+  function save() {
+    if(window.openai && window.openai.setWidgetState) {
+      window.openai.setWidgetState({modelContent:{motion:mode},privateContent:{progress:progress}}).catch(function(){});
+    }
+  }
+  function stop() { cancelAnimationFrame(frame);frame=0;play.textContent='Play motion'; }
+  function draw() {
+    const W=Math.max(280,Math.round(svg.getBoundingClientRect().width)),H=264;
+    svg.setAttribute('viewBox','0 0 '+W+' '+H);
+    svg.replaceChildren();
+    const title=element('title',{},'Rotating alternating ladder: '+mode);
+    const desc=element('desc',{},profiles[mode].detail+' The outlined pair identifies the same two particles as time advances.');
+    svg.append(title,desc);
+    const defs=element('defs');
+    const clip=element('clipPath',{id:'lp-window'});
+    clip.append(element('rect',{x:14,y:8,width:W-28,height:H-30}));
+    defs.append(clip);svg.append(defs);
+    const group=element('g',{'clip-path':'url(#lp-window)'});svg.append(group);
+    const p=profiles[mode], intervals=W<440?4:6;
+    const scale=(W-78)/(intervals*p.delta*0.92+1.1);
+    const duration=p.eps?2*Math.PI/p.eps:p.delta/Math.abs(p.u);
+    const phase=Math.PI/4+p.eps*duration*progress;
+    const travel=p.u*duration*progress;
+    function project(x,y,z) {
+      return [W/2+scale*(.92*z+.45*x),H/2+scale*(-.14*z+.16*x-.85*y)];
+    }
+    const ends=[project(0,0,-40),project(0,0,40)];
+    group.append(element('line',{x1:ends[0][0],y1:ends[0][1],x2:ends[1][0],y2:ends[1][1],stroke:'var(--foreground)','stroke-opacity':.3,'stroke-width':1}));
+    const particles=[];
+    for(let k=-9;k<=9;k++) {
+      const z=k*p.delta+travel;
+      const centre=project(0,0,z);
+      if(centre[0]<-60 || centre[0]>W+60)continue;
+      const a=k*p.twist+phase;
+      let orbit='';
+      for(let j=0;j<=48;j++) {
+        const t=j*2*Math.PI/48, q=project(Math.cos(t),Math.sin(t),z);
+        orbit+=(j?'L':'M')+q[0].toFixed(2)+','+q[1].toFixed(2);
+      }
+      group.append(element('path',{d:orbit,fill:'none',stroke:'var(--foreground)','stroke-opacity':k===0?.27:.11,'stroke-width':1}));
+      const A=project(Math.cos(a),Math.sin(a),z), B=project(-Math.cos(a),-Math.sin(a),z);
+      group.append(element('line',{x1:A[0],y1:A[1],x2:B[0],y2:B[1],stroke:'var(--foreground)','stroke-opacity':.2,'stroke-width':1}));
+      particles.push({point:A,positive:true,track:k===0,depth:.9*Math.cos(a)+.2*Math.sin(a)});
+      particles.push({point:B,positive:false,track:k===0,depth:-.9*Math.cos(a)-.2*Math.sin(a)});
+      if(k===0) {
+        const tx=Math.max(72,Math.min(W-72,centre[0]));
+        group.append(element('text',{x:tx,y:centre[1]-scale*.98-17,'text-anchor':'middle'},'Track this pair'));
+      }
+    }
+    particles.sort(function(a,b){return a.depth-b.depth;});
+    particles.forEach(function(particle) {
+      const x=particle.point[0],y=particle.point[1],r=7.5;
+      const color=particle.positive?'var(--viz-series-1)':'var(--viz-series-2)';
+      if(particle.track)group.append(element('circle',{cx:x,cy:y,r:12.5,fill:'none',stroke:'var(--foreground)','stroke-width':1.5}));
+      if(particle.positive)group.append(element('circle',{cx:x,cy:y,r:r,fill:color}));
+      else group.append(element('path',{d:'M'+x+','+(y-9)+'L'+(x+9)+','+y+'L'+x+','+(y+9)+'L'+(x-9)+','+y+'Z',fill:color}));
+      group.append(element('text',{x:x,y:y+4,'text-anchor':'middle',class:'lp-polarity',fill:'var(--background)'},particle.positive?'+':'−'));
+    });
+    svg.append(element('text',{x:W-20,y:H-12,'text-anchor':'end'},'axis →'));
+    timeLabel.textContent=progress<.001?'Start':progress>.999?'Later':Math.round(progress*100)+'%';
+  }
+  function applyState(state) {
+    if(!state)return;
+    const model=state.modelContent||{},priv=state.privateContent||{};
+    stop();mode=profiles[model.motion]?model.motion:'spin';
+    progress=Number.isFinite(priv.progress)?Math.max(0,Math.min(1,priv.progress)):0;
+    choices.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.motion===mode));});
+    slider.value=String(progress*100);detail.textContent=profiles[mode].detail;draw();
+  }
+  choices.forEach(function(b) { b.addEventListener('click',function(){
+    stop();mode=b.dataset.motion;progress=0;slider.value='0';
+    choices.forEach(function(c){c.setAttribute('aria-pressed',String(c===b));});
+    detail.textContent=profiles[mode].detail;draw();save();
+  }); });
+  slider.addEventListener('input',function(){stop();progress=Number(slider.value)/100;draw();});
+  slider.addEventListener('change',save);
+  play.addEventListener('click',function(){
+    if(frame){stop();save();return;}
+    if(progress>.999)progress=0;
+    if(reduced.matches){progress=1;slider.value='100';draw();save();return;}
+    const from=progress,start=performance.now(),duration=4200*(1-from);
+    play.textContent='Pause';
+    function tick(now) {
+      progress=Math.min(1,from+(1-from)*(now-start)/duration);
+      slider.value=String(progress*100);draw();
+      if(progress<1)frame=requestAnimationFrame(tick);else{frame=0;play.textContent='Play motion';save();}
+    }
+    frame=requestAnimationFrame(tick);
+  });
+  new ResizeObserver(draw).observe(svg);
+  window.addEventListener('openai:set_globals',function(event){
+    const globals=event.detail&&event.detail.globals;
+    if(globals&&globals.widgetState)applyState(globals.widgetState);
+  });
+  if(window.openai&&window.openai.widgetState)applyState(window.openai.widgetState);else draw();
+})();
+</script>

@@ -10,9 +10,11 @@ This is the living feedback backlog for improving the shared operator/developer 
 
 ## Method
 
+- [*] Keep current findings and accepted work usable in each area's standard files; agents manage supporting records and avoid new documents for routine discussions, reviews and closeouts. Follow the [operator-file arrangement](../priorities/README.md#operator-files-and-agent-supporting-records) (operator direction, 2026-10-31; Braid first application).
+
 - [*] Say what the equation does in plain language: call conformity to the Master Equation by that name, and describe actual modifications directly; avoid labels such as “sharp” or redundant descriptions such as “not smoothing” (operator direction, 2026-09-26).
 
-- [ ] Use [OPS-031/OPS-032 periodic scans](periodic-document-review.md) to measure confirmed improvements and introduced regressions; preserve no-change outcomes and evaluate new models before broadening document edits.
+- [ ] Use [OPS-031/OPS-032 periodic scans](periodic-document-review.md) to measure confirmed improvements and regressions; record routine OPS-032 no-change checks briefly, reserve detailed receipts for substantive evidence, keep active trackers current, and evaluate new models before broadening edits.
 - [ ] During participation/role reviews, check first-class human and AI collaborator framing under common evidence standards and distinguish audience relevance from public visibility; follow the [existing review practice](../priorities/development-process-review/analysis/public-community-guidance-review.md#continuing-review-practice).
 
 - [ ] Keep each item to one observable workflow behavior that would reduce friction or accelerate closure.
@@ -22,6 +24,8 @@ This is the living feedback backlog for improving the shared operator/developer 
 - [ ] Move a stable solved item to `Resolved` only after the improved behavior survives repeated sessions.
 
 ## Efficiency
+
+- [*] Capture long backup and verification output to local log files with exit status, then have the agent summarize differences rather than asking the operator to paste terminal scrollback; use the [backup verification output procedure](../priorities/development-process-review/analysis/retention-health-review.md#verification-output-capture-correction--october-25-2026) (operator correction, 2026-10-25).
 
 - [ ] Make browser download/file-chooser timeouts bound the actual tool call; preserve the [Surface torus observed delays](../priorities/app-surface/evidence/torus-app-delivery-2026-10-15.md#actual-file-round-trip-and-operational-delay) and route the issue to the browser-tool owner without treating elapsed tool latency as app performance.
 

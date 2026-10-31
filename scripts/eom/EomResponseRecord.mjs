@@ -5,24 +5,25 @@ export const EOM_RECORD_VIEW_LIMIT = 12 * 1024 * 1024;
 // Supported documents that are not evolution responses pass through
 // unchanged. Any other schema is refused; its raw bytes stay retained.
 const EOM_PASSTHROUGH_SCHEMAS = new Set(['eom_error/v2', 'eom_inspection/v2', 'eom_inspection/v3', 'eom_equation_capabilities/v1', 'eom_cancel_request/v2']);
-export function createEomResponseView(payload, artifact) {
-  if (payload.schema === 'eom_evolution_response/v3') return createEomV3View(payload, artifact);
+export function createEomResponseView(payload, artifact, options = {}) {
+  if (![undefined, "inline", "reference"].includes(options.checkpointMode)) throw new Error("Unsupported checkpoint presentation mode.");
+  if (payload.schema === 'eom_evolution_response/v3') return createEomV3View(payload, artifact, options);
   if (payload.schema !== 'eom_evolution_response/v2') {
     if (EOM_PASSTHROUGH_SCHEMAS.has(payload.schema)) return payload;
     throw Object.assign(new Error(`EOM projection does not support schema ${payload.schema}; complete raw evidence remains retained.`), { code: 'record_projection_unsupported' });
   }
-  return projectEvolution(payload, artifact);
+  return projectEvolution(payload, artifact, options);
 }
 // The v3 view: the v2 projection of every v2 field, and the validated
 // attempt log sampled by stride, never interpolated, with its last row and
 // original count. The complete log stays in the raw artifact.
-function createEomV3View(payload, artifact) {
+function createEomV3View(payload, artifact, options) {
   const attempts = payload.validated?.attempts ?? [];
   const stride = Math.max(1, Math.ceil(attempts.length / 128));
   const shown = [];
   for (let i = 0; i < attempts.length; i += stride) shown.push(attempts[i]);
   if (attempts.length && shown.at(-1) !== attempts.at(-1)) shown.push(attempts.at(-1));
-  const view = projectEvolution({ ...payload, validated: { ...payload.validated, attempts: shown } }, artifact);
+  const view = projectEvolution({ ...payload, validated: { ...payload.validated, attempts: shown } }, artifact, options);
   view.record.validatedAttempts = { originalCount: attempts.length, displayedCount: shown.length,
     sampling: 'stride sample of the complete attempt log; never interpolated; last row kept; complete log retained in the raw artifact' };
   if (Buffer.byteLength(JSON.stringify(view)) > EOM_RECORD_VIEW_LIMIT) throw Object.assign(new Error('EOM playback view exceeds 12 MiB; complete raw evidence remains retained.'), { code: 'record_view_budget_exhausted' });
@@ -68,7 +69,7 @@ export function assertEomExecutionBinding(rawRequest, payload) {
   if (payload.executionDigest !== digest) fail('executionDigest is not the digest of the declared execution');
   if (payload.resources?.maximumAcceptedSteps !== expected.maximumAcceptedSteps) fail('maximumAcceptedSteps differs from the request');
 }
-function projectEvolution(payload, artifact) {
+function projectEvolution(payload, artifact, options) {
   const grouped = new Map();
   for (const row of payload.surfaceDiagnostics ?? []) {
     const rows = grouped.get(row.pathId) ?? []; rows.push(row); grouped.set(row.pathId, rows);
@@ -83,6 +84,9 @@ function projectEvolution(payload, artifact) {
   const solutions = ledgers?.surfaceSolutions ?? [];
   const geometry = solutions.flatMap(row => row.geometry ?? []);
   const maximum = (rows,key) => rows.length ? rows.reduce((value,row)=>Math.max(value,Number(row[key])),0).toString() : null;
+  if (options.checkpointMode === "reference" && rest.checkpoint?.durable && rest.checkpoint.id) {
+    rest.checkpoint = { ...rest.checkpoint, data: null, retrieval: "solver-host", href: `/api/eom/v2/checkpoints/${encodeURIComponent(rest.checkpoint.id)}` };
+  }
   const view = { ...rest, surfaceDiagnostics: diagnostics,
     record: { schema: 'eom_record_view/v1', artifact, diagnostics: 'sampled receiver-total interval records; never interpolated',
       acceptedSurface: {certificateCount:solutions.length, certifiedCount:solutions.filter(row=>row.certified && (row.geometry ?? []).every(g=>g.certified)).length,

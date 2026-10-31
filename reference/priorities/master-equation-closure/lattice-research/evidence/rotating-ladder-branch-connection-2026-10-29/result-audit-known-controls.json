@@ -1,0 +1,15 @@
+{
+ "all_pass": true,
+ "controls": [
+  "exact binary domain",
+  "decimal endpoint padding",
+  "strict containment positive and negative",
+  "deliberate gap rejection",
+  "overlap acceptance",
+  "contraction positive and negative",
+  "independent rational pi enclosure",
+  "skip an explicitly unrun patch record",
+  "admissibility positive and speed exclusion negative"
+ ],
+ "order": "All controls executed and saved before loading target receipts"
+}

@@ -10,7 +10,8 @@ export function createEomV2HttpClient({ endpoint = '/api/eom/v2', fetchImpl = gl
     return postEomJson(fetchImpl, `${endpoint}/inspect`, request);
   };
   const cancel = (runId, executionId) => postEomJson(fetchImpl, `${endpoint}/cancel`, { runId, ...(executionId ? { executionId } : {}) });
-  async function run(request, body, route, { expectedModelDigest, signal, onProgress } = {}) {
+  async function run(request, body, route, { expectedModelDigest, signal, onProgress, checkpointMode = "inline" } = {}) {
+    if (!["inline", "reference"].includes(checkpointMode) || (checkpointMode === "reference" && !route.endsWith("-record"))) throw new TypeError("Checkpoint references require a retained record operation.");
     // A v3 request's normalized execution and its digest are fixed before
     // anything is sent; inspection and result must both be that execution.
     // Only v2 and v3 requests are admitted; anything else is refused before
@@ -40,7 +41,7 @@ export function createEomV2HttpClient({ endpoint = '/api/eom/v2', fetchImpl = gl
     const progressTimer = startProgress();
     try {
       // Keep receiving after cancellation so durable accepted coverage returns.
-      const result = await postEomJson(fetchImpl, `${endpoint}/${route}`, body, undefined, 'EOM', { 'X-EOM-Execution-Id': executionId });
+      const result = await postEomJson(fetchImpl, `${endpoint}/${route}`, body, undefined, 'EOM', { 'X-EOM-Execution-Id': executionId, ...(checkpointMode === 'reference' ? { 'X-EOM-Checkpoint-Mode': 'reference' } : {}) });
       // A v3 request needs a v3 inspection and a v3 response bound to the
       // same execution; a v2 request keeps its v2 response check.
       const executionMismatch = v3 && !boundTo(result);

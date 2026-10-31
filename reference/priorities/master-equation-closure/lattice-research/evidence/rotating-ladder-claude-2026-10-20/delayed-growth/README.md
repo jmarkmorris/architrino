@@ -1,0 +1,28 @@
+# delayed growth — retained records
+
+Navigation added during publication. The original files below retain their bytes, claim grades and review history. This index adds no scientific acceptance; consult the [owning account](../../../analysis/rotating-ladder-claude-2026-10-20-pi-account.md) for dispositions and limitations.
+
+- [c1-delta-slope.json](c1-delta-slope.json)
+- [c1_delta_slope.py](c1_delta_slope.py)
+- [closed-form.json](closed-form.json)
+- [closed_form.py](closed_form.py)
+- [controls-first-order.json](controls-first-order.json)
+- [controls.json](controls.json)
+- [controls.py](controls.py)
+- [controls_first_order.py](controls_first_order.py)
+- [direct-mode-check.json](direct-mode-check.json)
+- [direct_mode_check.py](direct_mode_check.py)
+- [exact-roots-N200000.json](exact-roots-N200000.json)
+- [exact-roots-N400000.json](exact-roots-N400000.json)
+- [exact_roots.py](exact_roots.py)
+- [first-order.json](first-order.json)
+- [first_order.py](first_order.py)
+- [fit-next-order.json](fit-next-order.json)
+- [fit_next_order.py](fit_next_order.py)
+- [ladder_char.py](ladder_char.py)
+- [match-adjudication-roots.json](match-adjudication-roots.json)
+- [match_adjudication_roots.py](match_adjudication_roots.py)
+- [qscan.json](qscan.json)
+- [qscan.py](qscan.py)
+- [remainder-constants.json](remainder-constants.json)
+- [remainder_constants.py](remainder_constants.py)

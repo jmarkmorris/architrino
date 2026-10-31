@@ -1,0 +1,85 @@
+{
+  "frozenAt": "2026-10-29T20:36:06.638Z",
+  "scenario": {
+    "R": 1000,
+    "c_f": 1,
+    "K": 1
+  },
+  "records": [
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-claude-2026-10-20/twisted-certificate/twisted_certificate.py",
+      "copy": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/inputs/twisted_certificate.py",
+      "sha256": "75885d17a4a17a08dce3b68a83a11e47c026829d6c09a844f5f84f2ebb849722"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-claude-2026-10-20/twisted-certificate/fold.py",
+      "copy": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/inputs/fold.py",
+      "sha256": "1f91e80a66edf98a5759410234f7451e5a923218adcf192ec01513d3c3ed4e16"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-claude-2026-10-20/twisted-certificate/fold_controls.py",
+      "copy": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/inputs/fold_controls.py",
+      "sha256": "3e3a7f73d81ac6bcfd8bb0cb1d0dad87cd01218f609068069a7298a2fbc2a25a"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-claude-2026-10-20/twisted-certificate/fold_check.py",
+      "copy": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/inputs/fold_check.py",
+      "sha256": "c07a6701f949216ad21602d9d26911566f10a4bb12b11775f58e360e76c476e8"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-claude-2026-10-20/twisted-certificate/fold_patch2.py",
+      "copy": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/inputs/fold_patch2.py",
+      "sha256": "8b38516d8b468d9d47c3b126e48788dab0e649a017795f21197abafffb3a45d8"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-claude-2026-10-20/twisted-certificate/fold_final2.py",
+      "copy": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/inputs/fold_final2.py",
+      "sha256": "385c77f52f204983149aa149a98c27fd3fd8348eda58b08e464223c869184a03"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-claude-2026-10-20/twisted-certificate/fold-patches.json",
+      "copy": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/inputs/fold-patches.json",
+      "sha256": "b40079ac96383894285fd92cb88d3b76776c253faf11878608fb1508d27f7ca2"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-claude-2026-10-20/twisted-certificate/fold-patches-2.json",
+      "copy": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/inputs/fold-patches-2.json",
+      "sha256": "d1607e952ea5e0d5ede39142bb6f82c42e91a5774008011f16e61c193df23e58"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-claude-2026-10-20/twisted-certificate/fold-check-receipt-2.json",
+      "copy": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/inputs/fold-check-receipt-2.json",
+      "sha256": "31248f0ffdcfed496b7e8082b45800497c55b177e778df8fd93fc312b68553b8"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-claude-2026-10-20/twisted-certificate/branch-certificate-summary-extended-2.json",
+      "copy": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/inputs/branch-certificate-summary-extended-2.json",
+      "sha256": "0eef5e5a7fcd60904fb4ac532df645efd28af8a849a07a1fa940f145ec5e401f"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-claude-2026-10-20/twisted-certificate/krawczyk-alpha-0.9pi.json",
+      "copy": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/inputs/krawczyk-alpha-0.9pi.json",
+      "sha256": "61964ac4b0afd5afd3ad68cfed1f2509e42f0cf98a004707375ea046f30e4df1"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-claude-2026-10-20/twisted-certificate/krawczyk-alpha-0.878pi-lower.json",
+      "copy": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/inputs/krawczyk-alpha-0.878pi-lower.json",
+      "sha256": "cf52d038427f6e26d147fcb8a533d62d15fd407f3241784ba9597903b729fa4e"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-claude-2026-10-20/twisted-certificate/krawczyk-alpha-0.878pi-upper.json",
+      "copy": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/inputs/krawczyk-alpha-0.878pi-upper.json",
+      "sha256": "24e740db889d43743b4222c974848511e97d697eea00303602f3e6a47e7a88bc"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/claude-2026-10-20/twisted-certificate/fold-cover-all.json",
+      "copy": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/inputs/fold-cover-all.json",
+      "sha256": "73db182f21b31a37421dde76fc11fb74c25b71e411841d322e285cbc4aee0001"
+    },
+    {
+      "path": ".tmp/rotating-ladder/codex-review/packet-11-reproduction/reviewer.py",
+      "copy": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/inputs/reviewer_reference.py",
+      "sha256": "c47cca26960b54dbadb51139c22fa9d1de632e2bae26f45140839c8f98ce5b5d"
+    }
+  ]
+}

@@ -138,6 +138,8 @@ function parseNamedArguments(argv, allowedNames) {
 function parsePruneArguments(argv) {
   let olderThanSeconds;
   let apply = false;
+  const runIds = new Set();
+  const statuses = new Set();
   for (let index = 0; index < argv.length; index += 1) {
     const token = argv[index];
     if (token === "--apply") {
@@ -151,10 +153,24 @@ function parsePruneArguments(argv) {
       index += 1;
       continue;
     }
+    if (token === "--run-id") {
+      const value = argv[++index];
+      requireCondition(typeof value === "string" && /^[0-9a-f-]{36}$/u.test(value), "invalid prune --run-id");
+      requireCondition(!runIds.has(value), "duplicate prune --run-id");
+      runIds.add(value);
+      continue;
+    }
+    if (token === "--status") {
+      const value = argv[++index];
+      requireCondition(TERMINAL_STATUSES.has(value), "prune --status must name a terminal status");
+      requireCondition(!statuses.has(value), "duplicate prune --status");
+      statuses.add(value);
+      continue;
+    }
     throw new Error(`unsupported prune option: ${token}`);
   }
   requireCondition(olderThanSeconds !== undefined, "--older-than-seconds is required");
-  return { olderThanSeconds, apply };
+  return { olderThanSeconds, apply, runIds, statuses };
 }
 
 function pathIsInsideStateRoot(filePath) {
@@ -578,7 +594,7 @@ async function inspectClosedLeaseIdentities(lease) {
   return { ok: true };
 }
 
-async function pruneTerminalRecords({ olderThanSeconds, apply }) {
+async function pruneTerminalRecords({ olderThanSeconds, apply, runIds = new Set(), statuses = new Set() }) {
   await ensureStateDirectories();
   const cutoffMs = Date.now() - olderThanSeconds * 1000;
   const cutoffAtUtc = new Date(cutoffMs).toISOString();
@@ -586,7 +602,9 @@ async function pruneTerminalRecords({ olderThanSeconds, apply }) {
   const retained = [];
   const candidates = [];
   let refused = false;
-  const names = (await readdir(LEASE_DIR)).filter((name) => /^[0-9a-f-]{36}\.json$/u.test(name)).sort();
+  const availableNames = (await readdir(LEASE_DIR)).filter((name) => /^[0-9a-f-]{36}\.json$/u.test(name)).sort();
+  for (const runId of runIds) requireCondition(availableNames.includes(`${runId}.json`), `requested prune lease is absent: ${runId}`);
+  const names = runIds.size ? availableNames.filter((name) => runIds.has(name.slice(0, -5))) : availableNames;
 
   for (const name of names) {
     const runId = name.slice(0, -".json".length);
@@ -608,6 +626,10 @@ async function pruneTerminalRecords({ olderThanSeconds, apply }) {
     if (lease.schema !== SCHEMA || lease.runId !== runId) {
       retained.push({ runId, status: lease.status ?? "unknown", classification: "uncertain", reason: "invalid_lease_identity" });
       refused = true;
+      continue;
+    }
+    if (statuses.size && !statuses.has(lease.status)) {
+      retained.push({ runId, status: lease.status, classification: "not_selected", reason: "status_not_selected" });
       continue;
     }
     const classified = await classifyLease(lease);
@@ -679,6 +701,7 @@ async function pruneTerminalRecords({ olderThanSeconds, apply }) {
     status: refused ? "refused" : "passed",
     mode: apply ? "apply" : "dry-run",
     olderThanSeconds,
+    scope: { runIds: [...runIds], statuses: [...statuses] },
     cutoffAtUtc,
     selected,
     retained,

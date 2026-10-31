@@ -4,7 +4,13 @@
 
 Architrino Lattice Lab is a geometry-first educational explorer of declared electrino and positrino arrangements. Its central question is precise: when a specified stationary arrangement is evaluated with a stated acceleration kernel and calculation boundary, which contributions cancel? The answer depends on the geometry, polarity assignment, retained history and summation convention. A symmetric picture or an equal red/blue population supplies only part of that information.
 
-The retained materials distinguish three kinds of result. A geometric view identifies sites, neighbors, repeated cells and polarity patterns. A finite calculation sums an explicitly bounded set of source contributions for one receiver. A periodic certificate proves a statement about every receiver of a declared infinite repeating pattern under a specified exhaustion. None of these establishes later motion, perturbative stability, binding, energy conservation or a physical Noether sea. The app remains a static educational display, with its implementation and verification descriptions attributed to the retained contracts and audits rather than a fresh runtime examination.
+The static gallery distinguishes three kinds of result. A geometric view identifies sites, neighbors, repeated cells and polarity patterns. A finite calculation sums an explicitly bounded set of source contributions for one receiver. A periodic certificate proves a statement about every receiver of a declared infinite repeating pattern under a specified exhaustion. None of these establishes later motion, perturbative stability, binding, energy conservation or a physical Noether sea. The separate finite-patch disturbance section described below advances supplied histories with the EOM solver; it does not change the gallery's stationary evidence.
+
+### Finite disturbance experiments and the infinite research family
+
+The disturbance section releases a finite, open-boundary simple-cubic patch after a declared preparation. One central member can be displaced smoothly during a finite interval before release, with zero displacement before its prescribed onset and zero velocity at release. Alternatively, it can be held displaced throughout the supplied past. All members then move under the unchanged acceleration equation at coupling 16 and normalized wake speed 1; lattice spacing is an explicit scenario parameter. The EOM solver produces the numerical future over its accepted coverage. An undisplaced comparison separates ordinary finite-edge motion from motion associated with the changed preparation. Synchronized views show true positions and a labelled magnified difference of the runs' motion since release; magnification changes no dynamics. This is an explicitly finite experiment, not an approximation with an established error bound to an infinite population.
+
+The [localized infinite-lattice construction](../master-equation-closure/lattice-research/manuscript.md#130-localized-nonlinear-histories-and-a-guaranteed-forward-interval) has a different preparation: an exact nonlinear history extending throughout the ancient past, with every label dynamical, all causal roots and infinite tails retained. Its continuation and conditional-growth theorems supply bounds rather than a numerical trajectory. The app presents that distinction separately; its finite simulations do not inherit the theorem's guarantees. Numerical failure or the end of accepted coverage is not a physical ending of either solution. The [execution design](contracts/disturbance-experiments.md) defines preparation, source inventory, playback and evidence boundaries.
 
 ### 1.1. The held-history experiment
 
@@ -51,6 +57,33 @@ A fundamental translation tile owns each actual site once under a half-open boun
 Several counts can coexist without measuring the same thing: directed neighbor incidences at owned sites, unique undirected edges, the induced graph of displayed context sites, and endpoint-group relationships after aggregation. The BCC audit illustrates the distinction. Two owned sites each have eight nearest incidences, giving sixteen directed incidences but fifteen unique owned-incident segments because their in-tile relationship is shared. A larger displayed context has additional induced edges. Its longer same-polarity square-perimeter relationships belong to the next shell and must not be inserted into the nearest graph to make the image look complete.
 
 The presentation contract permits a translated colored sphere only when its displayed context has an honest induced nearest-neighbor network. A boundary continuation marker can indicate an unrepresented endpoint without pretending to be another fully shown site. Ownership, translated context and continuation remain distinct even when ordinary markers share the same appearance.
+
+### 2.4. Six-valent connectivity and deformed cubic nets
+
+A spatial graph records vertices and declared connecting edges. It is 6-regular, six-valent or hexavalent when exactly six edges meet every vertex. The infinite simple-cubic nearest-neighbor graph has this property: each site connects to the two sites reached by stepping along each of three coordinate axes. Valence counts connections. A chemical-valence analogy can suggest combining capacity, but supplies no chemical bonding law for architrinos. The six connections also do not count the constituents of an assembly assigned to one vertex.
+
+The connectivity can survive a change of shape. Start with spacing $a>0$ and sites $a\mathbf n$ for $\mathbf n\in\mathbb Z^3$. Apply an invertible linear map $F$ and a translation $\mathbf b$ while keeping edges between the same integer labels:
+
+$$
+\mathbf x_{\mathbf n}=\mathbf b+aF\mathbf n,
+\qquad
+\mathbf n\longleftrightarrow\mathbf n\pm\mathbf e_k,
+\qquad k\in\{1,2,3\}.
+$$
+
+Here $\mathbf e_k$ are the coordinate unit vectors. Invertibility keeps distinct vertices distinct. The six label differences remain six edges, and images of the original cubic cells are parallelepipeds that tile volume because an invertible map preserves coverage and disjoint cell interiors. Unequal stretching or shear generally changes the strict simple-cubic geometry, so a deformed cubic net is the appropriate description. The declared edges need not remain the six shortest geometric separations after deformation; connectivity and nearest-distance ranking are separate choices.
+
+Space filling in this example concerns the three-dimensional cells, not their one-dimensional edge network. Selecting groups of cells can delineate rods, branches and regions with holes while leaving the full underlying graph unchanged. Removing the unselected graph instead creates boundary vertices whose degrees can be smaller. Replacing each cell group by one new vertex is another construction: its degree depends on the surviving intergroup connections and need not be six. Neither highlighting nor coarse grouping automatically supplies a new hexavalent lattice.
+
+These are derived geometric statements for the stated graph and invertible map. A singular map, loss of an incident edge or an identification of distinct vertices violates their premises. The proof supplies no acceleration cancellation, retained dynamics or physical stability. The laboratory's implemented static deformation and presentation aggregation retain their separate scopes in chapter 6; the affine construction above is not a claim that a new shear control or grouping mode exists in the app.
+
+### 2.5. From a geometric net to a proposed sea
+
+The [Noether-sea proposal](../master-equation-closure/noether-sea-research/brainstorming.md#hexavalent-geometry-and-changing-neighbor-couplings) asks whether neutral six-member assemblies can retain an identifiable organization while their internal partnerships and dominant external interactions change. Three binary axes motivate a possible six-direction picture, but six constituents or six directional opportunities do not establish six occupied neighbor connections. Several sources can contribute at once. A change in the dominant delayed acceleration contribution can be continuous and need not be a bond switch, a merger or a change in the nearest-neighbor graph.
+
+The proposed feedback runs from neighbor orientation, phase and wake timing to changed constituent motion, then to changed emissions and later received alignment. It may support or disrupt persistence; its physical occurrence is guessed. The associated particle image treats particle-like objects as localized reorganizations or propagating patterns of the same population. It establishes no particle taxonomy, size-energy ordering, transparency or effective spacetime. Average polarity neutrality and mean cancellation do not establish bounded fluctuations or assembly survival.
+
+The [adaptive geometry treatment](../master-equation-closure/lattice-research/manuscript.md#3-adaptive-geometry-and-a-retained-medium) supplies the separate language of persistent identities, local deformation, certified geometric neighbors and reorganization. The sea discussion owns the full provisional mechanism, membership and persistence questions, and possible reciprocal comparisons under a fixed selected equation with $c_f=1$. All admitted delayed contributions remain in that equation. The static Lattice Lab gallery illustrates graph geometry and declared stationary sums; it does not execute the proposed assembly dynamics. A deformable network alone also supplies no derivation of observer-level clocks or spacetime behavior.
 
 ## 3. Exact cancellation for the stationary checkerboard
 

@@ -1,0 +1,65 @@
+18c18,30
+< # ---- v4 header follows unchanged ----
+---
+> # ---- receval v6 (2026-10-20, after review adjudication 2): a NEW file built from receval v5 (sha256 2756db628afc892a857eee56d2e8d79858d137f4566c685a6fe7b397fdcc8acd,
+> # unchanged). Its only substantive change: every stored decimal input is read with a 1e-23 OUTWARD pad (matching the subject's Ipad), because the history
+> # fields S, VS, a0, ap (and t_int and the class ranges) were written by nstr(x, 25) to nearest with no pad, so an unpadded read can be inward by up to ~5e-25.
+> #  (D0) after the frozen chain486 exec (its controls run unchanged on the frozen reading), iv_of is REBOUND to the padded reader ivp (directed decimal read,
+> #       then lo - 1e-23 and up + 1e-23 in interval arithmetic; |value| >= 100 refused, since nstr(.,25)'s half unit would then exceed the pad). The window
+> #       premises T*, q(T*), qdot(T*) are re-read padded; the 486 laws are recomputed with rec_boxes under the padded reader and the frozen slab chain is
+> #       rebuilt with make_slabs; FROZ is the padded chain; the reconstructed chain is built from the padded laws. Every later read (records, whole step,
+> #       sub steps, P controls) goes through the padded reader. The end box and end time are read outward (v5 C2) and then padded by 1e-23.
+> #  Controls added: (D1) the rebuild with the UNPADDED reader reproduces the frozen 486-slab chain exactly (all fields, both ends; identity of the rebuild path,
+> #       not independent evidence); (D2) every field of the padded chain contains the frozen field, all 485 joins pass; (W1) known: a field [2/3, 4/3] written by
+> #       nstr(., 25) rounds INWARD at both ends; the padded read contains the true field; NEGATIVE: the unpadded read misses it; the |value| >= 100 guard refuses.
+> #  Control tolerance changed: V1's tightness bound becomes 1e-22 (the end-box pad adds up to 3e-23 to the image of q + 2w). Nothing else changed.
+> # ---- v5 header and v4 header follow unchanged ----
+43a56,89
+> # ---- v6 (D0-D2, W1): padded reading of every stored decimal input, the rebuilt chains, and their controls
+> from fractions import Fraction
+> from mpmath.libmp import from_str, round_floor, round_ceiling
+> def fr(x):
+>     """exact rational value of a binary mpf (no rounding)"""
+>     s_, m_, e_, bc_ = x._mpf_
+>     if m_ == 0 and e_ != 0: raise ValueError("special value")
+>     v_ = Fraction(int(m_)) * (Fraction(2)**e_ if e_ >= 0 else Fraction(1, 2**(-e_)))
+>     return -v_ if s_ else v_
+> def dn(s): return mp.make_mpf(from_str(str(s), mp.prec, round_floor))
+> def upr(s): return mp.make_mpf(from_str(str(s), mp.prec, round_ceiling))
+> PADR = mp.mpf("1e-23"); PADI = I(PADR, PADR)
+> def padx(x): return I(lo(x - PADI), up(x + PADI))
+> iv_of_v5 = iv_of
+> def ivp(p):
+>     a_, b_ = dn(p[0]), upr(p[1])
+>     if max(abs(a_), abs(b_)) >= 100: raise ValueError("padded read refused: |value| >= 100")
+>     return padx(I(a_, b_))
+> LAW_FROZEN = ALLLAW6 + LAWX; RAW_FROZEN = ALLRAW6 + raw; QT_v5, VT_v5, TSTAR_HI_v5 = QT, VT, TSTAR_HI
+> FIELDS = ("T", "Q0", "V0", "A0", "AP", "S", "VS", "law", "Qe", "Ve")
+> SL_re = make_slabs(RAW_FROZEN, [rec_boxes(s, src) for src, s in RAW_FROZEN], QT, VT)
+> d1bad = [i for i, (a_, b_) in enumerate(zip(SL_re, SL)) if any((a_[f] is None) != (b_[f] is None) or (a_[f] is not None and (lo(a_[f]) != lo(b_[f]) or up(a_[f]) != up(b_[f]))) for f in FIELDS)]
+> outX["controls"].append({"name": "(D1) identity of the rebuild path: rec_boxes + make_slabs with the UNPADDED reader reproduce the frozen 486-slab chain exactly (every field, both ends)", "n": len(SL_re), "mismatch": d1bad[:10], "pass": bool(len(SL_re) == 486 and not d1bad)})
+> iv_of = ivp
+> TSTAR_W = ivp(W16["T_star"]); TSTAR_HI = up(TSTAR_W); TSTAR_HI_REAL = TSTAR_HI; QT = ivp(W16["q_at_T_star"]); VT = ivp(W16["qdot_at_T_star"])
+> LAWP = [rec_boxes(s, src) for src, s in RAW_FROZEN]; SLP = make_slabs(RAW_FROZEN, LAWP, QT, VT); badP, _ = joins(SLP)
+> d2bad = [i for i, (a_, b_) in enumerate(zip(SLP, SL)) if any(b_[f] is not None and not inside(b_[f], a_[f]) for f in FIELDS)]
+> outX["controls"].append({"name": "(D2) padded chain: every field of the 486 padded slabs contains the frozen field; window premises contain the frozen ones; all 485 joins pass", "not_containing": d2bad[:10], "join_failures": badP[:5], "pass": bool(len(SLP) == 486 and not d2bad and not badP and inside(QT_v5, QT) and inside(VT_v5, VT) and TSTAR_HI >= TSTAR_HI_v5)})
+> a_w, b_w = mp.mpf(2)/3, mp.mpf(4)/3; pw = [s45(a_w), s45(b_w)]; uw = iv_of_v5(pw); qw_ = ivp(pw)
+> inward_w = bool(Fraction(pw[0]) > fr(a_w) and Fraction(pw[1]) < fr(b_w)); miss_w = not (lo(uw) <= a_w and b_w <= up(uw)); cont_w = bool(lo(qw_) <= a_w and b_w <= up(qw_))
+> try: ivp(["99.5", "100.5"]); guard_w = False
+> except ValueError: guard_w = True
+> outX["controls"].append({"name": "(W1) known: the field [2/3, 4/3] (30-digit binary) written by nstr(., 25) rounds INWARD at both ends; the padded read contains the true field; NEGATIVE: the unpadded read misses it; the |value| >= 100 guard refuses", "written": pw, "inward_at_both_ends": inward_w, "unpadded_misses": miss_w, "padded_contains": cont_w, "guard_refuses": guard_w, "pass": bool(inward_w and miss_w and cont_w and guard_w)})
+> SL = SLP; FROZ = SLP; ALLLAW6P = LAWP[:324]
+53c99
+< RECON = make_slabs(ALLRAW6[:204] + rraw, ALLLAW6[:204] + [rec_boxes(s, "rc") for _, s in rraw], QT, VT) if rraw else None
+---
+> RECON = make_slabs(ALLRAW6[:204] + rraw, ALLLAW6P[:204] + [rec_boxes(s, "rc") for _, s in rraw], QT, VT) if rraw else None      # v6: padded laws, padded reader, padded window premises
+166a213
+>     te, qb, wb = padx(te), padx(qb), padx(wb)      # v6: 1e-23 outward pad on the end time and end box
+288c335
+<     okK = fr(lo(rK)) <= Fraction("0.7") and Fraction("1.02") <= fr(up(rK)) and Fraction("0.7") - fr(lo(rK)) < Fraction(1, 10**25) and fr(up(rK)) - Fraction("1.02") < Fraction(1, 10**25)
+---
+>     okK = fr(lo(rK)) <= Fraction("0.7") and Fraction("1.02") <= fr(up(rK)) and Fraction("0.7") - fr(lo(rK)) < Fraction(1, 10**22) and fr(up(rK)) - Fraction("1.02") < Fraction(1, 10**22)      # v6: tolerance 1e-22 (end-box pad)
+296c343
+< outX["controls"].append({"name": "(V1) KNOWN positive of the end-instant cover and root path: stationary partners (exact roots t - r_c(q, 0)), end time [5.0, 5.001], end box q [0.30, 0.50] x w [0.20, 0.26], known law q + 2w with exact image [0.7, 1.02]; the route's hull contains the exact image and exceeds it by < 1e-25 at each end; on all 9 pieces the exact root range of every class lies inside the piece's contracted source range; the pieces reach the decimal box edges", "outcome": whyK, "image": J(rK) if rK is not None else None, "roots_per_piece": detK, "pass": bool(okK)})
+---
+> outX["controls"].append({"name": "(V1) KNOWN positive of the end-instant cover and root path: stationary partners (exact roots t - r_c(q, 0)), end time [5.0, 5.001], end box q [0.30, 0.50] x w [0.20, 0.26], known law q + 2w with exact image [0.7, 1.02]; the route's hull contains the exact image and exceeds it by < 1e-22 at each end (v6: end-box pad); on all 9 pieces the exact root range of every class lies inside the piece's contracted source range; the pieces reach the decimal box edges", "outcome": whyK, "image": J(rK) if rK is not None else None, "roots_per_piece": detK, "pass": bool(okK)})

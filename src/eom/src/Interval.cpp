@@ -8,21 +8,24 @@
 #include <utility>
 
 namespace architrino::eom {
+
+namespace interval_detail {
+
+void throw_nonfinite(const char* label) {
+  throw std::invalid_argument(std::string(label) + " must be finite");
+}
+
+void throw_inverted_bounds() {
+  throw std::invalid_argument("interval lower bound exceeds upper bound");
+}
+
+}  // namespace interval_detail
+
 namespace {
 
-double downward(double value) {
-  if (std::isinf(value) && value < 0.0) {
-    return value;
-  }
-  return std::nextafter(value, -std::numeric_limits<double>::infinity());
-}
-
-double upward(double value) {
-  if (std::isinf(value) && value > 0.0) {
-    return value;
-  }
-  return std::nextafter(value, std::numeric_limits<double>::infinity());
-}
+using interval_detail::downward;
+using interval_detail::require_finite;
+using interval_detail::upward;
 
 double downward_transcendental(double value) {
   return downward(downward(value));
@@ -32,26 +35,7 @@ double upward_transcendental(double value) {
   return upward(upward(value));
 }
 
-void require_finite(double value, const char* label) {
-  if (!std::isfinite(value)) {
-    throw std::invalid_argument(std::string(label) + " must be finite");
-  }
-}
-
 }  // namespace
-
-Interval::Interval(double lower, double upper) : lower_(lower), upper_(upper) {
-  require_finite(lower, "interval lower bound");
-  require_finite(upper, "interval upper bound");
-  if (lower > upper) {
-    throw std::invalid_argument("interval lower bound exceeds upper bound");
-  }
-}
-
-Interval Interval::point(double value) {
-  require_finite(value, "interval point");
-  return Interval(value, value);
-}
 
 Interval Interval::decimal_token(const std::string& token) {
   if (token.empty()) {
@@ -118,64 +102,6 @@ std::optional<Interval> Interval::intersection(const Interval& other) const {
     return std::nullopt;
   }
   return Interval(lower, upper);
-}
-
-Interval operator+(const Interval& left, const Interval& right) {
-  return Interval(downward(left.lower() + right.lower()),
-                  upward(left.upper() + right.upper()));
-}
-
-Interval operator-(const Interval& left, const Interval& right) {
-  return Interval(downward(left.lower() - right.upper()),
-                  upward(left.upper() - right.lower()));
-}
-
-Interval operator*(const Interval& left, const Interval& right) {
-  const std::array<double, 4> lower_candidates = {
-      downward(left.lower() * right.lower()),
-      downward(left.lower() * right.upper()),
-      downward(left.upper() * right.lower()),
-      downward(left.upper() * right.upper()),
-  };
-  const std::array<double, 4> upper_candidates = {
-      upward(left.lower() * right.lower()),
-      upward(left.lower() * right.upper()),
-      upward(left.upper() * right.lower()),
-      upward(left.upper() * right.upper()),
-  };
-  return Interval(*std::min_element(lower_candidates.begin(),
-                                    lower_candidates.end()),
-                  *std::max_element(upper_candidates.begin(),
-                                    upper_candidates.end()));
-}
-
-Interval operator/(const Interval& left, const Interval& right) {
-  if (right.contains_zero()) {
-    throw std::domain_error("interval division denominator contains zero");
-  }
-  if (left.is_exact_zero()) return Interval::point(0.0);
-  // Divide endpoints directly: a subnormal denominator can have an infinite
-  // reciprocal even when every quotient is finite (for example, tiny/tiny).
-  // With zero excluded from the denominator, extrema occur at the corners.
-  const std::array<double, 4> quotients = {
-      left.lower() / right.lower(), left.lower() / right.upper(),
-      left.upper() / right.lower(), left.upper() / right.upper(),
-  };
-  return Interval(
-      downward(*std::min_element(quotients.begin(), quotients.end())),
-      upward(*std::max_element(quotients.begin(), quotients.end())));
-}
-
-Interval interval_square(const Interval& value) {
-  if (value.contains_zero()) {
-    const double maximum =
-        std::max(std::abs(value.lower()), std::abs(value.upper()));
-    return Interval(0.0, upward(maximum * maximum));
-  }
-  const double first = value.lower() * value.lower();
-  const double second = value.upper() * value.upper();
-  return Interval(downward(std::min(first, second)),
-                  upward(std::max(first, second)));
 }
 
 Interval interval_sqrt(const Interval& value) {

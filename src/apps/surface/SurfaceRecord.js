@@ -1,5 +1,6 @@
 import { evaluateEomCubicHistoryAtTime } from '../shared/EomCubicHistoryEvaluation.mjs';
 import {validateSurfaceGeometry,circleOnSurface,matchingSurfaceGeometry,sameDecimal} from './SurfaceGeometry.js';
+import {isSixPoleReplay,sixPoleHistories,evaluateSixPolePath} from './SurfaceSixPoleReplay.js';
 export const PLAYBACK_RECORD_LIMIT = 12 * 1024 * 1024;
 const finite = value => typeof value==='string' && /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i.test(value) && Number.isFinite(Number(value));
 function assertRequestSubset(request,prepared) { if(typeof request!=='object' || request===null) { if(request!==prepared) throw new Error('Imported preparation or numerical controls differ from checkpoint.'); return; } if(!prepared || typeof prepared!=='object') throw new Error('Missing checkpoint preparation.'); if(Array.isArray(request) && (!Array.isArray(prepared) || request.length!==prepared.length)) throw new Error('Checkpoint population mismatch.'); for(const [key,value] of Object.entries(request)) assertRequestSubset(value,prepared[key]); }
@@ -46,10 +47,13 @@ export function validateSurfaceRecord(record) {
   return record;
 }
 export function retainedHistories(record){
+  if(isSixPoleReplay(record))return sixPoleHistories(record);
   const start=Number(record.request.interval.start),end=Number(record.results.at(-1).acceptedCoverage.end);
   return record.request.paths.map(p=>({pathId:p.pathId,charge:Number(p.charge),coverage:{start,end},segments:record.results.flatMap(r=>r.publishedExtensions.find(h=>h.pathId===p.pathId).segments.map(s=>({...s,startTime:s.start,endTime:s.end})))}));
 }
-export function evaluateSurfacePath(history,time){return evaluateEomCubicHistoryAtTime(history,time);}
+// Display names only: positrinos p1, p2, … and electrinos e1, e2, … in request order. EOM pathIds are unchanged.
+export function architrinoLabels(paths){const counts={p:0,e:0};return new Map(paths.map(p=>{const k=Number(p.charge)>0?'p':'e';return [p.pathId,`${k}${++counts[k]}`];}));}
+export function evaluateSurfacePath(history,time){return history.kind==='six-pole-analytical'?evaluateSixPolePath(history.record,history.pathId,time):evaluateEomCubicHistoryAtTime(history,time);}
 export function nearestSurfaceDiagnostic(record,pathId,time){
   const rows=record.results.flatMap(r=>r.surfaceDiagnostics ?? []).filter(r=>r.pathId===pathId);
   return rows.reduce((best,row)=>!best || Math.abs((Number(row.reception[0])+Number(row.reception[1]))/2-time)<Math.abs((Number(best.reception[0])+Number(best.reception[1]))/2-time)?row:best,null);

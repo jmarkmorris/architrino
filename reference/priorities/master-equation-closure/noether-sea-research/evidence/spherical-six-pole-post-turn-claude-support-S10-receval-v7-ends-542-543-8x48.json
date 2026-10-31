@@ -1,0 +1,875 @@
+{
+ "controls": [
+  {
+   "name": "(D1) identity of the rebuild path: rec_boxes + make_slabs with the UNPADDED reader reproduce the frozen 486-slab chain exactly (every field, both ends)",
+   "n": 486,
+   "mismatch": [],
+   "pass": true
+  },
+  {
+   "name": "(D2) padded chain: every field of the 486 padded slabs contains the frozen field; window premises contain the frozen ones; all 485 joins pass",
+   "not_containing": [],
+   "join_failures": [],
+   "pass": true
+  },
+  {
+   "name": "(W1) known: the field [2/3, 4/3] (30-digit binary) written by nstr(., 25) rounds INWARD at both ends; the padded read contains the true field; NEGATIVE: the unpadded read misses it; the |value| >= 100 guard refuses",
+   "written": [
+    "0.6666666666666666666666667",
+    "1.333333333333333333333333"
+   ],
+   "inward_at_both_ends": true,
+   "unpadded_misses": true,
+   "padded_contains": true,
+   "guard_refuses": true,
+   "pass": true
+  },
+  {
+   "name": "(P1) reconstructed chain: all joins pass and every reconstructed end box meets the frozen end box of the same step",
+   "recon_steps": [
+    155,
+    570
+   ],
+   "skipped": [
+    [
+     "spherical-six-pole-correlated-continuation-claude-continuation-steps10-cm-v44-C22-r5.json",
+     493,
+     false
+    ]
+   ],
+   "join_failures": [],
+   "meet_failures": [],
+   "pass": true
+  },
+  {
+   "name": "(P2) known: the intersected lookup is non-empty and lies inside each separate lookup on a request inside both chains",
+   "how": "intersected",
+   "pass": true
+  },
+  {
+   "name": "(P4) negatives: a reconstructed record with a shifted origin fails the join check; an end box shifted off the frozen one is detected as non-meeting (unjustified intersection refused)",
+   "pass": true
+  },
+  {
+   "name": "(P3) replay consistency: whole-step dl/dt on frozen steps 360-370 (through the intersected lookup) is proved negative, as certified in the turning-point campaign",
+   "pass": true
+  },
+  {
+   "name": "(P5) negative: receiver sub-intervals with a wrong origin (two steps late) refuse",
+   "outcome": "sub-interval outside the receiver step",
+   "pass": true
+  },
+  {
+   "name": "(P6) KNOWN positive control of the sub-interval route: receiver cubic with acceleration 1 and jerk 2000 and an uncertain origin (1e-3), stationary partners (exact roots t - r_c(q(t), 0)); on all 4 sub-intervals the exact q and w ranges and the exact root range of each class lie inside the route's boxes; sub-intervals cover the uncertain step without a gap; the hull of the q boxes contains the exact whole-step range and lies inside the whole-step box",
+   "detail": [
+    [
+     0,
+     true,
+     true,
+     true
+    ],
+    [
+     1,
+     true,
+     true,
+     true
+    ],
+    [
+     2,
+     true,
+     true,
+     true
+    ],
+    [
+     3,
+     true,
+     true,
+     true
+    ]
+   ],
+   "no_gap": true,
+   "whole_step_ok": true,
+   "pass": true
+  },
+  {
+   "name": "(P7) negative: the rate remainder dropped (stored rate bound set to 0) misses the known path on some sub-interval (or refuses)",
+   "pass": true
+  },
+  {
+   "name": "(P8) negative: the origin uncertainty dropped (origin told as the point T0 while the true origin is T0 + 1e-3) misses the known path or roots (or refuses)",
+   "pass": true
+  },
+  {
+   "name": "(P9) negative: an initial source bracket shifted off the true root (by 0.1, beyond the 0.03 search widening) is refused by the residual-sign containment check",
+   "outcome": "start interval not proved to contain the root",
+   "pass": true
+  },
+  {
+   "name": "(V0) outward decimal reading: the floor/ceiling box of each known decimal contains it exactly (rational check); NEGATIVE: the nearest-rounded point box of 0.1 does not contain 0.1, and the rational check detects it",
+   "pass": true
+  },
+  {
+   "name": "(V1) KNOWN positive of the end-instant cover and root path: stationary partners (exact roots t - r_c(q, 0)), end time [5.0, 5.001], end box q [0.30, 0.50] x w [0.20, 0.26], known law q + 2w with exact image [0.7, 1.02]; the route's hull contains the exact image and exceeds it by < 1e-22 at each end (v6: end-box pad); on all 9 pieces the exact root range of every class lies inside the piece's contracted source range; the pieces reach the decimal box edges",
+   "outcome": "ok",
+   "image": [
+    "0.69999999999999999999997",
+    "1.02000000000000000000003"
+   ],
+   "roots_per_piece": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "pass": true
+  },
+  {
+   "name": "(V2) NEGATIVE dropped edge: a cover missing a top strip (width/1000) of the box is detected and the end evaluation refused; with the check bypassed the same cover misses the known exact image (the check has teeth)",
+   "outcome": "cover of the q end box refused: last edge is not up(x)",
+   "bypassed_image": [
+    "0.69999999999999999999997",
+    "1.01968000000000000000003"
+   ],
+   "pass": true
+  },
+  {
+   "name": "(V3) NEGATIVE interior strip: a cover with a gap between pieces 0 and 1 is detected and refused",
+   "outcome": "cover of the q end box refused: gap between pieces 0 and 1",
+   "pass": true
+  },
+  {
+   "name": "(V4) NEGATIVE union larger than the box: a piece extending beyond up(x) is refused (the check enforces union == box, not only union >= box)",
+   "outcome": "cover of the q end box refused: piece 1 outside the box",
+   "pass": true
+  }
+ ],
+ "n_sub": 2,
+ "steps": [
+  542,
+  543
+ ],
+ "instrument": "receval v7",
+ "n_end_q_w": [
+  8,
+  48
+ ],
+ "end_only": true,
+ "diagnostics": {
+  "v4_edge_formula_on_known_boxes": {
+   "q": [
+    true,
+    "ok"
+   ],
+   "w": [
+    true,
+    "ok"
+   ]
+  }
+ },
+ "controls_all_pass": true,
+ "target": [
+  {
+   "step": 542,
+   "frozen": "absent",
+   "recon": {
+    "q_width": "0.0061154",
+    "w_width": "0.0051863",
+    "end_account": {
+     "lambda_hat": [
+      "-0.1023882407708601535631411",
+      "-0.09780922279516642687038272"
+     ],
+     "a_rad": [
+      "0.09488877895785807198994206",
+      "0.09888035234298486496510876"
+     ],
+     "tan_sum": [
+      "-0.366674465439870710496239",
+      "-0.3497146607317438281057"
+     ],
+     "d_arad_dt": [
+      "0.02968401719326327477666004",
+      "0.03961256776416773685231093"
+     ],
+     "a": [
+      "-0.366674465439870710496239",
+      "-0.3497146607317438281057"
+     ],
+     "minus_w2": [
+      "-0.003507888427875288598032342",
+      "-0.002920443837308354880440668"
+     ],
+     "unlike_tan_x_mult": [
+      "-0.01940365416050169690512387",
+      "-0.01916512522632831427913501"
+     ],
+     "unlike_rad_x_mult": [
+      "-0.04973434761655023409387418",
+      "-0.04959329169872262105130652"
+     ],
+     "like_tan_x_mult": [
+      "-0.3533484038405303782362049",
+      "-0.3363359399195372891329398"
+     ],
+     "like_rad_x_mult": [
+      "0.168377927849997588407601",
+      "0.1721954440474164511391897"
+     ],
+     "antipode_tan_x_mult": [
+      "0.005876403938119771262757963",
+      "0.005987475411011789668485592"
+     ],
+     "antipode_rad_x_mult": [
+      "-0.02375480127558928232378478",
+      "-0.02372180000570896512277442"
+     ],
+     "te": [
+      "7.286684593623649597167959",
+      "7.286684709182828044891367"
+     ],
+     "q_box": [
+      "1.806839458224100850140293",
+      "1.812954860411472609883374"
+     ],
+     "w_box": [
+      "0.05404113097732462223936889",
+      "0.05922742969161576403814504"
+     ],
+     "cover_counts_q_w": [
+      8,
+      48
+     ],
+     "per_q_piece_hull": [
+      [
+       "-0.0001567584869946033381200905",
+       "0.01215822513603816126406224"
+      ],
+      [
+       "-0.0001652000187498155538192011",
+       "0.01219909360916496276285187"
+      ],
+      [
+       "-0.0001737530784741135665347938",
+       "0.01224004948210165682332299"
+      ],
+      [
+       "-0.0001824184163958572373971862",
+       "0.01228109284405195077100964"
+      ],
+      [
+       "-0.0001806004780747216002010789",
+       "0.01229190833374120952130996"
+      ],
+      [
+       "-0.0001873425800262943654021734",
+       "0.01229386719197070798052139"
+      ],
+      [
+       "-0.0001949869239327255633315855",
+       "0.01232726254021908154085038"
+      ],
+      [
+       "-0.0002027273902196859328855212",
+       "0.0123677011353463163824368"
+      ]
+     ],
+     "max_upper_piece_q_w": [
+      7,
+      47,
+      "0.0123677011353463163824368"
+     ],
+     "unlike_end_root": [
+      "5.541787344558620168612476",
+      "5.546590045138153295876231"
+     ],
+     "unlike_root_margin_in_recorded_range": [
+      "0.00938231",
+      "0.000862294"
+     ],
+     "like_end_root": [
+      "6.546487867878427118285156",
+      "6.560129640114790982882158"
+     ],
+     "like_root_margin_in_recorded_range": [
+      "0.0126535",
+      "0.0"
+     ],
+     "antipode_end_root": [
+      "5.345235104426849876858397",
+      "5.347469563500337100662674"
+     ],
+     "antipode_root_margin_in_recorded_range": [
+      "0.00985398",
+      "0.000480696"
+     ]
+    },
+    "v4_diagnostics": {
+     "q": {
+      "v4_nearest_contains_decimal_box": true,
+      "v4_edge_formula_cover": [
+       true,
+       "ok"
+      ]
+     },
+     "w": {
+      "v4_nearest_contains_decimal_box": true,
+      "v4_edge_formula_cover": [
+       true,
+       "ok"
+      ]
+     }
+    },
+    "whole_refused": "skipped (--end-only, v7 E2)",
+    "sub_refused": "skipped (--end-only, v7 E2)",
+    "dl_end": [
+     "-0.0002027273902196859328855212",
+     "0.0123677011353463163824368"
+    ],
+    "dl_end_sign": "und",
+    "dl_end_width": "0.01257"
+   }
+  },
+  {
+   "step": 543,
+   "frozen": "absent",
+   "recon": {
+    "q_width": "0.0061596",
+    "w_width": "0.0053185",
+    "end_account": {
+     "lambda_hat": [
+      "-0.1023460737549446673329846",
+      "-0.09774721595126514165772151"
+     ],
+     "a_rad": [
+      "0.09520904980565354068829832",
+      "0.09924372571961902291357552"
+     ],
+     "tan_sum": [
+      "-0.3695945370032446151642295",
+      "-0.3523009170637213873808261"
+     ],
+     "d_arad_dt": [
+      "0.02811786426998309979362724",
+      "0.03809515514463142474304808"
+     ],
+     "a": [
+      "-0.3695945370032446151642295",
+      "-0.3523009170637213873808261"
+     ],
+     "minus_w2": [
+      "-0.003102348035325644419409053",
+      "-0.002538166145611600969423188"
+     ],
+     "unlike_tan_x_mult": [
+      "-0.01935035041304127829677148",
+      "-0.01911063265798445761457819"
+     ],
+     "unlike_rad_x_mult": [
+      "-0.04972049207930334841058005",
+      "-0.04957928685426220042360761"
+     ],
+     "like_tan_x_mult": [
+      "-0.3562895313504321975926605",
+      "-0.3389421721930158876158254"
+     ],
+     "like_rad_x_mult": [
+      "0.1686892364121775429107546",
+      "0.1725495782991272819121121"
+     ],
+     "antipode_tan_x_mult": [
+      "0.005842731721975365333524621",
+      "0.005954411904069624009066507"
+     ],
+     "antipode_rad_x_mult": [
+      "-0.02375969452722065381187623",
+      "-0.02372656572524605857492896"
+     ],
+     "te": [
+      "7.296684593623649597167959",
+      "7.296684709182828044891367"
+     ],
+     "q_box": [
+      "1.807365774213686602606837",
+      "1.813525328811669498757071"
+     ],
+     "w_box": [
+      "0.05038021581545280527742796",
+      "0.05569872561671087658718173"
+     ],
+     "cover_counts_q_w": [
+      8,
+      48
+     ],
+     "per_q_piece_hull": [
+      [
+       "-0.0009163222742608107341438379",
+       "0.01145241204381989175600458"
+      ],
+      [
+       "-0.0009242350236004505370370837",
+       "0.01145521317059653786538246"
+      ],
+      [
+       "-0.0009322421798191053544495474",
+       "0.01149460683601066343031224"
+      ],
+      [
+       "-0.0009403443709228941249945592",
+       "0.01153451407587523067071943"
+      ],
+      [
+       "-0.0009485422283561834931419446",
+       "0.01157450793834832360451136"
+      ],
+      [
+       "-0.0009568363870196400748889683",
+       "0.01161458849107983688065666"
+      ],
+      [
+       "-0.0009652274852883583388972866",
+       "0.01165475580086184716681822"
+      ],
+      [
+       "-0.0009737108647125824862054369",
+       "0.01169500286212642388931382"
+      ]
+     ],
+     "max_upper_piece_q_w": [
+      7,
+      47,
+      "0.01169500286212642388931382"
+     ],
+     "unlike_end_root": [
+      "5.550273220185787502725705",
+      "5.555096132190600682650602"
+     ],
+     "unlike_root_margin_in_recorded_range": [
+      "0.00938222",
+      "0.000846372"
+     ],
+     "like_end_root": [
+      "6.559395867895318884182924",
+      "6.573165928807645689012143"
+     ],
+     "like_root_margin_in_recorded_range": [
+      "0.0125759",
+      "0.0"
+     ],
+     "antipode_end_root": [
+      "5.354571431757624499860166",
+      "5.356806925708196469268942"
+     ],
+     "antipode_root_margin_in_recorded_range": [
+      "0.00985503",
+      "0.000485309"
+     ]
+    },
+    "v4_diagnostics": {
+     "q": {
+      "v4_nearest_contains_decimal_box": true,
+      "v4_edge_formula_cover": [
+       true,
+       "ok"
+      ]
+     },
+     "w": {
+      "v4_nearest_contains_decimal_box": true,
+      "v4_edge_formula_cover": [
+       true,
+       "ok"
+      ]
+     }
+    },
+    "whole_refused": "skipped (--end-only, v7 E2)",
+    "sub_refused": "skipped (--end-only, v7 E2)",
+    "dl_end": [
+     "-0.0009737108647125824862054369",
+     "0.01169500286212642388931382"
+    ],
+    "dl_end_sign": "und",
+    "dl_end_width": "0.012669"
+   }
+  }
+ ],
+ "wall_s": 14.181764841079712
+}

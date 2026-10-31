@@ -125,6 +125,14 @@ target_compile_options(eom_f5_enclosed_root_cli
   PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off
 )
 
+# Manual fixture: inline outward rounding equals the libm nextafter steps
+# bit for bit; no recurring test enrollment.
+add_executable(eom_interval_rounding_fixture_cli
+  native/eom_interval_rounding_fixture_cli.cpp)
+target_link_libraries(eom_interval_rounding_fixture_cli PRIVATE eom_native)
+target_compile_options(eom_interval_rounding_fixture_cli
+  PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)
+
 # Focused matched-pair enclosure fixture; no recurring test enrollment.
 add_executable(eom_matched_pair_fixture_cli
   native/eom_matched_pair_fixture_cli.cpp

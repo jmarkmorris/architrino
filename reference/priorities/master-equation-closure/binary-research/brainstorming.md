@@ -434,3 +434,61 @@ which constrains phase and root topology but does not select a radius because $R
 Plainly: circular geometry can select which delayed partner hits exist, but amplitude balance and an all-label closure condition are still required to select a physical scale.
 
 The complete prescribed circular root census belongs in [circular-binary-all-root-certificate.md](analysis/circular-binary-all-root-certificate.md). It establishes neither local continuation nor a retained Braid.
+
+## Why a slow widening binary loses speed despite its forward push
+
+**[derived within the slow near-circular comparison, at the grades stated below; corrected after an outside check; provisional]** Added 2026-10-20 from an operator discussion in a Claude session and corrected the same day after a Codex check ([shared review](../../../op/agent-chats/2026-10-20-slow-binary-two-tilt-check/chat.md), entry 2026-10-20T21:25:00Z); revised for precision on 2026-10-29 at the operator's further direction. The question was how the accepted slow-binary results can say that a near-circular pair which stays near-circular widens without bound and slows, when the delayed partner row constantly has a forward component. The short answer: in the leading secular comparison the main inward row removes speed faster than the forward component adds it, because the widening tilts the motion outward; but instant by instant the speed oscillates, and a pair started from a circular past first speeds up.
+
+**Setting.** The unchanged Master Equation, an isolated planar mirror pair of opposite polarity, coupling $K$, member speed small against $c_f$. Write $\rho$ for a member's actual distance from the fixed midpoint, $v_r=\dot\rho$ and $v_t$ for its radial and tangential speeds, $v=\sqrt{v_r^2+v_t^2}$ for its actual speed, and $L=\rho v_t$. Only the component of acceleration along the velocity changes the speed.
+
+**Slow coordinates.** The accepted slow-binary records define a *geometric slow radius* $\mathcal R=4L^2/K$ and a *comparison speed* $w=K/(4L)$. These are algebraic functions of the angular quantity $L$ at each instant. They are not time averages and not fitted smoothings; the secular theorem states that its slow radius "is a geometric measure of angular motion, not a time-averaged radius chosen by a fit." They differ from the actual $\rho$ and $v$ by small orbital oscillations. Averaging over a revolution of those oscillations is used below only to read off the leading secular trend, not to define $\mathcal R$ or $w$.
+
+**Inputs, both accepted with independent adjudications.** (i) $L$ rises by $K/(4c_f)$ per radian, per member, within the first-order comparison ([first-order encounter map](analysis/slow-mirror-encounter-first-order-map.md)). (ii) The squared geometric slow radius satisfies $d(\mathcal R^2)/dT=K/c_f$ up to a stated error bound, on the theorem's finite interval, for speed ratios up to $10^{-9}$ ([controlled secular theorem](analysis/slow-binary-controlled-secular-comparison.md)). The same theorem bounds the distance between $\rho$ and $\mathcal R$ but not the difference of their rates, so (ii) gives no pointwise statement about $\dot\rho$.
+
+**Projection of the row along the velocity (derived; from the outside check).** Restoring dimensions in the slow-pair row of the [changing-scale record](analysis/slow-binary-changing-scale-fate.md#a-scale-dependent-defect), with outward radial unit vector $\mathbf n$, forward tangential unit vector $\mathbf t$ and $A_0=K/(4\rho^2)$,
+
+$$
+\mathbf a=-A_0\mathbf n+\frac{A_0}{c_f}\bigl(v_t\mathbf t-v_r\mathbf n\bigr)+\mathbf q,
+$$
+
+where $\mathbf q$ is that record's controlled remainder, of relative order $(v/c_f)^2$ under its preparation, history and acceleration hypotheses. Projecting on the actual velocity $\mathbf V=v_r\mathbf n+v_t\mathbf t$ gives, without further approximation,
+
+$$
+\dot v=\frac{A_0}{v}\left[-v_r+\frac{v_t^2-v_r^2}{c_f}\right]+\frac{\mathbf q\cdot\mathbf V}{v}.
+$$
+
+Under the additional small-pitch hypothesis $\beta=v_r/v=O(\epsilon)$, with $\epsilon=v/c_f$, this reduces to
+
+$$
+\dot v=A_0(\epsilon-\beta)+O(A_0\epsilon^2).
+$$
+
+The reduced form does not apply to a trajectory that is slow but appreciably radial. Within it, the forward lean of the row adds $A_0\epsilon$, and the main inward row, met by a velocity tilted outward by the pitch $\beta$, removes $A_0\beta$. The sign of $\dot v$ at any instant is set by the actual pitch, which near-circularity alone does not fix.
+
+**The forward lean (derived).** For a prescribed uniform circular history, both members on one circle at speed $v$ and diametrically opposite, the row points forward of the inward radius by exactly half the angle the pair turns during the delay, and that half-angle $d$ satisfies the exact causal relation $d=(v/c_f)\cos d$, so $d=v/c_f$ to leading order. This is a property of that prescribed history; it is neither a statement about arbitrary equal-radius endpoints nor a claim that a uniform circle solves the unchanged equation. For a widening path the emission-time radius differs from the present one, and the half-angle reading holds only as the leading-order approximation $v/c_f$.
+
+**The leading secular comparison (derived at that grade, on the finite interval of input (ii)).** In the secular interpretation the outward drift of $\mathcal R$ corresponds to a pitch $2w/c_f$, and the projection then gives
+
+$$
+\dot w=-\frac{w^3}{c_f\mathcal R},
+$$
+
+which agrees with differentiating $w=K/(4L)$ using input (i). In this leading secular comparison the forward lean adds one unit of speed change and the outward lean removes two. This is a statement about the comparison speed $w$, within the stated error and interval of the cited theorem; it is not a pointwise statement about the actual speed $v$.
+
+**Instant by instant (derived in the first-order forced response; from the outside check).** About a circle of radius $R_0$ and speed $v_0$, with angular rate $\omega_0=v_0/R_0$ and $f=v_0^3/(c_fR_0)$, released from an exact circular past, the first-order equations give a radial velocity $(2f/\omega_0)(1-\cos\omega_0T)$ and a speed change
+
+$$
+\delta v=-fT+\frac{2f}{\omega_0}\sin\omega_0T,\qquad \frac{d(\delta v)}{dT}=f\,(2\cos\omega_0T-1).
+$$
+
+The pitch oscillates between $0$ and $4v_0/c_f$ and averages $2v_0/c_f$. The speed first rises, then falls, and loses $2\pi f/\omega_0$ per revolution. This agrees with the existing [forced-response calculation](analysis/slow-binary-first-order-drift.md#forced-response-about-the-zero-delay-circle) and holds on a finite orbital time, not indefinitely about a fixed circle. An exact check at release: for a complete prescribed circular past of member radius $R$ and speed $v$, with $d$ as above, the along-velocity acceleration is strictly positive, $K\sin d/\bigl(4R^2\cos^2d\,[1+(v/c_f)\sin d]\bigr)$.
+
+**Long-time behaviour.** Continuing the secular law formally gives $\mathcal R^2\propto T$ and $w\propto T^{-1/4}$. Applying that indefinitely needs the continuation hypotheses of the separate all-future results in this workstream; the two inputs above hold on finite intervals.
+
+**Falsifiers.** A different first-order polar component in the accepted slow-pair row; a failure of the forced-response solution to satisfy its linearized equations with circular release data; a wrong sign or factor in the exact circular release row.
+
+**Correction history.** The first version of this note, written earlier on 2026-10-20, identified $\mathcal R$ with $\rho$. It therefore stated the pitch $2v/c_f$ and the negative along-velocity acceleration $-v^3/(c_fR)$ as holding at every instant, with a pointwise falsifier. The outside check showed that these hold only as the leading secular comparison and supplied the projection, the exact release counterexample and the oscillating solution above. The 2026-10-29 revision, at Codex's request, defines the slow coordinates algebraically, shows the unsimplified projection and the small-pitch hypothesis, restricts the exact half-angle relation to a prescribed uniform circular history, defines $R$ and $\omega_0$, and marks the secular rate's grade and interval.
+
+**Status.** Derived within the stated comparisons. Checked on 2026-10-20 by a Codex session outside this model family, which read the note first and was therefore not blinded. The 2026-10-29 revision received that session's closure check on the same day ([shared review](../../../op/agent-chats/2026-10-20-slow-binary-two-tilt-check/chat.md), entry 2026-10-29T20:18:51Z), which found every item of the original review resolved at the stated comparison scope: the displayed algebra and its agreement with the cited source equations. It is not a new global binary-fate theorem and not a re-adjudication of the source theorems.
+
+**Application implementation (2026-10-29).** At the operator's direction, the [Causal Delay Feedback app](../../../../causal-delay-feedback.html?scenario=binary-pair) now has a separate Binary pair scenario in its local source. Four guided lessons synchronize a schematic widening pair, velocity and acceleration arrows, the competing contributions to speed change and the cumulative speed-change curve over one reference revolution. Two additional lessons implement the operator-authorized breathing/common-motion handoff using explicitly prescribed paths and nearly radial/reversing variants; they do not inherit the mirror-pair secular result. The [app requirements](../../dormant-deferred/app-causal-delay-feedback/v1-product-requirements.md#binary-pair-scenario--operator-directed-addition-2026-10-29), [mathematical treatment](../../dormant-deferred/app-causal-delay-feedback/manuscript.md#7-a-second-scenario-binary-pair-motion) and [local validation account](../../dormant-deferred/app-causal-delay-feedback/work-log.md) own the implementation and its limits. The scenario uses the existing runtime and transport and can receive further binary lessons. The code and browser checks establish a teaching display, not new scientific acceptance, an EOM-evolved trajectory or public deployment. Borg remains the recommended complementary location for a later comparison with independently checked EOM solver output.

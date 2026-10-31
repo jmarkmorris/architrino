@@ -76,6 +76,39 @@ $$
 
 Once both ride, Lemmas 2 to 5 and Theorems A and B of the study apply as written, with Lemma 1 summed over third members; the entry into their hypotheses is then a measured question, answered for C3 above and visible in the ladders of the converted one-rider runs. What the lemma does not give: which of the two outcomes, conversion or degeneracy, a given contact takes. The head-on geometry that makes the free member's row large is the same geometry that drives its transmitter factor toward zero; the ten runs show both outcomes are reached.
 
+## 4a. Continuation, 2026-10-20: the stalled one-rider contact resolved
+
+On 2026-10-20 the operator asked for the stalled case of Section 3 to be resolved with a root solve and step control in emission time. That case is the planar six-member balance with kick seed 1.
+
+**Result (measured, with a derived reparametrization).** The free member's row from the rider does not degenerate. Along the integrator's own emission-time variable, its transmitter factor passes a sampled minimum of $9.69\times10^{-10}$ at $1.078969\,P$. That is positive, so the root stays ordinary and the frozen specification continues to determine the motion. The row is large but finite: the free member's speed rises from $0.10$ to $0.28$ across that passage. Root solves at accepted nodes give a larger node minimum, $1.84\times10^{-8}$, because near a nearly degenerate root the causal function is almost flat in emission time and the solved emission time is poorly determined. The emission-time value is the one the integration uses. Two further close passages of the same row follow, at $1.079052$ to $1.079116\,P$ and at $1.079139$ to $1.079172\,P$. During the second, whose sampled minimum is about $10^{-8}$ and across which the free member's speed rises from $0.34$ to one, it reaches the ceiling at $1.079102\,P$, and from then on both members of the pair ride it. So this contact also converts, like the other nine. That conversion is not consistent with a degenerate root, which would have stopped the specification. Section 3's explanation of the stall, that the frozen integrator could not resolve a positive minimum near $10^{-8}$, is therefore confirmed.
+
+**After conversion (measured).** The run reached its one-hour wall limit at $1.079176\,P$, with the pair $3.39\times10^{-4}$ sizes apart and the separation falling at every node since conversion. At that node the pair is not yet on the spiral. The free member's row still has transmitter factor $0.024$ and delayed range $6.9$ times the separation, the rider's row has $0.40$ and $1.31$, and the closing rate is $0.48$. In the other converted runs these quantities reached the spiral's values inside $10^{-4}$ sizes. Whether this one does was not followed.
+
+**Instrument.** The new instrument, `ccor_spike.py`, integrates the frozen specification in reception time and switches, while any row's transmitter factor is below a threshold ($10^{-2}$ here), to that row's emission time as the independent variable. The reparametrization is exact, not a change of equation. With $g=D_t/D_r$, the system is $dT/dS=g$, $dX/dS=gV$, $dV/dS=gA^{\mathrm{eff}}$. The near-degenerate row's own term enters as $\sigma\mathbf n/(\tau^2D_r)$, which is bounded, and $D_t$ and $D_r$ are computed without cancellation as $\tfrac12\lvert\mathbf n-\mathbf V\rvert^2+\tfrac12(1-\lvert\mathbf V\rvert^2)$. It uses fourth-order Runge–Kutta with step doubling at tolerance $10^{-12}$, controls the error in reception time as well as in positions and velocities, lands on the ceiling by step bisection, and rebases time on entering emission-time stepping. Where the source was at the ceiling at both stored nodes bracketing an emission time, the interpolated source velocity is renormalized to unit speed. The specification makes a riding member's speed exactly one, and the interpolant's speed error, of order $10^{-9}$, would otherwise dominate a transmitter factor of that size. This is a choice of interpolation.
+
+**Known cases, run in order before the target.**
+- *K1:* exact circular pair for one period; deviation $1.0\times10^{-9}R$.
+- *K2:* a prescribed unit-speed circular source and a free receiver at rest, set so the smallest transmitter factor is $10^{-3}$ and $10^{-4}$. The receiver's velocity after the spike agrees between pure reception-time stepping and the mixed scheme to $1.5\times10^{-9}$ and $7\times10^{-11}$.
+- *K3:* the same at $10^{-6}$, $10^{-8}$ and $10^{-10}$. The velocity change converges as the minimum falls, with successive differences $1.1\times10^{-2}$, $4.4\times10^{-3}$, $4.4\times10^{-4}$, $4.4\times10^{-5}$. That is the square-root law expected of a bounded integrand in emission time. The causal identity's residual stayed at $3.4\times10^{-12}$.
+
+**What failed first, recorded.**
+- *Tolerance 1e-10:* K2 failed because each scheme alone still moved by up to $3.4\times10^{-7}$; the known cases and the target were set to $10^{-12}$.
+- *Uncontrolled reception time:* the first form left the reception time out of the error control; the receipt's causal residual exposed that, and it was added.
+- *First target attempt:* it stopped on a negative computed transmitter factor near $4\times10^{-9}$. The cause was the interpolated speed of the riding source exceeding one, which the renormalization above removed. That attempt's log is kept as `ccor-spike-target-attempt1-negative-Dt.log`.
+
+**Limits.**
+- *Sampled minimum:* the minima are values at the integrator's steps. The true minimum along the row lies between them and is not bounded below by this run. A positive minimum is inferred from two things. The motion is slightly out of plane: the rider's velocity has a vertical component of $1.7\times10^{-4}$, giving out-of-plane angles of order $10^{-4}$ and a floor of order $\beta^2/2\sim10^{-9}$ to $10^{-8}$. And the run continues. It is not proved.
+- *Causal residual:* at accepted nodes in the target the residual reached $2.3\times10^{-8}$ relative, against $3.4\times10^{-12}$ in the known cases. The likely cause, inferred, is the renormalized velocity being slightly inconsistent with the cubic interpolant of the restart history's positions. It corresponds to an error of about $1.6\times10^{-8}$ in reception time on a delayed range near $0.7$.
+- *Restart:* the restart reads the frozen blind-reference integrator's base trajectory up to $1.0785303\,P$, so the history before the spike is that integrator's.
+- *Run size:* 3,407 accepted and 3,354 rejected steps, 1,992 of them in emission time.
+
+| Claim | Grade | Falsifier, and where to look |
+| --- | --- | --- |
+| The stalled contact's row stays ordinary through its minimum, sampled at about $10^{-9}$ in emission time, and the pair converts at $1.079102\,P$ | Measured; one new instrument of this model family after its known cases; minimum sampled | An emission-time integration that resolves the minimum and finds zero, or a different integrator in which the free member does not reach the ceiling; `ccor-spike-target.json` |
+| The emission-time reparametrization is exact while $D_t>0$ | Derived | An algebra error in the identity $dT/dS=D_t/D_r$ |
+
+Files: `ccor_spike.py`, receipts `ccor-spike-k1.json`, `ccor-spike-k2k3.json`, `ccor-spike-target.json`, `ccor-spike-target-ladder.json`, trajectory `ccor-spike-target-traj.npz`, logs. The target ran from 21:18:03 to 22:18:04 UTC on 2026-10-20, ending at its wall limit (times from the log). Review status: self-review only.
+
 ## 5. Claim grades and falsifiers
 
 | Claim | Grade | Falsifier, and where to look |

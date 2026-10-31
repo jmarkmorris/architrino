@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-correlated-continuation-claude-review-ddl10.py", line 76, in <module>
+    if k in STEPS: oe = own_end2(STEPS[k]); ENDS[k] = {"dl": oe.get("dl"), "dl_sign": oe.get("dl_sign"), "subject_dl": oe.get("subject_dl"), "on_subject_boxes_dl": (oe.get("on_subject_boxes") or {}).get("dl")}
+                        ~~~~~~~~^^^^^^^^^^
+  File "<string>", line 68, in own_end2
+KeyError: 'end_classes'
+       10.43 real         8.69 user         0.11 sys
+           117456896  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                8213  page reclaims
+                  87  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   0  messages sent
+                   0  messages received
+                   0  signals received
+                 134  voluntary context switches
+               14429  involuntary context switches
+         92027071716  instructions retired
+         23052541872  cycles elapsed
+           107758168  peak memory footprint

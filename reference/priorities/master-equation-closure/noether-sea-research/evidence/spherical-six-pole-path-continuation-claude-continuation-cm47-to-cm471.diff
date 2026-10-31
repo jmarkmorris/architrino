@@ -1,0 +1,139 @@
+17a18,19
+> # v4.7.1 (2026-10-20, after the K1 controls run): the controls B1-B8 run inside functions; v4.7 (cm47.py, kept exactly as run) assigned a module-global b3 that shadowed the
+> # frozen antipodal-b3 record read by the frozen end evaluation (steps6 end_eval), which failed B6. Bracket logic unchanged.
+35c37
+< out["v46"] = {"version": "4.7", "base_v44_sha256": S10_SHA_46, "ladder_step": "0.15", "upper_half": "0.90 (frozen path); fallback max(0.90, 2.05 - up(chord))", "ladder_first_rung": 0, "lower_half_frozen": {NAME[c_]: str(LOWER9[c_]) for c_ in ALL3},
+---
+> out["v46"] = {"version": "4.7.1", "base_v44_sha256": S10_SHA_46, "ladder_step": "0.15", "upper_half": "0.90 (frozen path); fallback max(0.90, 2.05 - up(chord))", "ladder_first_rung": 0, "lower_half_frozen": {NAME[c_]: str(LOWER9[c_]) for c_ in ALL3},
+156,217c158,223
+< # (B1) KNOWN: stationary like source (exact causal root = the direct-vector chord), root below the frozen lower end; rungs 1 and 2 needed
+< b1 = {}; okb1 = True
+< for (Q0s, qss, kneed) in (("1.74", "1.60", 1), ("1.82", "1.77", 2)):
+<     res, rn = _known_root46(mp.mpf(Q0s), mp.mpf(qss)); b1[Q0s + "/" + qss] = res
+<     okb1 = okb1 and bool(res["frozen_bracket_refused"] and rn[0] is not None and res.get("meets_direct_root") and mp.mpf(res["width"]) < mp.mpf("1e-15") and mp.mpf(res["centre_diff"]) < mp.mpf("1e-15") and res.get("rung") == kneed)
+< out["controls"].append({"name": "(B1) KNOWN constructed stationary like source: exact root = direct-vector chord (frozen (0b) embedding, independent of geom); the frozen v3c1 bracket refuses (root below chord - 0.90); the v4.6 ladder encloses it (width < 1e-15, centre within 1e-15) on the expected rung (1 at Q = 1.74, q' = 1.60; 2 at Q = 1.82, q' = 1.77)", "pass": okb1, "detail": b1})
+< # (B2) KNOWN moving and RISING root: uniform like source; independent sign proof of the enclosure by direct vectors; a rising root (source receding) enclosed below and above the frozen lower end
+< def _hdir46(Q0, q1, u, tref, t0, tau_pt, c=-1):
+<     s = iv.mpf(t0) - iv.mpf(tau_pt); qs = iv.mpf(q1) + iv.mpf(u)*(s - iv.mpf(tref)); return iv.mpf(tau_pt) - _rdir46(Q0, qs, c)
+< def _moving46(Q0, q1, u, t0, c=-1):
+<     t0I = I(mp.mpf(t0), mp.mpf(t0)); fh = _uniform46(q1, u, mp.mpf(5)); wb = lambda s_lo, s_hi: abs(mp.mpf(u))
+<     r_old = _with_history46(fh, lambda: tau_point9(enc, t0I, iv.mpf(Q0), c)); r46 = _with_history46(fh, lambda: (r_old, None) if r_old is not None else _ladder46(enc, t0I, iv.mpf(Q0), c, _upper47(fixed_chord(iv.mpf(Q0), c)), KMAX46, wbound=wb, cover_end=mp.mpf(t0)))
+<     res = {"Q0": str(Q0), "q1": str(q1), "u": str(u), "t0": str(t0), "frozen_bracket_refused": r_old is None}
+<     if r46[0] is None: res["refusal"] = r46[1]; return res, False
+<     tau = r46[0][0]; eps = mp.mpf("1e-20"); hl = _hdir46(Q0, q1, u, mp.mpf(5), mp.mpf(t0), lo(tau) - eps, c); hu = _hdir46(Q0, q1, u, mp.mpf(5), mp.mpf(t0), up(tau) + eps, c)
+<     res.update({"tau": pair(tau), "rung": (r46[1]["k"] if r46[1] else 0), "width": mp.nstr(wid(tau), 5), "h_direct_below": [mp.nstr(lo(hl), 6), mp.nstr(up(hl), 6)], "h_direct_above": [mp.nstr(lo(hu), 6), mp.nstr(up(hu), 6)]})
+<     return res, bool(up(hl) < 0 and lo(hu) > 0 and wid(tau) < mp.mpf("1e-15"))
+< b2 = {}; okb2 = True
+< rA, okA = _moving46(mp.mpf("1.80"), mp.mpf("1.78"), mp.mpf("0.30"), mp.mpf(5)); b2["approaching u = +0.30"] = rA; okb2 = okb2 and okA and rA["frozen_bracket_refused"]
+< rB, okB = _moving46(mp.mpf("1.80"), mp.mpf("1.40"), mp.mpf("-0.30"), mp.mpf(5)); b2["receding u = -0.30, t0 = 5.0"] = rB; okb2 = okb2 and okB and rB["frozen_bracket_refused"]
+< rC, okC = _moving46(mp.mpf("1.80"), mp.mpf("1.40"), mp.mpf("-0.30"), mp.mpf("6.2")); b2["receding u = -0.30, t0 = 6.2 (root risen above the frozen lower end)"] = rC; okb2 = okb2 and okC and (not rC["frozen_bracket_refused"]) and rC["rung"] == 0
+< okb2 = okb2 and bool("tau" in rB and "tau" in rC and mp.mpf(rC["tau"][0]) > mp.mpf(rB["tau"][1]))
+< out["controls"].append({"name": "(B2) KNOWN uniform like source paths (constructed, exact, |u| = 0.30): the enclosure is proved by an INDEPENDENT direct-vector sign test (h < 0 just below, h > 0 just above, width < 1e-15); approaching source below the frozen lower end enclosed by the ladder; RISING root (receding source) enclosed below the frozen lower end at t0 = 5.0 and by the unchanged frozen bracket at t0 = 6.2, the root having risen", "pass": bool(okb2), "detail": b2})
+< # (B3) NEGATIVES on the constructed stationary case Q = 1.82, q' = 1.77 (root about 0.661, needs rung 2, a_2 about 0.636)
+< Qn = iv.mpf("1.82"); fhn = _stationary46(mp.mpf("1.77")); rdn = _rdir46(mp.mpf("1.82"), mp.mpf("1.77"), -1); b3 = {}
+< b3["kmax_1_refused"] = _with_history46(fhn, lambda: _ladder46(enc, T46, Qn, -1, UPPER46, 1, wbound=W0_46, cover_end=lo(T46)))
+< b3["upper_end_below_root_refused"] = _with_history46(fhn, lambda: _ladder46(enc, T46, Qn, -1, mp.mpf("-1.20"), KMAX46, wbound=W0_46, cover_end=lo(T46)))
+< b3["injected_speed_1.2_uniqueness_refused"] = _with_history46(fhn, lambda: _ladder46(enc, T46, Qn, -1, UPPER46, KMAX46, wbound=lambda s_lo, s_hi: mp.mpf("1.2"), cover_end=lo(T46)))
+< a3 = lo(fixed_chord(Qn, -1)) - LOWER9[-1] - 2*LADDER_STEP46
+< b3["rung2_read_past_cover_end_refused"] = _with_history46(fhn, lambda: _ladder46(enc, T46, Qn, -1, UPPER46, KMAX46, wbound=W0_46, cover_end=lo(T46) - a3 - mp.mpf("1e-9")))
+< b3["rung2_read_just_inside_cover_end_accepted"] = _with_history46(fhn, lambda: _ladder46(enc, T46, Qn, -1, UPPER46, KMAX46, wbound=W0_46, cover_end=lo(T46) - a3 + mp.mpf("1e-6")))
+< b3["class_sign_exchanged"] = _with_history46(fhn, lambda: _ladder46(enc, T46, Qn, 1, _upper47(fixed_chord(Qn, 1)), KMAX46, wbound=W0_46, cover_end=lo(T46)) if tau_point9(enc, T46, Qn, 1) is None else (tau_point9(enc, T46, Qn, 1), {"k": 0}))
+< cx = b3["class_sign_exchanged"]; b3d = {}
+< for k_, v_ in b3.items(): b3d[k_] = ({"enclosure": pair(v_[0][0]), "rung": v_[1].get("k")} if v_[0] is not None else {"refused": v_[1]})
+< okb3 = bool(b3["kmax_1_refused"][0] is None and b3["upper_end_below_root_refused"][0] is None and b3["injected_speed_1.2_uniqueness_refused"][0] is None and "uniqueness not proved" in b3["injected_speed_1.2_uniqueness_refused"][1]["failing"]
+<             and b3["rung2_read_past_cover_end_refused"][0] is None and "minimum admissible delay" in b3["rung2_read_past_cover_end_refused"][1]["failing"] and b3["rung2_read_just_inside_cover_end_accepted"][0] is not None and b3["rung2_read_just_inside_cover_end_accepted"][1]["k"] == 2 and inter(b3["rung2_read_just_inside_cover_end_accepted"][0][0], rdn)
+<             and (cx[0] is None or not inter(cx[0][0], rdn)))
+< b3d["like_direct_root"] = pair(rdn)
+< out["controls"].append({"name": "(B3) NEGATIVES (constructed stationary like source, root about 0.661 at rung 2): a ladder capped at 1 rung refuses; an upper end below the root refuses (lowering cannot rescue an upper failure); an injected |w'| = 1.2 refuses uniqueness; a rung-2 read 1e-9 past the coverage end refuses (minimum admissible delay) and one 1e-6 inside is accepted on rung 2 and meets the direct root; the class sign exchanged (unlike geometry on the like source) is DETECTED: it refuses or gives an enclosure disjoint from the like direct-vector root", "pass": okb3, "detail": b3d})
+< # (B4) the frozen states: at the anchor state the v4.6 root is the frozen object for every class (identical strings), ladder not engaged
+< b4 = {}; okb4 = True
+< for c in ALL3:
+<     o_ = tau_point9(enc, tA, QA, c); n0 = out["v46"]["old_path_calls"]; n_ = tau_point46(enc, tA, QA, c)
+<     same = bool(o_ is not None and n_ is not None and pair(o_[0]) == pair(n_[0]) and pair(o_[1][0]) == pair(n_[1][0]) and pair(o_[1][1]) == pair(n_[1][1])); okb4 = okb4 and same and out["v46"]["old_path_calls"] == n0 + 1
+<     b4[NAME[c]] = {"identical": same, "tau": pair(n_[0]) if n_ else None}
+< out["controls"].append({"name": "(B4) at the anchor state the v4.6 delay root equals the frozen v3c1 root for every class (identical strings of tau, q', w'), through the frozen path (ladder not engaged)", "pass": okb4, "detail": b4})
+< # (B7) KNOWN, v4.7: UNLIKE roots ABOVE the frozen upper end chord_U + 0.90: the frozen bracket refuses, the fallback (rung 0, b = 2.05) encloses; direct-vector checks
+< b7 = {}; okb7 = True
+< r7s, rn7 = _known_root46(mp.mpf("1.82"), mp.mpf("1.77"), c=1); r7s["frozen_upper_end"] = mp.nstr(up(fixed_chord(iv.mpf("1.82"), 1)) + UPPER46, 12); b7["stationary unlike Q = 1.82, q' = 1.77"] = r7s
+< okb7 = okb7 and bool(r7s["frozen_bracket_refused"] and rn7[0] is not None and r7s.get("meets_direct_root") and mp.mpf(r7s["width"]) < mp.mpf("1e-15") and mp.mpf(r7s["centre_diff"]) < mp.mpf("1e-15") and r7s.get("rung") == 0 and abs(rn7[1]["b"] - TOP47) < mp.mpf("1e-25")
+<                      and mp.mpf(r7s["tau"][0]) > mp.mpf(r7s["frozen_upper_end"]))
+< r7u, ok7u = _moving46(mp.mpf("1.80"), mp.mpf("1.78"), mp.mpf("0.10"), mp.mpf(5), c=1); b7["uniform unlike Q = 1.80, q1 = 1.78, u = +0.10"] = r7u
+< okb7 = okb7 and ok7u and r7u["frozen_bracket_refused"] and r7u.get("rung") == 0 and mp.mpf(r7u["tau"][0]) > up(fixed_chord(iv.mpf("1.80"), 1)) + UPPER46
+< out["controls"].append({"name": "(B7) KNOWN (v4.7) unlike roots above the frozen upper end chord_U + 0.90 (constructed: stationary source, exact root = direct-vector chord about 1.888; uniform source |u| = 0.10, root about 1.83 proved by the independent direct-vector sign test): the frozen v3c1 bracket refuses, the v4.7 fallback encloses on rung 0 (frozen lower end) with b = 2.05", "pass": bool(okb7), "detail": b7})
+< # (B8) NEGATIVES (v4.7) on the stationary unlike case: an upper end forced to 1.80 (below the root about 1.888) refuses; the like geometry on the unlike source is detected (refuses or disjoint)
+< fh8 = _stationary46(mp.mpf("1.77")); Q8 = iv.mpf("1.82"); rd8 = _rdir46(mp.mpf("1.82"), mp.mpf("1.77"), 1); b8 = {}
+< n8a = _with_history46(fh8, lambda: _ladder46(enc, T46, Q8, 1, mp.mpf("1.80") - up(fixed_chord(Q8, 1)), KMAX46, wbound=W0_46, cover_end=lo(T46)))
+< n8b = _with_history46(fh8, lambda: (tau_point9(enc, T46, Q8, -1), {"k": "frozen"}) if tau_point9(enc, T46, Q8, -1) is not None else _ladder46(enc, T46, Q8, -1, _upper47(fixed_chord(Q8, -1)), KMAX46, wbound=W0_46, cover_end=lo(T46)))
+< b8["upper_end_1.80_below_root_refused"] = ({"refused": n8a[1]} if n8a[0] is None else {"enclosure": pair(n8a[0][0])}); b8["like_geometry_on_unlike_source"] = ({"refused": n8b[1]} if n8b[0] is None else {"enclosure": pair(n8b[0][0])}); b8["unlike_direct_root"] = pair(rd8)
+< okb8 = bool(n8a[0] is None and "frozen bracket on [a_k, b] refused" in n8a[1]["failing"] and (n8b[0] is None or not inter(n8b[0][0], rd8)))
+< out["controls"].append({"name": "(B8) NEGATIVES (v4.7, constructed stationary unlike source, root about 1.888): a fallback with the upper end forced to 1.80 refuses (inf h(b) > 0 not proved); the like class sign on the unlike source is DETECTED (refuses or disjoint from the unlike direct-vector root)", "pass": okb8, "detail": b8})
+< if RUNMODE == "controls":
+---
+> def _controls_known_47():
+>     """v4.7.1: B1-B4, B7, B8 inside a function so that no control variable becomes a module global (v4.7 shadowed the frozen global b3)"""
+>     # (B1) KNOWN: stationary like source (exact causal root = the direct-vector chord), root below the frozen lower end; rungs 1 and 2 needed
+>     b1 = {}; okb1 = True
+>     for (Q0s, qss, kneed) in (("1.74", "1.60", 1), ("1.82", "1.77", 2)):
+>         res, rn = _known_root46(mp.mpf(Q0s), mp.mpf(qss)); b1[Q0s + "/" + qss] = res
+>         okb1 = okb1 and bool(res["frozen_bracket_refused"] and rn[0] is not None and res.get("meets_direct_root") and mp.mpf(res["width"]) < mp.mpf("1e-15") and mp.mpf(res["centre_diff"]) < mp.mpf("1e-15") and res.get("rung") == kneed)
+>     out["controls"].append({"name": "(B1) KNOWN constructed stationary like source: exact root = direct-vector chord (frozen (0b) embedding, independent of geom); the frozen v3c1 bracket refuses (root below chord - 0.90); the v4.6 ladder encloses it (width < 1e-15, centre within 1e-15) on the expected rung (1 at Q = 1.74, q' = 1.60; 2 at Q = 1.82, q' = 1.77)", "pass": okb1, "detail": b1})
+>     # (B2) KNOWN moving and RISING root: uniform like source; independent sign proof of the enclosure by direct vectors; a rising root (source receding) enclosed below and above the frozen lower end
+>     def _hdir46(Q0, q1, u, tref, t0, tau_pt, c=-1):
+>         s = iv.mpf(t0) - iv.mpf(tau_pt); qs = iv.mpf(q1) + iv.mpf(u)*(s - iv.mpf(tref)); return iv.mpf(tau_pt) - _rdir46(Q0, qs, c)
+>     def _moving46(Q0, q1, u, t0, c=-1):
+>         t0I = I(mp.mpf(t0), mp.mpf(t0)); fh = _uniform46(q1, u, mp.mpf(5)); wb = lambda s_lo, s_hi: abs(mp.mpf(u))
+>         r_old = _with_history46(fh, lambda: tau_point9(enc, t0I, iv.mpf(Q0), c)); r46 = _with_history46(fh, lambda: (r_old, None) if r_old is not None else _ladder46(enc, t0I, iv.mpf(Q0), c, _upper47(fixed_chord(iv.mpf(Q0), c)), KMAX46, wbound=wb, cover_end=mp.mpf(t0)))
+>         res = {"Q0": str(Q0), "q1": str(q1), "u": str(u), "t0": str(t0), "frozen_bracket_refused": r_old is None}
+>         if r46[0] is None: res["refusal"] = r46[1]; return res, False
+>         tau = r46[0][0]; eps = mp.mpf("1e-20"); hl = _hdir46(Q0, q1, u, mp.mpf(5), mp.mpf(t0), lo(tau) - eps, c); hu = _hdir46(Q0, q1, u, mp.mpf(5), mp.mpf(t0), up(tau) + eps, c)
+>         res.update({"tau": pair(tau), "rung": (r46[1]["k"] if r46[1] else 0), "width": mp.nstr(wid(tau), 5), "h_direct_below": [mp.nstr(lo(hl), 6), mp.nstr(up(hl), 6)], "h_direct_above": [mp.nstr(lo(hu), 6), mp.nstr(up(hu), 6)]})
+>         return res, bool(up(hl) < 0 and lo(hu) > 0 and wid(tau) < mp.mpf("1e-15"))
+>     b2 = {}; okb2 = True
+>     rA, okA = _moving46(mp.mpf("1.80"), mp.mpf("1.78"), mp.mpf("0.30"), mp.mpf(5)); b2["approaching u = +0.30"] = rA; okb2 = okb2 and okA and rA["frozen_bracket_refused"]
+>     rB, okB = _moving46(mp.mpf("1.80"), mp.mpf("1.40"), mp.mpf("-0.30"), mp.mpf(5)); b2["receding u = -0.30, t0 = 5.0"] = rB; okb2 = okb2 and okB and rB["frozen_bracket_refused"]
+>     rC, okC = _moving46(mp.mpf("1.80"), mp.mpf("1.40"), mp.mpf("-0.30"), mp.mpf("6.2")); b2["receding u = -0.30, t0 = 6.2 (root risen above the frozen lower end)"] = rC; okb2 = okb2 and okC and (not rC["frozen_bracket_refused"]) and rC["rung"] == 0
+>     okb2 = okb2 and bool("tau" in rB and "tau" in rC and mp.mpf(rC["tau"][0]) > mp.mpf(rB["tau"][1]))
+>     out["controls"].append({"name": "(B2) KNOWN uniform like source paths (constructed, exact, |u| = 0.30): the enclosure is proved by an INDEPENDENT direct-vector sign test (h < 0 just below, h > 0 just above, width < 1e-15); approaching source below the frozen lower end enclosed by the ladder; RISING root (receding source) enclosed below the frozen lower end at t0 = 5.0 and by the unchanged frozen bracket at t0 = 6.2, the root having risen", "pass": bool(okb2), "detail": b2})
+>     # (B3) NEGATIVES on the constructed stationary case Q = 1.82, q' = 1.77 (root about 0.661, needs rung 2, a_2 about 0.636)
+>     Qn = iv.mpf("1.82"); fhn = _stationary46(mp.mpf("1.77")); rdn = _rdir46(mp.mpf("1.82"), mp.mpf("1.77"), -1); b3 = {}
+>     b3["kmax_1_refused"] = _with_history46(fhn, lambda: _ladder46(enc, T46, Qn, -1, UPPER46, 1, wbound=W0_46, cover_end=lo(T46)))
+>     b3["upper_end_below_root_refused"] = _with_history46(fhn, lambda: _ladder46(enc, T46, Qn, -1, mp.mpf("-1.20"), KMAX46, wbound=W0_46, cover_end=lo(T46)))
+>     b3["injected_speed_1.2_uniqueness_refused"] = _with_history46(fhn, lambda: _ladder46(enc, T46, Qn, -1, UPPER46, KMAX46, wbound=lambda s_lo, s_hi: mp.mpf("1.2"), cover_end=lo(T46)))
+>     a3 = lo(fixed_chord(Qn, -1)) - LOWER9[-1] - 2*LADDER_STEP46
+>     b3["rung2_read_past_cover_end_refused"] = _with_history46(fhn, lambda: _ladder46(enc, T46, Qn, -1, UPPER46, KMAX46, wbound=W0_46, cover_end=lo(T46) - a3 - mp.mpf("1e-9")))
+>     b3["rung2_read_just_inside_cover_end_accepted"] = _with_history46(fhn, lambda: _ladder46(enc, T46, Qn, -1, UPPER46, KMAX46, wbound=W0_46, cover_end=lo(T46) - a3 + mp.mpf("1e-6")))
+>     b3["class_sign_exchanged"] = _with_history46(fhn, lambda: _ladder46(enc, T46, Qn, 1, _upper47(fixed_chord(Qn, 1)), KMAX46, wbound=W0_46, cover_end=lo(T46)) if tau_point9(enc, T46, Qn, 1) is None else (tau_point9(enc, T46, Qn, 1), {"k": 0}))
+>     cx = b3["class_sign_exchanged"]; b3d = {}
+>     for k_, v_ in b3.items(): b3d[k_] = ({"enclosure": pair(v_[0][0]), "rung": v_[1].get("k")} if v_[0] is not None else {"refused": v_[1]})
+>     okb3 = bool(b3["kmax_1_refused"][0] is None and b3["upper_end_below_root_refused"][0] is None and b3["injected_speed_1.2_uniqueness_refused"][0] is None and "uniqueness not proved" in b3["injected_speed_1.2_uniqueness_refused"][1]["failing"]
+>                 and b3["rung2_read_past_cover_end_refused"][0] is None and "minimum admissible delay" in b3["rung2_read_past_cover_end_refused"][1]["failing"] and b3["rung2_read_just_inside_cover_end_accepted"][0] is not None and b3["rung2_read_just_inside_cover_end_accepted"][1]["k"] == 2 and inter(b3["rung2_read_just_inside_cover_end_accepted"][0][0], rdn)
+>                 and (cx[0] is None or not inter(cx[0][0], rdn)))
+>     b3d["like_direct_root"] = pair(rdn)
+>     out["controls"].append({"name": "(B3) NEGATIVES (constructed stationary like source, root about 0.661 at rung 2): a ladder capped at 1 rung refuses; an upper end below the root refuses (lowering cannot rescue an upper failure); an injected |w'| = 1.2 refuses uniqueness; a rung-2 read 1e-9 past the coverage end refuses (minimum admissible delay) and one 1e-6 inside is accepted on rung 2 and meets the direct root; the class sign exchanged (unlike geometry on the like source) is DETECTED: it refuses or gives an enclosure disjoint from the like direct-vector root", "pass": okb3, "detail": b3d})
+>     # (B4) the frozen states: at the anchor state the v4.6 root is the frozen object for every class (identical strings), ladder not engaged
+>     b4 = {}; okb4 = True
+>     for c in ALL3:
+>         o_ = tau_point9(enc, tA, QA, c); n0 = out["v46"]["old_path_calls"]; n_ = tau_point46(enc, tA, QA, c)
+>         same = bool(o_ is not None and n_ is not None and pair(o_[0]) == pair(n_[0]) and pair(o_[1][0]) == pair(n_[1][0]) and pair(o_[1][1]) == pair(n_[1][1])); okb4 = okb4 and same and out["v46"]["old_path_calls"] == n0 + 1
+>         b4[NAME[c]] = {"identical": same, "tau": pair(n_[0]) if n_ else None}
+>     out["controls"].append({"name": "(B4) at the anchor state the v4.6 delay root equals the frozen v3c1 root for every class (identical strings of tau, q', w'), through the frozen path (ladder not engaged)", "pass": okb4, "detail": b4})
+>     # (B7) KNOWN, v4.7: UNLIKE roots ABOVE the frozen upper end chord_U + 0.90: the frozen bracket refuses, the fallback (rung 0, b = 2.05) encloses; direct-vector checks
+>     b7 = {}; okb7 = True
+>     r7s, rn7 = _known_root46(mp.mpf("1.82"), mp.mpf("1.77"), c=1); r7s["frozen_upper_end"] = mp.nstr(up(fixed_chord(iv.mpf("1.82"), 1)) + UPPER46, 12); b7["stationary unlike Q = 1.82, q' = 1.77"] = r7s
+>     okb7 = okb7 and bool(r7s["frozen_bracket_refused"] and rn7[0] is not None and r7s.get("meets_direct_root") and mp.mpf(r7s["width"]) < mp.mpf("1e-15") and mp.mpf(r7s["centre_diff"]) < mp.mpf("1e-15") and r7s.get("rung") == 0 and abs(rn7[1]["b"] - TOP47) < mp.mpf("1e-25")
+>                          and mp.mpf(r7s["tau"][0]) > mp.mpf(r7s["frozen_upper_end"]))
+>     r7u, ok7u = _moving46(mp.mpf("1.80"), mp.mpf("1.78"), mp.mpf("0.10"), mp.mpf(5), c=1); b7["uniform unlike Q = 1.80, q1 = 1.78, u = +0.10"] = r7u
+>     okb7 = okb7 and ok7u and r7u["frozen_bracket_refused"] and r7u.get("rung") == 0 and mp.mpf(r7u["tau"][0]) > up(fixed_chord(iv.mpf("1.80"), 1)) + UPPER46
+>     out["controls"].append({"name": "(B7) KNOWN (v4.7) unlike roots above the frozen upper end chord_U + 0.90 (constructed: stationary source, exact root = direct-vector chord about 1.888; uniform source |u| = 0.10, root about 1.83 proved by the independent direct-vector sign test): the frozen v3c1 bracket refuses, the v4.7 fallback encloses on rung 0 (frozen lower end) with b = 2.05", "pass": bool(okb7), "detail": b7})
+>     # (B8) NEGATIVES (v4.7) on the stationary unlike case: an upper end forced to 1.80 (below the root about 1.888) refuses; the like geometry on the unlike source is detected (refuses or disjoint)
+>     fh8 = _stationary46(mp.mpf("1.77")); Q8 = iv.mpf("1.82"); rd8 = _rdir46(mp.mpf("1.82"), mp.mpf("1.77"), 1); b8 = {}
+>     n8a = _with_history46(fh8, lambda: _ladder46(enc, T46, Q8, 1, mp.mpf("1.80") - up(fixed_chord(Q8, 1)), KMAX46, wbound=W0_46, cover_end=lo(T46)))
+>     n8b = _with_history46(fh8, lambda: (tau_point9(enc, T46, Q8, -1), {"k": "frozen"}) if tau_point9(enc, T46, Q8, -1) is not None else _ladder46(enc, T46, Q8, -1, _upper47(fixed_chord(Q8, -1)), KMAX46, wbound=W0_46, cover_end=lo(T46)))
+>     b8["upper_end_1.80_below_root_refused"] = ({"refused": n8a[1]} if n8a[0] is None else {"enclosure": pair(n8a[0][0])}); b8["like_geometry_on_unlike_source"] = ({"refused": n8b[1]} if n8b[0] is None else {"enclosure": pair(n8b[0][0])}); b8["unlike_direct_root"] = pair(rd8)
+>     okb8 = bool(n8a[0] is None and "frozen bracket on [a_k, b] refused" in n8a[1]["failing"] and (n8b[0] is None or not inter(n8b[0][0], rd8)))
+>     out["controls"].append({"name": "(B8) NEGATIVES (v4.7, constructed stationary unlike source, root about 1.888): a fallback with the upper end forced to 1.80 refuses (inf h(b) > 0 not proved); the like class sign on the unlike source is DETECTED (refuses or disjoint from the unlike direct-vector root)", "pass": okb8, "detail": b8})
+> _controls_known_47()
+> def _controls_records_47():
+>     global RECORDS
+267a274
+> if RUNMODE == "controls": _controls_records_47()

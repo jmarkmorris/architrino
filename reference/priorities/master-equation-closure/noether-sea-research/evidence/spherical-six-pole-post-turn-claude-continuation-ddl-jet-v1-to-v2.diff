@@ -1,0 +1,32 @@
+1c1,4
+< # Six-pole POST-TURN campaign (Claude continuation role, jack-k-hale lens, 2026-10-21): ddl-jet v1, a correlated whole-step enclosure of l'' = -2 a^2 - 2 w a' - r''
+---
+> # Six-pole POST-TURN campaign (Claude continuation role, jack-k-hale lens, 2026-10-21): ddl-jet v2 = ddl-jet v1 (sha256 c0756833a6d8e3fe6fc3fedbea145fc456ba1ca725b53648db2995164c51f444, kept)
+> # with ONE change: the record chain CHAINJ is the cm49 rebuild R1-R6 (anchor 154 -> 570, signed serializer; every file checked by name and sha256 and required to carry
+> # "affine_format": "signed-v49") instead of r1-r5, P1-P3 (whose resumes used the unsigned serializer, post-turn adjudication 10). Nothing else changed.
+> # (v1 header follows.) ddl-jet v1, a correlated whole-step enclosure of l'' = -2 a^2 - 2 w a' - r''
+27c30
+< out["ddl_jet"] = {"version": "1", "mode": MODEJ, "args": XJ, "cm471_sha256": CM471J_SHA, "inherited_controls_all_pass": bool(V9_ALL_PASS and all(c_["pass"] for c_ in out["controls"]))}
+---
+> out["ddl_jet"] = {"version": "2", "mode": MODEJ, "args": XJ, "cm471_sha256": CM471J_SHA, "inherited_controls_all_pass": bool(V9_ALL_PASS and all(c_["pass"] for c_ in out["controls"]))}
+226,233c229,234
+< CHAINJ = [("spherical-six-pole-correlated-continuation-claude-continuation-steps10-cm-v44-C18-r1.json", "7940e277359dd41690b60a0b77af59e5587c3172397c119854d809190538c2d4"),
+<           ("spherical-six-pole-correlated-continuation-claude-continuation-steps10-cm-v44-C20-r2.json", "7b1470e81409f6a9361b8f932e5974895698f373e6b0d2dc8d340e53d5aec3c1"),
+<           ("spherical-six-pole-correlated-continuation-claude-continuation-steps10-cm-v44-C20-r3.json", "e2dc6540a21e0682a14fce9a5d848785c06839f4c688f64f94ce8606c4cf6cb8"),
+<           ("spherical-six-pole-correlated-continuation-claude-continuation-steps10-cm-v44-C20-r4.json", "8182cb08f20b4409e61b3149c800a0a022572d2e23fb0b2ec9f77f3acd55d8d6"),
+<           ("spherical-six-pole-correlated-continuation-claude-continuation-steps10-cm-v44-C22-r5.json", "7af6178534c67a97e78800f6a5c7782b4c27fd6f124ed15bad7d82483e54b875"),
+<           ("spherical-six-pole-path-continuation-claude-continuation-steps10-cm471-P1.json", "e19aac9418e7cdc0b5d34b80084463e46aa2bf14763cfb15f92c7ff132adcac4"),
+<           ("spherical-six-pole-path-continuation-claude-continuation-steps10-cm471-P2.json", "08683e84f29af2578e0dc1f6203f607968ac8ca304be6da924e9128581d04e96"),
+<           ("spherical-six-pole-path-continuation-claude-continuation-steps10-cm471-P3.json", "e6b7fbb6b1107508e76730c9647fe15b8ef2de06460ede0463819ac6a4f3434b")]
+---
+> CHAINJ = [("spherical-six-pole-post-turn-claude-continuation-steps10-cm49-R1.json", "f81012daaaf76d660ec76fd731193a020c078d26e6487aa0e4ba2477874869ce"),
+>           ("spherical-six-pole-post-turn-claude-continuation-steps10-cm49-R2.json", "93eb668c642752b3077102e03acad2b216d929c4a0a39158559b450fb9a263dd"),
+>           ("spherical-six-pole-post-turn-claude-continuation-steps10-cm49-R3.json", "034afdb7660197afaf7c38bc7126ce3ecfe1ff5e03887b45970882a7f4029d79"),
+>           ("spherical-six-pole-post-turn-claude-continuation-steps10-cm49-R4.json", "051f2252c883a7eca7c2c3d78189827acbf2a6a7a32c56055842bf36b1feb5c0"),
+>           ("spherical-six-pole-post-turn-claude-continuation-steps10-cm49-R5.json", "acbafff3e4f45711f18ed66b13256c5ff14dfa793ec4b941f895d3eab234015f"),
+>           ("spherical-six-pole-post-turn-claude-continuation-steps10-cm49-R6.json", "c1454e398553ca639a2ed2412472602b2c3c3d7d8459942f3d599bc764c48c2e")]
+239c240,241
+<         for st_ in json.loads(b_)["steps"]:
+---
+>         dj_ = json.loads(b_); assert dj_.get("affine_format") == "signed-v49", "record refused (not a signed-v49 rebuild record): " + n_
+>         for st_ in dj_["steps"]:

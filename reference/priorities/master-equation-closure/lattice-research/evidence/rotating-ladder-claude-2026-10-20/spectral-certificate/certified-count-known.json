@@ -1,0 +1,68 @@
+{
+ "polynomial": {
+  "region": {
+   "s0": 0.3,
+   "X": 3.5,
+   "Y": 3.5
+  },
+  "count": 7,
+  "certified": true,
+  "upper_arg_over_pi": 7.0,
+  "err_over_pi": 3.5163457004043295e-18,
+  "segments": 204,
+  "bisections": 0,
+  "failed_segments": [],
+  "min_segment": 0.05,
+  "evaluations": 409,
+  "end_sign_product": -1,
+  "parity_consistent": true,
+  "seconds": 0.29307103157043457,
+  "expected": 7
+ },
+ "lambert": {
+  "region": {
+   "s0": 0.3,
+   "X": 3.0,
+   "Y": 12.0
+  },
+  "count": 5,
+  "certified": true,
+  "upper_arg_over_pi": 5.0,
+  "err_over_pi": 5.4342847347139795e-19,
+  "segments": 534,
+  "bisections": 0,
+  "failed_segments": [],
+  "min_segment": 0.05,
+  "evaluations": 1069,
+  "end_sign_product": -1,
+  "parity_consistent": true,
+  "seconds": 0.3207249641418457,
+  "expected": 5,
+  "lambert_values_inside": [
+   [
+    0.5919504471534063,
+    -11.049097669565985
+   ],
+   [
+    1.3549447504493086,
+    -4.978131022247858
+   ],
+   [
+    2.20500327802406,
+    0.0
+   ],
+   [
+    1.3549447504493086,
+    4.978131022247858
+   ],
+   [
+    0.5919504471534063,
+    11.049097669565985
+   ]
+  ]
+ },
+ "negative_control_zero_on_edge": {
+  "certified": false,
+  "failed_segments": 1
+ }
+}

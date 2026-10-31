@@ -1,0 +1,8 @@
+You are an independent reviewer (Codex, gpt-6.1-sol) for the Architrino repository at /Users/markmorris/vibe/architrino. Do not edit any file. Read AGENTS.md's physics rules and the canonical Master Equation passages you need. Read the files under review in full and the cited accepted sources. Reconstruct every derivation and every numerical claim independently; do not trust the author's statements or instruments. Report: (a) what you read; (b) for each claim, supported / not supported / needs correction, with the reason; (c) a numbered list of actionable corrections, each labelled with a short ID; (d) an overall disposition: ACCEPT, ACCEPT AFTER CORRECTIONS, or REJECT. Be specific about scope: what is derived, what is only sampled, what is conditional.
+
+## Chunk 4, round 2: verify corrections to the fold-passage note
+
+- File under review: `reference/priorities/master-equation-closure/analysis/saturday-cross-geometry-continuation-2026-10-20-fold-passage.md`, SHA-256 `f1c65808d9f8fa0724760bedaa08b6a5f9b11f3a86b0e85f919a3871f64d7638`, 25754 bytes.
+- Your round 1 reply: `reference/priorities/master-equation-closure/evidence/saturday-cross-geometry-2026-10-20/review/chunk4-reply-round1.md`; author response: `reference/priorities/master-equation-closure/evidence/saturday-cross-geometry-2026-10-20/review/chunk4-response-round1.md`.
+
+Verify F-W1 (in particular that the reformulated (W1), the kinematic class, the old-emission field and the two-way identification in Section 4 now establish Proposition F as a Master Equation statement without circularity), F-END, F-LAT, F-FIN, F-RING and F-SCOPE. Reread the whole note and report any new error introduced by the edits.

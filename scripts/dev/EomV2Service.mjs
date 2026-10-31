@@ -46,6 +46,8 @@ export function createEomV2Service(options) {
       if (request.method === 'GET' && path === '/api/eom/v2/capabilities') { send(response, 200, await getClient().execute('{"operation":"capabilities"}')); return true; }
       if (request.method === 'GET' && path.startsWith('/api/eom/v2/checkpoints/')) { send(response, 200, getClient().readCheckpoint(path.split('/').at(-1))); return true; }
       if (request.method !== 'POST') { send(response, 405, { code: 'unsupported_method' }); return true; }
+      const checkpointMode = request.headers['x-eom-checkpoint-mode'] ?? 'inline';
+      if (!['inline','reference'].includes(checkpointMode) || (checkpointMode==='reference' && !path.endsWith('-record'))) throw new Error('Unsupported checkpoint presentation mode.');
       const raw = await body(request);
       if (path === '/api/eom/v2/cancel') {
         const data = getClient().validateCancel(raw);
@@ -64,7 +66,7 @@ export function createEomV2Service(options) {
       const cancelled = () => { if (!response.writableEnded && typeof runId === 'string') cancel(runId,executionId); };
       response.once('close', cancelled);
       try {
-        const result = getClient().execute(wire, { runId, retainRecord: path.endsWith('-record') });
+        const result = getClient().execute(wire, { runId, retainRecord: path.endsWith('-record'), checkpointMode });
         if(operation!=='inspect')generations.set(runId,executionId);
         const pendingKey = `${runId}\0${executionId}`;
         const expiry = pending.get(pendingKey); pending.delete(pendingKey);

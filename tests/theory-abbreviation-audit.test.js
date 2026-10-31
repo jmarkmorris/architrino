@@ -5,6 +5,10 @@ import { findTheoryAbbreviationCandidates as audit } from "../scripts/lib/theory
 test("coefficient-weighted cubic summands retain mathematical meaning", () => {
   for (const text of [
     "$F=g[c_{E3}A^3+B]$",
+    "$F=g[c_{E3}^*A^3+B]$",
+    "$|E|\\le c_3X^3A^3+6Z_7X^5A^5$",
+    "$|E|\\le X^2\\left[c_3+6Z_7(1-A_*)^{-7}A_*^2\\right]A^3.$",
+    "so |E| <= X^2 (c_3 + c_5 rho^2) A^3; the other coefficient is unchanged.",
     "$C_Lgc_{E3}A^3\\approx0.00149$",
     "The assembled bound is F_sgn = g[c_E3·A³ + Σ_br + ½𝒪].",
     "The receiver cubic c_E3·A³ is unpaired.",
@@ -87,7 +91,7 @@ test("defined cubes in arithmetic expressions need no relation sign", () => {
 });
 
 test("defined scale cubes support denominators and implicit multiplication", () => {
-  for (const formula of ["\\tau=\\frac{s-s_0}{A^3}", "s-s_*=A^3\\tau", "x=A^3z", "x=A^3"]) {
+  for (const formula of ["\\tau=\\frac{s-s_0}{A^3}", "s-s_*=A^3\\tau", "x=A^3z", "x=A^3", "|E|\\le X^2(c_3+c_5\\rho^2)A^3."]) {
     assert.deepEqual(audit(`At scale $A=H(s_0)$.\n$$${formula}$$`), [], formula);
     assert.deepEqual(audit(`Freeze a reception scale $A$ and use $${formula}$.`), [], formula);
   }

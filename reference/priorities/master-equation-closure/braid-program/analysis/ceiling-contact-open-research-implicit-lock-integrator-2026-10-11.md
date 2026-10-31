@@ -70,6 +70,64 @@ The two arms agree to the digits shown at every level from $10^{-4}$ sizes inwar
 
 **Cost per decade.** Accepted steps in the decades $10^{-2}$–$10^{-3}$, …, $10^{-6}$–$10^{-7}$: $91$, $90$, $90$, $89$, $90$; the step is $0.0265$ of the separation throughout. The cost per decade is constant because the scheme's step is tied to the delayed range and not to the lock's relaxation time.
 
+## 4a. Correction and continuation, 2026-10-20
+
+**Correction: the stated cause of the depth limit was wrong in size, and the pointing error's drift had a different cause (measured).** Section 1 attributed the loss of resolution below about $3\times10^{-7}$ sizes to the response's subtraction of the forward part of the summed row. That subtraction does lose digits, but by the record's own estimate it leaves a relative error of about $2\times10^{-9}$ in the turning part at $10^{-7}$ sizes, while the observed drift of the pointing error there was $3\times10^{-4}$. The cause of the drift is the size of the time variable. The run measured time from the restart, so time was about $2\times10^{-3}$ while the delayed range was about $10^{-8}$. Each emission time $t-\tau$ is then quantized at about $4\times10^{-19}$, which moves the direction to the image by about $3\times10^{-11}$ radians against a pointing error of $1.5\times10^{-8}$ radians. A rebasing version of the instrument (below) moves the time origin to the current node and the space origin to the pair's midpoint whenever the separation has fallen fourfold. Over the range where the first instrument drifted, it resolves the pointing error at the closed-form value:
+
+| $r$ (sizes) | $\sin\psi_0/\tau_0$, first instrument | the same, rebased |
+| --- | --- | --- |
+| $3.15\times10^{-7}$ | $1.98623$ | $1.986310$ |
+| $1.75\times10^{-7}$ | $1.98675$ | $1.986310$ |
+| $1.00\times10^{-7}$ | $1.98698$ | $1.986309$ |
+| $5.6\times10^{-8}$ | $1.98845$ | $1.986309$ |
+| $3.15\times10^{-8}$ | $1.97954$ | $1.986309$ |
+| spiral, closed form | $1.986309$ | |
+
+The statements in Section 1 and Section 4 that the lock is resolved only to $5\times10^{-7}$ sizes, and that the limit is the forward-part cancellation, are superseded by this subsection. The lock is resolved to $3.2\times10^{-8}$ sizes. The slow quantities in the table of Section 4 are unaffected, and so is the inferred coincidence instant, $0.874841659374\,P$, which both instruments give.
+
+**The depth limit itself remains, and its cause is not identified (measured; one hypothesis refuted).** Both the first instrument and the rebasing one stop advancing near $2.6\times10^{-8}$ sizes. From about $2\times10^{-7}$ sizes inward the stage iteration stagnates at about half its tolerance and then fails, and the step collapses. I tested one hypothesis. The finite-difference Jacobian's relative error, about $10^{-6}$ with forward differences, times the step's stiffness, about $0.023/\tau$, passes one near $\tau\sim2\times10^{-8}$. A run with central differences, whose Jacobian error is about $10^{-10}$, began failing at $1.75\times10^{-7}$ sizes and stopped at $3.2\times10^{-8}$ sizes, exactly as the forward-difference run did. The hypothesis is therefore refuted. A stagnation along each riding member's direction of motion, which the renormalization to unit speed makes irrelevant, was found and removed by measuring that member's velocity error across its direction of motion only. The remaining stagnation is across the direction of motion. Candidates not yet tested: rounding in the response at depth, and the smoothness of the instrument's own quintic interpolation at its nodes.
+
+**Instrument and known cases, in order (2026-10-20).** `ccor_implicit2.py` imports the first instrument unchanged and adds four things:
+- *Rebasing:* time and space are rebased as described above.
+- *Velocity tolerance:* $10^{-4}$ times twice the pair's delayed range, so that the pointing error itself is controlled to relative $10^{-4}$, with a floor of $64$ units in the last place.
+- *Transverse velocity errors:* a riding member's velocity error is measured across its direction of motion only.
+- *Jacobian option:* a choice of forward or central differences.
+
+Its known cases ran in this order:
+- *K1:* the exact ceiling circular pair for one period with a rebase forced every 40 steps. Five rebases; deviation $1.16\times10^{-9}R$, against the first instrument's $2.8\times10^{-11}R$, because the velocity tolerance scales with the delayed range, which is large on the circle.
+- *K2:* restart from the frozen finest blind-reference trajectory at $10^{-2}$ sizes, ladder compared with the study's four stored ladders from $10^{-2}$ to $10^{-4}$ sizes. Largest differences $1.1\times10^{-5}$ in the closing rate, $1.5\times10^{-6}$ in the delay ratio and $2.0\times10^{-5}$ in the transmitter factor; $2.0\times10^{-5}$ in the pointing error against the two subject ladders.
+- *K3:* agreement with the first instrument from $10^{-4}$ to $5\times10^{-7}$ sizes, where that one resolved the lock. Largest differences $1.0\times10^{-11}$ in the delay ratio, $1.4\times10^{-9}$ in the transmitter factor and $5.5\times10^{-6}$ in the pointing error.
+
+All passed, for both Jacobian settings. One earlier attempt at K2 and K3 failed by stagnation along the direction of motion; that failure led to the transverse measure, and its log is kept as `ccor-implicit2-k2-k3-attempt-forward-noise.log`.
+
+**Deep runs (measured).** Forward differences: 1,180 steps, 384 rejected, 2,368 stage solves accepted at their rounding floor, nine rebases, ending at the 3,300-second wall at $2.6\times10^{-8}$ sizes. Central differences: 755 steps, 171 rejected, 1,018 accepted at the floor, nine rebases, ending at the wall at $3.2\times10^{-8}$ sizes. In both, every ladder row from $10^{-2}$ to $3.2\times10^{-8}$ sizes has the delay ratio $1.290061$, the transmitter factor $0.883193$ and the closing rate $0.980194$ to the digits shown in Section 4. The inferred coincidence instant is $0.874841659374\,P$.
+
+| Claim | Grade | Falsifier, and where to look |
+| --- | --- | --- |
+| The first instrument's pointing-error drift below $3\times10^{-7}$ sizes came from quantization of the time variable | Measured: removing it by rebasing removes the drift; the size estimate derived | A rebased run that still drifts over the same range; `ccor-implicit2-*.json` |
+| The forward-part cancellation was the depth limit (Section 1) | Withdrawn: wrong by about five orders of magnitude for the drift | — |
+| The lock is resolved at $1.986309$ to $3.2\times10^{-8}$ sizes | Measured; one rebasing instrument at two Jacobian settings | A different integrator giving a different pointing error over that range |
+| The finite-difference Jacobian causes the stage stagnation near $10^{-7}$ sizes | Refuted: central differences change nothing | — |
+| The cause of the remaining depth limit near $2.6\times10^{-8}$ sizes | Not identified | — |
+
+Commands, from the local directory, under the shared venv (numpy only): `python ccor_implicit2.py control`, `python ccor_implicit2.py k2`, `python ccor_implicit2.py run 1e-12 3300 deep-1e-2-to-1e-12`, and the same three with the environment setting `CCOR_JAC=central`. Receipts `ccor-implicit2-control*.json`, `ccor-implicit2-k2-k3*.json`, `ccor-implicit2-deep-1e-2-to-1e-12*.json`; logs `ccor-implicit2-*.log`. The central-difference sequence was briefly run twice in parallel by mistake. The older copy was stopped, together with an orphaned deep run it had started, and the receipts are from runs that each completed in order. Review status of these additions: self-review only.
+
+**Diagnosis of the remaining stall, 2026-10-21 (measured; cause still open).** The rebasing instrument saved its full state at five depths, from $10^{-6}$ to $10^{-7}$ sizes. A diagnostic, `ccor_stall_diag.py`, repeats one stage solve from each saved state and records which coordinate's correction is largest at each iteration. Two further hypotheses were tested and refuted:
+- *Member 1's position scale.* The position tolerance is $10^{-8}$ of the pair's separation for every member, and member 1's coordinates, about $0.43$ from the pair, carry rounding of about $5.6\times10^{-17}$. Tested and refuted: member 1's position is never the worst coordinate.
+- *The Jacobian*, already refuted by the central-difference runs above.
+
+The stagnation is in the transverse velocities of the two riding members, mostly at the last collocation stage. Its absolute size, the largest correction over iterations 6 to 19, grows as the pair closes:
+
+| Pair separation (absolute) | Velocity tolerance | Stagnation floor (absolute) |
+| --- | --- | --- |
+| $1.96\times10^{-7}$ | $5.1\times10^{-11}$ | $1.3\times10^{-12}$ |
+| $1.09\times10^{-7}$ | $2.8\times10^{-11}$ | $2.8\times10^{-12}$ |
+| $6.2\times10^{-8}$ | $1.6\times10^{-11}$ | $7.1\times10^{-12}$ |
+| $3.5\times10^{-8}$ | $8.9\times10^{-12}$ | $5.6\times10^{-12}$ |
+| $2.0\times10^{-8}$ | $5.1\times10^{-12}$ | $1.5\times10^{-11}$ |
+
+The floor scales roughly as $3\times10^{-19}$ divided by the separation, the signature of a rounding source whose relative size grows as the pair closes. The tolerance falls in proportion to the separation, so the floor reaches the iteration's acceptance threshold, half the tolerance, near a separation of $4\times10^{-8}$ in absolute terms, about $2\times10^{-7}$ sizes. That is where failures begin. The source itself is not identified. Candidates are named for a later attempt: the subtraction in the response, evaluated in extended precision; and the interpolation of the instrument's own history, tested by repeating the stage solve with the history refined. Files: `ccor_stall_diag.py`, `ccor-implicit2-state-diag-dump-*.npz`, `ccor-implicit2-state-diag-dump-*-diag.json`.
+
 ## 5. Independence and limits
 
 - **What is independent.** The code, the numerical method (implicit collocation against two explicit Runge–Kutta integrators) and the interpolation. The closed-form spiral constants are an independent reference in kind for all five tabulated quantities.

@@ -131,16 +131,7 @@ Treat context as a valuable resource.
 
 Avoid repeatedly loading large amounts of information that are not relevant to the current objective.
 
-When substantial progress is made:
-
-- create concise state summaries,
-- record decisions,
-- record rationale,
-- record unresolved questions,
-- record next actions.
-- maintain the owning priority material as substantive ideas emerge, following the operator explanation standard and priority guidance.
-
-Think of summaries as checkpoints.
+When substantial progress is made, integrate the result into the existing standard files under the [operator explanation standard](operator-explanation-standard.md#live-discussion-and-priority-capture) and [priority guidance](../priorities/README.md#operator-files-and-agent-supporting-records). Keep exact restart details and validation inventories in established agent supporting records. Update an existing checkpoint when possible; do not create a summary document for each session. Accepted work, decisions, material uncertainty and useful findings must remain visible in the operator's files.
 
 ---
 

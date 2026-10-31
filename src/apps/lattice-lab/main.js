@@ -23,8 +23,18 @@ function reportLatticeLabBootstrapError(
 }
 
 if (typeof document !== "undefined") {
+  const disturbance = new URL(window.location.href).searchParams.get('section') === 'disturbances';
+  document.getElementById('lattice-lab-app').hidden = disturbance;
+  document.getElementById('lattice-disturbance-app').hidden = !disturbance;
   try {
-    window.__ARCHITRINO_LATTICE_LAB_RUNTIME__ = mountLatticeLab();
+    if (disturbance) {
+      import('./LatticeDisturbanceRuntime.js').then(({ mountLatticeDisturbance }) => {
+        window.__ARCHITRINO_LATTICE_DISTURBANCE__ = mountLatticeDisturbance();
+      }).catch(error => {
+        document.getElementById('disturbance-message').textContent = 'Disturbance section could not initialize: ' + error.message;
+        console.error(error);
+      });
+    } else window.__ARCHITRINO_LATTICE_LAB_RUNTIME__ = mountLatticeLab();
   } catch (error) {
     reportLatticeLabBootstrapError(error, document, window);
   }

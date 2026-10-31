@@ -1,0 +1,382 @@
+{
+  "createdAt": "2026-10-29T20:58:50.155Z",
+  "claimBoundary": "Derived bounded connection, conditional on the unchanged reviewed interval kernel and its lemmas. Separate exact-rational assembly audit passes; new peer review pending. No full endpoint route, free evolution, finite-population or stability claim.",
+  "sourceIdentityManifest": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/input-manifest.json",
+  "code": [
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/certify_connection.py",
+      "bytes": 5112,
+      "lines": 91,
+      "sha256": "79bfb0d3417456cfcd39f5aee8d98125556beb64c0aacc466925d2025e06250a"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/complete_connection.py",
+      "bytes": 4701,
+      "lines": 89,
+      "sha256": "376b1a3af7e2580d1be4cfe9374451cb15ef5c01d4d0897b483c9943666eeb5c"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/audit_connection.py",
+      "bytes": 8395,
+      "lines": 160,
+      "sha256": "ac53d437c0e2db679c8df16254ef72013f2907c82a36fa0bd2839df5b87d8646"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/verify_capture.mjs",
+      "bytes": 2473,
+      "lines": 35,
+      "sha256": "7d17c811521990d261d740a3f076ed88e81a884e2149515bb89b1a1c618447ed"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/pilot-driver.v1.py",
+      "bytes": 4066,
+      "lines": 77,
+      "sha256": "c066d942213db476abf63c3b42966c2c74a735ea33378545a510459c641363f3"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/complete-driver.v1.py",
+      "bytes": 4019,
+      "lines": 81,
+      "sha256": "2f904f7cbbe053260217dfaf7f3b6ea02fd2ba6ff329e7a3d44d16619359ce5c"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/input-manifest.json",
+      "bytes": 6352,
+      "lines": 85,
+      "sha256": "855948ddc95ce966179f1af95044e7c3e0782525eefa4db840c201fd1a2e99c3"
+    },
+    {
+      "path": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/visual-capture.json",
+      "bytes": 570,
+      "lines": 7,
+      "sha256": "73fee92f3b8eb7a6e2f7779f44eb13ccdbca9d2503a062006f2a598e5c3935bd"
+    }
+  ],
+  "rawPayloads": [
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/audit-final/audit-known-controls.json",
+      "bytes": 449,
+      "lines": 15,
+      "sha256": "60f3a94e44ed25a2ece1228d761d996aeacba3bab4723fd0b43b9dabc8c65dfd"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/audit-final/bridge-audit.json",
+      "bytes": 462,
+      "lines": 19,
+      "sha256": "2ae7905c664cc878ae8ff7d7ecc9f7564008d1e713c9470b3ab83e06f018c2f7"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/audit-final/old-curve-audit.json",
+      "bytes": 415,
+      "lines": 23,
+      "sha256": "a1a574ef435b13df98b888c39e4b503e70a542b0aa73d6bd90f781d7cbc7ff9b"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/audit-old-corrected/audit-known-controls.json",
+      "bytes": 392,
+      "lines": 14,
+      "sha256": "7036825b9dbdf648b85cee310fad4934d9441fc8d919d6c21fbcf7b53f135a5e"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/audit-old-corrected/old-curve-audit.json",
+      "bytes": 417,
+      "lines": 23,
+      "sha256": "86e873ca337ee51a64680748513d0b5c6033f7385cf8f910da942a5553aae609"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/audit-old-final/audit-known-controls.json",
+      "bytes": 392,
+      "lines": 14,
+      "sha256": "7036825b9dbdf648b85cee310fad4934d9441fc8d919d6c21fbcf7b53f135a5e"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/audit-old-final/old-curve-audit.json",
+      "bytes": 417,
+      "lines": 23,
+      "sha256": "86e873ca337ee51a64680748513d0b5c6033f7385cf8f910da942a5553aae609"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/audit-old/audit-known-controls.json",
+      "bytes": 349,
+      "lines": 13,
+      "sha256": "85ab58a3caa1b108782be40aa54c3ea8cf1ace62c377fb0e20d7688a22bc0249"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/bridge/attempts.json",
+      "bytes": 265915,
+      "lines": 13397,
+      "sha256": "5822f09b3b3df7dcf1b05741f4c97519d2814a650932323718f2b6ea2fa49871"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/bridge/contact.json",
+      "bytes": 4160,
+      "lines": 248,
+      "sha256": "85fe717758d375da523c6ba31cbd81983d44c13ade5d95f010fa8ae96d71917d"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/bridge/controls-complete.json",
+      "bytes": 141,
+      "lines": 13,
+      "sha256": "c6e8e6f65f47aa4eefef6bbfde293de9bde7f7a59ad624188669c6767298af32"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/bridge/controls-frozen.json",
+      "bytes": 2049,
+      "lines": 114,
+      "sha256": "c839e5c7149d9fbe1e77a39134269d663f6a65cd29f387cc19eeb10ceb10cea7"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/bridge/cover.json",
+      "bytes": 265637,
+      "lines": 13289,
+      "sha256": "2267b155a07316a0f55d72c75a5c44469516717f5b29011746205fe1a6219e91"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/bridge/joins.json",
+      "bytes": 104524,
+      "lines": 5647,
+      "sha256": "f3e2e0ff22ebeebe8b881d15f87514fb24fe1d5981d6c44ff40ef670c50b6fb3"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/bridge/krawczyk-alpha-0.9pi.json",
+      "bytes": 3487,
+      "lines": 206,
+      "sha256": "61964ac4b0afd5afd3ad68cfed1f2509e42f0cf98a004707375ea046f30e4df1"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/contact-refined/contact.json",
+      "bytes": 4158,
+      "lines": 250,
+      "sha256": "4d933f26b58de99b42ea4c7d9eb2e1b097f6e2df465b9b16f7265be43f5ebb75"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/contact-refined/controls-complete.json",
+      "bytes": 141,
+      "lines": 13,
+      "sha256": "c6e8e6f65f47aa4eefef6bbfde293de9bde7f7a59ad624188669c6767298af32"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/contact-refined/controls-frozen.json",
+      "bytes": 2050,
+      "lines": 114,
+      "sha256": "b2513ca2b69a90c487fd7eaa3ea9863f933945c1525cbdd3b258814548867f60"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/contact-refined/krawczyk-alpha-0.9pi.json",
+      "bytes": 3487,
+      "lines": 206,
+      "sha256": "61964ac4b0afd5afd3ad68cfed1f2509e42f0cf98a004707375ea046f30e4df1"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/contact-refined/production-complete.json",
+      "bytes": 413,
+      "lines": 16,
+      "sha256": "11719ca714bfbeba96bd25361ef4254b63aab92036d13af5e6f6a4f7ea74596f"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/contact-refined/resume-inputs.json",
+      "bytes": 492,
+      "lines": 12,
+      "sha256": "41c20a594ef99e09b49a7c103f2793245565c4e6d4f853eaed678e7ca9fbb1e7"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/pilot-refined/controls-complete.json",
+      "bytes": 141,
+      "lines": 13,
+      "sha256": "c6e8e6f65f47aa4eefef6bbfde293de9bde7f7a59ad624188669c6767298af32"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/pilot-refined/controls-frozen.json",
+      "bytes": 2049,
+      "lines": 114,
+      "sha256": "b78379d870047b6cb17be0857b4f4d161e88f6603f4f25e102d9c12e55359539"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/pilot-refined/krawczyk-alpha-0.9pi.json",
+      "bytes": 3487,
+      "lines": 206,
+      "sha256": "61964ac4b0afd5afd3ad68cfed1f2509e42f0cf98a004707375ea046f30e4df1"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/pilot-refined/pilot-2.925-w.001.json",
+      "bytes": 9089,
+      "lines": 468,
+      "sha256": "aec6892dc3462d392e76e2e8793bfce3a185ece400eda3d12b071c3b5d7be73f"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/pilot-refined/pilot-2.950-w.001.json",
+      "bytes": 9091,
+      "lines": 468,
+      "sha256": "aa4afea2534311463b5dec069b1eac896fa69c0e1a831b699e9920328ec61348"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/pilot-refined/pilot-2.980-w.001.json",
+      "bytes": 9093,
+      "lines": 468,
+      "sha256": "32ec4d1584d8ff97bf4c86465d9f652e84c04cc810b52705e9edd092c96d2b5a"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/pilot-refined/pilot-complete.json",
+      "bytes": 673,
+      "lines": 41,
+      "sha256": "60cf7879f3aa48e9c0fd13e43d28a6f27bc3e8e0c45577a188963d68ccf73e7d"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/pilot/controls-complete.json",
+      "bytes": 141,
+      "lines": 13,
+      "sha256": "c6e8e6f65f47aa4eefef6bbfde293de9bde7f7a59ad624188669c6767298af32"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/pilot/controls-frozen.json",
+      "bytes": 2049,
+      "lines": 114,
+      "sha256": "171b1262496fde1df63bb8076f020dcc387046e88011cb01d5c019a19c8ba70b"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/pilot/krawczyk-alpha-0.9pi.json",
+      "bytes": 3487,
+      "lines": 206,
+      "sha256": "61964ac4b0afd5afd3ad68cfed1f2509e42f0cf98a004707375ea046f30e4df1"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/pilot/pilot-2.924.json",
+      "bytes": 13724,
+      "lines": 700,
+      "sha256": "e1db982f495eecce08453464bce2bc8dd17d21e217b0bd914034cdbef9e4a43c"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/pilot/pilot-2.949.json",
+      "bytes": 13714,
+      "lines": 700,
+      "sha256": "75d0b16a3db6a7eb054d62f3261f5f6a53a49a1a9b1760a45cd6b1d80aff1e71"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/pilot/pilot-2.979.json",
+      "bytes": 13713,
+      "lines": 700,
+      "sha256": "b5fdba7502ca67298531f09c8ae13dc827656e08ba540ae4357c12073283e84e"
+    },
+    {
+      "path": ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/pilot/pilot-complete.json",
+      "bytes": 465,
+      "lines": 32,
+      "sha256": "cd1cdf9a12ecf02bf22af113945fcf0bce83130d02f0a1be8a4b0e88adef0f1c"
+    }
+  ],
+  "runs": [
+    {
+      "runId": "d30229af-defd-4c27-885c-a69e493805bb",
+      "startedAtUtc": "2026-10-29T20:37:28.526Z",
+      "finishedAtUtc": "2026-10-29T20:38:15.168Z",
+      "elapsedWallSeconds": 46.667,
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "command": "/Users/markmorris/vibe/.venv/bin/python",
+      "args": [
+        "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/certify_connection.py",
+        "pilot",
+        "--output",
+        ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/pilot"
+      ],
+      "stdout": {
+        "path": ".local-data/owned-compute/logs/d30229af-defd-4c27-885c-a69e493805bb.stdout.log",
+        "bytes": 1792,
+        "lines": 9,
+        "sha256": "97f49f60db3b13e506fcfa3973fc0c5db532fee5635dcbb5485b6ce0cc9c553b"
+      },
+      "stderr": {
+        "path": ".local-data/owned-compute/logs/d30229af-defd-4c27-885c-a69e493805bb.stderr.log",
+        "bytes": 0,
+        "lines": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "runId": "0ae5fb1c-5039-483e-b8dc-4df9b51b8bfd",
+      "startedAtUtc": "2026-10-29T20:39:17.928Z",
+      "finishedAtUtc": "2026-10-29T20:39:47.315Z",
+      "elapsedWallSeconds": 29.401,
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "command": "/Users/markmorris/vibe/.venv/bin/python",
+      "args": [
+        "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/certify_connection.py",
+        "refined-pilot",
+        "--output",
+        ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/pilot-refined"
+      ],
+      "stdout": {
+        "path": ".local-data/owned-compute/logs/0ae5fb1c-5039-483e-b8dc-4df9b51b8bfd.stdout.log",
+        "bytes": 1806,
+        "lines": 9,
+        "sha256": "c5fc6de47c607c6197f8a37344d3df04a09c6a60dae2a15d4345b32a7df1bbba"
+      },
+      "stderr": {
+        "path": ".local-data/owned-compute/logs/0ae5fb1c-5039-483e-b8dc-4df9b51b8bfd.stderr.log",
+        "bytes": 0,
+        "lines": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "runId": "be521f4c-8eb6-41da-97ef-49c4a07292a7",
+      "startedAtUtc": "2026-10-29T20:44:23.233Z",
+      "finishedAtUtc": "2026-10-29T20:55:42.960Z",
+      "elapsedWallSeconds": 679.744,
+      "exitCode": 1,
+      "processGroupClosed": true,
+      "command": "/Users/markmorris/vibe/.venv/bin/python",
+      "args": [
+        "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/complete_connection.py",
+        "--output",
+        ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/bridge"
+      ],
+      "stdout": {
+        "path": ".local-data/owned-compute/logs/be521f4c-8eb6-41da-97ef-49c4a07292a7.stdout.log",
+        "bytes": 4961,
+        "lines": 123,
+        "sha256": "5b9347a6bbea26231d38411299f5003eea508661c87679c7f6eb6aaf06cec50f"
+      },
+      "stderr": {
+        "path": ".local-data/owned-compute/logs/be521f4c-8eb6-41da-97ef-49c4a07292a7.stderr.log",
+        "bytes": 682,
+        "lines": 8,
+        "sha256": "dd371c6c8b202efab200e49084dd165cf5c3ad1e79a4553da7a59c7a58c8b69a"
+      }
+    },
+    {
+      "runId": "f303476a-e1e3-4c08-972d-f0c4b1878f07",
+      "startedAtUtc": "2026-10-29T20:57:01.129Z",
+      "finishedAtUtc": "2026-10-29T20:57:16.804Z",
+      "elapsedWallSeconds": 15.687,
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "command": "/Users/markmorris/vibe/.venv/bin/python",
+      "args": [
+        "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/complete_connection.py",
+        "--output",
+        ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/contact-refined",
+        "--resume-cover",
+        ".local-data/master-equation-closure/rotating-ladder/branch-connection-2026-10-29/bridge"
+      ],
+      "stdout": {
+        "path": ".local-data/owned-compute/logs/f303476a-e1e3-4c08-972d-f0c4b1878f07.stdout.log",
+        "bytes": 2188,
+        "lines": 10,
+        "sha256": "37f5f0c2bcc592bd86363f097f52800c699124287ce2ba42ed3b8d4cd09d1dc4"
+      },
+      "stderr": {
+        "path": ".local-data/owned-compute/logs/f303476a-e1e3-4c08-972d-f0c4b1878f07.stderr.log",
+        "bytes": 0,
+        "lines": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  ],
+  "totalRawBytes": 740863,
+  "totalRawLines": 37912,
+  "retrieval": "Read each path relative to the existing Architrino checkout and compare its bytes with the recorded SHA-256. Payloads remain in ignored local storage; they are not remotely backed up by this receipt.",
+  "reproduction": "Commands and stable comparison criteria are in README.md. Full cover and joins were run once after passing pilots and controls, followed by a fresh controlled contact refinement; a whole-result replay and byte-identical regeneration are unverified.",
+  "priorFailedAudit": "An initial old-curve assembler counted 109 explicitly unrun records as selected patches and stopped. Corrected selection, known-first control and exact pair inventory pass; frozen source receipts were not changed."
+}

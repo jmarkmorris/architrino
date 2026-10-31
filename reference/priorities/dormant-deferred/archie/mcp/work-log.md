@@ -4,6 +4,14 @@ This file is the chronological work log for the Archie-service MCP adapter. Use 
 
 ## Log Entries
 
+### 2026-10-31 — MCP-004 remaining deployment work made explicit
+
+- Re-ran the retained MCP-003 benchmark against the current checkout: search passed 8 of 8, exact read 2 of 2, topics 1 of 1, and graph retrieval 2 of 2. This preserves the completed deterministic-recall decision and does not reopen the rejected embeddings proposal.
+- Re-ran the secure-tunnel static check and focused suite: the manager check passed and the safety suite passed 9 of 9. This verifies the maintained repository safety contract, not release currency, account connectivity, or a remote-client call.
+- Found two deployment freshness blockers. First, `origin/main` source snapshot `b51991e05b7e5be014be6c5e77d5f2d89e5f2325bad4e4ddc034fd6642d977df` no longer matches the `14a8608620bc0e61a232355d24df1fc55b222475def2fc97238848d87ebc6ccb` identity pinned by the tool-contract and stdio fixtures. History inspection showed commit `308002c7b` changed only the source-index fixture in that three-file chain, so the demonstrated defect is downstream fixture binding, not an MCP semantic-code change. The current shared checkout has additional generated-input drift and is not yet a stable regeneration target. Second, the official OpenAI release page listed `tunnel-client` `v0.0.18` while the executable deployment contract still pinned `v0.0.14`; the manager is designed to reject that release-currentness mismatch.
+- Measured current activation ineligibility with `git status`, `git rev-parse`, the manager state root, and the retained conformance directory: the shared checkout was dirty on `codex/phoenix`, its `HEAD` did not equal `origin/main`, `.local-data/archie-mcp-tunnel/` was absent, and no remote-client acceptance receipt newer than the September local HTTP evidence was retained. These observations establish the state of this checkout, not the impossibility of an unrecorded external experiment.
+- Expanded MCP-004 in `work-queue.md` into six ordered executable subitems: stabilize and refresh the fixture chain; refresh and verify the current tunnel-client release; publish one accepted exact-`main` candidate; provision the real OpenAI account boundary; activate and prove tunnel connectivity; and complete independent ChatGPT and Codex five-tool transcripts. Unrelated dormant Archie work remains parked.
+
 ### 2026-09-02 — MCP-003 passed; embeddings declined
 
 - Froze eight natural-language retrieval needs against reviewed authored sources before altering the query engine. The prior exact-phrase/all-raw-term search returned a nonempty top-10 page for 0 of 8 questions because punctuation and question words were treated as required lexical content.

@@ -3780,3 +3780,60 @@ Existing scientific branch, event, response, action and stability obligations re
 **✓ Done — BRS13-01, low terminology scope; implemented and separately verified.** The operator approved this bounded repair October 14. Bremsstrahlung line 400 now uses “delayed source event” in the [radiation-zone paragraph](../../../content/markdown/aaa/reactions/bremsstrahlung.md#momentum-flux-closure-at-emission). A whole-source comparison with the preserved pre-edit snapshot establishes that only the approved adjective changed; all 26 display equations and viewer identities remain byte-identical. The existing known-case-first syntax/local-target instrument passes 255 math spans and 45 local-file occurrences. Final source SHA-256 by native `shasum -a 256`: `492568179d76bd3080fa338d3689ce0ca3dd0c350d78e8c079681cf6505c7544`. The [October 13 review](../aaa-operations/evidence/ops-031-bremsstrahlung-synchrotron-review-2026-10-13.md) retains its historical findings and source identity. The surrounding paragraph, equations, observer-level regime and attribution remain intact; no new physical claim is made. Scientific obligations remain open and CRW-005 stays closed.
 
 October 14 BRS13-01 verification: the [combined repair record](../aaa-operations/evidence/ops-031-032-approved-repairs-2026-10-14.md) records separate exact-byte verification and final source identities; CRW-005 remains closed.
+
+### OPS-031 — October 19 core geometry referrals
+
+**Status:** ✓ Done — all six groups accepted by the operator October 20, implemented and separately verified; see the [integration record](evidence/ops-031-core-geometry-integration-2026-10-20.md) and [separate verification](evidence/ops-031-core-geometry-verification-2026-10-20.md). CRW-005 remains closed. The [batch record](../aaa-operations/evidence/ops-031-core-geometry-review-2026-10-19.md) and two linked whole-chapter receipts preserve exact source hashes, before passages, bounded proposed after text, independent references and falsifiers. Operations owns coverage; the existing corpus-maintenance owner owns adjudication and any subsequently approved integration.
+
+| Group | Status / severity | Implemented bounded correction |
+| --- | --- | --- |
+| CAS19-01 | ✓ Resolved / Medium | Distinguish shared instantaneous six-position seed from distinct own-axis and body-diagonal prescribed histories. |
+| CAS19-02 | ✓ Resolved / Medium | Restrict the axial exclusion to the equal-height polarity-segregated two-plane family proved by the lemma. |
+| CAS19-03 | ✓ Resolved / Medium | Require a declared nondegenerate polar frame for parity-odd orientation and condition its factorization on that chart. |
+| CAS19-04 | ✓ Resolved / Low | Use defined internal orbital speed for the rough transit-angle scale; preserve reserved group-speed notation and the approximation limit. |
+| CFG19-01 | ✓ Resolved / Medium | Distinguish loss of the selected three-normal frame from complete-path planarity and phase collapse; propagate the accepted FL12-05 distinction. |
+| CFG19-02 | ✓ Resolved / Low clarification | Separate finite record relabelings from continuous neutral tangent directions, as already reserved for this review by the October 12 closure. |
+
+No unequal-height balanced branch, retained assembly, global stability, observed weak-sector recovery or new root threshold follows. The valid two-plane lemma, kernel covariance, centered-position rank and finite quotient remain intact. Scientific construction obligations stay with their existing owners. The original receipts preserve the proposed before/after scope. Eighteen exact fragments implement the six accepted groups; all displayed equations, viewer links, headings and Markdown link targets remain unchanged. No further repair remains in this referral.
+
+### OPS-031 — October 23 braid methods referrals
+
+**Status:** ✓ Done — all six groups accepted, implemented and separately verified October 23; see the [integration record](evidence/ops-031-braid-methods-integration-2026-10-23.md) and [separate verification](evidence/ops-031-braid-methods-verification-2026-10-23.md). The [batch record](../aaa-operations/evidence/ops-031-braid-methods-review-2026-10-23.md) and its two whole-chapter receipts retain source hashes, exact before passages, bounded proposed replacements, independent references and falsifiers. Existing corpus maintenance owns disposition and any accepted integration; operations owns coverage. CRW-005 stays closed.
+
+| Group | Status / severity | Implemented bounded correction |
+| --- | --- | --- |
+| BM23-01 | ✓ Resolved / Medium | Restrict axial exclusion to fixed two-plane balance; do not imply a dynamical history becomes planar. |
+| BM23-02 | ✓ Resolved / Medium | Require appropriate residual rank after removing continuous gauge freedoms before concluding local isolation; analyticity alone is insufficient. |
+| BM23-03 | ✓ Resolved / Medium | State the transverse observer budget as a conditional recovery target, with separately justified quadrature and clock-export premises. |
+| BM23-04 | ✓ Resolved / Low notation | Separate internal hinge speed from reserved group speed and use absolute time T in the rotating-wave display. |
+| BAM23-01 | ✓ Resolved / Medium | Separate persistent member identities from auxiliary axial ordering, permit co-height members, and scope strict-gap sampling as a selected subset. |
+| BAM23-02 | ✓ Resolved / Medium | Retain independent endpoint frequencies in the generic two-component parent; pair-shared frequency applies only to selected constrained members. |
+
+The optional hinge coefficient clarification BM23-C1 is not a demonstrated required correction and is excluded from these six groups. No retained assembly, physical stability, observer-clock recovery or globally discrete spectrum is proved by these reviews. Previous accepted repairs survive; attribution of the new omissions to any editor or edit is unresolved.
+
+Exactly 18 approved fragments implement the six groups across two chapters. All headings and link targets are preserved; four displays receive only their approved time/index corrections. The current methodology binding is refreshed after scoped impact review; all 29 analytical measure definitions and reduction versions remain unchanged. No further repair remains in this referral.
+
+### OPS-031 — October 28 reconciled envelope and core referrals
+
+**✓ Done — all four groups approved, implemented October 29 and [separately verified](evidence/ops-031-four-corrections-verification-2026-10-29.md).** [Implementation record](evidence/ops-031-four-corrections-integration-2026-10-29.md). The [October 26 envelope receipt](../aaa-operations/evidence/ops-031-braid-envelope-review-2026-10-26.md) and [October 28 core receipt](../aaa-operations/evidence/ops-031-topology-sea-coupling-review-2026-10-28.md) preserve exact hashes, before passages, minimal proposed replacements, independent references and falsifiers. The interrupted coordinator closeout is reconciled now; historical receipts remain unchanged. Existing corpus maintenance owns disposition and any accepted repairs. CRW-005 stays closed.
+
+| Group | Status / severity | Proposed bounded correction |
+| --- | --- | --- |
+| ENV26-01 | ✓ Separately verified / Medium | Require positive finite interface/ambient normalization sums, nonnegative averaging weights and finite moments; leave zero-evidence values undefined and exclude undefined interface events. |
+| ENV26-02 | ✓ Separately verified / Low | Replace signed force cancellation by signed acceleration cancellation in the root diagnostic. |
+| TC28-01 | ✓ Separately verified / Medium | Treat determinant-floor failure as failure of the selected oriented-frame chart; retain its suspended export without inferring collapse of independent phases or recurrence. |
+| MEX28-01 | ✓ Separately verified / Low naming | Use the stylized theory name for six bare prose occurrences; change no scientific example, equation or deferred finding. |
+
+Molecular Exclusion F1–F6 remain Deferred under their existing explicit reopening conditions; this new naming-only proposal does not reactivate them or the old campaign. The optional angular-scale convention in Envelope Geometry is not counted as a demonstrated defect. No error is attributed to an editor or commit without inspecting its causal transition. Scientific branch, clock, mass, sea-response and species-mapping obligations retain their owners.
+
+### OPS-031 — October 29 Master Equation referrals
+
+**✓ Done — all three groups approved and [implemented](evidence/ops-031-master-corrections-integration-2026-10-29.md); [separate verification](evidence/ops-031-master-corrections-verification-2026-10-29.md) passed.** The [whole-chapter review](../aaa-operations/evidence/ops-031-master-equation-review-2026-10-29.md) records parent adjudication and links exact before/after passages in the [front](../aaa-operations/evidence/ops-031-master-front-review-2026-10-29.md) and [middle](../aaa-operations/evidence/ops-031-master-middle-review-2026-10-29.md) receipts. The [tail](../aaa-operations/evidence/ops-031-master-tail-review-2026-10-29.md) adds no required correction. Existing corpus maintenance owns disposition and any accepted repair; CRW-005 stays closed.
+
+| Group | Status / severity | Proposed correction |
+| --- | --- | --- |
+| MFR29-01 | ✓ Separately verified / Low | Qualify two forward-density explanations by the transmitter-projection domain; preserve the absolute-denominator formula and all-root sum. |
+| ME29-M1 | ✓ Separately verified / Medium | Distinguish setting the first-order group-speed deformation to zero from freezing every internal velocity; preserve the orbiting-branch continuation. |
+| ME29-M2 | ✓ Separately verified / Medium | Distinguish a circular speed-parameter fold from a reception-time transverse caustic; require actual finite-impulse assumptions and qualify the operational bullet. |
+
+No formula, kernel, regulator, scientific branch or accepted singular-event convention is changed. These bounded proposals do not reactivate historical campaigns or replace existing scientific owners.

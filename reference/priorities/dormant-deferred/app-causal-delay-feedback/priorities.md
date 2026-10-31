@@ -4,14 +4,16 @@
 
 - Kind: `priority-app`
 - Status: `deferred`
+- Scoped test intake: reopened 2026-10-31 for the binary feature test queue only
 - Immediate implementation lane: `closed`
-- Active queue: none; five deferred advanced teaching rows
+- Test queue: CDF-072 through CDF-077 are ○ `Queued`; no execution assigned by the queue-entry request
+- Deferred queue: CDF-067 through CDF-071 remain `Deferred / blocked`
 
 ## Current
 
-`causal-delay-feedback.html` is a live canvas-first teaching app with eight ordered lessons, Roots, and Laboratory, but its priority lane is deferred. [Roots mode](../../../../causal-delay-feedback.html?mode=roots) is a direct-linkable view inside that one application route. The accepted learner surface, exact lesson copy, architecture, provenance rules, and claim boundaries live in [v1-product-requirements.md](v1-product-requirements.md).
+`causal-delay-feedback.html` is a canvas-first teaching app with a Path history scenario containing eight ordered lessons, Roots, and Laboratory, and a [Binary pair scenario](../../../../causal-delay-feedback.html?scenario=binary-pair) containing six guided lessons. The operator authorized the binary addition on 2026-10-29 as a scoped learner-surface change; the five deferred advanced teaching tasks remain deferred. [Roots mode](../../../../causal-delay-feedback.html?mode=roots) is a direct-linkable view inside that one application route. The accepted learner surface, exact lesson copy, architecture, provenance rules, and claim boundaries live in [v1-product-requirements.md](v1-product-requirements.md). Repository implementation does not establish public deployment of the new scenario.
 
-[work-queue.md](work-queue.md) now preserves five operator-routed advanced teaching tasks without reopening implementation. [brainstorming.md](brainstorming.md) retains only ideas that have not been promoted or implemented. [work-log.md](work-log.md) records major lane transitions; routine bug and verification history remain in Git history.
+[work-queue.md](work-queue.md) holds six operator-requested Binary pair test tasks added on 2026-10-31, covering the two-tilt comparison, prescribed breathing/common motion, scenario links, finite playback, responsive accessibility and candidate/public delivery. These are queued for explicit resumption; adding them ran no checks and added no automatic testing or publication requirement. The five older advanced teaching tasks remain deferred and feature implementation remains closed. [brainstorming.md](brainstorming.md) retains only ideas that have not been promoted or implemented. [work-log.md](work-log.md) records major lane transitions; routine bug and verification history remain in Git history.
 
 The advanced causal-root fold teaching concept is also deferred here. [roots-mode-plan.md](roots-mode-plan.md) preserves its mathematical scope, [roots-requirements-and-design.md](roots-requirements-and-design.md) preserves the proposed synchronized linked views, and the focused [roots-brainstorming.md](roots-brainstorming.md) and [roots-work-log.md](roots-work-log.md) preserve its ideas and history without reopening a standalone app.
 
@@ -34,7 +36,7 @@ Plainly: maintenance means protecting the accepted teaching app, not continuing 
 
 ## Current Queue
 
-CDF-067 through CDF-071 remain `Deferred / blocked`. There is no executable row while this directory remains under `dormant-deferred`.
+Start the scoped test queue at [CDF-072](work-queue.md#cdf-072--two-tilt-analytical-and-display-correctness) when that work is explicitly resumed; its analytical controls precede the remaining browser and delivery checks. CDF-072 through CDF-077 are ○ `Queued`, with public-site observation dependent on delivery of the identified candidate. This local test intake does not change the owner's global deferred placement or reopen CDF-067 through CDF-071, which remain `Deferred / blocked`.
 
 ## Retained Authorities
 

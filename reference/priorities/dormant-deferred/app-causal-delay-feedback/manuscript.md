@@ -6,7 +6,7 @@
 
 Causal Delay Feedback makes an earlier emission and a later reception visible together. The present receiver event is connected to an emission point in retained path history, rather than to an object's present location merely because it is nearby. Expanding wake surfaces provide the geometric connection. A circle on the two-dimensional canvas represents a section of a spherical wake, while a highlighted arc identifies the portion relevant to a displayed reception.
 
-The app's purpose is explanatory. The retained product account reports eight ordered lessons, a Roots view, and Laboratory within one canvas-first application. Its numerical fixtures, replay projections, local drag previews, and browser comparisons remain display-only. A coherent picture of reception does not establish that the pictured history solves the coupled equations, that all physical roots have been certified, or that a branch binds or remains stable.
+The app's purpose is explanatory. Its Path history scenario contains eight ordered lessons, a Roots view, and Laboratory within one canvas-first application. A second Binary pair scenario contains six lessons about the slow near-circular comparison and prescribed breathing/common-motion geometry, developed in Section 7. Its numerical fixtures, replay projections, local drag previews, and browser comparisons remain display-only. A coherent picture of reception does not establish that the pictured history solves the coupled equations, that all physical roots have been certified, or that a branch binds or remains stable.
 
 The [current product requirements](v1-product-requirements.md) preserve exact accepted learner copy and its interaction boundaries. The [advanced progression](causal-delay-feedback-advancement.md) and [Roots design](roots-requirements-and-design.md) describe deferred teaching work. Their proposals are not additional live modes or a second solver. This exposition explains their subject while preserving the distinction between the accepted surface, recorded evidence, and a proposed extension.
 
@@ -54,7 +54,7 @@ Two authorities therefore remain visible. The record's metadata describes what i
 
 ### 3.1. Shared state and event identity
 
-The reported architecture has one runtime, learner state, causal-root evaluator, timed-path sampler, and wake renderer. Story, Roots, and Laboratory are projections inside the same application shell. Query selection and browser Back/Forward restore the appropriate view without creating another application, and unrelated replay parameters and fragments remain intact. Internal history or branch helpers do not become live navigation entries simply because a module exists.
+The architecture has one runtime, learner state, causal-root evaluator, timed-path sampler, and wake renderer. Within the Path history scenario, Story, Roots, and Laboratory are projections of the same retained geometry inside the application shell. Binary pair lessons use their explicitly selected analytical or prescribed geometry through the same runtime and transport; they do not claim that the Path history Roots/Laboratory data describe the binary. Query selection and browser Back/Forward restore the appropriate scenario and view without creating another application, and unrelated replay parameters and fragments remain intact. Internal history or branch helpers do not become live navigation entries simply because a module exists.
 
 The deferred progression makes the state contract explicit. It carries or references stable source and receiver identities, their paths and geometry, retained source history, receiver and emission times, causal roots and stable root identities, accepted and rejected branch rows with reasons, wake geometry, selected root or ledger row, playback state, and replay provenance. Simple views can hide diagnostics; they cannot replace these objects with unrelated local examples while claiming continuity.
 
@@ -192,3 +192,60 @@ The proposed checks cover desktop and portrait, keyboard-only operation, reduced
 The source distinguishes guided teaching replay, representative mock replay, recorded EOM playback, constrained pair-interaction boundary replay, and the stronger physical causal-delay solver. Each can establish only its declared local contract. Their combination does not close the full coupled boundary-value problem, Noether sea response, retained physical branch, or theory-wide stability burden.
 
 The immediate implementation lane is closed. The recorded reopening triggers are an operator-directed learner change, reproducible regression, accessibility/browser defect, or deliberate recorded-provenance/display-authority change. A new accepted task must name its visible request, preserved exact copy and exclusions, claim boundary, focused source/test coverage, and required browser confirmation. The five advanced teaching rows remain deferred, and the existing Roots direct link remains a mode in one application. Explaining the deferred geometry does not reopen that work or execute its historical build instructions.
+
+## 7. A Second Scenario: Binary Pair Motion
+
+### 7.1. An initial speed increase and a net loss can occur in the same turn
+
+The Binary pair lessons follow an opposite-polarity pair near a circular reference motion. The two members have equal and opposite positions about a fixed midpoint. At circular release, velocity is tangent to the reference circle. Delayed partner acceleration leans forward of the inward radius, so its forward component initially increases speed. As the pair widens, velocity gains an outward component. The main inward acceleration then opposes part of the motion. Its effect on speed varies through the turn, and its accumulated slowing exceeds the forward contribution in the first-order comparison.
+
+The [corrected two-tilt treatment](../../master-equation-closure/binary-research/brainstorming.md#why-a-slow-widening-binary-loses-speed-despite-its-forward-push) supplies the derivation and its review boundary. The independent mathematical reference for the display is the [forced response about the zero-delay circle](../../master-equation-closure/binary-research/analysis/slow-binary-first-order-drift.md#forced-response-about-the-zero-delay-circle). Neither reference asserts that a prescribed uniform circle solves the unchanged delayed equation.
+
+Let $R_0$ and $v_0$ be the reference member radius and speed, $\omega_0=v_0/R_0$ its angular rate, $\phi=\omega_0T$ the reference phase, and $f=v_0^3/R_0$ in normalized wake-speed units $c_f=1$. The first-order speed perturbation $\delta v$ satisfies
+
+$$
+\frac{\omega_0\delta v}{f}=-\phi+2\sin\phi,
+\qquad
+\frac{\dot{\delta v}}f=2\cos\phi-1.
+$$
+
+The curve displays the first quantity, the accumulated speed change in units $f/\omega_0$. The contribution readout displays rates in units $f$: forward $+1$, inward $-2(1-\cos\phi)$, and their sum $2\cos\phi-1$. The outward velocity pitch divided by $v_0/c_f$ is $2(1-\cos\phi)$. At release the net rate is $+1$; at half a reference turn it is $-3$; at a full turn it is $+1$ again, while accumulated speed change is $-2\pi$. Uniform reference phase is proportional to time, so the forward, inward and net rate means are $+1$, $-2$ and $-1$. This explains both the initial increase and the net loss without asserting pointwise monotone slowing.
+
+The orbit and direction arrows are schematic. The displayed radius is $1+0.025(\phi-\sin\phi)$, enlarging the shape of the first-order radial response. The diagram uses reference phase for its angular placement and does not include the first-order angular perturbation of a quantitative trajectory. The forward acceleration lean is enlarged to $0.22$ radians, and the outward velocity lean is that angle multiplied by $2(1-\cos\phi)$. These display choices preserve the qualitative competition and its leading sign changes; they are not numerical instantiations of a finite-speed EOM orbit. The curve and contribution values retain the analytical functions above. The diagram's spatial scale, arrow magnification and graph normalization do not establish a physical trajectory or a long-time fate.
+
+### 7.2. Breathing, turning and shared motion are separate geometric contributions
+
+The two later lessons use prescribed breathing and translating paths, separate from the mirror-pair comparison. Their purpose is to show how separation change, turning and common motion enter the same delayed reception. They do not demonstrate a repeating solution. Write $\mathbf C(T)$ for the midpoint, $r(T)>0$ for separation, $\mathbf n=(\cos\vartheta,\sin\vartheta)$ for the current axis and $\mathbf t=(-\sin\vartheta,\cos\vartheta)$ for its transverse direction. Then
+
+$$
+\mathbf X_\pm=\mathbf C\pm\tfrac12r\mathbf n,
+\qquad
+\mathbf V_\pm=\dot{\mathbf C}\pm\tfrac12\dot r\mathbf n
+\pm\tfrac12r\dot\vartheta\mathbf t.
+$$
+
+The green arrow shows shared midpoint velocity, the purple arrow the receiver's separation-change contribution, and the blue arrow its turning contribution. The white arrow at the earlier emission shows transmitter velocity at that emission. The gold arrow shows the received acceleration contribution. Separate scales make velocity and acceleration arrows visible; their lengths cannot be compared as the same physical quantity.
+
+For the finite demonstration interval $0\le T\le160$, with the same prescribed definitions supplying the short emission history before zero, put $u=2\pi T/160$ and
+
+$$
+r=2+0.45\sin u,
+\qquad
+\mathbf C=(0.02T,\;0.008T+0.1\sin u).
+$$
+
+The ordinary turning example uses $\vartheta=0.55u$, the nearly radial example $\vartheta=0.015u$, and the reversing example $\vartheta=0.45\sin u$. Their velocities are obtained by differentiating these Cartesian definitions. Separation is at least $1.55$, and the triangle bound on the three velocity contributions is below $0.06$ in each case. These bounds describe the chosen inputs, not histories solving the equation.
+
+The app's shared scalar causal-root evaluator finds the earlier emission $T_e$ from $|\mathbf X_-(T)-\mathbf X_+(T_e)|=T-T_e$, using $c_f=1$. Let $\mathbf h$ be the unit vector from that emission to the receiver and $s$ their distance. With unit reduced coupling and opposite unit polarities, the unchanged [Master Equation](../../../../content/markdown/aaa/dynamics/master-equation.md) contribution evaluated on these inputs is
+
+$$
+\mathbf a=-\frac{\mathbf h}{s^2|1-\mathbf h\cdot\mathbf V_+(T_e)|}.
+$$
+
+This evaluates a received row on a prescribed path; it does not use that row to evolve either member. The selected earlier position sets its direction and distance, while emission-time transmitter velocity supplies the root-selection factor. An unavailable or nonordinary root produces an unavailable readout. All formulas remain regular when turning vanishes or changes sign, because no inverse angular-momentum weight is used.
+
+### 7.3. A geometric illustration does not determine an averaged dynamical sign
+
+The [binary manuscript's straight/breathing and signed-correlation analysis](../../master-equation-closure/binary-research/manuscript.md#91-the-straight-and-breathing-terms-remain-correlated) retains breathing and common-motion terms together. Different averaging weights correlate differently with their positive and negative parts; a sign under one weight is not a sign under another. The [regular low-turning identities](../../master-equation-closure/binary-research/manuscript.md#96-period-estimates-through-small-and-sign-changing-angular-momentum) and [actual common-motion correlations](../../master-equation-closure/binary-research/manuscript.md#97-actual-common-motion-correlations-and-necessary-radial-travel) preserve this distinction through zeros and reversals of turning. Those arguments use actual-equation hypotheses that the prescribed display does not satisfy by construction.
+
+The later [complete-history result](../../master-equation-closure/binary-research/manuscript.md#99-a-balance-function-excludes-bounded-complete-histories-at-small-speed) conditionally excludes bounded complete planar histories in its ordinary-root, positive-separation, opposite-unit-polarity class at whole-history member speed at most $0.129$, with unit reduced coupling and $c_f=1$. It is a theorem under its declared assumptions, not observed scattering, proof that such complete histories exist, or a verdict about this finite prescribed demonstration. No result from that theorem is assigned to the animated paths.

@@ -2,6 +2,34 @@
   box-sizing: border-box;
 }
 
+[hidden] { display: none !important; }
+.lattice-lab-section-link { display:inline-block; margin-top:9px; color:#c6b6ff; font-size:12px; }
+#lattice-disturbance-app { display:grid; grid-template-columns:minmax(300px, 390px) minmax(0, 1fr); width:100%; height:100%; }
+.disturbance-controls { overflow:auto; min-width:0; padding:16px; background:#120d1e; border-right:1px solid #3b2c50; }
+.disturbance-controls header { margin-bottom:18px; }
+.disturbance-controls h1 { font-size:23px; margin:12px 0 7px; }
+.disturbance-controls h2 { font-size:16px; margin:0 0 10px; }
+.disturbance-controls p { font-size:13px; line-height:1.5; }
+.disturbance-controls a { color:#c6b6ff; }
+.disturbance-controls .lattice-lab-card { padding:14px; margin-bottom:12px; }
+.disturbance-controls fieldset { border:0; margin:0; padding:0; }
+.disturbance-controls label { display:grid; gap:5px; margin:12px 0; font-size:13px; }
+.disturbance-controls input, .disturbance-controls select { width:100%; min-width:0; color:#f5f5f5; background:#170f25; border:1px solid #655277; border-radius:5px; padding:8px; }
+.disturbance-controls input[type=range] { padding:0; }
+.disturbance-controls button { border:1px solid #79658f; background:#30213f; border-radius:5px; padding:9px; cursor:pointer; }
+.disturbance-controls button:disabled { opacity:.45; cursor:default; }
+.disturbance-controls button:focus-visible, .disturbance-controls a:focus-visible { outline:2px solid #c6b6ff; outline-offset:3px; }
+.disturbance-buttons { display:flex; flex-wrap:wrap; gap:8px; }
+.disturbance-controls .disturbance-identity { overflow-wrap:anywhere; }
+.disturbance-controls pre { max-height:240px; overflow:auto; font-size:11px; }
+.disturbance-viewer { position:relative; min-width:0; min-height:0; overflow:hidden; }
+.disturbance-view-labels { position:absolute; inset:0; display:grid; grid-template-columns:1fr 1fr; pointer-events:none; z-index:1; }
+.disturbance-view-labels > div { padding:70px 12px 12px; border-right:1px solid #3b2c50; }
+.disturbance-view-labels h2 { font-size:16px; margin:0 0 8px; }
+.disturbance-view-labels p { color:#c6b6ff; font-size:12px; line-height:1.4; max-width:260px; }
+.disturbance-viewer canvas { display:block; width:100%; height:100%; touch-action:none; }
+@media (max-width:700px) { #lattice-disturbance-app { grid-template-columns:1fr; grid-template-rows:45% 55%; } .disturbance-viewer { grid-row:1; } .disturbance-controls { grid-row:2; border-right:0; border-top:1px solid #3b2c50; } }
+
 html,
 body {
   margin: 0;
@@ -888,3 +916,6 @@ button {
     transition: none;
   }
 }
+
+#disturbance-navigation.top-dynamic-control-bar { width:auto; flex-wrap:nowrap; }
+.disturbance-view-labels > div { padding-top:58px; }

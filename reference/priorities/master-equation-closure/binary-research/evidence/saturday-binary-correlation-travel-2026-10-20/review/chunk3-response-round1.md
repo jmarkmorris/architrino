@@ -1,0 +1,13 @@
+# Chunk 3, response to round 1
+
+Round-1 reply `chunk3-reply-round1.md` (SHA-256 `8d4f570eec126d9953881e7515455b9b1170c891c56ec2a7ea19abc2c156de0a`): ACCEPT AFTER CORRECTIONS with SR1–SR5. All applied in the author's files only; no theorem display, threshold, coefficient, instrument or output changed. First-reviewed subject retained at `.tmp/saturday-agents-2026-10-20/binary/chunk3-subject-round1.md` (`0f5685cd…49f5`), README at `.tmp/saturday-agents-2026-10-20/binary/README-round3.md` (`20291710…475c`).
+
+| Finding | Change |
+| --- | --- |
+| SR1 | The opening now names the D-dependent results specifically: the low-angular-momentum theorem's mean and separation bounds (need $D>0$) and the actual-correlation radial-speed lines (need $D>m$). The Section 1 reading says the radial-period and signed-breathing constant-separation exclusions rest on other sufficient inequalities, are stated at speed one tenth only, and are not assessed at speed one fifth. |
+| SR2 | The asymptotic sentence now gives $\beta=7w^2+O(w^3)$, $wc_+=2w+O(w^2)$ and $wc_+/\beta\sim2/(7w)$. |
+| SR3 | "Sharper" is replaced by "alternative amplitude coefficient" in the title, Result item 3 and Section 3 heading; the text says the new coefficient is stronger exactly when $\beta<wc_+$, verified at the three tabulated speeds, that it is weaker at $w=8/75$ by your evaluation ($\beta\approx0.3905>wc_+\approx0.2925$), and that both bounds hold where $D>0$ so the larger requirement may be used. |
+| SR4 | The worked example now uses $r_{\max}=2\times10^4$ (more than $568$) and notes that $r_{\max}=10^4$ with $r_{\min}\ge10^4$ is constant separation, already excluded by Corollary R.1. |
+| SR5 | The instrument paragraph now says a lower enclosure of $G$ and two-sided enclosures of $G_\infty$; the table note says the "G at floor" column is an approximate nearest-rounded display, not a directed bound, and that the floor and $G_\infty$ columns are lower bounds rounded down; the instrument paragraph exempts that column from the conservative-rounding statement; a generic falsifier for any non-conservative tabulated bound is added. The README now says K0–K2 rest on independent analytic hand values and K6 is the only comparison with a separately authored numerical evaluator, and that the "G at floor" displays are not directed bounds. |
+
+Corrected identities: subject 15,094 bytes, SHA-256 `91487f19c1a26281e5b9b5b1a586ab5025dfe69233e836aebe53dcc6f3a4751a`; README 11,234 bytes, SHA-256 `b5959454ab802477c21ae619756cbfef717e9ba11ed0dc3caf3408f5e0500997` (also gained the round-3 and chunk-3 review rows). Checks pass.

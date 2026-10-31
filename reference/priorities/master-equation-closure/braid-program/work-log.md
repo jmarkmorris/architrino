@@ -1312,3 +1312,69 @@ Sources: [grouped manuscript](manuscript.md#15-eight-member-releases-under-the-i
 **Not done.** The two census contacts on screw balances with axial velocity (the blind-reference integrator does not accept them); the resolution of one planar one-rider run that stalled beside a transmitter factor of $3\times10^{-8}$; a proof of the delay-ratio bound for C1 itself; any reading by someone outside this model family; obligations 7 and 10, which were not selected.
 
 **Housekeeping.** Instruments, receipts and trajectories are in `.local-data/master-equation-closure/ceiling-contact-open-research-20261011/` with the prefix `ccor`, listed in `ccor-manifest.sha256` there. The queue entry "Ceiling-contact open research" was removed from the [queue](work-queue.md) as worked. A dated pointer was added to Section 10 of the [contact study](analysis/ceiling-contact-two-hour-2026-10-06.md). No manuscript, ledger, registry row, rank, score or selection was changed, no generator was run, and nothing was staged or committed. No process of the thread was left running.
+
+## 2026-10-20 — Coincidence under the ceiling variant: operator decision
+
+**Decision.** In a Claude session the operator was walked through the [coincidence and continuation record](analysis/ceiling-contact-open-research-coincidence-and-continuation-2026-10-11.md) and its six candidate rules, and replied "A with B": record the finding that, under the frozen ceiling specification, the association of two members that reach coincidence is transient and the specification determines nothing at or after the meeting; and select proposal P1, terminal coincidence, as the continuation rule. The approval, its scope and what it excludes are recorded in the [variant index](../equation-variants/README.md); the [priorities](priorities.md) row for obligation 8 is updated. No run was directed.
+
+**Correction.** During the walkthrough the operator observed that in P3 the two coincident members cannot remain together: every arriving wake gives them exactly equal and opposite contributions, so the average cancels but the difference separates them, and P3 holds them together only by an unstated bond. The record had noted only the cancelling average. The Claude session that ran the walkthrough had also described P3 to the operator as coherent and corrected that in the conversation. A correction message was prepared for the operator to send to the thread that owns the record; the record itself was not edited from this session.
+
+## 2026-10-20 — Outside reading of the pursuit-limit spectrum
+
+**Review.** On the operator's direction ("send item 3 to codex for review"), a Codex session, outside Claude's model family, read Part B of the [spiral root and spectrum brief](analysis/ceiling-contact-open-research-spiral-root-and-spectrum-brief-2026-10-11.md), re-derived the linearization and characteristic functions through additive displacements and a real two-by-two Jacobian, and recounted the roots with new instruments after passing known cases. It agrees with both characteristic functions, every requested count (two and two in plane, one and two out of plane) and every leading root, and found Part A's uniqueness proof sound. It was not blinded: it read the expected values first. The exchange is in the [shared conversation](../../../op/agent-chats/2026-10-20-ceiling-spectrum-outside-reading/chat.md); its instruments and receipts are preserved in `.local-data/master-equation-closure/ceiling-spectrum-outside-reading-20261020/` with a hash manifest.
+
+**Corrections.** Four, none of which changes a formula or a leading root: a missing conjugate in an intermediate expression of B.4; a root list in B.7 that is not exhaustive up to real part eight; the claim that finite symmetry displacements are exact solutions; and a modal statement worded as a theorem for every perturbation, with rounded exponents that are not valid lower bounds. The original session added a dated correction to Section 7 of the [contact study](analysis/ceiling-contact-two-hour-2026-10-06.md), which carries the same modal wording, and updated the [priorities](priorities.md) row for obligation 2. The brief belongs to the ceiling-contact thread; a correction message was prepared for the operator to send to it. No run, rule or selection changed.
+
+## 2026-10-20 — Ceiling contact open research: asymmetric pursuit, the stalled contact, the integrator's depth limit, and two relayed corrections
+
+**Run.** On the operator's instruction ("do 2 or tell me how. then do 3, 5, and 6"), the ceiling-contact thread worked its next actions 3, 5 and 6 of 2026-10-11 and diagnosed action 2. Everything concerns the field-speed ceiling variant, an authorized and unadopted variation and not the Master Equation, under its frozen specification. No rule was executed or simulated at a meeting.
+
+**Shared venv (action 2).** Diagnosed and not applied. Candidate wheels were tested in an isolated target directory: scipy 1.15.2 and 1.15.3 fail on macOS 27.0.1 with the same loader error, and 1.16.3 and 1.18.1 import cleanly. Version 1.16.3 is the smallest step and accepts the installed numpy 2.2.4. The agent's install into the shared venv was blocked by the host's permission system as a change to a shared resource, so the operator applies it. The operator then installed it. Every scipy subpackage imports, the balance linearization reran on real scipy with identical roots, and the frozen subject integrator imports again; no bytecode was written into the frozen directory.
+
+**Outcomes.**
+
+- *Asymmetric pursuit:* the planar pursuit limit without symmetry was reduced exactly, and the contraction proof's obstruction there was named ([record](analysis/ceiling-contact-open-research-asymmetric-pursuit-2026-10-20.md)).
+- *Stalled contact:* the stalled one-rider contact was resolved by a new emission-time integrator, and it converts (Section 4a of the [C3 and one-rider record](analysis/ceiling-contact-open-research-c3-and-one-rider-contacts-2026-10-11.md)).
+- *Integrator depth limit:* the implicit integrator's stated depth-limit cause was corrected and the lock was resolved deeper, while the stall at $2.6\times10^{-8}$ sizes remains unexplained (Section 4a of the [implicit integrator record](analysis/ceiling-contact-open-research-implicit-lock-integrator-2026-10-11.md)).
+- *Pointer:* the [delay-ratio record](analysis/ceiling-contact-open-research-delay-ratio-bound-2026-10-11.md) gained a dated pointer to the asymmetric record.
+
+**Relayed corrections, integrated.** From the session that ran the original study, relayed by the operator: a dated correction of proposal P3 and of Section 4's closing sentence, and a dated note of the operator's selection of P1, in the [coincidence record](analysis/ceiling-contact-open-research-coincidence-and-continuation-2026-10-11.md); and a dated section with the four corrections from the Codex outside reading, plus a review-status line, in the [spiral brief](analysis/ceiling-contact-open-research-spiral-root-and-spectrum-brief-2026-10-11.md). The variant index, the study record, the priorities' decision paragraph and the previous two log entries, already written by that session, were not duplicated.
+
+**Validation.** Every new instrument passed its known cases, recorded in receipts, before its target. Failures of controls and of first attempts are recorded in the owning records: two tolerances and an uncontrolled reception time in the emission-time integrator, an interpolated riding speed above one, a stagnation along the direction of motion, and a refuted Jacobian hypothesis. A central-difference sequence was briefly run twice in parallel by mistake; the duplicate was stopped. No process of this work was left running (checked by process listing). Review status: self-review only.
+
+**Housekeeping.** New instruments and receipts are in `.local-data/master-equation-closure/ceiling-contact-open-research-20261011/`, and its manifest `ccor-manifest.sha256` was rewritten. The braid-program priorities rows 1, 3 and 4 gained dated additions, and one dated paragraph follows the operator's decision paragraph. Nothing was staged or committed, and no generator was run.
+
+## 2026-10-21 — Ceiling contact: member 1 after the meeting under P1, a linear stability theorem, the subject integrator rechecked, the stall localized
+
+**Run.** On the operator's reply "do 1 2 3 4" to the thread's list of 2026-10-20, read as that list's four items and recorded with its scope in the variant index, the ceiling-contact thread worked four items. Everything concerns the field-speed ceiling variant, not the Master Equation, under its frozen specification; the one run past the meeting uses the selected rule P1 and nothing else.
+
+**Outcomes.**
+
+- *Member 1 after the meeting:* answered; it rides away at wake speed and never hears the meeting ([record](analysis/ceiling-contact-open-research-member1-after-meeting-2026-10-21.md)).
+- *Linear stability:* a linear stability theorem for the pursuit-limit spiral without symmetry assumptions, with interval-certified root counts ([record](analysis/ceiling-contact-open-research-linear-stability-2026-10-21.md)).
+- *Subject integrator:* under scipy 1.16.3 it reproduces its 2026-10-06 receipts exactly (noted in the [balance record](analysis/ceiling-contact-open-research-balance-growing-directions-2026-10-11.md)).
+- *Integrator stall:* localized but not explained (Section 4a of the [implicit integrator record](analysis/ceiling-contact-open-research-implicit-lock-integrator-2026-10-11.md)).
+
+**Validation.** Each new instrument passed known cases before its target, and the failures that came first are recorded in the owning records:
+
+- a known case that unknowingly tested the ceiling instead of Newtonian fall;
+- a reversed admissible-delay bracket;
+- a step limit that approached a source's last emission without reaching it;
+- a riding member that was not renormalized each step;
+- a rounding overshoot past the last stored node;
+- hand-written symmetry modes in a numerical cross-check.
+
+No process was left running (checked by process listing). Review status: self-review only.
+
+**Housekeeping.** New instruments and receipts are in `.local-data/master-equation-closure/ceiling-contact-open-research-20261011/`, and the manifest was rewritten. Priorities rows 1 and 3 gained dated additions, and one dated paragraph was added. The variant index gained the reading of the operator's reply and a pointer to the result. Nothing was staged or committed, and no generator was run.
+
+
+## 2026-10-31 — Standard files and agent supporting records
+
+The operator selected an arrangement in which the standard files carry usable findings and accepted work, while agents maintain supporting records. The existing workflow owners now specify integration into current files, a concrete purpose for each new document, agent responsibility for continuity, and action menus only for material choices. Braid is the first application: the tracker is a concise current account; the queue opens with next steps and completion conditions while preserving local order and task authority; brainstorming separates provisional alternatives from developed findings; the manuscript integrates the C1 contact results formerly buried in the tracker. No scientific execution, model adoption, reranking, independent theorem acceptance or whole-directory OPS-028 completion follows.
+
+The earlier current-manuscript read in this chat was an editorial/internal-argument review of the 1,425-line source, SHA-256 `ca6ecb786b5d91bcd697abeafda0a21fe10a290f0630b0d30044520700adbf94`. It found no actionable internal claim-scope contradiction within that scope. The older fidelity report binds a different 640-line manuscript and remains historical. The new synthesis preserves the contact records' self-review boundary; it does not extend that earlier review to an independent source-fidelity or numerical certification.
+
+Agent continuity and exact pre-edit controls are retained locally in `.local-data/braid-analysis/operator-files-2026-10-31/inputs.json` and `state.json`. Retrieve with Node JSON parsing by filename key, then verify the embedded SHA-256 before use; the known SHA-256 control passed before target hashing. These originals are support, not current tasks or scientific inputs. Preserve them under the retention policy. Frozen evidence and independent reports retain their original locations and bytes. Agents retrieve the technical history themselves; the standard files contain current decisions, findings and limitations. Source changes to the Claude floor writer leave its normal publication-time regeneration to the existing generator procedure; the continuation record names the commands.
+
+Validation: the known-case-first scoped link/anchor check resolves all 47 newly introduced local targets and preserves the prior control-file anchors; KaTeX accepts the three added manuscript math spans. Native scoped `git diff --check` and the Claude-floor writer syntax check pass. Direct comparison preserves the ranked-next-object block and original manuscript body, and digest retrieval verifies every retained original control. The Claude-floor `--check` reports expected generated drift after its canonical sources changed; regeneration remains with the publication procedure. These checks establish syntax, routing and preservation, not scientific correctness.
