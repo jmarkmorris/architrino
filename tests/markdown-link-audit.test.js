@@ -4,7 +4,28 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { extractMarkdownLinks as audit, hasReferenceDirectoryIndex } from "../scripts/lib/markdown-link-audit.mjs";
-import { recordedResearchLinkTarget, resolveResearchDocumentLink } from "../src/documentation/ResearchSourceLocations.mjs";
+import { recordedResearchLinkTarget, resolveResearchDocumentLink, localResearchEvidence } from "../src/documentation/ResearchSourceLocations.mjs";
+
+test("local evidence registrations apply only to their exact historical citations", () => {
+  const doc = "reference/op/agent-chats/2026-10-20-ceiling-spectrum-outside-reading/chat.md";
+  const logical = ".tmp/ceiling-spectrum-outside-reading/recount.py";
+  const retained = localResearchEvidence(doc, logical);
+  assert.equal(retained.path, ".local-data/master-equation-closure/ceiling-spectrum-outside-reading-2026-10-20/recount.py");
+  assert.equal(retained.bytes, 8015);
+  assert.equal(retained.sha256, "d3865c35720b7cfc07e7fdde97077ae44c5a8c22fcf436761664db0aab2bbab3");
+  assert.equal(localResearchEvidence("reference/new.md", logical), null);
+  assert.equal(localResearchEvidence("content/markdown/aaa/result.md", logical), null);
+  for (const target of [".tmp/missing.py", ".local-data/missing.json", "../" + logical, logical + "/../recount.py"])
+    assert.equal(localResearchEvidence(doc, target), null);
+  assert.equal(resolveResearchDocumentLink(doc, "../../../../" + logical).path, logical);
+});
+
+test("a byte-identical tracked copy resolves a historical scratch citation", () => {
+  const doc = "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md";
+  const target = resolveResearchDocumentLink(doc, "../../../../.tmp/rotating-ladder/codex-review/packet-11-reproduction/reviewer.py");
+  assert.equal(target.path, "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/inputs/reviewer_reference.py");
+  assert.equal(localResearchEvidence(doc, target.path), null);
+});
 
 test("captured review links resolve only within their recorded checkout", () => {
   const doc = "reference/priorities/example/evidence/campaign/review/chunk1-reply-round2.md";

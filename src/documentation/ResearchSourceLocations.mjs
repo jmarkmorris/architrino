@@ -10,6 +10,20 @@ const SECTION_RELOCATIONS = locations.sectionMoves;
 // that a guide's bytes are the original scientific record.
 const DOCUMENT_RELOCATIONS = new Map(Object.entries(locations.documentMoves ?? {}));
 
+// These exact citations have retained local bytes, not deployed downloads.
+// The citing-document allowlist prevents this from exempting arbitrary broken
+// links merely because their target happens to be in an ignored directory.
+export function localResearchEvidence(documentPath, logicalPath) {
+  const entry = locations.localEvidence?.[logicalPath];
+  if (!entry || !documentPath.startsWith('reference/') || !entry.documents?.includes(documentPath)) return null;
+  const safePath = (value) => typeof value === 'string' && !value.startsWith('/')
+    && !/[\\%?#]/.test(value) && value.split('/').every(part => part && part !== '.' && part !== '..');
+  if (!safePath(logicalPath) || !safePath(entry.path) || !entry.path.startsWith('.local-data/')
+    || !/^[a-f0-9]{64}$/.test(entry.sha256) || !Number.isSafeInteger(entry.bytes) || entry.bytes < 0
+    || typeof entry.role !== 'string' || !entry.role) throw new Error(`Invalid local evidence registration: ${logicalPath}`);
+  return entry;
+}
+
 function relocatedPath(logicalPath) {
   if (ANALYSIS_RELOCATIONS.has(logicalPath)) return ANALYSIS_RELOCATIONS.get(logicalPath);
   for (const [original, current] of RELOCATIONS) {

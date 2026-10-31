@@ -13,7 +13,7 @@
 // directly from the working tree served by the local dev server.
 
 import { createStandaloneAppNavigationRuntime } from "../navigator/StandaloneAppNavigationRuntime.js";
-import { resolveResearchDocumentLink, recordedResearchLinkTarget } from "../../documentation/ResearchSourceLocations.mjs";
+import { resolveResearchDocumentLink, recordedResearchLinkTarget, localResearchEvidence } from "../../documentation/ResearchSourceLocations.mjs";
 
 const MANIFEST_PATH = "./content/generated/reference/reference-surface.v1.json";
 
@@ -269,6 +269,12 @@ export function createReferenceSurfaceRuntime({
       }
       const [, fragment] = href.split("#");
       const target = resolveResearchDocumentLink(documentPath, href);
+      const localEvidence = target && localResearchEvidence(documentPath, target.path);
+      if (localEvidence) {
+        anchor.removeAttribute("href");
+        anchor.title = `Retained local evidence; not published: ${localEvidence.path}`;
+        continue;
+      }
       if (!target?.path.endsWith(".md")) {
         if (target) anchor.setAttribute("href", `./${target.path}${target.fragment ? `#${target.fragment}` : ""}`);
         continue;

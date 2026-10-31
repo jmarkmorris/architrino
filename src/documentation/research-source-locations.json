@@ -253,7 +253,14 @@
     "reference/priorities/master-equation-closure/logarithmic-potential-research/work-queue.md": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-research-plan.md",
     "reference/priorities/master-equation-closure/logarithmic-potential-research/analysis/first-capped-history-interval.py": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-first-capped-history-interval.py",
     "reference/priorities/master-equation-closure/analysis/logarithmic-collinear-manuscript.md": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-collinear-manuscript.md",
-    "reference/priorities/master-equation-closure/analysis/logarithmic-inclusive-ceiling-independent-check.md": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-inclusive-ceiling-independent-check.md"
+    "reference/priorities/master-equation-closure/analysis/logarithmic-inclusive-ceiling-independent-check.md": "reference/priorities/master-equation-closure/collinear-research/analysis/logarithmic-inclusive-ceiling-independent-check.md",
+    ".tmp/rotating-ladder/codex-review/packet-5-reproduction/departure-constants-sharpened.json": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-claude-2026-10-20/history-flow/departure-constants-sharpened.json",
+    ".tmp/rotating-ladder/codex-review/packet-5-reproduction/unit-crosscheck-float.json": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-claude-2026-10-20/history-flow/unit-crosscheck-float.json",
+    ".tmp/rotating-ladder/codex-review/packet-9-packet8-closure-input.md": "reference/priorities/master-equation-closure/lattice-research/analysis/rotating-ladder-claude-2026-10-20-twisted-certificate.md",
+    ".tmp/rotating-ladder/codex-review/packet-10-reproduction/unit/branch/worker/reviewer_glue_receipt.json": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-claude-2026-10-20/untwisted-certificate/branch_glue_receipt.json",
+    ".tmp/rotating-ladder/codex-review/packet-11-reproduction/reviewer.py": "reference/priorities/master-equation-closure/lattice-research/evidence/rotating-ladder-branch-connection-2026-10-29/inputs/reviewer_reference.py",
+    ".local-data/aaa-operations/ops-033/2026-10-31/audit-pair-consolidation-v1/audit-pairs.json.gz": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-and-post-turn-review-audit-pairs-v1.json.gz",
+    ".local-data/aaa-operations/ops-033/2026-10-31/audit-pair-consolidation-v1/manifest.json": "reference/priorities/master-equation-closure/noether-sea-research/evidence/spherical-six-pole-path-and-post-turn-review-audit-pairs-v1.manifest.json"
   },
   "frozenOrigins": [
     "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-path-continuation-claude-review-adjudication-10.md",
@@ -1070,5 +1077,1617 @@
       "reference/priorities/master-equation-closure/work-queue.md",
       "lpr-005--robustness-and-conserved-account"
     ]
-  ]
+  ],
+  "localEvidence": {
+    ".tmp/ceiling-spectrum-outside-reading/recount.py": {
+      "path": ".local-data/master-equation-closure/ceiling-spectrum-outside-reading-2026-10-20/recount.py",
+      "sha256": "d3865c35720b7cfc07e7fdde97077ae44c5a8c22fcf436761664db0aab2bbab3",
+      "bytes": 8015,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-ceiling-spectrum-outside-reading/chat.md"
+      ],
+      "lines": 176
+    },
+    ".tmp/ceiling-spectrum-outside-reading/control.json": {
+      "path": ".local-data/master-equation-closure/ceiling-spectrum-outside-reading-2026-10-20/control.json",
+      "sha256": "1bfd4e5ace43293a5ceae1c722759286974f011aa4cabcfeb350cb7814069014",
+      "bytes": 1310,
+      "role": "known-case or negative-control evidence",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-ceiling-spectrum-outside-reading/chat.md"
+      ],
+      "lines": 67
+    },
+    ".tmp/ceiling-spectrum-outside-reading/recount.json": {
+      "path": ".local-data/master-equation-closure/ceiling-spectrum-outside-reading-2026-10-20/recount.json",
+      "sha256": "6bb041bace14929242c84f658d6c885df16eaf266dee94fd3b2e414c33bcea29",
+      "bytes": 18764,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-ceiling-spectrum-outside-reading/chat.md"
+      ],
+      "lines": 503
+    },
+    ".tmp/ceiling-spectrum-outside-reading/residual.py": {
+      "path": ".local-data/master-equation-closure/ceiling-spectrum-outside-reading-2026-10-20/residual.py",
+      "sha256": "bfc499c27184995c4df629ddcca97afda8227bdefc45b150b7b8cfaf835d1a25",
+      "bytes": 4128,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-ceiling-spectrum-outside-reading/chat.md"
+      ],
+      "lines": 94
+    },
+    ".tmp/ceiling-spectrum-outside-reading/residual-control.json": {
+      "path": ".local-data/master-equation-closure/ceiling-spectrum-outside-reading-2026-10-20/residual-control.json",
+      "sha256": "c4c71ee3c9e6ba8515dd4edc437b0971cb4cf8f7140fb9eaaab3f8eae767546b",
+      "bytes": 707,
+      "role": "known-case or negative-control evidence",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-ceiling-spectrum-outside-reading/chat.md"
+      ],
+      "lines": 16
+    },
+    ".tmp/ceiling-spectrum-outside-reading/residual.json": {
+      "path": ".local-data/master-equation-closure/ceiling-spectrum-outside-reading-2026-10-20/residual.json",
+      "sha256": "e49a71a681dd2168e43cdbed129248fcf09b6931ff5fc20806d2c13cb8d567de",
+      "bytes": 3402,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-ceiling-spectrum-outside-reading/chat.md"
+      ],
+      "lines": 78
+    },
+    ".tmp/rotating-ladder/codex-review/freeze.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/freeze.json",
+      "sha256": "846922f8a05542a9032af929d7f568fcc4df27e8912279e84d949a2acc55fb16",
+      "bytes": 1592,
+      "role": "input identity and provenance",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 42
+    },
+    ".tmp/rotating-ladder/codex-review/raw_reference.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/raw_reference.py",
+      "sha256": "d5373f673935f17aa95cc499ae1b527d9b2b305cb72d3daff544e5b901775843",
+      "bytes": 2978,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 73
+    },
+    ".tmp/rotating-ladder/codex-review/raw_results.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/raw_results.json",
+      "sha256": "57886bb13b131770eb096d87d40b364938960c22b9e1bef9826be7b1b0779992",
+      "bytes": 19767,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 912
+    },
+    ".tmp/rotating-ladder/codex-review/tail_reference.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/tail_reference.py",
+      "sha256": "5f8d5d9f1348fd601efc46f789582b2d75ed43209eba0f3159e483e6a10256fc",
+      "bytes": 1701,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 36
+    },
+    ".tmp/rotating-ladder/codex-review/tail_results.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/tail_results.json",
+      "sha256": "83ba487c43c50002f058c0d22de7908ab2952920ec485f791fcd6a9c4d1bda08",
+      "bytes": 1218,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 38
+    },
+    ".tmp/rotating-ladder/codex-review/high_precision.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/high_precision.py",
+      "sha256": "3df6d83d5c6337707e85823b102154dd6d495c5546872eea840c38a9f0bec724",
+      "bytes": 3535,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 90
+    },
+    ".tmp/rotating-ladder/codex-review/high_precision_results.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/high_precision_results.json",
+      "sha256": "23c2f53320e9b43472f4ea716b7a972830a521ddc2c591459577c787196ec9c6",
+      "bytes": 711,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 21
+    },
+    ".tmp/rotating-ladder/codex-review/precision_check.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/precision_check.py",
+      "sha256": "55ffed47a22a7e3aff0e6c46027db6f96083c3a2cef3e1d8c3a076aa39c0d7f5",
+      "bytes": 594,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 15
+    },
+    ".tmp/rotating-ladder/codex-review/precision_check_results.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/precision_check_results.json",
+      "sha256": "42b1317e1a4cce2f953b5536e8e1a798f3d9f25c019af047ce09cd19c1219932",
+      "bytes": 261,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 8
+    },
+    ".tmp/rotating-ladder/codex-review/packet-2-input-manifest.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-2-input-manifest.json",
+      "sha256": "934b749b3491aa904d2095b558fd9865de4b71e35d3521ae204aa81543a9ad49",
+      "bytes": 2420,
+      "role": "input identity and provenance",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 41
+    },
+    ".tmp/rotating-ladder/codex-review/packet-2-audit.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-2-audit.py",
+      "sha256": "85c617e44e8a4cff70811dea374ab586f60a14384fbd68449ee4ce5f81d87eef",
+      "bytes": 5136,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 106
+    },
+    ".tmp/rotating-ladder/codex-review/packet-2-audit-receipt.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-2-audit-receipt.json",
+      "sha256": "f67197c4a34a2a1ab569e0bb7e8ead0bee92f42bf8f883eb384ecd9bddecbf6b",
+      "bytes": 42233,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 1132
+    },
+    ".tmp/rotating-ladder/codex-review/packet-2-summary.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-2-summary.py",
+      "sha256": "c908a53256af8e24a372b74d3e1f669c5a43f65c34e490dba9589f5f8e44db45",
+      "bytes": 2438,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 45
+    },
+    ".tmp/rotating-ladder/codex-review/packet-2-reproduction-summary.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-2-reproduction-summary.json",
+      "sha256": "6b63fc2a7c8a76df3b03b85fda4e17cd2c60d7454c415900feb6d4b86986ea60",
+      "bytes": 1035,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 55
+    },
+    ".tmp/rotating-ladder/codex-review/packet-2-reproduction/controls_receipt.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-2-reproduction/controls_receipt.json",
+      "sha256": "cfe1faa6e378f16b1687ba905b705b7eb7475c6d8ebcbd5ac6e8a3a86f0ed3d6",
+      "bytes": 18118,
+      "role": "known-case or negative-control evidence",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 647
+    },
+    ".tmp/rotating-ladder/codex-review/packet-2-reproduction/reviewer_certificate_receipt.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-2-reproduction/reviewer_certificate_receipt.json",
+      "sha256": "07baec977a33a24aae7b2ebab86edd0426be76e31f15ae8b6656911964694a7d",
+      "bytes": 7651,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 245
+    },
+    ".tmp/rotating-ladder/codex-review/packet-3-pre-subject.md": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-3-pre-subject.md",
+      "sha256": "ff4d90a2ddd45f7875e1e00f0f2c0d52b47eff41f662210efdf14b1cdb8d5973",
+      "bytes": 3693,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 15
+    },
+    ".tmp/rotating-ladder/codex-review/packet-3-pre-subject-freeze.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-3-pre-subject-freeze.json",
+      "sha256": "154ce28df09e5a20b9309ff4a7ae50c2fa3e52292f484915435aa9b6b2405f0c",
+      "bytes": 227,
+      "role": "input identity and provenance",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 6
+    },
+    ".tmp/rotating-ladder/codex-review/packet-3-input-manifest.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-3-input-manifest.json",
+      "sha256": "c93b300c408f26d91c426b7f5e01be3f732ea115a424b14cdd804dd20e428327",
+      "bytes": 1583,
+      "role": "input identity and provenance",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 31
+    },
+    ".tmp/rotating-ladder/codex-review/packet-3-constants-audit.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-3-constants-audit.py",
+      "sha256": "4cadc487bf48f659bee41d37da851bc118d2a7cef7df38c0a82769144ae4f174",
+      "bytes": 3050,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 65
+    },
+    ".tmp/rotating-ladder/codex-review/packet-3-constants-audit.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-3-constants-audit.json",
+      "sha256": "16a450e2913f4c5d90748bf0193caa5d3596928d583659c59084940b0a073d32",
+      "bytes": 6112,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 112
+    },
+    ".tmp/rotating-ladder/codex-review/packet-3-first-variation.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-3-first-variation.py",
+      "sha256": "f1dcfd1ca334aaec430f52a52f0b909565c073a1fc6072e24e71e63198d05aa7",
+      "bytes": 3821,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 93
+    },
+    ".tmp/rotating-ladder/codex-review/packet-3-first-variation.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-3-first-variation.json",
+      "sha256": "674a5338b1f5c2641ba29249234a06ace920a8ecb4acaa33f5b525bb466706a1",
+      "bytes": 2688,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 94
+    },
+    ".tmp/rotating-ladder/codex-review/packet-4a-input-manifest.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-4a-input-manifest.json",
+      "sha256": "e2c0b9479afcb7abdb81f7009ab813a3ff8c85f94fbfb8b3960ae1c5f1fb463d",
+      "bytes": 1613,
+      "role": "input identity and provenance",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 29
+    },
+    ".tmp/rotating-ladder/codex-review/packet-4a-audit.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-4a-audit.py",
+      "sha256": "d1df5fec59d4421e3c2d57252af4cbe746abcdd85ae1a5ce3a40204acdb4a558",
+      "bytes": 3585,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 58
+    },
+    ".tmp/rotating-ladder/codex-review/packet-4a-audit.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-4a-audit.json",
+      "sha256": "f70445dd363d79aca560f4af78d1062d834930b270820560156f2014cecda4af",
+      "bytes": 2642,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 106
+    },
+    ".tmp/rotating-ladder/codex-review/packet-4a-summary.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-4a-summary.py",
+      "sha256": "d2e061e400f38ddc98f3bb2918716697afec5fc51734952af572cbe1a6cf9b32",
+      "bytes": 1339,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 19
+    },
+    ".tmp/rotating-ladder/codex-review/packet-4a-reproduction-summary.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-4a-reproduction-summary.json",
+      "sha256": "36681877214fe63a932d4d57ec6c3222fd1f4d8b3d011e02c2cf91f114c880c5",
+      "bytes": 268,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 7
+    },
+    ".tmp/rotating-ladder/codex-review/packet-4a-reproduction/controls-stage1.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-4a-reproduction/controls-stage1.json",
+      "sha256": "2b15cb0970bb84ddec908b318e77f5175d9382502c46a0bb2bfeec8bc33ba626",
+      "bytes": 6091,
+      "role": "known-case or negative-control evidence",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 345
+    },
+    ".tmp/rotating-ladder/codex-review/packet-4a-reproduction/stage2-certificates.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-4a-reproduction/stage2-certificates.json",
+      "sha256": "d22ddfe601b71e4cd3112496cb730cfc690931ac3bf5d871932f44935e3fc45c",
+      "bytes": 3821,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 118
+    },
+    ".tmp/rotating-ladder/codex-review/packet-4b-input-manifest.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-4b-input-manifest.json",
+      "sha256": "6b1bb9fca86a1da14653761ba30d0b0e015ad2fb3503b1a19bdba6cec8049443",
+      "bytes": 2086,
+      "role": "input identity and provenance",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 37
+    },
+    ".tmp/rotating-ladder/codex-review/packet-4c-input-manifest.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-4c-input-manifest.json",
+      "sha256": "62836d1c698a21e1c8502ebcdc149097caa26456ecf25f8a70837ea87c77fc18",
+      "bytes": 1814,
+      "role": "input identity and provenance",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 33
+    },
+    ".tmp/rotating-ladder/codex-review/packet-4d-input-manifest.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-4d-input-manifest.json",
+      "sha256": "b86f1b0abd539fd845e74b41fd212d500cc9ebbdf3684c8de7b4173740cb6210",
+      "bytes": 1368,
+      "role": "input identity and provenance",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 25
+    },
+    ".tmp/rotating-ladder/codex-review/packet-4b-reference.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-4b-reference.py",
+      "sha256": "88c52fd456cc95ad4e79244311cf25b3fe84f8c5db0399d404c502779571d3e7",
+      "bytes": 4046,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 75
+    },
+    ".tmp/rotating-ladder/codex-review/packet-4b-reference.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-4b-reference.json",
+      "sha256": "aa6a55285ae8d57baeedf3655f098afac0313b82e7b09da5f3bfebccd8902af3",
+      "bytes": 4988,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 192
+    },
+    ".tmp/rotating-ladder/codex-review/packet-4c-reference.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-4c-reference.py",
+      "sha256": "55d53643103af48e136034a56db3868046238ea4399ee04602cce0796b6d05be",
+      "bytes": 2467,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 43
+    },
+    ".tmp/rotating-ladder/codex-review/packet-4c-reference.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-4c-reference.json",
+      "sha256": "31ea15d1167ab0a5750688643a6e106392f469a2615e6e878666edce9f5cf27f",
+      "bytes": 1213,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 23
+    },
+    ".tmp/rotating-ladder/codex-review/packet-4c-matrix-audit.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-4c-matrix-audit.py",
+      "sha256": "a895bdcab6ae5411d9fc2a1e2c040715b0221f128cb4b9fece01452808cd96e7",
+      "bytes": 2961,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 50
+    },
+    ".tmp/rotating-ladder/codex-review/packet-4c-matrix-audit.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-4c-matrix-audit.json",
+      "sha256": "dbec8f9901720db48c52dbf3e7e48dcf7f889ccf2f90df2ffe4f0c195ac2ae06",
+      "bytes": 993,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 30
+    },
+    ".tmp/rotating-ladder/codex-review/packet-4d-certificate-audit.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-4d-certificate-audit.py",
+      "sha256": "0ede73975ac4c8b284be9c55deb53e9b40e00aeb84b2c1bbb02f0b4291595fd5",
+      "bytes": 6651,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 98
+    },
+    ".tmp/rotating-ladder/codex-review/packet-4d-certificate-audit.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-4d-certificate-audit.json",
+      "sha256": "0ceb6395fe35199b48902f917b3c35be986951fe4d5a2ac4d0799f947fb329d2",
+      "bytes": 1342,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 56
+    },
+    ".tmp/rotating-ladder/codex-review/packet-4d-point-reference.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-4d-point-reference.py",
+      "sha256": "53128e2a4a98e0b7ac1fc315b30a4a216960560c85190dc376e69498d3687098",
+      "bytes": 2240,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 42
+    },
+    ".tmp/rotating-ladder/codex-review/packet-4d-point-reference.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-4d-point-reference.json",
+      "sha256": "8fcec6eaa2f4a627bcd99a5fc78651b112dc9fbd2abd1356f5da0ffe4c15196f",
+      "bytes": 2240,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 58
+    },
+    ".tmp/rotating-ladder/codex-review/packet-5-input-manifest.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-5-input-manifest.json",
+      "sha256": "1eb1eaf9d1f2ff5c603521a646cd5af5bebc67df93bb19e357b61c113eaf52e3",
+      "bytes": 2390,
+      "role": "input identity and provenance",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 41
+    },
+    ".tmp/rotating-ladder/codex-review/packet-5-audit.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-5-audit.py",
+      "sha256": "f9af9689a48b58d3b8dce86ba545b77f763ca113fedac601c93f8d4f97e76384",
+      "bytes": 4377,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 66
+    },
+    ".tmp/rotating-ladder/codex-review/packet-5-audit.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-5-audit.json",
+      "sha256": "cb01062506cbc7fd24bc3fd7eec9f5230209e57401ccf47be880aaf41e992027",
+      "bytes": 2825,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 36
+    },
+    ".tmp/rotating-ladder/codex-review/packet-5-summary.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-5-summary.py",
+      "sha256": "8756ecaec0a0cbfa5feb177f9fdbae068ae5da6c3ec489d52062b9cffd66c989",
+      "bytes": 814,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 13
+    },
+    ".tmp/rotating-ladder/codex-review/packet-5-reproduction-summary.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-5-reproduction-summary.json",
+      "sha256": "f676fcaa1e2cef7a3fb1339773dffc1cf14d1f11c9fc457501bbbc8d74807869",
+      "bytes": 463,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 18
+    },
+    ".tmp/rotating-ladder/codex-review/packet-5-reproduction/departure-constants-certified.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-5-reproduction/departure-constants-certified.json",
+      "sha256": "c209a8f6b34f972106065c715891d5fd18c40959ab5322f2a3867a73c9fecc72",
+      "bytes": 29972,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 389
+    },
+    ".tmp/rotating-ladder/codex-review/packet-6a-input-manifest.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-6a-input-manifest.json",
+      "sha256": "9ad352469fff465401e7aa9a8553b42c7694b167d56ee910098e501a50b5d312",
+      "bytes": 1304,
+      "role": "input identity and provenance",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 25
+    },
+    ".tmp/rotating-ladder/codex-review/packet-6b-input-manifest.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-6b-input-manifest.json",
+      "sha256": "4998ed02ba09255ba863c2cca8079335fccd2a79932e2ec04830a76e83c7f729",
+      "bytes": 1903,
+      "role": "input identity and provenance",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 33
+    },
+    ".tmp/rotating-ladder/codex-review/packet-6c-input-manifest.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-6c-input-manifest.json",
+      "sha256": "7d7b81e7a8eea4d7821d8e71875dc6784e431eddca663b2f21c495e94abebd72",
+      "bytes": 1866,
+      "role": "input identity and provenance",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 33
+    },
+    ".tmp/rotating-ladder/codex-review/packet-6-summary.mjs": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-6-summary.mjs",
+      "sha256": "d571f03be9f286f6a79b2974edd1ed357fe6c49066228e0af56aa5d414013ba5",
+      "bytes": 2986,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 10
+    },
+    ".tmp/rotating-ladder/codex-review/packet-6-summary.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-6-summary.json",
+      "sha256": "be283747aa71e4d34f8e137fe5e957beef1768df7879095c7fbaf81fcfa0896d",
+      "bytes": 1201,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 42
+    },
+    ".tmp/rotating-ladder/codex-review/packet-6c-constant-audit.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-6c-constant-audit.py",
+      "sha256": "7330932cefffd3c720f1415c16cb329e2c934e43cfc370dde819fb98a552b8dd",
+      "bytes": 3970,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 60
+    },
+    ".tmp/rotating-ladder/codex-review/packet-6c-constant-audit.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-6c-constant-audit.json",
+      "sha256": "12107cd3275a7c01ee107a4c450bcdd1a044330fa986fe5a5e00c6a3f93afe92",
+      "bytes": 4703,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 70
+    },
+    ".tmp/rotating-ladder/codex-review/packet-6b-reproduction/reviewer_cert_audit.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-6b-reproduction/reviewer_cert_audit.py",
+      "sha256": "0de55ee1b892338cdf371fbfb06b75d3516d9909adbdbe4f9a0009fbe3fb6f76",
+      "bytes": 3106,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 46
+    },
+    ".tmp/rotating-ladder/codex-review/packet-6b-reproduction/reviewer-cert_a-audit.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-6b-reproduction/reviewer-cert_a-audit.json",
+      "sha256": "ad48218799ad626cef83087ac74408d9fce0cefa90e7885f0bef70c60f335620",
+      "bytes": 1124,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 35
+    },
+    ".tmp/rotating-ladder/codex-review/packet-6b-reproduction/reviewer-cert_b-audit.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-6b-reproduction/reviewer-cert_b-audit.json",
+      "sha256": "86e29fd5793a1725ed19b17f13d394ec44c51800aa4c79d0dfb27e4ca9fcdb5e",
+      "bytes": 1134,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 35
+    },
+    ".tmp/rotating-ladder/codex-review/packet-6b-reproduction/reviewer-cert_c-audit.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-6b-reproduction/reviewer-cert_c-audit.json",
+      "sha256": "860a91f83d21201f975a80fe8b10197fd43ab199da03b65777cf2a5de24b3781",
+      "bytes": 1123,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 35
+    },
+    ".tmp/rotating-ladder/codex-review/packet-6a-reproduction/certificate-N20000.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-6a-reproduction/certificate-N20000.json",
+      "sha256": "25f1d9205bc2c7b8b90dc450056198a014898cf396261299192123e4ef2f096c",
+      "bytes": 1250,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 29
+    },
+    ".tmp/rotating-ladder/codex-review/packet-6b-reproduction/growing-roots-controls04.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-6b-reproduction/growing-roots-controls04.json",
+      "sha256": "925a6395ccdef5451d2ef1ba1ce86898955d8febe263e8707f52b4436c0b9326",
+      "bytes": 4285,
+      "role": "known-case or negative-control evidence",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 249
+    },
+    ".tmp/rotating-ladder/codex-review/packet-6b-reproduction/growing-roots-cert_a.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-6b-reproduction/growing-roots-cert_a.json",
+      "sha256": "0561acc88dd1862be0c5543dd47ce2ff703a5edeadf6e8c9af209661cd33fc09",
+      "bytes": 2552,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 142
+    },
+    ".tmp/rotating-ladder/codex-review/packet-6b-reproduction/growing-roots-cert_b.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-6b-reproduction/growing-roots-cert_b.json",
+      "sha256": "210abf405054a9ddd05e065d7066a7b6a7d25f9aaabfcdcc7deb8e51a4e5f998",
+      "bytes": 1537,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 84
+    },
+    ".tmp/rotating-ladder/codex-review/packet-6b-reproduction/growing-roots-cert_c.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-6b-reproduction/growing-roots-cert_c.json",
+      "sha256": "1fa4254f770c04b9b0c9b440c298f2a5aabb0a569befb47525849642ca951996",
+      "bytes": 2592,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 142
+    },
+    ".tmp/rotating-ladder/codex-review/packet-7a-input-manifest.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-7a-input-manifest.json",
+      "sha256": "32f499d2b90ebdae6ec0b706de1f92635a3a17f594952dbcf9b84bd8d12ac02f",
+      "bytes": 7492,
+      "role": "input identity and provenance",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 119
+    },
+    ".tmp/rotating-ladder/codex-review/packet-7b-input-manifest.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-7b-input-manifest.json",
+      "sha256": "2fe9797ebaae4baa257cc175824937e4fc62aabeb7124bde5d97af0465dd4cab",
+      "bytes": 3982,
+      "role": "input identity and provenance",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 65
+    },
+    ".tmp/rotating-ladder/codex-review/packet-7bs-input-manifest.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-7bs-input-manifest.json",
+      "sha256": "5bfdbe8df45d7a43e3ad688a1a9c6161a1885d4e1adfb675dbebf7f1e7a99a44",
+      "bytes": 6133,
+      "role": "input identity and provenance",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 101
+    },
+    ".tmp/rotating-ladder/codex-review/packet-7-summary.mjs": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-7-summary.mjs",
+      "sha256": "ffe62c09707940131e8eb7bfb5375cf78de661c5cc38d5a8ed8ace54be6266b4",
+      "bytes": 2986,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 35
+    },
+    ".tmp/rotating-ladder/codex-review/packet-7-summary.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-7-summary.json",
+      "sha256": "f4892f480fb5cfe6925075c26ac0a14942a0fe00b52a6574a952eaeb7e2e5997",
+      "bytes": 4985,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 209
+    },
+    ".tmp/rotating-ladder/codex-review/packet-7a-reproduction/reviewer_count.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-7a-reproduction/reviewer_count.py",
+      "sha256": "bb3eb858a5fbb62238ed80f3e8a6329b29a4f91bf4f24e643e3dd0b0db9f0455",
+      "bytes": 2877,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 58
+    },
+    ".tmp/rotating-ladder/codex-review/packet-7a-reproduction/reviewer-controls-complete.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-7a-reproduction/reviewer-controls-complete.json",
+      "sha256": "2be6a46f4c531af62233272879249c5354339eca0ee7c737c14242676219231f",
+      "bytes": 1302,
+      "role": "known-case or negative-control evidence",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 71
+    },
+    ".tmp/rotating-ladder/codex-review/packet-7a-reproduction/reviewer-count-complete.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-7a-reproduction/reviewer-count-complete.json",
+      "sha256": "dbcbb693a7c6ad16450fe33dca21bab8d12907c08b477d2a3d664b1940495f43",
+      "bytes": 3019,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 157
+    },
+    ".tmp/rotating-ladder/codex-review/packet-7b-reproduction/reviewer_split.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-7b-reproduction/reviewer_split.py",
+      "sha256": "c8ea28b583fbfadf30cb3d0581bd13a263347a35bfef343857db969944ab2bd1",
+      "bytes": 2835,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 57
+    },
+    ".tmp/rotating-ladder/codex-review/packet-7b-reproduction/reviewer-coverage-control.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-7b-reproduction/reviewer-coverage-control.json",
+      "sha256": "6fee6f28175d9cf68638f5b504188cc6e34eec4b212d0ca2b20bc8c6a995131f",
+      "bytes": 6701,
+      "role": "known-case or negative-control evidence",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 249
+    },
+    ".tmp/rotating-ladder/codex-review/packet-7b-reproduction/reviewer-split-complete.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-7b-reproduction/reviewer-split-complete.json",
+      "sha256": "c29cff3b86e7afcbed084ee95582dc7412a73276352b8bd9079f46c17b8abb7d",
+      "bytes": 26450,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 817
+    },
+    ".tmp/rotating-ladder/codex-review/packet-7b-independent.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-7b-independent.py",
+      "sha256": "658e618868960f8c9cb17c863261bee0530870087d73cc15fcc611fd5b8acee1",
+      "bytes": 3459,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 63
+    },
+    ".tmp/rotating-ladder/codex-review/packet-7b-independent.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-7b-independent.json",
+      "sha256": "c0ad22aa2c452dc559a8a895bc9405a0050239c2d9e986bc7945944ea5124292",
+      "bytes": 3474,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 102
+    },
+    ".tmp/rotating-ladder/codex-review/packet-7b-zero-sign.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-7b-zero-sign.py",
+      "sha256": "633bf64ed251d2c3c7800eee2214cefe2310ff4d1bdf37313d8bade61588afe7",
+      "bytes": 1526,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 27
+    },
+    ".tmp/rotating-ladder/codex-review/packet-7b-zero-sign.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-7b-zero-sign.json",
+      "sha256": "3b6ddca635d6546fd8c09b40ecb7ee9e1e3015b98b7a844b60fd954ea6853e76",
+      "bytes": 1095,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 34
+    },
+    ".tmp/rotating-ladder/codex-review/packet-7bs-reproduction/reviewer_indent_control.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-7bs-reproduction/reviewer_indent_control.py",
+      "sha256": "8cd08c9fb07a06cb4dc7b3e1cd65935946c964b86fc9acf5090cb02984e0936b",
+      "bytes": 981,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 14
+    },
+    ".tmp/rotating-ladder/codex-review/packet-7bs-reproduction/reviewer-indent-control.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-7bs-reproduction/reviewer-indent-control.json",
+      "sha256": "dab1031b07c406997c603a3d3cd072842184ae90d69ba7a1fa454cdf3a87872a",
+      "bytes": 619,
+      "role": "known-case or negative-control evidence",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 28
+    },
+    ".tmp/rotating-ladder/codex-review/packet-7-compute-closeout.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-7-compute-closeout.json",
+      "sha256": "93cd728c68ead0db6aad07f01b36c41e892edb29bfecf0069d1d59327d86b82a",
+      "bytes": 303,
+      "role": "historical research execution closeout",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 10
+    },
+    ".tmp/rotating-ladder/codex-review/packet-8-input-manifest.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-8-input-manifest.json",
+      "sha256": "bf2d5be60a58e8a6faef0aceabb211ad7098e1e6d864a94fb298f993bf1c9fb3",
+      "bytes": 6094,
+      "role": "input identity and provenance",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 90
+    },
+    ".tmp/rotating-ladder/codex-review/packet-8-summary.mjs": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-8-summary.mjs",
+      "sha256": "4f17face2629fa594803001415d37d2459b96ef5279df6c6588db6a089b8d3f7",
+      "bytes": 2857,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 18
+    },
+    ".tmp/rotating-ladder/codex-review/packet-8-summary.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-8-summary.json",
+      "sha256": "276ea14ac3bf875b64f4c52cc16e3f47d94785a9890fad0dd159c32e6a7ff9a5",
+      "bytes": 2034,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 95
+    },
+    ".tmp/rotating-ladder/codex-review/packet-8-readback-audit.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-8-readback-audit.py",
+      "sha256": "396cc8819e45c8a15a6bf1cc943449e17efc4dedf76972a3b96a7f94c581f72f",
+      "bytes": 3802,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 60
+    },
+    ".tmp/rotating-ladder/codex-review/packet-8-readback-audit.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-8-readback-audit.json",
+      "sha256": "2b9e0bffde5f8e541b1ad87a3d5be0973d1131df6867f17c3357166995a5bf99",
+      "bytes": 4327,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 133
+    },
+    ".tmp/rotating-ladder/codex-review/packet-8-independent.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-8-independent.py",
+      "sha256": "b85f5fd65a978f23afdaf98761c2efccfc62e911a6236010f8e8bf86300dbd9c",
+      "bytes": 3329,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 68
+    },
+    ".tmp/rotating-ladder/codex-review/packet-8-independent.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-8-independent.json",
+      "sha256": "fed20f78a833d6aced3d70019d264422a56a6152274f6efbd5c00595292c6054",
+      "bytes": 2386,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 126
+    },
+    ".tmp/rotating-ladder/codex-review/packet-8-tail-audit.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-8-tail-audit.py",
+      "sha256": "90ef50af15fc049e76eab87d715c5e05cafc995e109e6f1d28f42989ab9d3815",
+      "bytes": 4046,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 80
+    },
+    ".tmp/rotating-ladder/codex-review/packet-8-tail-audit.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-8-tail-audit.json",
+      "sha256": "c399f09fc464b14848577ac718a2c88c4c73f972ebbc5d5367526788955116f9",
+      "bytes": 7922,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 198
+    },
+    ".tmp/rotating-ladder/codex-review/packet-8-reproduction/reviewer_points.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-8-reproduction/reviewer_points.py",
+      "sha256": "47907ff420688d1fb56837a0242c6b4be58974df3c164e109532adadf8e1f64c",
+      "bytes": 3960,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 74
+    },
+    ".tmp/rotating-ladder/codex-review/packet-8-reproduction/reviewer-controls.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-8-reproduction/reviewer-controls.json",
+      "sha256": "5df158a7f12ef772c9854ba9039c38ffad81f64df903a6fc97a5f68e65ef840f",
+      "bytes": 18918,
+      "role": "known-case or negative-control evidence",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 1148
+    },
+    ".tmp/rotating-ladder/codex-review/packet-8-reproduction/reviewer-t2-controls-before-target.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-8-reproduction/reviewer-t2-controls-before-target.json",
+      "sha256": "6f2d33cc546150824ec5b50e4c8d8ea844a9f235d9ac4b14bbef835d2e58725d",
+      "bytes": 1080,
+      "role": "known-case or negative-control evidence",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 101
+    },
+    ".tmp/rotating-ladder/codex-review/packet-8-reproduction/reviewer_glue.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-8-reproduction/reviewer_glue.py",
+      "sha256": "8fcf152ee077f7172dbd286fc50a09feb7156deb129d1cadf0dfa3b1a321cf5f",
+      "bytes": 5425,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 107
+    },
+    ".tmp/rotating-ladder/codex-review/packet-8-reproduction/reviewer-branch-structure.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-8-reproduction/reviewer-branch-structure.json",
+      "sha256": "ca81d2a30c403d053097d95cfad7f7f13d1daa0dce9cb62680a308b545e0f0b3",
+      "bytes": 276,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 19
+    },
+    ".tmp/rotating-ladder/codex-review/packet-8-reproduction/reviewer-glue-complete.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-8-reproduction/reviewer-glue-complete.json",
+      "sha256": "25441c5d580cb1e9f3c64226c6bf16028085b6271c65ca0b246590654bc4bf7e",
+      "bytes": 6120,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 289
+    },
+    ".tmp/rotating-ladder/codex-review/packet-8-reproduction/reviewer_segments.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-8-reproduction/reviewer_segments.py",
+      "sha256": "5ac3361ad403e7a6d8cd02245e9fe40909573e063956cf06623b3cd826d6fa1f",
+      "bytes": 1735,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 33
+    },
+    ".tmp/rotating-ladder/codex-review/packet-8-compute-closeout.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-8-compute-closeout.json",
+      "sha256": "3b7d1bbd161cd7cdba812176658a4ca6c54be2b5e35db77e42531a78b4c51b72",
+      "bytes": 197,
+      "role": "historical research execution closeout",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 9
+    },
+    ".tmp/rotating-ladder/codex-review/packet-9-input-manifest.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-9-input-manifest.json",
+      "sha256": "f31d3d1382a679060fd1583aa4dcd4f959f3ed3267dcd810efe6626282468771",
+      "bytes": 13196,
+      "role": "input identity and provenance",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 197
+    },
+    ".tmp/rotating-ladder/codex-review/packet-9-summary.mjs": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-9-summary.mjs",
+      "sha256": "be929e04701147d92be6ef4607a965569b6fef170d6c0712c14651852e5afb7d",
+      "bytes": 3010,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 16
+    },
+    ".tmp/rotating-ladder/codex-review/packet-9-summary.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-9-summary.json",
+      "sha256": "432bdda336aa298a707b7ac575623d0d05345166b40157caeac24ca281d5930d",
+      "bytes": 5074,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 146
+    },
+    ".tmp/rotating-ladder/codex-review/packet-9-piece-audit.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-9-piece-audit.py",
+      "sha256": "5bf61c1f889f20e8bff129eb7ce3a3ba0e3fd6511277487566ef015d8d8ac59a",
+      "bytes": 2970,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 46
+    },
+    ".tmp/rotating-ladder/codex-review/packet-9-piece-audit.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-9-piece-audit.json",
+      "sha256": "c5d1ed68848bc606a8dcc5031bf7e18e9b379f5c5e525750f02b4551d2aa8b7a",
+      "bytes": 2552,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 50
+    },
+    ".tmp/rotating-ladder/codex-review/packet-9-reproduction/reviewer_slow_counts.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-9-reproduction/reviewer_slow_counts.py",
+      "sha256": "cc066b88a6d1a070c11ba04d5ec61eb34e12446c2c5ec6421b364f97eae100ed",
+      "bytes": 3716,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 74
+    },
+    ".tmp/rotating-ladder/codex-review/packet-9-reproduction/reviewer-known-complete.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-9-reproduction/reviewer-known-complete.json",
+      "sha256": "fe850f5da2e01014c589ce5da495446fe6a07d664382d87b2652bc7879cd65b7",
+      "bytes": 1834,
+      "role": "known-case or negative-control evidence",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 77
+    },
+    ".tmp/rotating-ladder/codex-review/packet-9-reproduction/reviewer-count-complete.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-9-reproduction/reviewer-count-complete.json",
+      "sha256": "36925fe7b6acbf041df1a50348cca030673ccbaccd652158609b611d23e1fda3",
+      "bytes": 2733,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 146
+    },
+    ".tmp/rotating-ladder/codex-review/packet-9-reproduction/reviewer-count-q0-p+1.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-9-reproduction/reviewer-count-q0-p+1.json",
+      "sha256": "bc161e0fc989e75d0faa35086aac7dd54fe6446624a72fd376d6987788cd6835",
+      "bytes": 594,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 35
+    },
+    ".tmp/rotating-ladder/codex-review/packet-9-reproduction/reviewer-count-qpi-p+1.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-9-reproduction/reviewer-count-qpi-p+1.json",
+      "sha256": "d3aac53c7791435cba71f4e8f4d2264349f4fc8c14ade26782282daea848b356",
+      "bytes": 594,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 35
+    },
+    ".tmp/rotating-ladder/codex-review/packet-9-reproduction/reviewer-count-qpi-p-1.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-9-reproduction/reviewer-count-qpi-p-1.json",
+      "sha256": "ca46e5645172e3da5145096131c499aa7f2d0a7c3241d8c69b14e4982025fcf2",
+      "bytes": 614,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 35
+    },
+    ".tmp/rotating-ladder/codex-review/packet-9-reproduction/reviewer-count-q0-p-1.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-9-reproduction/reviewer-count-q0-p-1.json",
+      "sha256": "27984a28d83590c7ffae1170edf01c25a6bcc31d415ecf27c14bcfd406e1a82c",
+      "bytes": 581,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 35
+    },
+    ".tmp/rotating-ladder/codex-review/packet-9-reproduction/reviewer-q0m-location-block.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-9-reproduction/reviewer-q0m-location-block.json",
+      "sha256": "3fe8ec11ff164759a4e80e6fa86d238846d1c6d3bdbd28dbf02ad574179e379a",
+      "bytes": 579,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 20
+    },
+    ".tmp/rotating-ladder/codex-review/packet-9-combine-negative/reviewer-combiner-negative.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-9-combine-negative/reviewer-combiner-negative.json",
+      "sha256": "fb546a0363dc50bc7266ac5581ff86c1ed6ce1fa42b252c480adef4f3b1f6f68",
+      "bytes": 642,
+      "role": "known-case or negative-control evidence",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 33
+    },
+    ".tmp/rotating-ladder/codex-review/packet-9-packet8-closure-intake.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-9-packet8-closure-intake.json",
+      "sha256": "8c068313e9914b00b0e5242743f5b0e221fd6731122f0c32b2717db816d823e0",
+      "bytes": 272,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 5
+    },
+    ".tmp/rotating-ladder/codex-review/packet-9-compute-closeout.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-9-compute-closeout.json",
+      "sha256": "8a56511f8beb475c9ef924857d4f22720f3e721baa9933a09b1356a6da939dde",
+      "bytes": 197,
+      "role": "historical research execution closeout",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 9
+    },
+    ".tmp/rotating-ladder/codex-review/packet-10-input-manifest.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-10-input-manifest.json",
+      "sha256": "569a6682bad91e91268e1832e0f039080c6f39ead5bbcbc91c7b53faf616bb11",
+      "bytes": 10266,
+      "role": "input identity and provenance",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 143
+    },
+    ".tmp/rotating-ladder/codex-review/packet-10-raw-manifest.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-10-raw-manifest.json",
+      "sha256": "195b57c3e75266fe57e213febf32ae8f437fade7f3b9058889a6255e5ebb341d",
+      "bytes": 3628,
+      "role": "input identity and provenance",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 60
+    },
+    ".tmp/rotating-ladder/codex-review/packet-10-reused-evidence-manifest.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-10-reused-evidence-manifest.json",
+      "sha256": "609997cff3a6796a836ec3b8c08650175ebc8d765d3ce0821de7964a1c53779d",
+      "bytes": 8815,
+      "role": "input identity and provenance",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 185
+    },
+    ".tmp/rotating-ladder/codex-review/packet-10-audit.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-10-audit.py",
+      "sha256": "2ef09596ef2318cd5e05e6d917ddc2260a2befc5129dc3cff0acb8a82f88db7a",
+      "bytes": 9604,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 172
+    },
+    ".tmp/rotating-ladder/codex-review/packet-10-audit.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-10-audit.json",
+      "sha256": "fffafeb9601f94dca8cb260638a4ca1e3bf55efdaffa6ec2d1793419f6e7e0f7",
+      "bytes": 36364,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 2208
+    },
+    ".tmp/rotating-ladder/codex-review/packet-10-wrapper.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-10-wrapper.py",
+      "sha256": "499ef218938d91583f768f63e61ea80953d6ef7826e76a37012b0c9db2d3ad0f",
+      "bytes": 2245,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 49
+    },
+    ".tmp/rotating-ladder/codex-review/packet-10-known-before-targets.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-10-known-before-targets.json",
+      "sha256": "94b4fd36b4954c97b6e90435e4e227a8fc1686b09517f8b5125175bd17a94449",
+      "bytes": 3327,
+      "role": "known-case or negative-control evidence",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 116
+    },
+    ".tmp/rotating-ladder/codex-review/packet-10-rerun-complete.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-10-rerun-complete.json",
+      "sha256": "c77380c69da906e78495ceda99cb0779870394189827c8dea592deef065512f8",
+      "bytes": 567,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 36
+    },
+    ".tmp/rotating-ladder/codex-review/packet-10-piece-first.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-10-piece-first.json",
+      "sha256": "0b1bde8a21281af69f2b23f8eba990f445c0452a4600bd6d0e14386f1d4ad9d9",
+      "bytes": 2188,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 78
+    },
+    ".tmp/rotating-ladder/codex-review/packet-10-piece-widest.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-10-piece-widest.json",
+      "sha256": "e7ed52ae0d75fb5bb2d0b6811d0fdc093757babfad6620e37786f68de4ce4523",
+      "bytes": 2200,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 78
+    },
+    ".tmp/rotating-ladder/codex-review/packet-10-piece-last.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-10-piece-last.json",
+      "sha256": "9d4006db23e2309b96229453a5705f78f5633caab64863caaf46c515105ac645",
+      "bytes": 3069,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 109
+    },
+    ".tmp/rotating-ladder/codex-review/packet-10-twisted-spots.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-10-twisted-spots.py",
+      "sha256": "51d06acb3b73eef1ba4be5f3be3c6920b31dff6bbb3027a354e6082d281d9833",
+      "bytes": 2679,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 50
+    },
+    ".tmp/rotating-ladder/codex-review/packet-10-twisted-known.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-10-twisted-known.json",
+      "sha256": "e5d2623b6451bfacf4e8df440eda07e1f219de4d8a36efeb17bda9252c74dc04",
+      "bytes": 8082,
+      "role": "known-case or negative-control evidence",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 443
+    },
+    ".tmp/rotating-ladder/codex-review/packet-10-twisted-complete.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-10-twisted-complete.json",
+      "sha256": "e326668f3575f34845cc1f8bc5e98beabc3e7e92ab3526e7bf7741ce2d4acc04",
+      "bytes": 381,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 29
+    },
+    ".tmp/rotating-ladder/codex-review/packet-10-twisted-segment-first.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-10-twisted-segment-first.json",
+      "sha256": "601f5e459798fdaa226bba46bd9cb55c1ad6d5589c426f1a68c45480bec7cb93",
+      "bytes": 3438,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 205
+    },
+    ".tmp/rotating-ladder/codex-review/packet-10-twisted-join-.895.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-10-twisted-join-.895.json",
+      "sha256": "5385e85cc36fdadaba72bb00fae0b8a6d91a58b8c60771fedbebb7a90f0dbb2c",
+      "bytes": 3461,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 205
+    },
+    ".tmp/rotating-ladder/codex-review/packet-10-twisted-join-.8801125.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-10-twisted-join-.8801125.json",
+      "sha256": "a6ae79b4d7f69504c36e7579e11aefcf4189f538a71414b633a14e1e86f1d4fd",
+      "bytes": 3462,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 205
+    },
+    ".tmp/rotating-ladder/codex-review/packet-10-compute-closeout.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-10-compute-closeout.json",
+      "sha256": "a128eb8cd9c292f0c4018af215022d065f274a35f9b8f2f35cb19c84bd3f9775",
+      "bytes": 246,
+      "role": "historical research execution closeout",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 12
+    },
+    ".tmp/rotating-ladder/codex-review/packet-11-input-manifest.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-11-input-manifest.json",
+      "sha256": "249360665422e78aeb096e6e1a519477ba76f2774b411e05e8e5315dde1af936",
+      "bytes": 7385,
+      "role": "input identity and provenance",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 107
+    },
+    ".tmp/rotating-ladder/codex-review/packet-11-audit.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-11-audit.py",
+      "sha256": "0c10a1f4ccbd318eee697400f46e12836be9fe510f9d47d5fb0b8f8bd2064eaf",
+      "bytes": 6291,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 116
+    },
+    ".tmp/rotating-ladder/codex-review/packet-11-audit.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-11-audit.json",
+      "sha256": "8a90762f6025d584c0ccfc9cb3a7ca7a5562d5079e233f94263c6e85b7d25ccf",
+      "bytes": 1813,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 92
+    },
+    ".tmp/rotating-ladder/codex-review/packet-11-reproduction/reviewer_finish.py": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-11-reproduction/reviewer_finish.py",
+      "sha256": "f941a51e264e587eb15bbf9e4e3b6b92c11398df4c1075922d7ac81f7bd8e7db",
+      "bytes": 2541,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 35
+    },
+    ".tmp/rotating-ladder/codex-review/packet-11-reproduction/reviewer-original-controls.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-11-reproduction/reviewer-original-controls.json",
+      "sha256": "5e19f45e05dacc75945e45d5a0ea3958e9d2ea7c4234588ceda9bbb5f2f533fb",
+      "bytes": 2050,
+      "role": "known-case or negative-control evidence",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 114
+    },
+    ".tmp/rotating-ladder/codex-review/packet-11-reproduction/reviewer-strict-solve-known.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-11-reproduction/reviewer-strict-solve-known.json",
+      "sha256": "dafcf252d44125fe440c59007b875bb4d5b9c5f58367ea702cd34f570d73b474",
+      "bytes": 1622,
+      "role": "known-case or negative-control evidence",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 150
+    },
+    ".tmp/rotating-ladder/codex-review/packet-11-reproduction/reviewer-sign-below.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-11-reproduction/reviewer-sign-below.json",
+      "sha256": "61773455c9ef50cfcb8354e8c51541e80d194c1880014b2ad2472c4b2a76ca24",
+      "bytes": 4024,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 223
+    },
+    ".tmp/rotating-ladder/codex-review/packet-11-reproduction/reviewer-sign-above.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-11-reproduction/reviewer-sign-above.json",
+      "sha256": "13129997bec2ce9ebca4982082b0290c118167bf87193ff90e2702930764f5f3",
+      "bytes": 4040,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 223
+    },
+    ".tmp/rotating-ladder/codex-review/packet-11-reproduction/reviewer-endpoint-first.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-11-reproduction/reviewer-endpoint-first.json",
+      "sha256": "0b5a6dffd1c2ffc6c56dd6042a37caf613a080c325a35a6abcb0d9ad7dd376f6",
+      "bytes": 4152,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 224
+    },
+    ".tmp/rotating-ladder/codex-review/packet-11-reproduction/reviewer-endpoint-last.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-11-reproduction/reviewer-endpoint-last.json",
+      "sha256": "bc509df51caa63125a07cbcfc838ddf15c51adf5dc66deb86d87a81517cb4294",
+      "bytes": 4151,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 224
+    },
+    ".tmp/rotating-ladder/codex-review/packet-11-reproduction/reviewer-patch.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-11-reproduction/reviewer-patch.json",
+      "sha256": "7ce3c6312d05015ce106dbed9135dc0c64e72c7b0d7e8b4e4a74a3b5c3e7753e",
+      "bytes": 4130,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 224
+    },
+    ".tmp/rotating-ladder/codex-review/packet-11-reproduction/reviewer-complete.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-11-reproduction/reviewer-complete.json",
+      "sha256": "6195539ad0a8ec0af83ccb2f59e1020096e0165e3c1b84f3a4a68691c79f6434",
+      "bytes": 367,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 15
+    },
+    ".tmp/rotating-ladder/codex-review/packet-11-compute-closeout.json": {
+      "path": ".local-data/master-equation-closure/rotating-ladder/codex-review-2026-10-20/packet-11-compute-closeout.json",
+      "sha256": "40aa50d23c2216c8c8cdcfc389d6a170fea7f97974606a398098e5b791386a4a",
+      "bytes": 549,
+      "role": "historical research execution closeout",
+      "documents": [
+        "reference/op/agent-chats/2026-10-20-rotating-ladder-six-hour/chat.md"
+      ],
+      "lines": 21
+    },
+    ".local-data/aaa-operations/ops-033/2026-10-31/audit-pair-consolidation-v1/roundtrip.json": {
+      "path": ".local-data/aaa-operations/ops-033/2026-10-31/audit-pair-consolidation-v1/roundtrip.json",
+      "sha256": "25b5f3ca5b8e41e1089bb7684ab1c16aaa358bead96493b49a3f9667696b04d8",
+      "bytes": 379,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/priorities/aaa-operations/evidence/ops-033-audit-pair-consolidation-2026-10-31.md"
+      ],
+      "lines": 11
+    },
+    ".local-data/aaa-operations/ops-033/2026-10-31/audit-pair-consolidation-v1/check-cli.mjs": {
+      "path": ".local-data/aaa-operations/ops-033/2026-10-31/audit-pair-consolidation-v1/check-cli.mjs",
+      "sha256": "9c96efd4afbb4ebed86564e2b6820a011275eaf5c34bb9ed875c6881d932cb08",
+      "bytes": 3591,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/priorities/aaa-operations/evidence/ops-033-audit-pair-consolidation-2026-10-31.md"
+      ],
+      "lines": 43
+    },
+    ".local-data/aaa-operations/ops-033/2026-10-31/review.mjs": {
+      "path": ".local-data/aaa-operations/ops-033/2026-10-31/review.mjs",
+      "sha256": "3e1897dad85efa4b31938f9a917113ab74a5d7fc3675a2bd69af19d8950df389",
+      "bytes": 5466,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/priorities/aaa-operations/evidence/ops-033-branch-evidence-review-2026-10-31.md"
+      ],
+      "lines": 76
+    },
+    ".local-data/aaa-operations/ops-033/2026-10-31/known-cases.txt": {
+      "path": ".local-data/aaa-operations/ops-033/2026-10-31/known-cases.txt",
+      "sha256": "485b4e83ee97dee2567ec412e3acf826ebbb42dddcd206a0572f0dff12963c02",
+      "bytes": 164,
+      "role": "known-case or negative-control evidence",
+      "documents": [
+        "reference/priorities/aaa-operations/evidence/ops-033-branch-evidence-review-2026-10-31.md"
+      ],
+      "lines": 1
+    },
+    ".local-data/aaa-operations/ops-033/2026-10-31/inventory.json": {
+      "path": ".local-data/aaa-operations/ops-033/2026-10-31/inventory.json",
+      "sha256": "0bcb7808847285e6a67bf35ea1f03cc26dbcd7e90aa8bb9d9378b9f6922d9b37",
+      "bytes": 203653,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/priorities/aaa-operations/evidence/ops-033-branch-evidence-review-2026-10-31.md"
+      ],
+      "lines": 4551
+    },
+    ".local-data/aaa-operations/ops-033/2026-10-31/pair-summary.json": {
+      "path": ".local-data/aaa-operations/ops-033/2026-10-31/pair-summary.json",
+      "sha256": "b5ba9ccccc824a42d95094ec4543e32ab585ad96e5a231794761decfac26ab7c",
+      "bytes": 186,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/priorities/aaa-operations/evidence/ops-033-branch-evidence-review-2026-10-31.md"
+      ],
+      "lines": 7
+    },
+    ".local-data/aaa-operations/ops-033/2026-10-31/validator.json": {
+      "path": ".local-data/aaa-operations/ops-033/2026-10-31/validator.json",
+      "sha256": "0e3e4bab4ddbc75ef7951082e70defb237feafabe9383050ea40e900e0886a33",
+      "bytes": 24363,
+      "role": "review result or historical verification record",
+      "documents": [
+        "reference/priorities/aaa-operations/evidence/ops-033-branch-evidence-review-2026-10-31.md"
+      ],
+      "lines": 144
+    },
+    ".tmp/six-pole-path-continuation/support/joincheck.sh": {
+      "path": ".local-data/master-equation-closure/six-pole-path-continuation/support/joincheck.sh",
+      "sha256": "4de937eefb291c0ad8b8d7bcfa59f321725dfb62624368436736b0c0967ce023",
+      "bytes": 1003,
+      "role": "review or verification instrument",
+      "documents": [
+        "reference/priorities/master-equation-closure/noether-sea-research/analysis/spherical-six-pole-path-continuation-claude-support-wave1.md"
+      ],
+      "lines": 11
+    }
+  }
 }

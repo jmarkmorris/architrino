@@ -3,7 +3,7 @@
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
-import { frozenResearchSourceOrigin, researchDocumentLocation, recordedResearchLinkTarget } from "../src/documentation/ResearchSourceLocations.mjs";
+import { frozenResearchSourceOrigin, researchDocumentLocation, recordedResearchLinkTarget, localResearchEvidence } from "../src/documentation/ResearchSourceLocations.mjs";
 import { findTheoryAbbreviationCandidates } from "./lib/theory-abbreviation-audit.mjs";
 import { extractMarkdownLinks, hasReferenceDirectoryIndex } from "./lib/markdown-link-audit.mjs";
 
@@ -784,6 +784,11 @@ function auditMarkdownRelativeLinks(markdownPaths, markdownTextByPath) {
         errors.push(
           `${markdownPath}:${link.line}: markdown link target escapes repo "${target}"`
         );
+        continue;
+      }
+      const localEvidence = localResearchEvidence(markdownPath, logicalRelativePath);
+      if (localEvidence) {
+        notes.push(`${markdownPath}:${link.line}: registered local evidence citation (not deployed): ${localEvidence.path}`);
         continue;
       }
       const resolvedRelativePath = researchDocumentLocation(logicalRelativePath).split("#")[0];
