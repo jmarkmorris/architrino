@@ -230,7 +230,7 @@ Solution techniques (toolbox for delayed, radial DDEs):
 - A posteriori error control: use defect/residual of collocation, step halving with history re-interpolation, and event-time error estimates for adaptive step and tolerance selection.
 - Fixed-point frameworks: establish local existence/uniqueness by contraction on history spaces $C([-\Delta T_{\max},0])$ (or their mollified variants); use Picard iterations as a solver preconditioner.
 
-## Deliverables
+## Results and Limitations
 - Precise DDE forms and causal-root conditions for use in analysis and computation.
 - Cross-references to sections with receiver-side baseline equations and status notes.
 - A minimal benchmark ladder for closure tests:

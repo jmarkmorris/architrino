@@ -699,7 +699,7 @@ The relevant high-resolution channels include $H\to ZZ^{(*)}\to4\ell$, $H\to\gam
 | **Z Boson** | Thickened neutral recoupling corridor | Neutral; no net axial payload | Short-lived corridor (near-$c_f$, dissociates) | Corridor stiffness / Noether sea response |
 | **Higgs** | Radial Noether sea oscillation | N/A | Local resonance | Medium stiffness |
 
-## Pair production (note)
+## Pair Production (Note)
 
 - This note covers photon-triggered conversion, not ordinary atomic or material absorption. Consuming the incoming photon means closing the free planar-pair ledger; it does not automatically mean that the outgoing fermion identities are inherited from the photon constituents.
 - A typed neutral two-braid source assembly should be treated as the local source architecture for spontaneous pro-anti fermion pair production. Its relation record declares polarity conjugation and pro/anti orientation separately; it is not a photon or a two-component circular member merely because it contains two braid records. With sufficient energy input, a pair-conversion mode can unpack that neutral source into a fermion and antifermion while returning the Noether braid bookkeeping to overall neutrality.

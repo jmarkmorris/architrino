@@ -101,7 +101,7 @@ So each row should be read as a routing ledger. The weak interaction opens a cha
   - Corridor instability is a proposed origin of a finite lifetime; no instability calculation or Standard Model W width has been recovered here. A low-energy virtual W contribution is not an on-shell W with that lifetime.
   - So: it is a transient, bound excitation of the Noether sea from reconfiguration of participants' wakes and axial structure, not from a standing background field.
 
-## Minimal premises
+## Minimal Premises
 - **Generations = candidate shielding level:** Gen I uses support vector $(1,1,1)$ for $(u,d)$, Gen II uses $(1,1,0)$ for $(c,s)$, and Gen III uses $(1,0,0)$ for $(t,b)$. These vectors record occupancy of persistent indices and do not assign a braid-taxonomy member or a radius order.
 - **Weak basis = weak-coupling triad:** The proposed three-site exposure must recover the action of effective weak SU(2) on left-chiral doublets. Three sites do not themselves define an SU(2) representation, and identifying primitive polarity with $T_3$ requires a representation map. This basis does not align with the shielding (mass) basis once cores differ; the angle-side geometric hypothesis is summarized in [Weak Mixing Angle](../../assemblies/fermions/weak-mixing-angle.md).
 - **Mass basis = shielding eigenstates:** Noether braid shielding, a closed internal causal-history ledger, and Noether sea coupling set the externally exposed inertial response; each generation defines a distinct mass eigenstate per flavor type (up-type, down-type), using the same shielding ladder discussed in [Particle Masses: Emergent Inertia in the Noether sea](../../assemblies/particle-masses.md).
@@ -118,7 +118,7 @@ This left/right exposure criterion is a downstream consumer of [Angular Momentum
 
 Validation task: simulate exposure vs helicity to confirm or falsify this geometric criterion.
 
-## Unified weak-sector closure route
+## Unified Weak-Sector Closure Route
 
 The comparison with the fermion dictionary, weak-mixing angle note, neutrino chapter, and reaction ledger suggests one shared closure route rather than four unrelated open problems. The same exposed axial geometry should carry:
 
@@ -156,7 +156,7 @@ $$
 
 where $R_{\mathrm{rel}}$ records axial-frame orientation relative to the fixed Noether braid frame, $(\alpha,c)$ record the branch and color-sector data, $\Sigma_{\mathrm{WCT}}$ is the weak-coupling-triad domain, $\mathcal{W}_{\pm}$ is the charged-corridor action on that domain, and $\mathcal{P}_{ij}$ is the admissible provenance-path set used in the overlap sum. The first proof step is to define these objects for one controlled channel, such as $d\to u$ in free-neutron beta reaction, before trying to claim the full CKM or PMNS hierarchy.
 
-## First beta exposure operator: $d\to u$
+## First Beta Exposure Operator: $d\to u$
 
 This first model is deliberately local. It defines the operator-level exposure gate for one generation-I down-type quark in free-neutron beta reaction. It is not yet a reaction-rate derivation, a nuclear form-factor model, or a completed lepton-provenance account.
 
@@ -277,7 +277,7 @@ In a one-active-quark weak-vertex approximation, this operator leaves the specta
 
 This operator gives the first closure test for the unified route. It must fail if the same $\Sigma_{\mathrm{WCT}}$ cannot serve the left-handed gate, the $V_{ud}$ overlap, and the beta-reaction provenance record; if it violates the declared spectator-flavor approximation; or if the independently recovered right-chiral current fails the effective suppression target.
 
-## Geometric picture of CKM
+## Geometric Picture of CKM
 - A down-type quark state in the **weak basis** is a weak-coupling-triad configuration living on a specific core (shielding level) but not yet diagonal in mass.
 - The **mass basis** is the set of stable shielding eigenstates (Gen I/II/III). The overlap between the weak-basis state and each mass eigenstate gives the CKM elements for that row/column.
 - **Suppression intuition:** Larger shielding mismatch → smaller geometric overlap. Thus $\lvert V_{ud}\rvert$ is large (same shielding tier), $\lvert V_{us}\rvert$ smaller (tri ↔ bi), $\lvert V_{ub}\rvert$ tiny (tri ↔ uni). Similar logic for the up-type rows.
@@ -396,7 +396,7 @@ $$
 
 The nonzero Standard Model amplitude is then controlled by mass-dependent differences among the $f_i$, not by a tree-level neutral weak corridor. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, this is a provenance gate: the effective neutral current must satisfy the stated Standard Model cancellation structure. A substrate reaction history need not contain literal Standard Model loop particles, but its coarse-grained amplitude must recover the CKM-weighted mass differences.
 
-## CKM geometric-overlap minimal model
+## CKM Geometric-Overlap Minimal Model
 
 Bridge note: equations in this section keep SM unitary CKM structure, while provenance/path language is the $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretive layer.
 
@@ -668,17 +668,20 @@ $$
 
 so the calibration and closure fix $J^2$, or $|J|$; the physical CP sign remains an additional branch choice.
 
-## Working hypotheses
+## Working Hypotheses
 1. **Basis misalignment source:** The weak-coupling-triad orientation couples weakly to shielding-induced response axes, producing a small rotation between weak and mass bases proportional to the shielding contrast.
 2. **Matrix structure:** Off-diagonal CKM elements scale as geometric transport amplitudes on the generation chain, with $s_{13}=e^{-\sigma} s_{12}s_{23}$ enforcing the observed hierarchy.
 3. **CP phase:** The CKM phase is identified with a transport holonomy angle constrained by $\cos\delta=e^{-\sigma}$.
 
-## What to compute next
-- Derive $(\kappa_{12},\kappa_{23},\sigma)$ from first-principles $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry (radii ratios, wake exposure, and triad transport), rather than CKM calibration.
-- Prove or falsify the holonomy closure law $\cos\delta=e^{-\sigma}$ from explicit triad transport on the Noether sea background.
-- Quantify scale dependence: test whether the fitted actions remain stable under renormalization-scale translation of CKM inputs.
-- Simulate wake exposure to confirm/deny a forward-hemisphere weak-coupling triad; falsify the model if trailing-site coupling dominates.
-- Extend the same overlap geometry to PMNS and test whether the larger lepton mixing follows from different shielding/transport actions.
+## Open Derivation Questions
+
+The remaining questions concern the origin and stability of the proposed mapping:
+
+- Can $(\kappa_{12},\kappa_{23},\sigma)$ be derived from first-principles $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry—radii ratios, wake exposure, and triad transport—rather than CKM calibration?
+- Does explicit triad transport on the Noether sea background establish or falsify the holonomy closure law $\cos\delta=e^{-\sigma}$?
+- Do the fitted actions remain stable under renormalization-scale translation of CKM inputs?
+- Does the wake-exposure geometry support a forward-hemisphere weak-coupling triad? Dominant trailing-site coupling would falsify that proposed assignment.
+- Does the same overlap geometry extend to PMNS, with larger lepton mixing arising from different shielding and transport actions?
 
 ## Pointers
 - weak-coupling triad & shielding definitions: [assemblies/fermions/quantum-number-mapping.md](../../assemblies/fermions/quantum-number-mapping.md) (Sections on weak isospin, generation hierarchy).

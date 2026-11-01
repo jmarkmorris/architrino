@@ -9727,7 +9727,7 @@ The comparison warning is that a preferred foliation is not disqualifying by its
 - If the phase-locking quantization condition yields energy levels that deviate from observed atomic spectra outside the declared combined theoretical and experimental uncertainty, the specific self-consistent loop mechanism is falsified.
 - If a derived observable prediction violates an applicable Lorentz-symmetry test after its measurement and model uncertainties are included, that realization is excluded; a universal dimensionless anisotropy bound on all assembly dynamics is not supplied here.
 
-##### Closure Program Integration (quantum chain)
+##### Closure Program Integration (Quantum Chain)
 
 This chapter is the primary synthesis for quantum closure in $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
@@ -11392,7 +11392,7 @@ The bridge claim is not that special relativity is discarded. The claim is that 
 
 The named Return-Cycle Lorentz Quantization program seeks a common Lorentz response across admissible causal-root ledger classes. A discrete class label can coexist with continuously varying speed, radii, frequencies, and action within a class. Neither discrete allowed velocities nor a quantum of action follows from that label; both require independent dynamical or action-ledger results.
 
-##### Ownership Boundary
+##### Scope and Related Chapters
 
 This chapter owns:
 
@@ -13312,7 +13312,7 @@ So each row should be read as a routing ledger. The weak interaction opens a cha
   - Corridor instability is a proposed origin of a finite lifetime; no instability calculation or Standard Model W width has been recovered here. A low-energy virtual W contribution is not an on-shell W with that lifetime.
   - So: it is a transient, bound excitation of the Noether sea from reconfiguration of participants' wakes and axial structure, not from a standing background field.
 
-##### Minimal premises
+##### Minimal Premises
 - **Generations = candidate shielding level:** Gen I uses support vector $(1,1,1)$ for $(u,d)$, Gen II uses $(1,1,0)$ for $(c,s)$, and Gen III uses $(1,0,0)$ for $(t,b)$. These vectors record occupancy of persistent indices and do not assign a braid-taxonomy member or a radius order.
 - **Weak basis = weak-coupling triad:** The proposed three-site exposure must recover the action of effective weak SU(2) on left-chiral doublets. Three sites do not themselves define an SU(2) representation, and identifying primitive polarity with $T_3$ requires a representation map. This basis does not align with the shielding (mass) basis once cores differ; the angle-side geometric hypothesis is summarized in [Weak Mixing Angle](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md).
 - **Mass basis = shielding eigenstates:** Noether braid shielding, a closed internal causal-history ledger, and Noether sea coupling set the externally exposed inertial response; each generation defines a distinct mass eigenstate per flavor type (up-type, down-type), using the same shielding ladder discussed in [Particle Masses: Emergent Inertia in the Noether sea](../../../../markdown/aaa/assemblies/particle-masses.md).
@@ -13329,7 +13329,7 @@ This left/right exposure criterion is a downstream consumer of [Angular Momentum
 
 Validation task: simulate exposure vs helicity to confirm or falsify this geometric criterion.
 
-##### Unified weak-sector closure route
+##### Unified Weak-Sector Closure Route
 
 The comparison with the fermion dictionary, weak-mixing angle note, neutrino chapter, and reaction ledger suggests one shared closure route rather than four unrelated open problems. The same exposed axial geometry should carry:
 
@@ -13367,7 +13367,7 @@ $$
 
 where $R_{\mathrm{rel}}$ records axial-frame orientation relative to the fixed Noether braid frame, $(\alpha,c)$ record the branch and color-sector data, $\Sigma_{\mathrm{WCT}}$ is the weak-coupling-triad domain, $\mathcal{W}_{\pm}$ is the charged-corridor action on that domain, and $\mathcal{P}_{ij}$ is the admissible provenance-path set used in the overlap sum. The first proof step is to define these objects for one controlled channel, such as $d\to u$ in free-neutron beta reaction, before trying to claim the full CKM or PMNS hierarchy.
 
-##### First beta exposure operator: $d\to u$
+##### First Beta Exposure Operator: $d\to u$
 
 This first model is deliberately local. It defines the operator-level exposure gate for one generation-I down-type quark in free-neutron beta reaction. It is not yet a reaction-rate derivation, a nuclear form-factor model, or a completed lepton-provenance account.
 
@@ -13488,7 +13488,7 @@ In a one-active-quark weak-vertex approximation, this operator leaves the specta
 
 This operator gives the first closure test for the unified route. It must fail if the same $\Sigma_{\mathrm{WCT}}$ cannot serve the left-handed gate, the $V_{ud}$ overlap, and the beta-reaction provenance record; if it violates the declared spectator-flavor approximation; or if the independently recovered right-chiral current fails the effective suppression target.
 
-##### Geometric picture of CKM
+##### Geometric Picture of CKM
 - A down-type quark state in the **weak basis** is a weak-coupling-triad configuration living on a specific core (shielding level) but not yet diagonal in mass.
 - The **mass basis** is the set of stable shielding eigenstates (Gen I/II/III). The overlap between the weak-basis state and each mass eigenstate gives the CKM elements for that row/column.
 - **Suppression intuition:** Larger shielding mismatch → smaller geometric overlap. Thus $\lvert V_{ud}\rvert$ is large (same shielding tier), $\lvert V_{us}\rvert$ smaller (tri ↔ bi), $\lvert V_{ub}\rvert$ tiny (tri ↔ uni). Similar logic for the up-type rows.
@@ -13607,7 +13607,7 @@ $$
 
 The nonzero Standard Model amplitude is then controlled by mass-dependent differences among the $f_i$, not by a tree-level neutral weak corridor. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, this is a provenance gate: the effective neutral current must satisfy the stated Standard Model cancellation structure. A substrate reaction history need not contain literal Standard Model loop particles, but its coarse-grained amplitude must recover the CKM-weighted mass differences.
 
-##### CKM geometric-overlap minimal model
+##### CKM Geometric-Overlap Minimal Model
 
 Bridge note: equations in this section keep SM unitary CKM structure, while provenance/path language is the $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretive layer.
 
@@ -13879,17 +13879,20 @@ $$
 
 so the calibration and closure fix $J^2$, or $|J|$; the physical CP sign remains an additional branch choice.
 
-##### Working hypotheses
+##### Working Hypotheses
 1. **Basis misalignment source:** The weak-coupling-triad orientation couples weakly to shielding-induced response axes, producing a small rotation between weak and mass bases proportional to the shielding contrast.
 2. **Matrix structure:** Off-diagonal CKM elements scale as geometric transport amplitudes on the generation chain, with $s_{13}=e^{-\sigma} s_{12}s_{23}$ enforcing the observed hierarchy.
 3. **CP phase:** The CKM phase is identified with a transport holonomy angle constrained by $\cos\delta=e^{-\sigma}$.
 
-##### What to compute next
-- Derive $(\kappa_{12},\kappa_{23},\sigma)$ from first-principles $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry (radii ratios, wake exposure, and triad transport), rather than CKM calibration.
-- Prove or falsify the holonomy closure law $\cos\delta=e^{-\sigma}$ from explicit triad transport on the Noether sea background.
-- Quantify scale dependence: test whether the fitted actions remain stable under renormalization-scale translation of CKM inputs.
-- Simulate wake exposure to confirm/deny a forward-hemisphere weak-coupling triad; falsify the model if trailing-site coupling dominates.
-- Extend the same overlap geometry to PMNS and test whether the larger lepton mixing follows from different shielding/transport actions.
+##### Open Derivation Questions
+
+The remaining questions concern the origin and stability of the proposed mapping:
+
+- Can $(\kappa_{12},\kappa_{23},\sigma)$ be derived from first-principles $\mathbb{A}\mathbb{A}\mathbb{A}$ geometry—radii ratios, wake exposure, and triad transport—rather than CKM calibration?
+- Does explicit triad transport on the Noether sea background establish or falsify the holonomy closure law $\cos\delta=e^{-\sigma}$?
+- Do the fitted actions remain stable under renormalization-scale translation of CKM inputs?
+- Does the wake-exposure geometry support a forward-hemisphere weak-coupling triad? Dominant trailing-site coupling would falsify that proposed assignment.
+- Does the same overlap geometry extend to PMNS, with larger lepton mixing arising from different shielding and transport actions?
 
 ##### Pointers
 - weak-coupling triad & shielding definitions: [assemblies/fermions/quantum-number-mapping.md](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md) (Sections on weak isospin, generation hierarchy).
@@ -14169,11 +14172,13 @@ approaches $c^5/G$ when $M$ is estimated by the Planck mass, but that substituti
 - In this chapter, "$v_{\text{trans}} \to c_f$" and "$v_{\text{orb}}^{\text{tan}} \to c_f$" are component-speed saturation statements in the terminal alignment regime.
 - The statement "$v_{\text{eff}} > c_f$" refers to the **total instantaneous velocity**, combining axial translation and transverse orbital motion used for Mach-wedge causal geometry, not a claim that either component speed is individually $> c_f$.
 - Neither a missing update nor a tangent root follows from a current speed threshold. Each requires solving the admitted causal-root equation; a constant-direction Mach cone additionally requires the straight-source approximation.
-- The CFT-exterior role label "binary 3 $v < c_f$" remains valid away from the terminal/horizon regime (see the regime map in [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation)).
+- An exterior binary role with $v < c_f$ may be considered away from the terminal/horizon regime, but its member index must come from the same retained branch record. The persistent index 3 does not assign that role in advance (see [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation)).
 
 ---
 
-##### What Planck Units Imply About the binary 3
+##### Planck Units and the Proposed Alignment Geometry
+
+The comparison below uses a declared reference binary from the retained branch record. It does not assign the alignment geometry to a fixed persistent member index.
 
 We treat the Planck relations as constraints on a **specific alignment geometry**, not as abstract dimensional coincidences. Define the comparison cadence $f_P=1/t_P$ so $f_P\ell_P=c$. This is a cycles-per-time convention; the standard Planck energy is $E_P=\hbar/t_P$, hence $hf_P=2\pi E_P$. Under the optional A-cf-match comparison and the circular orbit relation $v = 2\pi R f$, the aligned state ($v_{\text{align}} = c_f$, $f_{\text{align}} = f_P$) gives:
 $$
@@ -14200,14 +14205,14 @@ This leaves three coherent origin stories to keep in view:
 2. **Two-constant ontology:** $c_f$ (signal speed) and $h$ (action-per-cycle) are primitive; $G$ is an emergent bookkeeping constant fixed by a universal alignment geometry.
 3. **Three-constant ontology:** $c_f$, $h$, and $G$ are independent; the proportional form is a dimensional coincidence or a near-alignment approximation. We keep these as open threads while we test whether alignment alone can lock the scale.
 
-###### Planck Units as binary-3 Mappings (Alignment State)
+###### Planck-Unit Mappings for the Proposed Alignment State
 
-| Planck Unit | Expression | Cascade | binary-3 mapping (alignment interpretation) |
+| Planck Unit | Expression | Cascade | Proposed Alignment Mapping |
 | --- | --- | --- | --- |
 | Frequency $f_P$ | $f_P$ | Start from measurable cadence; sets the clock | Alignment orbital cadence in Hz (cycles per second). |
 | Energy $E_P$ | $E_P=\hbar f_P=hf_P/(2\pi)$ | Standard Planck energy | The assumed one-$h$ alignment cycle instead has $E_{\text{align}}=2\pi E_P$. |
-| Length $\ell_P$ | $\ell_P = c/f_P$ | Convert period ($t_P = 1/f_P$) to length using $c \approx c_f$ | binary-3 **circumference** at alignment ($R_{\text{align}} = \ell_P / 2\pi$). |
-| Radius $R_{\text{align}}$ | $R_{\text{align}} = \ell_P / (2\pi)$ | Convert circumference to radius | Alignment radius of the binary 3. |
+| Length $\ell_P$ | $\ell_P = c/f_P$ | Convert period ($t_P = 1/f_P$) to length using $c \approx c_f$ | Reference-binary **circumference** at alignment ($R_{\text{align}} = \ell_P / 2\pi$). |
+| Radius $R_{\text{align}}$ | $R_{\text{align}} = \ell_P / (2\pi)$ | Convert circumference to radius | Alignment radius of the declared reference binary. |
 | Alignment geometry $A_{\text{align}}$ | $A_{\text{align}} = R_{\text{align}}^2$ | Square of the alignment radius | Planar alignment area scale. |
 | Gravitation $G$ | $G \propto c_f^3 A_{\text{align}} / h$ | Express in terms of $A_{\text{align}}$ and $h$ | Medium compliance tied to the alignment geometry scale ($A_{\text{align}}$). |
 | Force $F_P$ | $F_P = c^4 / G$ | Response scale from $c$ and $G$ | Heuristic assembly-response scale; no maximal native acceleration or force has been derived. |
@@ -14225,7 +14230,7 @@ This leaves three coherent origin stories to keep in view:
 
 ###### Effective Forward Speed (Proposed Diagnostic)
 
-For an architrino on the forward edge of the binary 3, define
+For an architrino on the forward edge of the declared reference binary, define
 
 $$
 v_{\text{eff}}(\theta) \;=\; \bigl|\mathbf{v}_{\text{trans}} + \mathbf{v}_{\text{orb}}^{\text{tan}}(\theta)\bigr|
@@ -14929,7 +14934,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ### Metaphysics, Mechanism, And Classical Foundations
 
-#### **Parmenides (early 5th century BCE) — persistence beneath change**
+#### **Parmenides (early 5th century BCE) — Persistence Beneath Change**
 **Subject:** Parmenides of Elea, pre-Socratic philosopher whose poem argued that what is cannot arise from what is not or pass into non-being.
 
 **Era / Context**: Parmenides wrote before mathematical physics, when Greek natural philosophy was separating stable intelligibility from the changing appearances of experience.
@@ -15309,7 +15314,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ### Relativity, Gravity & Cosmology (Spacetime Ontology → Quantum Gravity)
 
-#### **Ernst Mach (1838–1916) — relationalism**
+#### **Ernst Mach (1838–1916) — Relationalism**
 **Subject:** Ernst Mach (1838–1916), physicist-philosopher associated with relational inertia ideas and strong empiricist methodological constraints.
 
 **Era / Context**: Mach worked in late 19th-century physics when mechanics, electromagnetism, and atom debates were converging, and positivist pressures against unobservable ontology were strong.
@@ -15336,7 +15341,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-#### **Hendrik Lorentz (1853–1928) — ether dynamics**
+#### **Hendrik Lorentz (1853–1928) — Ether Dynamics**
 **Subject:** Hendrik Antoon Lorentz (1853–1928), theoretical physicist whose electron theory and ether dynamics produced Lorentz transformations.
 
 **Era / Context**: Lorentz worked at the turn of the 20th century under pressure from electrodynamics and null ether-drift results, before Einstein's kinematic reinterpretation became dominant.
@@ -15363,7 +15368,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-#### **Henri Poincaré (1854–1912) — relativity, convention, and group structure**
+#### **Henri Poincaré (1854–1912) — Relativity, Convention, and Group Structure**
 **Subject:** Henri Poincaré (1854–1912), mathematician and physicist who sharpened the relativity principle, Lorentz-group structure, synchronization conventionality, and dynamical stresses in electron models.
 
 **Era / Context**: Poincaré worked at the transition from classical electrodynamics to special relativity, when Lorentz covariance was mathematically visible but its physical interpretation remained unsettled.
@@ -15390,7 +15395,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-#### **Albert Einstein (1879–1955) — relativity**
+#### **Albert Einstein (1879–1955) — Relativity**
 **Subject:** Albert Einstein (1879–1955), treated here through the relativity program he originated and shaped, especially Special Relativity and General Relativity.
 
 **Era / Context**: Relativity developed in the early 20th century to resolve electrodynamic and gravitational tensions in classical physics while preserving high-precision empirical closure.
@@ -15471,7 +15476,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-#### **Stephen Hawking (1942–2018) — horizons, area, and quantum emission**
+#### **Stephen Hawking (1942–2018) — Horizons, Area, and Quantum Emission**
 **Subject:** Stephen Hawking (1942–2018), mathematical physicist whose work connected singularity theorems, black-hole area behavior, quantum emission, and cosmology.
 
 **Era / Context**: Hawking worked when general relativity was re-entering mainstream physics and quantum field theory was being applied to curved-background and horizon problems.
@@ -15662,7 +15667,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ### Quantum Foundations & Hidden-Variable Landscape
 
-#### **Ludwig Boltzmann (1844–1906) — statistical mechanics**
+#### **Ludwig Boltzmann (1844–1906) — Statistical Mechanics**
 **Subject:** Ludwig Boltzmann (1844–1906), founder of statistical mechanics and major defender of atomist reduction in modern physics.
 
 **Era / Context**: Boltzmann worked in late 19th-century physics when atomism was still contested and thermodynamics lacked universally accepted microphysical grounding.
@@ -15689,7 +15694,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-#### **Max Planck (1858–1947) — quantum action**
+#### **Max Planck (1858–1947) — Quantum Action**
 **Subject:** Max Planck (1858–1947), originator of the quantum of action and early architect of quantum transition physics.
 
 **Era / Context**: Planck worked at the turn of the 20th century when blackbody radiation data forced a break from classical equipartition expectations.
@@ -15743,7 +15748,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-#### **Einstein, Podolsky, and Rosen (1935) — completeness and separability**
+#### **Einstein, Podolsky, and Rosen (1935) — Completeness and Separability**
 **Subject:** Albert Einstein, Boris Podolsky, and Nathan Rosen, treated here through their 1935 argument that the quantum state might not be a complete physical description.
 
 **Era / Context**: The EPR paper appeared after quantum mechanics had achieved predictive maturity but before Bell turned the completeness dispute into experimentally discriminating locality constraints.
@@ -15770,7 +15775,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-#### **Erwin Schrödinger (1887–1961) — wave mechanics**
+#### **Erwin Schrödinger (1887–1961) — Wave Mechanics**
 **Subject:** Erwin Schrödinger (1887–1961), co-founder of wave mechanics and key critic of unresolved quantum measurement ontology.
 
 **Era / Context**: Schrödinger worked in foundationally unstable early quantum theory when successful equations lacked clear ontology and measurement narratives diverged.
@@ -15797,7 +15802,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-#### **Louis de Broglie (1892–1987) — matter waves**
+#### **Louis de Broglie (1892–1987) — Matter Waves**
 **Subject:** Louis de Broglie (1892–1987), originator of matter-wave and pilot-wave interpretation strategies.
 
 **Era / Context**: De Broglie developed pilot-wave ideas during the foundational opening phase of quantum mechanics before Copenhagen hegemony consolidated.
@@ -15824,7 +15829,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-#### **Werner Heisenberg (1901–1976) — matrix mechanics**
+#### **Werner Heisenberg (1901–1976) — Matrix Mechanics**
 **Subject:** Werner Heisenberg (1901–1976), founder of matrix mechanics and principal architect of uncertainty-centered interpretation.
 
 **Era / Context**: Heisenberg developed his framework during the rapid formation of quantum theory, when mathematically successful formalisms outran mechanistic explanation.
@@ -15851,7 +15856,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-#### **David Bohm (1917–1992) — pilot wave**
+#### **David Bohm (1917–1992) — Pilot Wave**
 **Subject:** David Bohm (1917–1992), developer of a realist hidden-variable quantum theory with guidance dynamics.
 
 **Era / Context**: Bohm worked under Copenhagen dominance, offering a deterministic nonlocal alternative that reproduced core quantum predictions.
@@ -15878,7 +15883,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-#### **John Bell (1928–1990) — Bell nonlocality**
+#### **John Bell (1928–1990) — Bell Nonlocality**
 **Subject:** John Bell (1928–1990), physicist who formalized no-go constraints on local hidden-variable reconstructions.
 
 **Era / Context**: Bell worked in a period when quantum interpretation debates lacked sharp discriminators between competing ontologies.
@@ -15932,7 +15937,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-#### **H. Dieter Zeh (1932–2018) and Wojciech Zurek (1951–) — decoherence**
+#### **H. Dieter Zeh (1932–2018) and Wojciech Zurek (1951–) — Decoherence**
 **Subject:** H. Dieter Zeh and Wojciech Zurek, principal architects of environment-induced decoherence and the study of stable pointer records.
 
 **Era / Context**: Decoherence theory developed from the 1970s onward as quantum foundations increasingly treated apparatuses and environments within the same dynamical formalism as the measured system.

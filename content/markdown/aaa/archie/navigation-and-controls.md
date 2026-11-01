@@ -73,7 +73,7 @@ Sphere labels may also use more than one text row when the scene author provides
 - `Home`: jump to root scene
 - `Search` (magnifier): open scene search
 - `Glossary` (documents): open the comparative glossary
-- `TOC`: open the textbook table of contents
+- `TOC`: open the textbook table of contents, initially showing chapters and topics. Use the adjacent `+` and `−` buttons to expand or collapse a topic's sections; select its title to open the content. Deeper branches expand independently, and the buttons also work with the keyboard.
 - `Open full document` (document): open the complete source behind the current section
 - `Save markdown as PDF`: open the browser print dialog for the reading surface, then choose its PDF destination
 - Textbook previous/next: move between adjacent textbook pages when that route is active

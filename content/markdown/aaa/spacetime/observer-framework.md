@@ -459,7 +459,7 @@ This is not an optional rhetorical claim. It is a closure burden distributed acr
 - [Constraint Ledger](../validation/constraint-ledger.md) for empirical thresholds,
 - and [Known Tensions](../validation/known-tensions.md) for the current unresolved burden.
 
-## Ownership Boundary
+## Scope and Related Chapters
 
 This chapter owns:
 

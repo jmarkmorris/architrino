@@ -6,7 +6,7 @@ A Noether braid is not a static object. It is a dynamic system of six architrino
 
 That is why this geometry matters downstream. Pressure, packing, clock/ruler response, effective metric behavior, and Noether sea density are all coarse readings of many such envelopes and their deformations. The page therefore keeps the geometric export rows separate from the proof that the branch itself is retained.
 
-## Document Role
+## How to Read This Chapter
 
 This chapter is the envelope and export-interface chapter for braid geometry. It owns:
 

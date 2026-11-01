@@ -4,13 +4,13 @@ An [architrino](../../../foundations/architrino.md) is a primitive pointlike pol
 
 Here a candidate self-energy means the same-transmitter part of an independently constructed history-energy account, with its reference value, retained history, and boundaries declared. Its existence and allocation remain open under the [Energy construction](../../../dynamics/energy.md#energy-conservation-and-exchange). Self-acceleration, work delivered by self-hits, and stored self-history energy are different quantities. This chapter establishes bounded acceleration and work on stated regular domains and explains why those bounds do not prove finite physical self-energy or a regulator-independent limit.
 
-## Classical self-energy pathology (contrast)
+## Classical Self-Energy Pathology (Contrast)
 
 In the classical comparison, electrostatic self-energy is the energy assigned to a charge's own electric field. The electric field $\mathbf E$ measures the local electric response per test charge. A point-source potential proportional to $1/r$ gives $\|\mathbf E\|\propto1/r^2$, and the classical energy-density rule is proportional to $\|\mathbf E\|^2$. With inner cutoff $b>0$ and fixed outer radius $R>b$, the radial energy integral is proportional to $\int_b^R r^{-2}\,dr=1/b-1/R$, which diverges as $b\to0^+$. The factor $r^2$ in the three-dimensional volume element supplies the reduction from $r^{-4}$ to $r^{-2}$.
 
 That calculation follows from the classical field-energy rule and its point-source extrapolation; it is not a substrate premise. A source-dependent scalar proportional to $1/r$ can also describe a regular receiver chart in this theory, but that fact does not supply the classical squared-gradient energy density. The distinction concerns the energy construction, not a prohibition on inverse-distance scalars. The source note below identifies the classical comparison.
 
-## Why the zero-radius divergence is quarantined here
+## Why the Zero-Radius Divergence Is Quarantined Here
 
 ### Single Emissions and Continuous History
 
@@ -85,7 +85,7 @@ A simple nontrivial self-root also requires motion faster than $c_f$ somewhere b
 
 Claim grade: derived for the displayed emission identities, counterexample, kernel maximum, and regular-root bound on their stated domains. A violation with those domains and normalizations unchanged would refute the corresponding result. None establishes regulator convergence, a physical self-energy, or stability.
 
-## Practical guidance (numerics and analysis)
+## Practical Guidance (Numerics and Analysis)
 
 Choose the wake width relative to resolved path curvature and separations, but establish the integration-domain or core bound independently. Compare complete root identities and omitted contributions under time-step, history-depth, and regulator refinement. On a common regular chart, the [two-stage recovery target](../../../dynamics/master-equation.md#auxiliary-dual-mollified-regulator-for-proof-and-computation) first takes $\eta\to0^+$ at fixed $\epsilon_c$, then $\epsilon_c\to0^+$ while separations remain positive. A different joint limit needs its own proof. Weak convergence of a selector alone does not control its product with a singular amplitude or an unbounded energy integrand.
 
@@ -114,7 +114,7 @@ Moving-transmitter and self-hit branches need the [history-aware construction ro
 
 The [regularization analysis](well-posedness-and-regularization.md) states the continuation and refinement obligations. Finite self-energy, a regulator-independent subtraction defining a renormalized quantity, conserved total energy, and assembly mass recovery remain open until one construction supplies their values and boundaries. A surviving dependence on core scale, wake width, history cutoff, or subtraction convention rejects the corresponding regulator-independent claim.
 
-## Sign-resolved bookkeeping
+## Sign-Resolved Bookkeeping
 
 An assembly is an organized collection of architrinos; the [Noether sea](../../../spacetime/noether-sea.md) is the proposed ambient population of neutral assemblies. Their positive- and negative-polarity wake contributions can cancel in a declared far-wake response. A small signed sum does not bound the separate magnitudes: contributions $a$ and $-a$ have zero sum and total magnitude $2|a|$. This derived algebraic fact supports recording signed acceleration, signed power, and magnitudes separately.
 

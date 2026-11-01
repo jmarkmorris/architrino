@@ -72,7 +72,7 @@ A Noether braid is a candidate way for a declared neutral architrino inventory t
 
 That is why labels are never evidence. An exact identity and characteristic row identify a configuration; neither implies stability, mass response, photon behavior, or Noether sea dominance. Those claims require retained branch certificates and downstream export rows.
 
-## Document Role
+## How to Read This Chapter
 
 This chapter is the overview and reading map for the Noether braid stack. It defines the word **braid**, routes the coordinate taxonomy, and explains why factual geometry descriptions are not retained-branch results.
 

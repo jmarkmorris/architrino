@@ -933,6 +933,7 @@ function buildMarkdownSectionEntries({
         const entry = {
           kind: "markdown-section",
           title:
+            asText(sceneConfig?.textbookToc?.sectionTitles?.[node.sectionKey]) ||
             asText(override?.labelTitle) ||
             asText(override?.title) ||
             asText(node.title) ||
@@ -1072,8 +1073,8 @@ function renderTextbookTocMarkdown(rootEntry) {
   const lines = [
     "# Textbook TOC",
     "",
-    "This generated table of contents mirrors the current authored scene order and local section structure.",
-    "Chapter links open scenes. Section links open the corresponding markdown section.",
+    "Choose a chapter or topic to explore. Use the adjacent + and − buttons to expand or collapse sections.",
+    "Select a title to open its content.",
     "",
   ];
 

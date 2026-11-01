@@ -6,7 +6,7 @@ Stating the requirements realization-independently protects the proof order. A r
 
 Nothing in this chapter is a retained-branch result. Every row below is an obligation — a theorem target, closure target, or comparison target at its stated level — and proof dispositions are not carried in this chapter.
 
-## Document Role
+## How to Read This Chapter
 
 This chapter owns the realization-independent statement of the braid proof burden: the retained-branch certificate row structure, the first-failure reporting discipline, the ordered proof-burden ladder, and the full recovery-target inventory consumed by the downstream theory. It deliberately owns no geometry and no evidence. The neutral six-body base lives in [Noether Braid](noether-braid.md#neutral-braid-base); prescribed member definitions live in [Braid Taxonomy](braid-taxonomy.md), [Braid orthogonal-axis three-binary configurations](3d-braid-assemblies.md), and [Braid coincident-axis three-binary configurations](3d-braid-assemblies.md). The shared mathematical machinery lives in [Braid Mathematics](braid-mathematics.md). Proof dispositions are not carried in this chapter; broader diagnostic axes live in [Noether Braid Configuration Space](noether-braid-configuration-space.md).
 

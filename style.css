@@ -1197,6 +1197,30 @@ body.has-textbook-page-nav #markdown-panel.is-open {
   text-decoration: none;
 }
 
+#markdown-panel.is-textbook-toc .toc-branch-toggle {
+  width: 28px;
+  height: 28px;
+  margin: 0 0.45rem 0 0;
+  padding: 0;
+  border: 1px solid rgba(213, 220, 255, 0.35);
+  border-radius: 6px;
+  background: rgba(15, 12, 35, 0.45);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+#markdown-panel.is-textbook-toc .toc-branch-toggle:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+#markdown-panel.is-textbook-toc ul[hidden],
+#markdown-panel.is-textbook-toc ol[hidden] {
+  display: none;
+}
+
 #markdown-panel.is-textbook-toc #markdown-content .toc-branch-toggle:hover,
 #markdown-panel.is-textbook-toc #markdown-content .toc-branch-toggle:focus-visible,
 #markdown-panel.is-textbook-toc #markdown-content a:hover,

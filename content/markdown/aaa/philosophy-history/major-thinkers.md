@@ -43,7 +43,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ## Metaphysics, Mechanism, And Classical Foundations
 
-### **Parmenides (early 5th century BCE) — persistence beneath change**
+### **Parmenides (early 5th century BCE) — Persistence Beneath Change**
 **Subject:** Parmenides of Elea, pre-Socratic philosopher whose poem argued that what is cannot arise from what is not or pass into non-being.
 
 **Era / Context**: Parmenides wrote before mathematical physics, when Greek natural philosophy was separating stable intelligibility from the changing appearances of experience.
@@ -423,7 +423,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ## Relativity, Gravity & Cosmology (Spacetime Ontology → Quantum Gravity)
 
-### **Ernst Mach (1838–1916) — relationalism**
+### **Ernst Mach (1838–1916) — Relationalism**
 **Subject:** Ernst Mach (1838–1916), physicist-philosopher associated with relational inertia ideas and strong empiricist methodological constraints.
 
 **Era / Context**: Mach worked in late 19th-century physics when mechanics, electromagnetism, and atom debates were converging, and positivist pressures against unobservable ontology were strong.
@@ -450,7 +450,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Hendrik Lorentz (1853–1928) — ether dynamics**
+### **Hendrik Lorentz (1853–1928) — Ether Dynamics**
 **Subject:** Hendrik Antoon Lorentz (1853–1928), theoretical physicist whose electron theory and ether dynamics produced Lorentz transformations.
 
 **Era / Context**: Lorentz worked at the turn of the 20th century under pressure from electrodynamics and null ether-drift results, before Einstein's kinematic reinterpretation became dominant.
@@ -477,7 +477,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Henri Poincaré (1854–1912) — relativity, convention, and group structure**
+### **Henri Poincaré (1854–1912) — Relativity, Convention, and Group Structure**
 **Subject:** Henri Poincaré (1854–1912), mathematician and physicist who sharpened the relativity principle, Lorentz-group structure, synchronization conventionality, and dynamical stresses in electron models.
 
 **Era / Context**: Poincaré worked at the transition from classical electrodynamics to special relativity, when Lorentz covariance was mathematically visible but its physical interpretation remained unsettled.
@@ -504,7 +504,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Albert Einstein (1879–1955) — relativity**
+### **Albert Einstein (1879–1955) — Relativity**
 **Subject:** Albert Einstein (1879–1955), treated here through the relativity program he originated and shaped, especially Special Relativity and General Relativity.
 
 **Era / Context**: Relativity developed in the early 20th century to resolve electrodynamic and gravitational tensions in classical physics while preserving high-precision empirical closure.
@@ -585,7 +585,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Stephen Hawking (1942–2018) — horizons, area, and quantum emission**
+### **Stephen Hawking (1942–2018) — Horizons, Area, and Quantum Emission**
 **Subject:** Stephen Hawking (1942–2018), mathematical physicist whose work connected singularity theorems, black-hole area behavior, quantum emission, and cosmology.
 
 **Era / Context**: Hawking worked when general relativity was re-entering mainstream physics and quantum field theory was being applied to curved-background and horizon problems.
@@ -776,7 +776,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ## Quantum Foundations & Hidden-Variable Landscape
 
-### **Ludwig Boltzmann (1844–1906) — statistical mechanics**
+### **Ludwig Boltzmann (1844–1906) — Statistical Mechanics**
 **Subject:** Ludwig Boltzmann (1844–1906), founder of statistical mechanics and major defender of atomist reduction in modern physics.
 
 **Era / Context**: Boltzmann worked in late 19th-century physics when atomism was still contested and thermodynamics lacked universally accepted microphysical grounding.
@@ -803,7 +803,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Max Planck (1858–1947) — quantum action**
+### **Max Planck (1858–1947) — Quantum Action**
 **Subject:** Max Planck (1858–1947), originator of the quantum of action and early architect of quantum transition physics.
 
 **Era / Context**: Planck worked at the turn of the 20th century when blackbody radiation data forced a break from classical equipartition expectations.
@@ -857,7 +857,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Einstein, Podolsky, and Rosen (1935) — completeness and separability**
+### **Einstein, Podolsky, and Rosen (1935) — Completeness and Separability**
 **Subject:** Albert Einstein, Boris Podolsky, and Nathan Rosen, treated here through their 1935 argument that the quantum state might not be a complete physical description.
 
 **Era / Context**: The EPR paper appeared after quantum mechanics had achieved predictive maturity but before Bell turned the completeness dispute into experimentally discriminating locality constraints.
@@ -884,7 +884,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Erwin Schrödinger (1887–1961) — wave mechanics**
+### **Erwin Schrödinger (1887–1961) — Wave Mechanics**
 **Subject:** Erwin Schrödinger (1887–1961), co-founder of wave mechanics and key critic of unresolved quantum measurement ontology.
 
 **Era / Context**: Schrödinger worked in foundationally unstable early quantum theory when successful equations lacked clear ontology and measurement narratives diverged.
@@ -911,7 +911,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Louis de Broglie (1892–1987) — matter waves**
+### **Louis de Broglie (1892–1987) — Matter Waves**
 **Subject:** Louis de Broglie (1892–1987), originator of matter-wave and pilot-wave interpretation strategies.
 
 **Era / Context**: De Broglie developed pilot-wave ideas during the foundational opening phase of quantum mechanics before Copenhagen hegemony consolidated.
@@ -938,7 +938,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **Werner Heisenberg (1901–1976) — matrix mechanics**
+### **Werner Heisenberg (1901–1976) — Matrix Mechanics**
 **Subject:** Werner Heisenberg (1901–1976), founder of matrix mechanics and principal architect of uncertainty-centered interpretation.
 
 **Era / Context**: Heisenberg developed his framework during the rapid formation of quantum theory, when mathematically successful formalisms outran mechanistic explanation.
@@ -965,7 +965,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **David Bohm (1917–1992) — pilot wave**
+### **David Bohm (1917–1992) — Pilot Wave**
 **Subject:** David Bohm (1917–1992), developer of a realist hidden-variable quantum theory with guidance dynamics.
 
 **Era / Context**: Bohm worked under Copenhagen dominance, offering a deterministic nonlocal alternative that reproduced core quantum predictions.
@@ -992,7 +992,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **John Bell (1928–1990) — Bell nonlocality**
+### **John Bell (1928–1990) — Bell Nonlocality**
 **Subject:** John Bell (1928–1990), physicist who formalized no-go constraints on local hidden-variable reconstructions.
 
 **Era / Context**: Bell worked in a period when quantum interpretation debates lacked sharp discriminators between competing ontologies.
@@ -1046,7 +1046,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 ---
 
-### **H. Dieter Zeh (1932–2018) and Wojciech Zurek (1951–) — decoherence**
+### **H. Dieter Zeh (1932–2018) and Wojciech Zurek (1951–) — Decoherence**
 **Subject:** H. Dieter Zeh and Wojciech Zurek, principal architects of environment-induced decoherence and the study of stable pointer records.
 
 **Era / Context**: Decoherence theory developed from the 1970s onward as quantum foundations increasingly treated apparatuses and environments within the same dynamical formalism as the measured system.

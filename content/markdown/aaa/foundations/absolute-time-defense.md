@@ -797,7 +797,7 @@ Relativity of simultaneity and time dilation are emergent observer-level effects
 
 The closure burden is therefore not to remove the preferred foliation. It is to derive clock, ruler, and signal behavior that bounds leakage to the required precision.
 
-## Falsifiability Wall
+## Conditions That Would Falsify the Model
 
 The defense fails in three specific ways, and none is a matter of interpretation.
 

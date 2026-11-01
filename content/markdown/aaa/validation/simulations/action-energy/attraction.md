@@ -118,6 +118,6 @@ For the ordered one-dimensional chart $X_1(T)>X_2(T)$, define the signed separat
 
   [View →](../../../../../../equation-mapping.html#corpus-equation-e0defb4c22d7efd2)
 
-## Deliverables
+## Results and Limitations
 - The equations and causal-root definitions above specify the native partner-attraction comparison on its declared history chart; a complete computational treatment must also account for any admitted same-transmitter roots.
 - Solvability status: no closed-form solution is supplied for the fully coupled delayed system. Numerical integration requires complete-history coverage, robust root-finding, and event-aware stepping; no evolved stability, collision, caustic, or conservation result is claimed here.

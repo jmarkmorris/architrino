@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 184,
-      "sections": 1677
+      "sections": 1672
     }
   },
   "tocRoot": {
@@ -118,18 +118,18 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Why the delay is the whole idea",
+                "title": "Why Causal Delay Matters",
                 "markdownPath": "content/markdown/aaa/foundations/architrino.md",
-                "markdownSection": "Why the delay is the whole idea",
-                "sectionKey": "why the delay is the whole idea",
+                "markdownSection": "Why Causal Delay Matters",
+                "sectionKey": "why causal delay matters",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "What an architrino is not",
+                "title": "Architrinos and Effective Particles",
                 "markdownPath": "content/markdown/aaa/foundations/architrino.md",
-                "markdownSection": "What an architrino is not",
-                "sectionKey": "what an architrino is not",
+                "markdownSection": "Architrinos and Effective Particles",
+                "sectionKey": "architrinos and effective particles",
                 "headingLevel": 2
               },
               {
@@ -402,10 +402,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Three layers that get confused",
+                "title": "Void, Noether Sea, and Effective Spacetime",
                 "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
-                "markdownSection": "Three layers that get confused",
-                "sectionKey": "three layers that get confused",
+                "markdownSection": "Void, Noether Sea, and Effective Spacetime",
+                "sectionKey": "void noether sea and effective spacetime",
                 "headingLevel": 2
               },
               {
@@ -726,10 +726,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Falsifiability Wall",
+                "title": "Conditions That Would Falsify the Model",
                 "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
-                "markdownSection": "Falsifiability Wall",
-                "sectionKey": "falsifiability wall",
+                "markdownSection": "Conditions That Would Falsify the Model",
+                "sectionKey": "conditions that would falsify the model",
                 "headingLevel": 2
               }
             ]
@@ -1170,25 +1170,25 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Time-based PDE (wave equation with a moving point source term)",
+                    "title": "Time-Based PDE (Wave Equation with a Moving Point Source Term)",
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
-                    "markdownSection": "Time-based PDE (wave equation with a moving point source term)",
+                    "markdownSection": "Time-Based PDE (Wave Equation with a Moving Point Source Term)",
                     "sectionKey": "time based pde wave equation with a moving point source term",
                     "headingLevel": 2
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Integral (Green’s function / path-history potential) approach",
+                    "title": "Integral (Green’s Function / Path-History Potential) Approach",
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
-                    "markdownSection": "Integral (Green’s function / path-history potential) approach",
+                    "markdownSection": "Integral (Green’s Function / Path-History Potential) Approach",
                     "sectionKey": "integral green s function path history potential approach",
                     "headingLevel": 2
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Event-driven Radial-Transport + Per-Hit EOM (Canonical Method)",
+                    "title": "Event-Driven Radial-Transport + Per-Hit EOM (Canonical Method)",
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
-                    "markdownSection": "Event-driven Radial-Transport + Per-Hit EOM (Canonical Method)",
+                    "markdownSection": "Event-Driven Radial-Transport + Per-Hit EOM (Canonical Method)",
                     "sectionKey": "event driven radial transport per hit eom canonical method",
                     "headingLevel": 2
                   },
@@ -1202,34 +1202,34 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Differential analysis (criteria-by-criteria)",
+                    "title": "Comparison of Evaluation Methods",
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
-                    "markdownSection": "Differential analysis (criteria-by-criteria)",
-                    "sectionKey": "differential analysis criteria by criteria",
+                    "markdownSection": "Comparison of Evaluation Methods",
+                    "sectionKey": "comparison of evaluation methods",
                     "headingLevel": 2
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Pros and cons (comparative)",
+                    "title": "Advantages and Limitations of the Methods",
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
-                    "markdownSection": "Pros and cons (comparative)",
-                    "sectionKey": "pros and cons comparative",
+                    "markdownSection": "Advantages and Limitations of the Methods",
+                    "sectionKey": "advantages and limitations of the methods",
                     "headingLevel": 2
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Recommendation",
+                    "title": "Choosing an Evaluation Method",
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
-                    "markdownSection": "Recommendation",
-                    "sectionKey": "recommendation",
+                    "markdownSection": "Choosing an Evaluation Method",
+                    "sectionKey": "choosing an evaluation method",
                     "headingLevel": 2
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Implementation Summary",
+                    "title": "Evaluation Method Summary",
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
-                    "markdownSection": "Implementation Summary",
-                    "sectionKey": "implementation summary",
+                    "markdownSection": "Evaluation Method Summary",
+                    "sectionKey": "evaluation method summary",
                     "headingLevel": 2
                   },
                   {
@@ -1268,10 +1268,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Deliverables",
+                    "title": "Results and Limitations",
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
-                    "markdownSection": "Deliverables",
-                    "sectionKey": "deliverables",
+                    "markdownSection": "Results and Limitations",
+                    "sectionKey": "results and limitations",
                     "headingLevel": 2
                   }
                 ]
@@ -1318,10 +1318,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Deliverables",
+                    "title": "Results and Limitations",
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
-                    "markdownSection": "Deliverables",
-                    "sectionKey": "deliverables",
+                    "markdownSection": "Results and Limitations",
+                    "sectionKey": "results and limitations",
                     "headingLevel": 2
                   }
                 ]
@@ -1640,33 +1640,33 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Classical self-energy pathology (contrast)",
+                    "title": "Classical Self-Energy Pathology (Contrast)",
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
-                    "markdownSection": "Classical self-energy pathology (contrast)",
+                    "markdownSection": "Classical Self-Energy Pathology (Contrast)",
                     "sectionKey": "classical self energy pathology contrast",
                     "headingLevel": 2
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Why the zero-radius divergence is quarantined here",
+                    "title": "Why the Zero-Radius Divergence Is Quarantined Here",
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
-                    "markdownSection": "Why the zero-radius divergence is quarantined here",
+                    "markdownSection": "Why the Zero-Radius Divergence Is Quarantined Here",
                     "sectionKey": "why the zero radius divergence is quarantined here",
                     "headingLevel": 2
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Practical guidance (numerics and analysis)",
+                    "title": "Practical Guidance (Numerics and Analysis)",
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
-                    "markdownSection": "Practical guidance (numerics and analysis)",
+                    "markdownSection": "Practical Guidance (Numerics and Analysis)",
                     "sectionKey": "practical guidance numerics and analysis",
                     "headingLevel": 2
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Sign-resolved bookkeeping",
+                    "title": "Sign-Resolved Bookkeeping",
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
-                    "markdownSection": "Sign-resolved bookkeeping",
+                    "markdownSection": "Sign-Resolved Bookkeeping",
                     "sectionKey": "sign resolved bookkeeping",
                     "headingLevel": 2
                   },
@@ -2221,10 +2221,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Document Role",
+                "title": "How to Read This Chapter",
                 "markdownPath": "content/markdown/aaa/noether-braid/noether-braid.md",
-                "markdownSection": "Document Role",
-                "sectionKey": "document role",
+                "markdownSection": "How to Read This Chapter",
+                "sectionKey": "how to read this chapter",
                 "headingLevel": 2
               },
               {
@@ -2247,10 +2247,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Document Role",
+                "title": "How to Read This Chapter",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-recovery-requirements.md",
-                "markdownSection": "Document Role",
-                "sectionKey": "document role",
+                "markdownSection": "How to Read This Chapter",
+                "sectionKey": "how to read this chapter",
                 "headingLevel": 2
               },
               {
@@ -2759,10 +2759,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Claim-Ownership Classification",
+                "title": "Geometry, Hypotheses, and Evidence",
                 "markdownPath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md",
-                "markdownSection": "Claim-Ownership Classification",
-                "sectionKey": "claim ownership classification",
+                "markdownSection": "Geometry, Hypotheses, and Evidence",
+                "sectionKey": "geometry hypotheses and evidence",
                 "headingLevel": 2
               },
               {
@@ -3031,10 +3031,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Document Role",
+                "title": "How to Read This Chapter",
                 "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Document Role",
-                "sectionKey": "document role",
+                "markdownSection": "How to Read This Chapter",
+                "sectionKey": "how to read this chapter",
                 "headingLevel": 2
               },
               {
@@ -3191,9 +3191,9 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Relation To The Doubling-frequency Chapter",
+                "title": "Relation to the Doubling-Frequency Chapter",
                 "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "Relation To The Doubling-frequency Chapter",
+                "markdownSection": "Relation to the Doubling-Frequency Chapter",
                 "sectionKey": "relation to the doubling frequency chapter",
                 "headingLevel": 2
               }
@@ -3209,10 +3209,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Document Role",
+                "title": "How to Read This Chapter",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-mathematics.md",
-                "markdownSection": "Document Role",
-                "sectionKey": "document role",
+                "markdownSection": "How to Read This Chapter",
+                "sectionKey": "how to read this chapter",
                 "headingLevel": 2
               },
               {
@@ -3421,10 +3421,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Document Role",
+                "title": "How to Read This Chapter",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
-                "markdownSection": "Document Role",
-                "sectionKey": "document role",
+                "markdownSection": "How to Read This Chapter",
+                "sectionKey": "how to read this chapter",
                 "headingLevel": 2
               },
               {
@@ -3519,10 +3519,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Document Role",
+                "title": "How to Read This Chapter",
                 "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-topological-charge.md",
-                "markdownSection": "Document Role",
-                "sectionKey": "document role",
+                "markdownSection": "How to Read This Chapter",
+                "sectionKey": "how to read this chapter",
                 "headingLevel": 2
               },
               {
@@ -3698,10 +3698,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Ownership Boundary",
+                "title": "Scope and Related Chapters",
                 "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
-                "markdownSection": "Ownership Boundary",
-                "sectionKey": "ownership boundary",
+                "markdownSection": "Scope and Related Chapters",
+                "sectionKey": "scope and related chapters",
                 "headingLevel": 2
               },
               {
@@ -3756,9 +3756,9 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Related descriptions",
+                "title": "Related Descriptions",
                 "markdownPath": "content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md",
-                "markdownSection": "Related descriptions",
+                "markdownSection": "Related Descriptions",
                 "sectionKey": "related descriptions",
                 "headingLevel": 2
               },
@@ -3888,10 +3888,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Ownership Boundary",
+                "title": "Scope and Related Chapters",
                 "markdownPath": "content/markdown/aaa/spacetime/observer-framework.md",
-                "markdownSection": "Ownership Boundary",
-                "sectionKey": "ownership boundary",
+                "markdownSection": "Scope and Related Chapters",
+                "sectionKey": "scope and related chapters",
                 "headingLevel": 2
               },
               {
@@ -4060,9 +4060,9 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Source notes",
+                "title": "Source Notes",
                 "markdownPath": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
-                "markdownSection": "Source notes",
+                "markdownSection": "Source Notes",
                 "sectionKey": "source notes",
                 "headingLevel": 2
               }
@@ -4150,9 +4150,9 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Closure Program Interface (metric constitutive map)",
+                "title": "Closure Program Interface (Metric Constitutive Map)",
                 "markdownPath": "content/markdown/aaa/spacetime/emergent-metric.md",
-                "markdownSection": "Closure Program Interface (metric constitutive map)",
+                "markdownSection": "Closure Program Interface (Metric Constitutive Map)",
                 "sectionKey": "closure program interface metric constitutive map",
                 "headingLevel": 2
               },
@@ -5425,33 +5425,33 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Charge classes and axis-exceptionality",
+                    "title": "Charge Classes and Axis-Exceptionality",
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/quarks.md",
-                    "markdownSection": "Charge classes and axis-exceptionality",
+                    "markdownSection": "Charge Classes and Axis-Exceptionality",
                     "sectionKey": "charge classes and axis exceptionality",
                     "headingLevel": 2
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Six-flavor catalog",
+                    "title": "Six-Flavor Catalog",
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/quarks.md",
-                    "markdownSection": "Six-flavor catalog",
+                    "markdownSection": "Six-Flavor Catalog",
                     "sectionKey": "six flavor catalog",
                     "headingLevel": 2
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Color assignments",
+                    "title": "Color Assignments",
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/quarks.md",
-                    "markdownSection": "Color assignments",
+                    "markdownSection": "Color Assignments",
                     "sectionKey": "color assignments",
                     "headingLevel": 2
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Coupling rules to gluons",
+                    "title": "Coupling Rules to Gluons",
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/quarks.md",
-                    "markdownSection": "Coupling rules to gluons",
+                    "markdownSection": "Coupling Rules to Gluons",
                     "sectionKey": "coupling rules to gluons",
                     "headingLevel": 2
                   },
@@ -5465,17 +5465,17 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "What is fixed and what remains open",
+                    "title": "What Is Fixed and What Remains Open",
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/quarks.md",
-                    "markdownSection": "What is fixed and what remains open",
+                    "markdownSection": "What Is Fixed and What Remains Open",
                     "sectionKey": "what is fixed and what remains open",
                     "headingLevel": 2
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Cross-links",
+                    "title": "Cross-Links",
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/quarks.md",
-                    "markdownSection": "Cross-links",
+                    "markdownSection": "Cross-Links",
                     "sectionKey": "cross links",
                     "headingLevel": 2
                   }
@@ -5645,7 +5645,7 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "The Photon ($\\gamma$): Coaxial Contra-Rotating Polarity-Conjugate Planar Pair",
+                "title": "Photon Architecture",
                 "markdownPath": "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
                 "markdownSection": "The Photon ($\\gamma$): Coaxial Contra-Rotating Polarity-Conjugate Planar Pair",
                 "sectionKey": "the photon gamma coaxial contra rotating polarity conjugate planar pair",
@@ -5677,9 +5677,9 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Pair production (note)",
+                "title": "Pair Production (Note)",
                 "markdownPath": "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
-                "markdownSection": "Pair production (note)",
+                "markdownSection": "Pair Production (Note)",
                 "sectionKey": "pair production note",
                 "headingLevel": 2
               },
@@ -6579,10 +6579,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Gate C Rate Target",
+                "title": "Transition-Rate Recovery Target",
                 "markdownPath": "content/markdown/aaa/reactions/atomic-transition-radiation.md",
-                "markdownSection": "Gate C Rate Target",
-                "sectionKey": "gate c rate target",
+                "markdownSection": "Transition-Rate Recovery Target",
+                "sectionKey": "transition rate recovery target",
                 "headingLevel": 2
               },
               {
@@ -8185,9 +8185,9 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Lepton Epoch (incl. neutrino decoupling) ($\\sim 1$ to $\\sim 10$ s)",
+                "title": "Lepton Epoch (incl. Neutrino Decoupling) ($\\sim 1$ to $\\sim 10$ s)",
                 "markdownPath": "content/markdown/aaa/cosmology/CMB.md",
-                "markdownSection": "Lepton Epoch (incl. neutrino decoupling) ($\\sim 1$ to $\\sim 10$ s)",
+                "markdownSection": "Lepton Epoch (incl. Neutrino Decoupling) ($\\sim 1$ to $\\sim 10$ s)",
                 "sectionKey": "lepton epoch incl neutrino decoupling sim 1 to sim 10 s",
                 "headingLevel": 2
               },
@@ -8209,9 +8209,9 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Acoustic Peak Seeding (pre-recombination)",
+                "title": "Acoustic Peak Seeding (Pre-Recombination)",
                 "markdownPath": "content/markdown/aaa/cosmology/CMB.md",
-                "markdownSection": "Acoustic Peak Seeding (pre-recombination)",
+                "markdownSection": "Acoustic Peak Seeding (Pre-Recombination)",
                 "sectionKey": "acoustic peak seeding pre recombination",
                 "headingLevel": 2
               },
@@ -8225,9 +8225,9 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Dark Ages ($\\sim 3.8\\times10^5$ years to first light)",
+                "title": "Dark Ages ($\\sim 3.8\\times10^5$ years to First Light)",
                 "markdownPath": "content/markdown/aaa/cosmology/CMB.md",
-                "markdownSection": "Dark Ages ($\\sim 3.8\\times10^5$ years to first light)",
+                "markdownSection": "Dark Ages ($\\sim 3.8\\times10^5$ years to First Light)",
                 "sectionKey": "dark ages sim 3 8 times10 5 years to first light",
                 "headingLevel": 2
               },
@@ -9419,9 +9419,9 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Constant per-wavefront emission",
+                    "title": "Constant Per-Wavefront Emission",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Constant per-wavefront emission",
+                    "markdownSection": "Constant Per-Wavefront Emission",
                     "sectionKey": "constant per wavefront emission",
                     "headingLevel": 2
                   },
@@ -9435,9 +9435,9 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Superposition with causal wake surfaces and $\\eta$-regularization",
+                    "title": "Superposition with Causal Wake Surfaces and $\\eta$-Regularization",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Superposition with causal wake surfaces and $\\eta$-regularization",
+                    "markdownSection": "Superposition with Causal Wake Surfaces and $\\eta$-Regularization",
                     "sectionKey": "superposition with causal wake surfaces and eta regularization",
                     "headingLevel": 2
                   },
@@ -9467,25 +9467,25 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "What the model explicitly does not use",
+                    "title": "What the Model Explicitly Does Not Use",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "What the model explicitly does not use",
+                    "markdownSection": "What the Model Explicitly Does Not Use",
                     "sectionKey": "what the model explicitly does not use",
                     "headingLevel": 2
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Validation and next steps (concrete)",
+                    "title": "Validation and Next Steps (Concrete)",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Validation and next steps (concrete)",
+                    "markdownSection": "Validation and Next Steps (Concrete)",
                     "sectionKey": "validation and next steps concrete",
                     "headingLevel": 2
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Comparisons and falsifiable edges",
+                    "title": "Comparisons and Falsifiable Edges",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Comparisons and falsifiable edges",
+                    "markdownSection": "Comparisons and Falsifiable Edges",
                     "sectionKey": "comparisons and falsifiable edges",
                     "headingLevel": 2
                   },
@@ -9499,9 +9499,9 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Effective observables and states (quantum-like layer)",
+                    "title": "Effective Observables and States (Quantum-Like Layer)",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Effective observables and states (quantum-like layer)",
+                    "markdownSection": "Effective Observables and States (Quantum-Like Layer)",
                     "sectionKey": "effective observables and states quantum like layer",
                     "headingLevel": 2
                   },
@@ -9515,17 +9515,17 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Single-transmitter multi-hit nuance vs universal superposition",
+                    "title": "Single-Transmitter Multi-Hit Nuance vs Universal Superposition",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Single-transmitter multi-hit nuance vs universal superposition",
+                    "markdownSection": "Single-Transmitter Multi-Hit Nuance vs Universal Superposition",
                     "sectionKey": "single transmitter multi hit nuance vs universal superposition",
                     "headingLevel": 2
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Operational noncommutativity and contextuality (emergent)",
+                    "title": "Operational Noncommutativity and Contextuality (Emergent)",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Operational noncommutativity and contextuality (emergent)",
+                    "markdownSection": "Operational Noncommutativity and Contextuality (Emergent)",
                     "sectionKey": "operational noncommutativity and contextuality emergent",
                     "headingLevel": 2
                   },
@@ -9547,17 +9547,17 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Worked micro-to-effective examples",
+                    "title": "Worked Micro-to-Effective Examples",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Worked micro-to-effective examples",
+                    "markdownSection": "Worked Micro-to-Effective Examples",
                     "sectionKey": "worked micro to effective examples",
                     "headingLevel": 2
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Falsifiable edges and tests (observability-focused)",
+                    "title": "Falsifiable Edges and Tests (Observability-Focused)",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Falsifiable edges and tests (observability-focused)",
+                    "markdownSection": "Falsifiable Edges and Tests (Observability-Focused)",
                     "sectionKey": "falsifiable edges and tests observability focused",
                     "headingLevel": 2
                   }
@@ -10484,50 +10484,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "2026-06-28 Comparator and $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Rescore Notes",
+                "title": "Appendix: Historical Assessments",
                 "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
-                "markdownSection": "2026-06-28 Comparator and $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Rescore Notes",
-                "sectionKey": "2026 06 28 comparator and mathbb a mathbb a mathbb a rescore notes",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "2026-06-26 Assessment Notes",
-                "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
-                "markdownSection": "2026-06-26 Assessment Notes",
-                "sectionKey": "2026 06 26 assessment notes",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "2026-06-20 Assessment Notes",
-                "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
-                "markdownSection": "2026-06-20 Assessment Notes",
-                "sectionKey": "2026 06 20 assessment notes",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "2026-05-22 Assessment Notes",
-                "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
-                "markdownSection": "2026-05-22 Assessment Notes",
-                "sectionKey": "2026 05 22 assessment notes",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "2026-05-19 Assessment Notes",
-                "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
-                "markdownSection": "2026-05-19 Assessment Notes",
-                "sectionKey": "2026 05 19 assessment notes",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "2026-05-16 Assessment Notes",
-                "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
-                "markdownSection": "2026-05-16 Assessment Notes",
-                "sectionKey": "2026 05 16 assessment notes",
+                "markdownSection": "Appendix: Historical Assessments",
+                "sectionKey": "appendix historical assessments",
                 "headingLevel": 2
               }
             ]
@@ -12829,9 +12789,9 @@
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "Closure Program Integration (quantum chain)",
+                        "title": "Closure Program Integration (Quantum Chain)",
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md",
-                        "markdownSection": "Closure Program Integration (quantum chain)",
+                        "markdownSection": "Closure Program Integration (Quantum Chain)",
                         "sectionKey": "closure program integration quantum chain",
                         "headingLevel": 2
                       },
@@ -13003,10 +12963,10 @@
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "Ownership Boundary",
+                        "title": "Scope and Related Chapters",
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md",
-                        "markdownSection": "Ownership Boundary",
-                        "sectionKey": "ownership boundary",
+                        "markdownSection": "Scope and Related Chapters",
+                        "sectionKey": "scope and related chapters",
                         "headingLevel": 2
                       },
                       {
@@ -13411,58 +13371,58 @@
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "Minimal premises",
+                        "title": "Minimal Premises",
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md",
-                        "markdownSection": "Minimal premises",
+                        "markdownSection": "Minimal Premises",
                         "sectionKey": "minimal premises",
                         "headingLevel": 2
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "Unified weak-sector closure route",
+                        "title": "Unified Weak-Sector Closure Route",
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md",
-                        "markdownSection": "Unified weak-sector closure route",
+                        "markdownSection": "Unified Weak-Sector Closure Route",
                         "sectionKey": "unified weak sector closure route",
                         "headingLevel": 2
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "First beta exposure operator: $d\\to u$",
+                        "title": "First Beta Exposure Operator: $d\\to u$",
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md",
-                        "markdownSection": "First beta exposure operator: $d\\to u$",
+                        "markdownSection": "First Beta Exposure Operator: $d\\to u$",
                         "sectionKey": "first beta exposure operator d to u",
                         "headingLevel": 2
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "Geometric picture of CKM",
+                        "title": "Geometric Picture of CKM",
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md",
-                        "markdownSection": "Geometric picture of CKM",
+                        "markdownSection": "Geometric Picture of CKM",
                         "sectionKey": "geometric picture of ckm",
                         "headingLevel": 2
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "CKM geometric-overlap minimal model",
+                        "title": "CKM Geometric-Overlap Minimal Model",
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md",
-                        "markdownSection": "CKM geometric-overlap minimal model",
+                        "markdownSection": "CKM Geometric-Overlap Minimal Model",
                         "sectionKey": "ckm geometric overlap minimal model",
                         "headingLevel": 2
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "Working hypotheses",
+                        "title": "Working Hypotheses",
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md",
-                        "markdownSection": "Working hypotheses",
+                        "markdownSection": "Working Hypotheses",
                         "sectionKey": "working hypotheses",
                         "headingLevel": 2
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "What to compute next",
+                        "title": "Open Derivation Questions",
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md",
-                        "markdownSection": "What to compute next",
-                        "sectionKey": "what to compute next",
+                        "markdownSection": "Open Derivation Questions",
+                        "sectionKey": "open derivation questions",
                         "headingLevel": 2
                       },
                       {
@@ -13517,10 +13477,10 @@
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "What Planck Units Imply About the binary 3",
+                        "title": "Planck Units and the Proposed Alignment Geometry",
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md",
-                        "markdownSection": "What Planck Units Imply About the binary 3",
-                        "sectionKey": "what planck units imply about the binary 3",
+                        "markdownSection": "Planck Units and the Proposed Alignment Geometry",
+                        "sectionKey": "planck units and the proposed alignment geometry",
                         "headingLevel": 2
                       },
                       {
@@ -13825,9 +13785,9 @@
                 "children": [
                   {
                     "kind": "markdown-section",
-                    "title": "Parmenides (early 5th century BCE) — persistence beneath change",
+                    "title": "Parmenides (early 5th century BCE) — Persistence Beneath Change",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "Parmenides (early 5th century BCE) — persistence beneath change",
+                    "markdownSection": "Parmenides (early 5th century BCE) — Persistence Beneath Change",
                     "sectionKey": "parmenides early 5th century bce persistence beneath change",
                     "headingLevel": 3
                   },
@@ -13947,33 +13907,33 @@
                 "children": [
                   {
                     "kind": "markdown-section",
-                    "title": "Ernst Mach (1838–1916) — relationalism",
+                    "title": "Ernst Mach (1838–1916) — Relationalism",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "Ernst Mach (1838–1916) — relationalism",
+                    "markdownSection": "Ernst Mach (1838–1916) — Relationalism",
                     "sectionKey": "ernst mach 1838 1916 relationalism",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Hendrik Lorentz (1853–1928) — ether dynamics",
+                    "title": "Hendrik Lorentz (1853–1928) — Ether Dynamics",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "Hendrik Lorentz (1853–1928) — ether dynamics",
+                    "markdownSection": "Hendrik Lorentz (1853–1928) — Ether Dynamics",
                     "sectionKey": "hendrik lorentz 1853 1928 ether dynamics",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Henri Poincaré (1854–1912) — relativity, convention, and group structure",
+                    "title": "Henri Poincaré (1854–1912) — Relativity, Convention, and Group Structure",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "Henri Poincaré (1854–1912) — relativity, convention, and group structure",
+                    "markdownSection": "Henri Poincaré (1854–1912) — Relativity, Convention, and Group Structure",
                     "sectionKey": "henri poincare 1854 1912 relativity convention and group structure",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Albert Einstein (1879–1955) — relativity",
+                    "title": "Albert Einstein (1879–1955) — Relativity",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "Albert Einstein (1879–1955) — relativity",
+                    "markdownSection": "Albert Einstein (1879–1955) — Relativity",
                     "sectionKey": "albert einstein 1879 1955 relativity",
                     "headingLevel": 3
                   },
@@ -13995,9 +13955,9 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Stephen Hawking (1942–2018) — horizons, area, and quantum emission",
+                    "title": "Stephen Hawking (1942–2018) — Horizons, Area, and Quantum Emission",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "Stephen Hawking (1942–2018) — horizons, area, and quantum emission",
+                    "markdownSection": "Stephen Hawking (1942–2018) — Horizons, Area, and Quantum Emission",
                     "sectionKey": "stephen hawking 1942 2018 horizons area and quantum emission",
                     "headingLevel": 3
                   },
@@ -14061,17 +14021,17 @@
                 "children": [
                   {
                     "kind": "markdown-section",
-                    "title": "Ludwig Boltzmann (1844–1906) — statistical mechanics",
+                    "title": "Ludwig Boltzmann (1844–1906) — Statistical Mechanics",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "Ludwig Boltzmann (1844–1906) — statistical mechanics",
+                    "markdownSection": "Ludwig Boltzmann (1844–1906) — Statistical Mechanics",
                     "sectionKey": "ludwig boltzmann 1844 1906 statistical mechanics",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Max Planck (1858–1947) — quantum action",
+                    "title": "Max Planck (1858–1947) — Quantum Action",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "Max Planck (1858–1947) — quantum action",
+                    "markdownSection": "Max Planck (1858–1947) — Quantum Action",
                     "sectionKey": "max planck 1858 1947 quantum action",
                     "headingLevel": 3
                   },
@@ -14085,49 +14045,49 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Einstein, Podolsky, and Rosen (1935) — completeness and separability",
+                    "title": "Einstein, Podolsky, and Rosen (1935) — Completeness and Separability",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "Einstein, Podolsky, and Rosen (1935) — completeness and separability",
+                    "markdownSection": "Einstein, Podolsky, and Rosen (1935) — Completeness and Separability",
                     "sectionKey": "einstein podolsky and rosen 1935 completeness and separability",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Erwin Schrödinger (1887–1961) — wave mechanics",
+                    "title": "Erwin Schrödinger (1887–1961) — Wave Mechanics",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "Erwin Schrödinger (1887–1961) — wave mechanics",
+                    "markdownSection": "Erwin Schrödinger (1887–1961) — Wave Mechanics",
                     "sectionKey": "erwin schrodinger 1887 1961 wave mechanics",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Louis de Broglie (1892–1987) — matter waves",
+                    "title": "Louis de Broglie (1892–1987) — Matter Waves",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "Louis de Broglie (1892–1987) — matter waves",
+                    "markdownSection": "Louis de Broglie (1892–1987) — Matter Waves",
                     "sectionKey": "louis de broglie 1892 1987 matter waves",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Werner Heisenberg (1901–1976) — matrix mechanics",
+                    "title": "Werner Heisenberg (1901–1976) — Matrix Mechanics",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "Werner Heisenberg (1901–1976) — matrix mechanics",
+                    "markdownSection": "Werner Heisenberg (1901–1976) — Matrix Mechanics",
                     "sectionKey": "werner heisenberg 1901 1976 matrix mechanics",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "David Bohm (1917–1992) — pilot wave",
+                    "title": "David Bohm (1917–1992) — Pilot Wave",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "David Bohm (1917–1992) — pilot wave",
+                    "markdownSection": "David Bohm (1917–1992) — Pilot Wave",
                     "sectionKey": "david bohm 1917 1992 pilot wave",
                     "headingLevel": 3
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "John Bell (1928–1990) — Bell nonlocality",
+                    "title": "John Bell (1928–1990) — Bell Nonlocality",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "John Bell (1928–1990) — Bell nonlocality",
+                    "markdownSection": "John Bell (1928–1990) — Bell Nonlocality",
                     "sectionKey": "john bell 1928 1990 bell nonlocality",
                     "headingLevel": 3
                   },
@@ -14141,9 +14101,9 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "H. Dieter Zeh (1932–2018) and Wojciech Zurek (1951–) — decoherence",
+                    "title": "H. Dieter Zeh (1932–2018) and Wojciech Zurek (1951–) — Decoherence",
                     "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                    "markdownSection": "H. Dieter Zeh (1932–2018) and Wojciech Zurek (1951–) — decoherence",
+                    "markdownSection": "H. Dieter Zeh (1932–2018) and Wojciech Zurek (1951–) — Decoherence",
                     "sectionKey": "h dieter zeh 1932 2018 and wojciech zurek 1951 decoherence",
                     "headingLevel": 3
                   },
