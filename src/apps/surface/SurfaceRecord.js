@@ -1,12 +1,13 @@
+import {errorBoundChecking} from '../shared/ErrorBoundChecking.js';
 import { evaluateEomCubicHistoryAtTime } from '../shared/EomCubicHistoryEvaluation.mjs';
 import {validateSurfaceGeometry,circleOnSurface,matchingSurfaceGeometry,sameDecimal} from './SurfaceGeometry.js';
 import {isSixPoleReplay,sixPoleHistories,evaluateSixPolePath} from './SurfaceSixPoleReplay.js';
-export const PLAYBACK_RECORD_LIMIT = 12 * 1024 * 1024;
 const finite = value => typeof value==='string' && /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i.test(value) && Number.isFinite(Number(value));
 function assertRequestSubset(request,prepared) { if(typeof request!=='object' || request===null) { if(request!==prepared) throw new Error('Imported preparation or numerical controls differ from checkpoint.'); return; } if(!prepared || typeof prepared!=='object') throw new Error('Missing checkpoint preparation.'); if(Array.isArray(request) && (!Array.isArray(prepared) || request.length!==prepared.length)) throw new Error('Checkpoint population mismatch.'); for(const [key,value] of Object.entries(request)) assertRequestSubset(value,prepared[key]); }
 export function validateSurfaceRequest(request) {
   if (request?.schema!=='eom_evolution_request/v2' || request.model?.compositionId!=='canonical-surface/v1' || request.model.constraint!=='surface' || !finite(request.model.fieldSpeed) || request.model.fieldSpeed!=='1') throw new Error('This Surface viewer requires a normalized canonical surface request.');
   if(typeof request.runId!=='string' || !request.runId.length || new TextEncoder().encode(request.runId).length>1024 || !finite(request.model.coupling) || !['unrestricted','inclusive','strict'].includes(request.model.speedDomain) || !request.numerics || Array.isArray(request.numerics) || !finite(request.numerics.initialStep) || !(Number(request.numerics.initialStep)>0) || request.numerics.maximumStep!==undefined && (!finite(request.numerics.maximumStep)||!(Number(request.numerics.maximumStep)>0))) throw new Error('Import requires explicit run identity, coupling, speed domain and positive decimal step controls.');
+  errorBoundChecking(request);
   const g=validateSurfaceGeometry(request.model.geometry);
   if(request.model.boundaryPolicy!==(request.model.speedDomain==='unrestricted'?'none':'halt')) throw new Error('This viewer uses no boundary policy for unrestricted speed, and halts restricted domains at unsupported boundaries.');
   if (!Array.isArray(request.paths) || !request.paths.length || request.paths.length>12 || request.paths.some(p=>typeof p.pathId!=='string'||!p.pathId.length) || new Set(request.paths.map(p=>p.pathId)).size!==request.paths.length) throw new Error('A unique bounded population is required.');
@@ -15,7 +16,6 @@ export function validateSurfaceRequest(request) {
   return request;
 }
 export function validateSurfaceRecord(record) {
-  if(new TextEncoder().encode(JSON.stringify(record)).length>PLAYBACK_RECORD_LIMIT) throw new Error('Complete playback record exceeds 12 MiB. Full EOM evidence remains at its original host.');
   if(record?.schema!=='surface_playback_record/v1') throw new Error('Import a Surface playback record exported by this app.');
   const request=validateSurfaceRequest(record.request);
   if(!Array.isArray(record.results) || !record.results.length || record.results.length>80) throw new Error('No bounded accepted result series.');
@@ -26,7 +26,9 @@ export function validateSurfaceRecord(record) {
     if(result.checkpoint?.data) { assertRequestSubset(request,result.checkpoint.data.preparation); if(result.checkpoint.data.runId!==request.runId || Number(result.checkpoint.data.acceptedTime)!==Number(result.acceptedCoverage?.end)) throw new Error('Checkpoint coverage/identity mismatch.'); }
     const m=result.resolvedModel;
     if(m?.compositionId!==request.model.compositionId || m.selection?.constraint!=='surface' || m.selection.speedDomain!==request.model.speedDomain || m.selection.boundaryPolicy!==request.model.boundaryPolicy || !sameDecimal(m.parameters?.fieldSpeed,'1') || !sameDecimal(m.parameters.coupling,request.model.coupling) || !matchingSurfaceGeometry(request.model.geometry,m.parameters.surfaceGeometry)) throw new Error('Returned manifest differs from preparation.');
-    if(Number(result.acceptedCoverage?.start)!==end || !finite(result.acceptedCoverage.end) || Number(result.acceptedCoverage.end)<end || !result.evidence || result.evidence.constraint!=='artificial-surface' || !(result.evidence.numericalAcceptance==='constrained_solution_enclosure' || result.status==='halted' && result.evidence.numericalAcceptance==='failed')) throw new Error('Accepted coverage or evidence missing.');
+    if(Number(result.acceptedCoverage?.start)!==end || !finite(result.acceptedCoverage.end) || Number(result.acceptedCoverage.end)<end || !result.evidence || result.evidence.constraint!=='artificial-surface' || !(errorBoundChecking(request)==='none'?result.evidence.numericalAcceptance==='display-only':result.evidence.numericalAcceptance==='constrained_solution_enclosure' || result.status==='halted' && result.evidence.numericalAcceptance==='failed')) throw new Error('Accepted coverage or evidence missing.');
+    const unchecked=errorBoundChecking(request)==='none';
+    if((result.errorBoundChecking??'strict')!==errorBoundChecking(request))throw new Error('Returned error-bound checking mode differs from the request.');
     const next=Number(result.acceptedCoverage.end);
     if(!Array.isArray(result.publishedExtensions) || result.publishedExtensions.length!==ids.length || new Set(result.publishedExtensions.map(p=>p.pathId)).size!==ids.length) throw new Error('Accepted population mismatch.');
     for(const h of result.publishedExtensions){
@@ -39,7 +41,7 @@ export function validateSurfaceRecord(record) {
       if(t!==next) throw new Error('Accepted path has a coverage gap.');
     }
     const segmentCount=result.publishedExtensions.reduce((sum,h)=>sum+h.segments.length,0),certificates=result.record?.acceptedSurface;
-    if(!certificates || certificates.certificateCount!==segmentCount || certificates.certifiedCount!==segmentCount || (segmentCount && (![certificates.maximumDistance,certificates.maximumTangentVelocity].every(finite) || Number(certificates.maximumDistance)<0 || Number(certificates.maximumTangentVelocity)<0))) throw new Error('Accepted Surface certificate summary is missing or incomplete.');
+    if(!unchecked && (!certificates || certificates.certificateCount!==segmentCount || certificates.certifiedCount!==segmentCount || (segmentCount && (![certificates.maximumDistance,certificates.maximumTangentVelocity].every(finite) || Number(certificates.maximumDistance)<0 || Number(certificates.maximumTangentVelocity)<0)))) throw new Error('Accepted Surface certificate summary is missing or incomplete.');
     if((result.surfaceDiagnostics?.length ?? 0)>2048) throw new Error('Playback diagnostics exceed the sampled budget.');
     for(const row of result.surfaceDiagnostics ?? []) if(!ids.includes(row.pathId) || row.reception?.length!==2 || !row.reception.every(finite) || Number(row.reception[0])>Number(row.reception[1]) || Number(row.reception[0])<nextFloat(end,-1) || Number(row.reception[1])>nextFloat(next,1) || ['netInteraction','tangentInteraction','discardedNormal','curvature','support','totalAcceleration'].some(key=>row[key]?.length!==3 || row[key].some(v=>v?.length!==2 || !v.every(finite) || Number(v[0])>Number(v[1])))) throw new Error('Invalid receiver-total diagnostic interval.');
     end=next;

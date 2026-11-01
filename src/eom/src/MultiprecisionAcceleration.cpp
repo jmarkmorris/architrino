@@ -518,6 +518,10 @@ MpfrAccelerationAttempt certify_mpfr_finite_width_acceleration(
       .visited_cells = 0,
       .precision_bits = precision_bits,
   };
+  if (request.radial_kernel != RadialKernel::canonical_inverse_square) {
+    result.failure_code = "unsupported_logarithmic_finite_width_acceleration";
+    return result;
+  }
   try {
     const auto& certificate = *request.root_certificate;
     if (certificate.memory_boundary_contact) {

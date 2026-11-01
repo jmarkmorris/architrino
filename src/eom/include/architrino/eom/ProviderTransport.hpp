@@ -14,7 +14,8 @@ namespace architrino::eom {
 [[nodiscard]] std::string execute_eom_v2_request(const std::string&,
     const std::string& checkpoint_file = {},
     std::function<bool()> cancellation = {},
-    std::function<void(std::size_t,const std::string&)> progress = {});
+    std::function<void(std::size_t,const std::string&)> progress = {},
+    std::function<void(const std::string&)> paths = {});
 int run_eom_v2_cli(int argc, char** argv);
 
 // eom_provider_checkpoint/v9: a run of the validated method, persisted as

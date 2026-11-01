@@ -519,8 +519,8 @@ Vector finite_width_integrand(
   if (separation > 0.0) {
     direction = scale(1.0 / separation, displacement);
   }
-  const double receiver_strength = std::abs(
-      request.field_speed - dot(direction, receiver_velocity));
+  // The receiver factor belongs to root playback, not acceleration weighting.
+  (void)receiver_velocity;
   const double residual = separation - request.field_speed *
       (request.reception_time - emission);
   const double width_square = request.causal_width * request.causal_width;
@@ -528,7 +528,7 @@ Vector finite_width_integrand(
       -residual * residual / (2.0 * width_square)) /
       (std::sqrt(2.0 * std::numbers::pi) * request.causal_width);
   const double factor = request.coupling * receiver.charge * source.charge *
-      receiver_strength * mollifier / radial_denominator;
+      request.field_speed * mollifier / radial_denominator;
   const Vector value = scale(factor, displacement);
   if (!finite_vector(value)) {
     throw std::runtime_error("display_nonfinite_state");
@@ -786,7 +786,7 @@ DisplayEvaluationResult evaluate_display_acceleration(
               request.source_normal_floor,
               std::sqrt(std::numeric_limits<double>::epsilon()) *
                   std::max(request.field_speed, norm(sample.source_velocity)));
-          if (sample.separation <= request.core_scale ||
+          if ((request.allow_regulation && sample.separation <= request.core_scale) ||
               std::abs(sample.source_normal) <= caustic_floor) {
             regulated = true;
             break;
@@ -798,10 +798,12 @@ DisplayEvaluationResult evaluate_display_acceleration(
               evaluate_history(
                   *request.paths[source_index].history, request.reception_time,
                   false)));
-          regulated = regulated || endpoint_separation <= request.core_scale;
+          regulated = regulated || (request.allow_regulation && endpoint_separation <= request.core_scale);
         }
         pair.regulated = regulated;
         if (regulated) {
+          if (!request.allow_regulation || request.radial_kernel != RadialKernel::canonical_inverse_square)
+            throw std::runtime_error("display_singular_chart");
           pair.acceleration = regulated_pair_acceleration(
               request, receiver, source, *request.paths[source_index].history,
               receiver_position,
@@ -816,13 +818,10 @@ DisplayEvaluationResult evaluate_display_acceleration(
           if (!(sample.separation > 0.0) || sample.source_normal == 0.0) {
             throw std::runtime_error("display_nonfinite_state");
           }
-          const Vector direction = scale(
-              1.0 / sample.separation, sample.displacement);
-          const double receiver_normal = request.field_speed -
-              dot(direction, receiver_velocity);
           const double factor = request.coupling * receiver.charge *
-              source.charge * std::abs(receiver_normal / sample.source_normal) /
-              (sample.separation * sample.separation * sample.separation);
+              source.charge * request.field_speed / std::abs(sample.source_normal) /
+              (sample.separation * sample.separation *
+               (request.radial_kernel == RadialKernel::canonical_inverse_square ? sample.separation : 1.0));
           acceleration = add(
               acceleration, scale(factor, sample.displacement));
         }

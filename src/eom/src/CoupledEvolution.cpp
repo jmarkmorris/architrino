@@ -1,11 +1,12 @@
 #include "architrino/eom/CoupledEvolution.hpp"
+#include "architrino/eom/DisplayEvolution.hpp"
 #include "architrino/eom/ValidatedOrdinaryBridge.hpp"
 #include "architrino/eom/Decimal.hpp"
 #include "architrino/eom/JointAccelerationSnapshot.hpp"
 #include "architrino/eom/JointEndpointCorrector.hpp"
 #include "architrino/eom/MultiprecisionAcceleration.hpp"
 #include "architrino/eom/EquationRegistry.hpp"
-#include "CanonicalEquationEvaluation.hpp"
+#include "RetainedEquationEvaluation.hpp"
 #include "architrino/eom/SpeedDomain.hpp"
 
 #include <algorithm>
@@ -88,11 +89,11 @@ std::uint64_t estimate_coupled_working_set_bytes(
       for (const auto& token : segment.velocity_error_tokens()) token_bytes = saturating_add(token_bytes, token.size());
       for (const auto& axis : segment.coefficient_tokens()) for (const auto& token : axis) token_bytes = saturating_add(token_bytes, token.size());
     }
-    for (auto carrier = path.surface_evidence; carrier; carrier = carrier->previous()) {
+    for (auto carrier = path.validated_evidence; carrier; carrier = carrier->previous()) {
       for (const auto& solution : carrier->solutions()) {
-        bytes = saturating_add(bytes, sizeof(SurfaceSolutionCertificate) + 512U);
+        bytes = saturating_add(bytes, sizeof(RetainedSolutionCertificate) + 512U);
         bytes = saturating_add(bytes, saturating_multiply(solution.diagnostics.size(), sizeof(SurfaceReceiverDiagnostic) + 512U));
-        bytes = saturating_add(bytes, saturating_multiply(solution.partner_roots.size(), sizeof(SurfaceSolutionCertificate::SlabRoot) + 512U));
+        bytes = saturating_add(bytes, saturating_multiply(solution.partner_roots.size(), sizeof(RetainedSolutionCertificate::SlabRoot) + 512U));
         bytes = saturating_add(bytes, saturating_multiply(solution.geometry.size(), sizeof(SurfaceHistoryCertificate) + 512U));
       }
     }
@@ -110,7 +111,7 @@ std::uint64_t estimate_coupled_working_set_bytes(
   const std::uint64_t pair_workspace = 1024U;
   bytes = saturating_add(
       bytes, saturating_multiply(pair_count, pair_workspace));
-  if (request.surface_geometry) {
+  if (retained_publication_required(request)) {
     // Conservative admission allowance for persistent two-half carriers,
     // duplicated step diagnostics and temporary interval proof workspace.
     std::uint64_t largest_id = 0;
@@ -361,6 +362,7 @@ Interval evaluate_cubic_velocity(
 
 const char* integration_method(
     const NativeCoupledEvolutionRequest& request) {
+  if (logarithmic_equation_selected(request)) return "coupled_cubic_corrector_with_validated_logarithmic_tube/v1";
   if (request.surface_geometry) return "coupled_cubic_corrector_with_validated_surface_tube/v1";
   if (request.use_synchronized_multirate_publication) {
     return kNativeMultirateIntegrationMethod;
@@ -4082,13 +4084,13 @@ SubstepAttempt corrected_substep(
 void validate_request(const NativeCoupledEvolutionRequest& request) {
   (void)require_equation_provider(request);
   if (!request.continuation_histories.empty()) {
-    if (!request.surface_geometry || request.continuation_histories.size() != request.paths.size())
+    if (!retained_publication_required(request) || request.continuation_histories.size() != request.paths.size())
       throw EquationAdmissionError("surface_history_identity_mismatch", "continuation carrier population mismatch");
     std::set<std::string> ids;
     for (const auto& path : request.continuation_histories) {
-      if (!ids.insert(path.path_id).second || !path.surface_evidence ||
-          path.surface_evidence->history_fingerprint() != path.history.provenance_fingerprint() ||
-          path.surface_evidence->model_identity() != surface_request_identity(request))
+      if (!ids.insert(path.path_id).second || !path.validated_evidence ||
+          path.validated_evidence->history_fingerprint() != path.history.provenance_fingerprint() ||
+          path.validated_evidence->model_identity() != retained_request_identity(request))
         throw EquationAdmissionError("surface_solution_provenance_not_certified", "restart history lacks bound immutable solution evidence");
     }
     for (const auto& path : request.paths) if (!ids.contains(path.path_id))
@@ -6288,7 +6290,7 @@ NativeFarFieldEnclosureCertificate far_field_superseded_by_group(
   };
 }
 
-NativeAccelerationSnapshotCertificate detail::certify_canonical_acceleration_snapshot(
+NativeAccelerationSnapshotCertificate detail::certify_retained_acceleration_snapshot(
     const NativeCoupledEvolutionRequest& request,
     const std::vector<NativePublishedPath>& histories,
     const std::string& reception_time,
@@ -6300,7 +6302,7 @@ NativeAccelerationSnapshotCertificate detail::certify_canonical_acceleration_sna
   // any path carries a Surface continuation carrier.
   const bool matched_pair_selected = matched_pair_route_selected(request) &&
       std::none_of(histories.begin(), histories.end(), [](const auto& path) {
-        return path.surface_evidence != nullptr;
+        return path.validated_evidence != nullptr;
       });
   MatchedPairSnapshotState matched_pairs;
   NativeSnapshotTiming timing;
@@ -7012,6 +7014,7 @@ NativeAccelerationSnapshotCertificate detail::certify_canonical_acceleration_sna
           .use_correlated_self_chord = request.use_correlated_self_chord,
           .use_stable_circular_residual =
               request.use_stable_circular_residual,
+          .radial_kernel = logarithmic_equation_selected(request) ? RadialKernel::logarithmic_inverse_distance : RadialKernel::canonical_inverse_square,
       });
       root_rows.push_back({receiver.path_id, source.path_id, root});
       ++index;
@@ -7202,9 +7205,10 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
     const NativeAccelerationSnapshotCertificate* warm_snapshot,
     const std::vector<NativePublishedPath>* warm_histories,
     bool defer_root_precision_escalation) {
+  if(request.error_bound_checking!="strict")throw std::invalid_argument("a certified acceleration snapshot requires strict error-bound checking");
   require_native_ordinary_method(request, "an acceleration snapshot");
-  if (!request.surface_geometry && std::any_of(histories.begin(), histories.end(),
-      [](const auto& path) { return path.surface_evidence != nullptr; }))
+  if (!retained_publication_required(request) && std::any_of(histories.begin(), histories.end(),
+      [](const auto& path) { return path.validated_evidence != nullptr; }))
     throw EquationAdmissionError("unsupported_model_combination", "canonical evaluation cannot implicitly consume Surface continuation carriers");
   return require_equation_provider(request).evaluate({
       request, histories, reception_time, warm_snapshot, warm_histories,
@@ -7252,7 +7256,7 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
       (scalar_token(start_time) + scalar_token(end_time)) * 0.5;
   const std::string midpoint = decimal_token(midpoint_value);
   auto first_half_request = request;
-  first_half_request.allow_pending_finite_width_exit = !request.surface_geometry;
+  first_half_request.allow_pending_finite_width_exit = !retained_publication_required(request);
   auto first_half = corrected_substep(
       first_half_request, histories, start_time, midpoint,
       &full.certificate.start_snapshot,
@@ -7478,14 +7482,14 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
   if (!substeps.back().endpoint_snapshot.has_value()) {
     throw std::runtime_error("accepted candidate substep lacks endpoint snapshot");
   }
-  std::vector<SurfaceSolutionCertificate> surface_solutions;
-  if (request.surface_geometry) {
-    auto surface = certify_surface_publication(request, histories, accepted_histories, start_time, end_time);
-    if (!surface.certified)
+  std::vector<RetainedSolutionCertificate> retained_solutions;
+  if (retained_publication_required(request)) {
+    auto publication = certify_retained_publication(request, histories, accepted_histories, start_time, end_time);
+    if (!publication.certified)
       return rejected_step(request, histories, step_index, start_time, end_time,
-          std::move(substeps), surface.failure_code, accepted_histories, std::move(local_errors));
-    accepted_histories = std::move(surface.histories);
-    surface_solutions = std::move(surface.solutions);
+          std::move(substeps), publication.failure_code, accepted_histories, std::move(local_errors));
+    accepted_histories = std::move(publication.histories);
+    retained_solutions = std::move(publication.solutions);
   }
   if (request.equation_selection && request.equation_selection->speed_domain != "unrestricted") {
     for (const auto& path : accepted_histories) {
@@ -7579,11 +7583,11 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
       .failure_code = "",
       .correction_residual = std::nullopt,
       .correction_retry_scale = 0.0,
-      .evidence_status = request.surface_geometry ? "constrained_solution_enclosure" : "executable_architecture_evidence",
+      .evidence_status = request.surface_geometry ? "constrained_solution_enclosure" : logarithmic_equation_selected(request) ? "ordinary_solution_enclosure" : "executable_architecture_evidence",
       .integration_method = integration_method(request),
       .reduction_policy = kDeterministicReductionPolicy,
       .publication_atomic = publication_atomic,
-      .surface_solutions = std::move(surface_solutions),
+      .retained_solutions = std::move(retained_solutions),
   };
 }
 
@@ -7631,6 +7635,7 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step(
     const std::string& end_time,
     const NativeAccelerationSnapshotCertificate* reusable_start_snapshot,
     bool defer_endpoint_root_precision_escalation) {
+  if(request.error_bound_checking!="strict")throw std::invalid_argument("a certified step requires strict error-bound checking");
   return certify_native_atomic_coupled_step_checked(
       request, histories, step_index, start_time, end_time,
       reusable_start_snapshot, defer_endpoint_root_precision_escalation,
@@ -7820,6 +7825,8 @@ CertificateCostSignal certificate_cost_signal(
 NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
     const NativeCoupledEvolutionRequest& request,
     const NativeAccelerationSnapshotCertificate* reusable_initial_snapshot) {
+  if(request.error_bound_checking=="none")return evolve_display_point_histories(request);
+  if(request.error_bound_checking!="strict")throw std::invalid_argument("error_bound_checking must be none or strict");
   const auto timing_start = SteadyClock::now();
   // The validated method is refused here for every control it does not
   // consume, then passes the ordinary admission below before it runs.
@@ -8044,6 +8051,7 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
       }
       compact_completed_step_diagnostics(step, true);
       steps.push_back(std::move(step));
+    if (request.accepted_paths_callback) request.accepted_paths_callback(accepted_count, current_time_token, histories);
       if (request.accepted_step_callback) {
         request.accepted_step_callback(accepted_count, current_time_token);
       }
@@ -8242,7 +8250,7 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
           consecutive_growth_headroom_steps,
       .halt_code = completed ? "" : halt_code,
       .evidence_status =
-          completed ? (request.surface_geometry ? "constrained_solution_enclosure" : "executable_architecture_evidence") : "failed",
+          completed ? (request.surface_geometry ? "constrained_solution_enclosure" : logarithmic_equation_selected(request) ? "ordinary_solution_enclosure" : "executable_architecture_evidence") : "failed",
       .memory_budget_bytes = request.memory_budget_bytes,
       .memory_estimate_bytes = memory_estimate_bytes,
       .all_steps_atomic = all_atomic,

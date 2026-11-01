@@ -78,8 +78,8 @@ export function buildSurfaceSupportData(record){
     }
     return {pathId:p.pathId,label:names.get(p.pathId),charge:Number(p.charge),rows};
   });
-  const kind=replay?'sample':'slab';
-  const data={members,domain,kind};
+  const kind=replay||request.numerics?.errorBoundChecking==='none'?'sample':'slab';
+  const data={members,domain,kind,unchecked:request.numerics?.errorBoundChecking==='none'};
   data.total=kind==='sample'?sampleTotals(members):slabTotals(members,domain);
   return data;
 }

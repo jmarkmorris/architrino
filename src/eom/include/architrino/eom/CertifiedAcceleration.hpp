@@ -1,5 +1,7 @@
 #pragma once
 
+#include "architrino/eom/RadialKernel.hpp"
+
 #include "architrino/eom/ExactPairBatch.hpp"
 #include "architrino/eom/Interval.hpp"
 #include "architrino/eom/MatchedPairEnclosure.hpp"
@@ -72,6 +74,7 @@ struct NativePairAccelerationRequest {
   bool use_analytic_pinned_fold = true;
   bool use_correlated_self_chord = true;
   bool use_stable_circular_residual = true;
+  RadialKernel radial_kernel = RadialKernel::canonical_inverse_square;
 };
 
 struct NativeAccelerationRow {

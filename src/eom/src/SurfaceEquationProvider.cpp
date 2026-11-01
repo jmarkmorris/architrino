@@ -1,6 +1,6 @@
 #include "architrino/eom/EquationRegistry.hpp"
 #include "architrino/eom/SurfaceConstraint.hpp"
-#include "CanonicalEquationEvaluation.hpp"
+#include "RetainedEquationEvaluation.hpp"
 #include "EquationSourceIdentity.hpp"
 
 #include <algorithm>
@@ -41,6 +41,7 @@ class SurfaceEquationProvider final : public EquationProvider {
         !(Interval::decimal_token(r.surface_numerics.tangent_velocity_tolerance).lower() > 0) ||
         r.surface_numerics.maximum_cells == 0 || r.surface_numerics.maximum_depth == 0)
       throw EquationAdmissionError("invalid_surface_numerics", "surface tolerances/depth/cell budgets must be positive");
+    if(r.error_bound_checking=="none")return;
     for (const auto& path : r.paths) {
       admit_surface_preparation(shape, path.history);
       require_prepared_speed_domain(path.history, *s);
@@ -56,7 +57,7 @@ class SurfaceEquationProvider final : public EquationProvider {
     };
     if (c.request.paths.empty() || ids(c.request.paths) != ids(c.histories))
       throw EquationAdmissionError("surface_history_identity_mismatch", "Surface snapshot population differs from its bound request");
-    auto snapshot = detail::certify_canonical_acceleration_snapshot(c.request, c.histories,
+    auto snapshot = detail::certify_retained_acceleration_snapshot(c.request, c.histories,
         c.reception_time, c.warm_snapshot, c.warm_histories, c.defer_root_precision_escalation);
     snapshot.schema = "eom_surface_acceleration_snapshot/v1";
     snapshot.selected_model_identity = surface_request_identity(c.request);

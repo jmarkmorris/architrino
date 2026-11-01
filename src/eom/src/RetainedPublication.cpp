@@ -49,17 +49,22 @@ IntervalVector source_acceleration(const NativeCoupledEvolutionRequest& r,
   bool covered = false; auto bound = zero_vector();
   if (emission.lower() <= boundary) {
     const Interval part(emission.lower(), std::min(emission.upper(), original.segments().back().t_end_interval().upper()));
+    if (logarithmic_equation_selected(r) && !original.uniform_circular_endpoint_certificate()) {
+      admit_logarithmic_preparation(original);
+      bound = zero_vector(); covered = true;
+    } else {
     const auto analytic = original.uniform_circular_analytic_state(part);
     if (!analytic) throw EquationAdmissionError("surface_source_derivative_not_certified", "analytic source acceleration does not cover delayed emission slab");
     bound = analytic->acceleration; covered = true;
+    }
   }
   if (emission.upper() > original.segments().back().t_end_interval().upper()) {
-    if (!source.surface_evidence) throw EquationAdmissionError("surface_source_derivative_not_certified", "evolved source has no validated acceleration carrier");
+    if (!source.validated_evidence) throw EquationAdmissionError("surface_source_derivative_not_certified", "evolved source has no validated acceleration carrier");
     double frontier = std::max(emission.lower(), original.segments().back().t_end_interval().lower());
-    std::vector<const SurfaceEvolutionEvidence*> chain;
-    for (auto carrier = source.surface_evidence.get(); carrier; carrier = carrier->previous().get()) chain.push_back(carrier);
+    std::vector<const RetainedEvolutionEvidence*> chain;
+    for (auto carrier = source.validated_evidence.get(); carrier; carrier = carrier->previous().get()) chain.push_back(carrier);
     std::reverse(chain.begin(), chain.end());
-    std::vector<const SurfaceSolutionCertificate*> solutions;
+    std::vector<const RetainedSolutionCertificate*> solutions;
     for (const auto* carrier : chain) for (const auto& solution : carrier->solutions()) solutions.push_back(&solution);
     for (const auto* selected : solutions) {
       const auto& solution = *selected;
@@ -76,13 +81,13 @@ IntervalVector source_acceleration(const NativeCoupledEvolutionRequest& r,
   return bound;
 }
 
-struct Interaction { IntervalVector total; SurfaceMatrix jacobian; std::vector<SurfaceSolutionCertificate::SlabRoot> roots; };
+struct Interaction { IntervalVector total; SurfaceMatrix jacobian; std::vector<RetainedSolutionCertificate::SlabRoot> roots; };
 Interaction slab_interaction(const NativeCoupledEvolutionRequest& r,
     const std::vector<NativePublishedPath>& histories, const std::string& receiver,
     const Interval& time, const IntervalVector& x, const std::string& step_start) {
   std::vector<IntervalVector> contributions;
   std::array<std::vector<IntervalVector>, 3> derivative_columns;
-  std::vector<SurfaceSolutionCertificate::SlabRoot> roots;
+  std::vector<RetainedSolutionCertificate::SlabRoot> roots;
   const std::array<IntervalVector, 3> basis{{{Interval::point(1), z(), z()},
                                           {z(), Interval::point(1), z()},
                                           {z(), z(), Interval::point(1)}}};
@@ -130,7 +135,8 @@ Interaction slab_interaction(const NativeCoupledEvolutionRequest& r,
         .signed_coupling = Interval::decimal_token(r.coupling) *
             Interval::decimal_token(preparation(r, receiver).charge) * Interval::decimal_token(preparation(r, source.path_id).charge),
         .receiver_position_coefficients = basis,
-        .transmitter_position_coefficients = zeros, .transmitter_velocity_coefficients = zeros});
+        .transmitter_position_coefficients = zeros, .transmitter_velocity_coefficients = zeros,
+        .radial_kernel = logarithmic_equation_selected(r) ? RadialKernel::logarithmic_inverse_distance : RadialKernel::canonical_inverse_square});
     if (!sensitivity.certified) throw EquationAdmissionError("surface_interaction_derivative_not_certified", sensitivity.failure_code);
     roots.push_back({source.path_id, source.history.provenance_fingerprint(), time, emission,
         residual(root_lo), residual(root_hi), factor,
@@ -146,8 +152,8 @@ Interaction slab_interaction(const NativeCoupledEvolutionRequest& r,
   return result;
 }
 
-struct Tube { SurfaceSolutionCertificate certificate; CubicHistorySegment segment; };
-Tube validated_segment(const NativeCoupledEvolutionRequest& r, const SurfaceGeometry& shape,
+struct Tube { RetainedSolutionCertificate certificate; CubicHistorySegment segment; };
+Tube validated_segment(const NativeCoupledEvolutionRequest& r, const std::optional<SurfaceGeometry>& shape,
     const std::vector<NativePublishedPath>& input, const std::string& id,
     const CubicHistorySegment& segment, const HistoryEndpointState& initial,
     const std::string& step_start) {
@@ -159,14 +165,14 @@ Tube validated_segment(const NativeCoupledEvolutionRequest& r, const SurfaceGeom
     rx[i] = std::max(segment.position_errors()[i], magnitude(initial_x[i]));
     rv[i] = std::max(segment.velocity_errors()[i], magnitude(initial_v[i]));
   }
-  SurfaceSolutionCertificate certificate{id, segment.t_start_token(), segment.t_end_token(), false,
+  RetainedSolutionCertificate certificate{id, segment.t_start_token(), segment.t_end_token(), false,
       "surface_solution_inclusion_not_certified", zero_vector(), zero_vector(), zero_vector(), 0, {}, {}};
   for (unsigned iteration = 0; iteration < 16; ++iteration) {
     auto defect = zero_vector(), acceleration = zero_vector();
     double lx = 0, lv = 0; bool have_acceleration = false;
     double speed_upper = 0;
     std::vector<SurfaceReceiverDiagnostic> diagnostics;
-    std::vector<SurfaceSolutionCertificate::SlabRoot> roots;
+    std::vector<RetainedSolutionCertificate::SlabRoot> roots;
     constexpr unsigned subdivisions = 64;
     for (unsigned cell = 0; cell < subdivisions; ++cell) {
       // Shared dyadic boundaries cover the entire outward time enclosure.
@@ -180,7 +186,16 @@ Tube validated_segment(const NativeCoupledEvolutionRequest& r, const SurfaceGeom
       if (!(speed < 1)) throw EquationAdmissionError("surface_solution_chart_not_certified", "validated solution tube is not wholly below wake speed; no speed limit is imposed");
       const auto interaction = slab_interaction(r, input, id, time, x, step_start);
       roots.insert(roots.end(), interaction.roots.begin(), interaction.roots.end());
-      auto constrained = evaluate_surface_constraint(shape, x, v, interaction.total, interaction.jacobian);
+      const std::array<Interval, 6> zero_row{z(), z(), z(), z(), z(), z()};
+      SurfaceConstraintEvaluation constrained{
+        {id, "", "", zero_vector(), zero_vector(), zero_vector(), zero_vector(), zero_vector(), zero_vector(), z()},
+        {zero_row, zero_row, zero_row}};
+      if (shape) constrained = evaluate_surface_constraint(*shape, x, v, interaction.total, interaction.jacobian);
+      else {
+        constrained.diagnostic.total_acceleration = interaction.total;
+        for (std::size_t i = 0; i < 3; ++i) for (std::size_t j = 0; j < 6; ++j)
+          constrained.jacobian[i][j] = j < 3 ? interaction.jacobian[i][j] : z();
+      }
       const auto error = subtract(constrained.diagnostic.total_acceleration, nominal_acceleration(segment, time));
       for (std::size_t i = 0; i < 3; ++i) {
         defect[i] = Interval::point(std::max(defect[i].upper(), magnitude(error[i])));
@@ -194,7 +209,7 @@ Tube validated_segment(const NativeCoupledEvolutionRequest& r, const SurfaceGeom
       acceleration = have_acceleration ? hull(acceleration, constrained.diagnostic.total_acceleration) : constrained.diagnostic.total_acceleration;
       have_acceleration = true;
       constrained.diagnostic.path_id = id; constrained.diagnostic.reception_lower = finite_double_token(lower);
-      constrained.diagnostic.reception_upper = finite_double_token(upper); diagnostics.push_back(std::move(constrained.diagnostic));
+      constrained.diagnostic.reception_upper = finite_double_token(upper); if (shape) diagnostics.push_back(std::move(constrained.diagnostic));
     }
     const double q = (interval_square(h) * Interval::point(lx) + h * Interval::point(lv)).upper();
     if (!(q < 1)) throw EquationAdmissionError("surface_solution_contraction_not_certified", "weighted integral map is not a contraction");
@@ -213,11 +228,13 @@ Tube validated_segment(const NativeCoupledEvolutionRequest& r, const SurfaceGeom
           throw EquationAdmissionError("surface_solution_error_budget_exceeded", "validated reconstruction exceeds EOM position/velocity tolerances");
       }
       CubicHistorySegment validated(segment.t_start_token(), segment.t_end_token(), segment.coefficient_tokens(), xerr, verr);
-      auto geometry = certify_surface_segment(shape, validated, r.surface_numerics); geometry.path_id = id;
-      if (!geometry.certified) throw EquationAdmissionError(geometry.failure_code, "validated dense surface geometry fails");
+      if (shape) {
+        auto geometry = certify_surface_segment(*shape, validated, r.surface_numerics); geometry.path_id = id;
+        if (!geometry.certified) throw EquationAdmissionError(geometry.failure_code, "validated dense surface geometry fails");
+        certificate.geometry.push_back(std::move(geometry));
+      }
       certificate.certified = true; certificate.failure_code.clear(); certificate.contraction_bound = q;
       certificate.acceleration_bound = acceleration; certificate.diagnostics = std::move(diagnostics);
-      certificate.geometry.push_back(std::move(geometry));
       certificate.partner_roots = std::move(roots);
       certificate.solution_speed_upper = speed_upper;
       return {std::move(certificate), std::move(validated)};
@@ -229,6 +246,13 @@ Tube validated_segment(const NativeCoupledEvolutionRequest& r, const SurfaceGeom
   }
   throw EquationAdmissionError("surface_solution_inclusion_not_certified", "integral map failed tube inclusion after bounded inflation");
 }
+}
+
+std::string retained_request_identity(const NativeCoupledEvolutionRequest& r) {
+  if (r.surface_geometry) return surface_request_identity(r);
+  std::string identity = inspect_equation_model(r).digest;
+  for (const auto& p : r.paths) identity += equation_json_quote(p.path_id) + equation_json_quote(equation_decimal_identity(p.charge)) + p.history.provenance_fingerprint();
+  return equation_identity_sha256(identity);
 }
 
 std::string surface_request_identity(const NativeCoupledEvolutionRequest& r) {
@@ -252,15 +276,16 @@ std::string surface_request_identity(const NativeCoupledEvolutionRequest& r) {
   return equation_identity_sha256(identity);
 }
 
-SurfacePublicationCertificate certify_surface_publication(const NativeCoupledEvolutionRequest& r,
+RetainedPublicationCertificate certify_retained_publication(const NativeCoupledEvolutionRequest& r,
     const std::vector<NativePublishedPath>& input, const std::vector<NativePublishedPath>& candidate,
     const std::string& start_time, const std::string& end_time) {
-  SurfacePublicationCertificate result;
+  RetainedPublicationCertificate result;
   try {
-    const auto& provider = require_equation_provider(r);
-    if (provider.descriptor().id != "canonical-surface/v1")
+    (void)require_equation_provider(r);
+    if (!retained_publication_required(r))
       throw EquationAdmissionError("unsupported_model_combination", "surface publication requires the Surface provider");
-    const SurfaceGeometry shape(*r.surface_geometry); const auto identity = surface_request_identity(r);
+    const auto shape = r.surface_geometry ? std::optional<SurfaceGeometry>(*r.surface_geometry) : std::nullopt;
+    const auto identity = retained_request_identity(r);
     if (input.size() != r.paths.size() || candidate.size() != input.size())
       throw EquationAdmissionError("surface_history_identity_mismatch", "surface publication path count mismatch");
     const auto identities = [](const auto& paths) {
@@ -275,8 +300,8 @@ SurfacePublicationCertificate certify_surface_publication(const NativeCoupledEvo
     for (const auto& source : input) {
       const auto& initial = preparation(r, source.path_id).history;
       const bool original = source.history.provenance_fingerprint() == initial.provenance_fingerprint();
-      if (!original && (!source.surface_evidence || source.surface_evidence->model_identity() != identity ||
-          source.surface_evidence->history_fingerprint() != source.history.provenance_fingerprint()))
+      if (!original && (!source.validated_evidence || source.validated_evidence->model_identity() != identity ||
+          source.validated_evidence->history_fingerprint() != source.history.provenance_fingerprint()))
         throw EquationAdmissionError("surface_solution_provenance_not_certified", "continued history lacks a matching immutable validated carrier");
       require_subwake_history(source.history);
     }
@@ -286,13 +311,16 @@ SurfacePublicationCertificate certify_surface_publication(const NativeCoupledEvo
         throw EquationAdmissionError("surface_history_identity_mismatch", "input history endpoint/path mismatch");
       RetainedHistory published = old.history;
       HistoryEndpointState state = old.history.endpoint_state_hull();
-      if (!old.surface_evidence) {
-        admit_surface_preparation(shape, old.history);
-        const auto analytic = old.history.uniform_circular_analytic_state(Interval::decimal_token(start_time));
-        if (!analytic) throw EquationAdmissionError("surface_preparation_not_certified", "initial analytic state is unavailable");
-        state = {analytic->position, analytic->velocity};
+      if (!old.validated_evidence) {
+        if (shape) admit_surface_preparation(*shape, old.history);
+        else admit_logarithmic_preparation(old.history);
+        if (old.history.uniform_circular_endpoint_certificate()) {
+          const auto analytic = old.history.uniform_circular_analytic_state(Interval::decimal_token(start_time));
+          if (!analytic) throw EquationAdmissionError("surface_preparation_not_certified", "initial analytic state is unavailable");
+          state = {analytic->position, analytic->velocity};
+        }
       }
-      std::vector<SurfaceSolutionCertificate> records;
+      std::vector<RetainedSolutionCertificate> records;
       bool extended = false;
       for (const auto& segment : it->history.segments()) {
         if (segment.t_end() <= old.history.t_end()) continue;
@@ -309,12 +337,15 @@ SurfacePublicationCertificate certify_surface_publication(const NativeCoupledEvo
       // and certified subwake speeds. Thus their partner-only ODE solutions
       // also satisfy full canonical positive-delay self accounting and have
       // no additional partner roots beyond the method-of-steps boundary.
-      auto evidence = std::shared_ptr<const SurfaceEvolutionEvidence>(new SurfaceEvolutionEvidence(identity, published.provenance_fingerprint(), std::move(records), old.surface_evidence));
+      auto evidence = std::shared_ptr<const RetainedEvolutionEvidence>(new RetainedEvolutionEvidence(identity, published.provenance_fingerprint(), std::move(records), old.validated_evidence));
       result.histories.push_back({old.path_id, std::move(published), std::move(evidence)});
     }
     result.certified = true;
   } catch (const EquationAdmissionError& error) {
-    result.failure_code = error.code(); result.histories.clear(); result.solutions.clear();
+    result.failure_code = error.code();
+    if (logarithmic_equation_selected(r) && result.failure_code.starts_with("surface_"))
+      result.failure_code.replace(0, 8, "logarithmic_");
+    result.histories.clear(); result.solutions.clear();
   }
   return result;
 }

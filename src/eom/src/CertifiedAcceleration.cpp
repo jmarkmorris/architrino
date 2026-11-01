@@ -496,16 +496,17 @@ NativeAccelerationRow reconstruct_row(
   const Interval root_playback = receiver_factor / transmitter_factor;
   const Interval acceleration_weight =
       field_speed / interval_absolute(transmitter_factor);
-  const Interval radial_denominator =
+  const bool logarithmic = request.radial_kernel == RadialKernel::logarithmic_inverse_distance;
+  const Interval radial_denominator = logarithmic ? interval_square(separation) :
       interval_square(separation) * separation;
-  const IntervalVector inverse_square_direction =
+  const IntervalVector radial_direction =
       divide(displacement, radial_denominator);
   const Interval signed_scale =
       coupling * receiver_charge * transmitter_charge * acceleration_weight;
   IntervalVector acceleration =
-      scale(signed_scale, inverse_square_direction);
+      scale(signed_scale, radial_direction);
   bool implicit_root_mean_value_used = false;
-  const auto centered = implicit_root_mean_value_acceleration(
+  const auto centered = logarithmic ? std::optional<IntervalVector>{} : implicit_root_mean_value_acceleration(
       request, root, receiver_position, reception, field_speed,
       coupling * receiver_charge * transmitter_charge);
   if (centered.has_value()) {
@@ -1548,6 +1549,9 @@ NativePairAccelerationCertificate certify_pair_acceleration(
     const NativePairAccelerationRequest& request) {
   const auto pair_timing_start = SteadyClock::now();
   validate_pair_request(request);
+  if (request.radial_kernel == RadialKernel::logarithmic_inverse_distance &&
+      (request.chart != "sharp" || request.force_precision_escalation || request.far_field_enclosure || request.matched_pair_enclosure))
+    throw std::invalid_argument("logarithmic kernel supports only direct ordinary sharp rows");
   const auto& root_certificate = *request.root_certificate;
   std::size_t quadrature_visited_cells = 0;
   std::size_t analytic_fold_visited_cells = 0;

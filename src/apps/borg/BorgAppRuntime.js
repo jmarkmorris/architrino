@@ -1295,7 +1295,7 @@ export function mountBorgApp(options = {}) {
         : "Random initial conditions";
       dom.modeDetail.textContent = activePrescribedDisplayBranch
         ? `New non-promotable EOM branch from ${activePrescribedDisplayBranch.sourceRecordId} at T=${activePrescribedDisplayBranch.selectedCutTime}.`
-        : "Display- or Claim-grade EOM simulation is available after Play.";
+        : "Choose error bound checking, then Play to calculate motion.";
       return;
     }
     assemblyViewControls?.dispose?.();
@@ -2001,13 +2001,14 @@ export function mountBorgApp(options = {}) {
       : `${completedSteps} / ${requestedSteps} forward EOM chunks | ${displayStatus}`;
     dom.eomProgressLabel.value = `${progressLabel}${failureDetail}`;
     const displayGrade = state.eomRunGrade === BORG_EOM_RUN_GRADE_DISPLAY;
+    dom.certifiedBudget.parentElement.hidden=displayGrade;
     dom.eomAuthority.dataset.grade = displayGrade ? "display" : "claim";
     setBorgRadioGroupValue(dom.eomRunGrade, state.eomRunGrade);
     dom.eomAuthorityDetail.textContent = activePrescribedDisplayBranch
       ? `Display-only evolution starts at T=${activePrescribedDisplayBranch.selectedCutTime} from the exact prescribed segment prefix after Display projection. This child branch has no claim authority.`
       : displayGrade
-        ? "Display-only evolution starts directly from the point-projected input history at T=0. Each completed increment becomes the history for the next increment; this run has no claim authority."
-      : "Claim-grade evolution uses certified tolerances and stops if certification or execution fails. It never changes to display grade.";
+        ? "Error bound checking: none. Exploratory EOM motion; acceleration and path errors are not bounded. Each computed increment supplies the next history."
+      : "Error bound checking: strict. EOM checks acceleration and path error bounds and stops when it cannot certify the next step.";
     const eomStartTime = activeEomRunnerOptions?.startTime ?? 0;
     dom.eomHistoryStatus.value = activePrescribedDisplayBranch
       ? `Exact prescribed segment history covers T=${state.eomRetainedHistoryStart} to ${eomStartTime}. ` +

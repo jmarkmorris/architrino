@@ -45,7 +45,7 @@ void parity(e::NativeCoupledEvolutionRequest r,std::size_t split) {
   auto changed=r;changed.surface_numerics.position_tolerance="2e-4";
   bool rejected=false;try{(void)e::resume_provider_checkpoint(changed,cp,r.end_time);}catch(const e::EquationAdmissionError&){rejected=true;}
   check(rejected,"changed numerical binding accepted");
-  auto corrupt=prefix;corrupt.histories[0].surface_evidence.reset();
+  auto corrupt=prefix;corrupt.histories[0].validated_evidence.reset();
   rejected=false;try{(void)e::create_provider_checkpoint(r,corrupt);}catch(const e::EquationAdmissionError&){rejected=true;}
   check(rejected,"missing Surface carrier persisted");
   auto empty=r;empty.paths.clear();auto no_paths=prefix;no_paths.histories.clear();

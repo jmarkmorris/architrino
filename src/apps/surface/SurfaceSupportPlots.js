@@ -7,18 +7,20 @@ const dash=['','8 3','2 3','10 3 2 3','5 3','1 3'];
 function svgElement(name,attrs={},text){const e=document.createElementNS(NS,name);for(const [k,v]of Object.entries(attrs))e.setAttribute(k,String(v));if(text!==undefined)e.textContent=text;return e;}
 
 export function createSurfaceSupportPlots({host,jump,select,highlight}){
-  let W=760;
+  let W=760,playbackDuration=60;
   host.innerHTML=`<div class="support-heading"><div><h2>Normal support acceleration</h2><p>Additional acceleration needed to keep each path on the surface. Positive is outward; negative is inward along the local surface normal.</p></div><label class="support-arrows"><input type="checkbox" id="support-arrows">Direction arrows</label></div>
     <p class="support-empty">Load a recorded run to inspect support histories.</p>
     <div class="support-content" hidden>
-      <div class="support-window"><label>From T<input name="from" type="number" step="any"></label><label>To T<input name="to" type="number" step="any"></label><button type="button" data-window="apply">Apply window</button><button type="button" data-window="full">Full range</button><button type="button" data-window="available">Longest complete span</button></div>
+      <div class="support-window"><label>From (animation seconds)<input name="from" type="number" step="any"></label><label>To (animation seconds)<input name="to" type="number" step="any"></label><button type="button" data-window="apply">Apply window</button><button type="button" data-window="full">Full range</button><button type="button" data-window="available">Longest complete span</button></div>
       <p class="support-window-message" role="status"></p><div class="support-members" aria-label="Support curves"></div><p class="support-overlap"></p>
-      <svg class="support-chart support-signed" viewBox="0 0 ${W} ${H}" role="img" tabindex="0" aria-label="Signed normal support acceleration versus absolute time. Click to seek; left and right arrows move playback."></svg>
-      <h3>Sum of support magnitudes · all architrinos</h3><svg class="support-chart support-total" viewBox="0 0 ${W} ${H}" role="img" tabindex="0" aria-label="Sum of absolute support accelerations versus absolute time. Click to seek; left and right arrows move playback."></svg>
-      <div class="support-summary" aria-live="polite"></div><p class="support-inspection"></p><p class="support-note"></p>
+      <svg class="support-chart support-signed" viewBox="0 0 ${W} ${H}" role="img" tabindex="0" aria-label="Signed normal support acceleration versus animation seconds. Click to seek; left and right arrows move playback."></svg>
+      <h3>Sum of support magnitudes · all architrinos</h3><svg class="support-chart support-total" viewBox="0 0 ${W} ${H}" role="img" tabindex="0" aria-label="Sum of absolute support accelerations versus animation seconds. Click to seek; left and right arrows move playback."></svg>
+      <div class="support-summary" aria-live="polite"></div><p class="support-note"></p>
     </div>`;
   const $=s=>host.querySelector(s),content=$('.support-content'),empty=$('.support-empty'),signed=$('.support-signed'),total=$('.support-total'),legend=$('.support-members');
   let data=null,windowStart=0,windowEnd=1,time=0,selected=null,hovered=null,hidden=new Set();
+  const animationTime=t=>(t-data.domain.start)/(data.domain.end-data.domain.start)*playbackDuration;
+  const recordedTime=t=>data.domain.start+t/playbackDuration*(data.domain.end-data.domain.start);
   const x=t=>L+(t-windowStart)/(windowEnd-windowStart)*(W-L-R);
   function selectMember(id){selected=id;select(id);styleSelection();}
   function styleSelection(){
@@ -28,10 +30,10 @@ export function createSurfaceSupportPlots({host,jump,select,highlight}){
   }
   function hover(id){hovered=id;highlight(id??selected);styleSelection();}
   function setWindow(a,b){
-    if(!data||!Number.isFinite(a)||!Number.isFinite(b)||a<data.domain.start||b>data.domain.end||!(b>a)){$('.support-window-message').textContent='Choose an increasing window inside the recorded time range.';return;}
-    windowStart=a;windowEnd=b;$('[name=from]').value=String(a);$('[name=to]').value=String(b);$('.support-window-message').textContent=`Window T = ${fmt(a)} … ${fmt(b)}. Click either graph to move playback.`;render();
+    if(!data||!Number.isFinite(a)||!Number.isFinite(b)||a<data.domain.start||b>data.domain.end||!(b>a)){$('.support-window-message').textContent='Choose an increasing window inside the animation duration.';return;}
+    windowStart=a;windowEnd=b;$('[name=from]').value=String(animationTime(a));$('[name=to]').value=String(animationTime(b));$('.support-window-message').textContent=`Animation seconds ${fmt(animationTime(a))} … ${fmt(animationTime(b))}. Click either graph to move playback.`;render();
   }
-  $('[data-window=apply]').onclick=()=>setWindow(Number($('[name=from]').value),Number($('[name=to]').value));
+  $('[data-window=apply]').onclick=()=>setWindow(recordedTime(Number($('[name=from]').value)),recordedTime(Number($('[name=to]').value)));
   $('[data-window=full]').onclick=()=>data&&setWindow(data.domain.start,data.domain.end);
   $('[data-window=available]').onclick=()=>{const span=data&&longestSupportSpan(data);if(span)setWindow(...span);else $('.support-window-message').textContent='No nonzero complete support span is available.';};
   for(const svg of [signed,total]){
@@ -42,8 +44,8 @@ export function createSurfaceSupportPlots({host,jump,select,highlight}){
     svg.replaceChildren();svg.append(svgElement('title',{},label));
     const y=v=>TOP+(max-v)/(max-min)*(H-TOP-BOTTOM);
     for(let i=0;i<4;i++){const value=min+(max-min)*i/3,yy=y(value);svg.append(svgElement('line',{x1:L,x2:W-R,y1:yy,y2:yy,stroke:'#473454','stroke-width':'.5'}),svgElement('text',{x:L-8,y:yy+4,'text-anchor':'end'},fmt(value)));}
-    for(let i=0;i<5;i++){const t=windowStart+(windowEnd-windowStart)*i/4;svg.append(svgElement('text',{x:x(t),y:H-7,'text-anchor':'middle'},fmt(t)));}
-    svg.append(svgElement('text',{x:L,y:12},'Acceleration · cf = 1'),svgElement('text',{x:W-R,y:12,'text-anchor':'end'},'Absolute time T'));
+    for(let i=0;i<5;i++){const t=windowStart+(windowEnd-windowStart)*i/4;svg.append(svgElement('text',{x:x(t),y:H-7,'text-anchor':'middle'},Number(animationTime(t).toFixed(3))));}
+    svg.append(svgElement('text',{x:L,y:12},'Acceleration · cf = 1'),svgElement('text',{x:W-R,y:12,'text-anchor':'end'},'Animation time · seconds'));
     const zero=y(0);svg.append(svgElement('line',{x1:L,x2:W-R,y1:zero,y2:zero,stroke:'#e6d9ef','stroke-width':'1',class:'support-zero'}));
     return y;
   }
@@ -92,18 +94,11 @@ export function createSurfaceSupportPlots({host,jump,select,highlight}){
     const summary=surfaceSupportSummary(data,windowStart,windowEnd),summaryHost=$('.support-summary');summaryHost.replaceChildren();
     if(summary.available){for(const [label,value]of [['Mean total support',summary.mean],['Mean per architrino',summary.perMember]]){const card=document.createElement('div'),name=document.createElement('span'),number=document.createElement('strong');name.textContent=label+(summary.estimated?' · sampled estimate':' · slab bounds');number.textContent=interval(value);card.append(name,number);summaryHost.append(card);}}
     else{const p=document.createElement('p');p.textContent='Window mean unavailable. '+summary.reason+(summary.duration?` Recorded support covers approximately ${fmt(summary.covered)} of ${fmt(summary.duration)} time units in this window.`:'')+' Use Longest complete span to inspect a covered window.';summaryHost.append(p);}
-    $('.support-note').textContent=data.kind==='sample'?'Whiskers show rounded recorded value/time bounds. Lines join observation midpoints for display only; gaps remain blank. Means use time-weighted trapezoids on available adjacent observations and lower endpoint clocks: sampled estimates, not certified averages or event times. All-population totals include hidden curves.':'Bands show rounded support projections over recorded reception slabs; lines show band midpoints. Window means integrate magnitude-sum slab bounds only with complete coverage. Projection uses the retained position tube on the same reception domain. These display reductions add no scientific qualification. All-population totals include hidden curves.';
+    $('.support-note').textContent=(data.unchecked?'Exploratory point samples: acceleration and trajectory error bounds were not computed. ':'')+(data.kind==='sample'?'The horizontal axis follows the animation clock; values and means use recorded simulation time. Whiskers show rounded recorded value/time bounds. Lines join observation midpoints for display only; gaps remain blank. Means use time-weighted trapezoids on available adjacent observations and lower endpoint clocks: sampled estimates, not certified averages or event times. All-population totals include hidden curves.':'The horizontal axis follows the animation clock; values and means use recorded simulation time. Bands show rounded support projections over recorded reception slabs; lines show band midpoints. Window means integrate magnitude-sum slab bounds only with complete coverage. Projection uses the retained position tube on the same reception domain. These display reductions add no scientific qualification. All-population totals include hidden curves.');
     styleSelection();setTime(time);
   }
   function setTime(t){
     time=t;for(const svg of [signed,total]){const cursor=svg.querySelector('.support-cursor');if(cursor){cursor.setAttribute('x1',x(t));cursor.setAttribute('x2',x(t));cursor.style.display=t<windowStart||t>windowEnd?'none':'';}}
-    if(!data)return;
-    const member=data.members.find(m=>m.pathId===selected)??data.members[0];
-    const nearest=member.rows.reduce((best,r)=>!best||Math.abs(r.clock-t)<Math.abs(best.clock-t)?r:best,null);
-    const aggregate=data.total.reduce((best,r)=>!best||Math.abs(r.clock-t)<Math.abs(best.clock-t)?r:best,null);
-    const rowText=r=>!r?.value?'Not retained':`${interval(r.value)} at T ≈ [${fmt(r.time[0])}, ${fmt(r.time[1])}]`;
-    const direction=!nearest?.value?'':nearest.value[0]>0?' · outward':nearest.value[1]<0?' · inward':nearest.value[0]===0&&nearest.value[1]===0?' · zero':' · sign unresolved';
-    $('.support-inspection').textContent=`${member.label}, nearest recorded support: ${rowText(nearest)}${direction}. Nearest all-member magnitude sum: ${rowText(aggregate)}. These are recorded-domain readouts, not instantaneous values at the playback cursor.`;
   }
   function setRecord(record){
     data=buildSurfaceSupportData(record);hidden.clear();hovered=null;legend.replaceChildren();content.hidden=!data;empty.hidden=!!data;
@@ -122,5 +117,5 @@ export function createSurfaceSupportPlots({host,jump,select,highlight}){
     else{content.hidden=true;empty.hidden=false;empty.textContent='No nonzero recorded support interval yet.';}
   }
   const resize=new ResizeObserver(()=>{if(data&&signed.clientWidth&&Math.abs(signed.clientWidth-W)>.5)render();});resize.observe(signed);
-  return {setRecord,setTime,select(id){selected=id;styleSelection();if(data)setTime(time);},dispose(){resize.disconnect();host.replaceChildren();}};
+  return {setRecord,setTime,setPlaybackDuration(seconds){playbackDuration=seconds;if(data)setWindow(windowStart,windowEnd);},select(id){selected=id;styleSelection();if(data)setTime(time);},dispose(){resize.disconnect();host.replaceChildren();}};
 }

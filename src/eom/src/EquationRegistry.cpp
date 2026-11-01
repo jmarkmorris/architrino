@@ -3,11 +3,12 @@
 #include "EquationSourceIdentity.hpp"
 
 namespace architrino::eom {
+std::string logarithmic_capability_json();
 
 void require_canonical_equation_operation(const NativeCoupledEvolutionRequest& r) {
   const auto& p = require_equation_provider(r);
   if (p.descriptor().id != "canonical/v1")
-    throw EquationAdmissionError("unsupported_model_combination", "this event/checkpoint operation is canonical-only; Surface transport and persistence require Stage C");
+    throw EquationAdmissionError("unsupported_model_combination", "this event/checkpoint operation is canonical-only; selected providers require their supported provider-aware routes");
 }
 void require_legacy_checkpoint_equation(const NativeCoupledEvolutionRequest& r) {
   require_canonical_equation_operation(r);
@@ -15,7 +16,7 @@ void require_legacy_checkpoint_equation(const NativeCoupledEvolutionRequest& r) 
     throw EquationAdmissionError("unsupported_model_combination", "v7 binds legacy unrestricted canonical evolution only; selected domains require v8");
 }
 std::string equation_snapshot_identity(const NativeCoupledEvolutionRequest& r) {
-  if (r.surface_geometry) return surface_request_identity(r);
+  if (retained_publication_required(r)) return retained_request_identity(r);
   if (r.equation_selection && r.equation_selection->speed_domain != "unrestricted") return inspect_equation_model(r).digest;
   return {};
 }
@@ -40,7 +41,8 @@ ResolvedEquationModel inspect_equation_model(
     return equation_json_quote(equation_decimal_identity(token));
   };
   const bool surface = descriptor.id == "canonical-surface/v1";
-  const bool legacy = !surface && selected.speed_domain == "unrestricted";
+  const bool logarithmic = descriptor.id == "logarithmic/v1";
+  const bool legacy = descriptor.id == "canonical/v1" && selected.speed_domain == "unrestricted";
   const std::string json =
       "{\"build\":" + equation_build_identity_json() +
       ",\"compositionId\":" + equation_json_quote(descriptor.id) +
@@ -53,7 +55,7 @@ ResolvedEquationModel inspect_equation_model(
       ",\"identityScope\":\"resolved-model-bound-by-v8-with-original-preparation-and-numerics;v7-unchanged\"" +
       ",\"legacyModelFingerprint\":" +
       (legacy ? equation_json_quote(native_evolution_model_fingerprint(request)) : "null") +
-      (surface ? ",\"modelBindingId\":\"master_equation_surface/v1\"" : ",\"modelBindingId\":\"master_eom_binding/v1\"") +
+      (surface ? ",\"modelBindingId\":\"master_equation_surface/v1\"" : logarithmic ? ",\"modelBindingId\":\"logarithmic-potential/v1\"" : ",\"modelBindingId\":\"master_eom_binding/v1\"") +
       ",\"parameters\":{\"causalWidth\":" + number(request.causal_width) +
       ",\"chartPolicy\":" + equation_json_quote(request.chart_policy) +
       ",\"coreScale\":" + number(request.core_scale) +
@@ -105,7 +107,7 @@ std::string equation_capabilities_json() {
       ",\"solutionDomain\":\"coherent-subwake-paths-and-strictly-past-partner-roots\""
       ",\"speedDomains\":[\"unrestricted\",\"inclusive\",\"strict\"],\"speedModification\":false"
       ",\"checkpoint\":\"v8-revalidated-publication\",\"wireEvolution\":\"v2\""
-      ",\"reason\":\"Full-slab root, derivative, inclusion, contraction and dense geometry gates; coherent subwake chart remains required\"}]"
+      ",\"reason\":\"Full-slab root, derivative, inclusion, contraction and dense geometry gates; coherent subwake chart remains required\"}," + logarithmic_capability_json() + "]"
       ",\"executionMethods\":[{\"method\":\"ordinary\",\"default\":true,\"requestSchema\":\"eom_evolution_request/v2\""
       ",\"responseSchema\":\"eom_evolution_response/v2\",\"checkpointSchema\":\"eom_provider_checkpoint/v8\"},"
       "{\"method\":\"canonical_validated_far_step_evolution/v1\",\"default\":false,\"optIn\":\"execution.method\""

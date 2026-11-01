@@ -5,7 +5,7 @@
 #include "architrino/eom/ExactPairBatch.hpp"
 #include "architrino/eom/History.hpp"
 #include "architrino/eom/EquationPlan.hpp"
-#include "architrino/eom/SurfaceConstraint.hpp"
+#include "architrino/eom/RetainedPublication.hpp"
 #include "architrino/eom/JointRootBracket.hpp"
 #include "architrino/eom/JointAffineHistory.hpp"
 
@@ -65,8 +65,8 @@ struct NativeCoupledPathInput {
 struct NativePublishedPath {
   std::string path_id;
   RetainedHistory history;
-  // In-memory validated Surface carrier. Not serialized by v1 or v7.
-  std::shared_ptr<const SurfaceEvolutionEvidence> surface_evidence = nullptr;
+  // In-memory validated retained-history carrier. Not serialized by v1 or v7.
+  std::shared_ptr<const RetainedEvolutionEvidence> validated_evidence = nullptr;
 };
 
 struct NativeCoupledEvolutionRequest {
@@ -91,6 +91,8 @@ struct NativeCoupledEvolutionRequest {
   std::string root_tolerance = "1e-12";
   std::string transmitter_factor_floor = "1e-30";
   std::string acceleration_tolerance = "1e-9";
+  // Omitted legacy requests retain strict meaning; interactive apps select none explicitly.
+  std::string error_bound_checking = "strict";
   // Fraction of the acceleration component-width tolerance reserved for
   // certified per-pair far-field enclosures. Zero disables the route.
   std::string far_field_enclosure_fraction = "0";
@@ -226,6 +228,10 @@ struct NativeCoupledEvolutionRequest {
   // Diagnostics only: invoked after an accepted step is atomically published.
   std::function<void(std::size_t, const std::string&)>
       accepted_step_callback;
+  // Read-only path observer, called only after an atomic publication.
+  // It does not replace a terminal checkpoint or change acceptance policy.
+  std::function<void(std::size_t, const std::string&,
+      const std::vector<NativePublishedPath>&)> accepted_paths_callback;
   // Cooperative run control.  Cancellation is observed only before the first
   // attempt or after an atomically accepted step, so the returned histories
   // and controller state always form a resumable accepted boundary.
@@ -248,7 +254,7 @@ struct NativeCoupledEvolutionRequest {
   std::optional<SurfaceGeometryDefinition> surface_geometry;
   SurfaceNumerics surface_numerics;
   // Validated provider-aware restart state; original preparation stays bound
-  // in paths. Surface carriers can only be minted by publication proof.
+  // in paths. Validated carriers can only be minted by publication proof.
   std::vector<NativePublishedPath> continuation_histories;
 };
 
@@ -392,7 +398,7 @@ struct NativeAccelerationSnapshotCertificate {
   std::vector<NativeSnapshotRootRow> root_certificates;
   NativeAccelerationReconstructionCertificate acceleration;
   NativeSnapshotTiming timing;
-  // Empty for the legacy canonical path; binds complete Surface snapshots.
+  // Empty for the legacy canonical path; binds complete selected-provider snapshots.
   std::string selected_model_identity = {};
   std::vector<SurfaceReceiverDiagnostic> surface_diagnostics = {};
   // Every grouped attempt of this snapshot, admitted or declined, in
@@ -665,7 +671,7 @@ struct NativeAtomicStepCertificate {
   std::string reduction_policy;
   bool publication_atomic;
   NativeAtomicStepTiming timing;
-  std::vector<SurfaceSolutionCertificate> surface_solutions = {};
+  std::vector<RetainedSolutionCertificate> retained_solutions = {};
 };
 
 struct NativeEvolutionTiming {
@@ -748,6 +754,8 @@ struct NativeCoupledEvolutionCertificate {
   // boundary: what a later invocation resumes from. Null otherwise.
   std::shared_ptr<const NativeValidatedContinuation>
       validated_continuation = {};
+  // Exploratory point readouts carry no solution certificate or error enclosure.
+  std::vector<SurfaceReceiverDiagnostic> exploratory_surface_diagnostics = {};
 };
 
 // True when the request selects the validated method, false when it selects

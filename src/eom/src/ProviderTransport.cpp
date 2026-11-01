@@ -5,6 +5,7 @@
 #include "architrino/eom/ValidatedRunRecord.hpp"
 #include "architrino/eom/MatchedPairEnclosure.hpp"
 #include "architrino/eom/Decimal.hpp"
+#include "architrino/eom/DisplayEvolution.hpp"
 #include "SurfaceArithmetic.hpp"
 #include <boost/json.hpp>
 #include <boost/property_tree/json_parser.hpp>
@@ -154,6 +155,7 @@ NativeCoupledEvolutionRequest decode_request(const j::value& value) {
       const std::string name(entry.key()); bool found=false;
       for(auto& f:decimals)if(name==f.name){r.*f.member=token(entry.value());found=true;}
       for(auto& f:counts)if(name==f.name){r.*f.member=count(entry.value());found=true;}
+      if(name=="errorBoundChecking"){r.error_bound_checking=string(entry.value());if(r.error_bound_checking!="none" && r.error_bound_checking!="strict")fail("invalid_error_bound_checking","errorBoundChecking must be none or strict");found=true;}
       if(name=="adaptiveGrowth"){r.use_adaptive_step_growth=boolean(entry.value());found=true;}
       if(name=="continuousAdaptive"){r.use_continuous_adaptive_step=boolean(entry.value());found=true;}
       if(name=="surfacePositionTolerance"){r.surface_numerics.position_tolerance=token(entry.value());found=true;}
@@ -177,6 +179,7 @@ Object encode_request(const NativeCoupledEvolutionRequest& r) {
   Object model{{"compositionId",s.composition_id},{"speedDomain",s.speed_domain},{"boundaryPolicy",s.boundary_policy},{"constraint",s.constraint},{"method",s.method},{"fieldSpeed",r.field_speed},{"coupling",r.coupling}};
   if(r.surface_geometry){const auto& g=*r.surface_geometry;Array center,rotation;for(auto& v:g.center)center.emplace_back(v);for(auto& row:g.orientation){Array a;for(auto& v:row)a.emplace_back(v);rotation.push_back(a);}model["geometry"]=Object{{"kind",g.kind},{"radius",g.radius},{"flattening",g.flattening},{"majorRadius",g.major_radius},{"center",center},{"orientation",rotation}};}
   Object n;for(auto& f:decimals)n[f.name]=r.*f.member;for(auto& f:counts)n[f.name]=r.*f.member;
+  n["errorBoundChecking"]=r.error_bound_checking;
   n["adaptiveGrowth"]=r.use_adaptive_step_growth;n["continuousAdaptive"]=r.use_continuous_adaptive_step;
   n["surfacePositionTolerance"]=r.surface_numerics.position_tolerance;n["surfaceTangentVelocityTolerance"]=r.surface_numerics.tangent_velocity_tolerance;n["surfaceMaxDepth"]=r.surface_numerics.maximum_depth;n["surfaceMaxCells"]=r.surface_numerics.maximum_cells;
   Array paths;for(auto& p:r.paths){const auto& c=p.history.uniform_circular_endpoint_certificate();Object h=c?circle(*c):Object{{"kind","cubic"},{"segments",segments(p.history)}};paths.push_back(Object{{"pathId",p.path_id},{"charge",p.charge},{"history",h},{"fingerprint",p.history.provenance_fingerprint()}});}
@@ -214,21 +217,21 @@ void require_preparation_prefix(const RetainedHistory& prepared, const RetainedH
 void validate_checkpoint_histories(const NativeCoupledEvolutionRequest& r, const NativeCoupledEvolutionCertificate& c) {
   if(r.paths.empty() || c.histories.empty())fail("invalid_checkpoint","persistence requires a nonempty population");
   if(c.histories.size()!=r.paths.size())fail("invalid_checkpoint","published population mismatch");
-  const auto identity=r.surface_geometry?surface_request_identity(r):std::string{};
+  const auto identity=retained_publication_required(r)?retained_request_identity(r):std::string{};
   for(std::size_t i=0;i<r.paths.size();++i) {
     const auto& path=c.histories[i];
     if(path.path_id!=r.paths[i].path_id)fail("invalid_checkpoint","published path order mismatch");
     require_preparation_prefix(r.paths[i].history,path.history);
     if(equation_decimal_identity(path.history.segments().back().t_end_token())!=equation_decimal_identity(c.accepted_end_time))fail("checkpoint_history_mismatch","published endpoint mismatch");
-    if(r.surface_geometry) {
+    if(r.error_bound_checking=="strict" && retained_publication_required(r)) {
       std::size_t depth=0;
       auto endpoint=path.history.provenance_fingerprint();
-      for(auto carrier=path.surface_evidence;carrier;carrier=carrier->previous()) {
+      for(auto carrier=path.validated_evidence;carrier;carrier=carrier->previous()) {
         if(carrier->model_identity()!=identity || carrier->history_fingerprint()!=endpoint)fail("checkpoint_model_mismatch","invalid immutable Surface evidence");
         ++depth;
         if(carrier->previous())endpoint=carrier->previous()->history_fingerprint();
       }
-      if(depth+r.initial_accepted_step_count!=c.accepted_step_count || (!path.surface_evidence && path.history.provenance_fingerprint()!=r.paths[i].history.provenance_fingerprint()))fail("invalid_checkpoint","Surface publication chronology mismatch");
+      if(depth+r.initial_accepted_step_count!=c.accepted_step_count || (!path.validated_evidence && path.history.provenance_fingerprint()!=r.paths[i].history.provenance_fingerprint()))fail("invalid_checkpoint","Surface publication chronology mismatch");
     }
   }
 }
@@ -249,12 +252,14 @@ std::string create_provider_checkpoint(const NativeCoupledEvolutionRequest& r,co
   Object out{{"schema","eom_provider_checkpoint/v8"},{"binding",binding(r)},{"resolvedModel",parse(inspect_equation_model(r).canonical_json)},
     {"preparation",preparation},{"acceptedTime",c.accepted_end_time},{"runId",c.run_id},{"controllerStep",c.controller_step_size},
     {"acceptedCount",c.accepted_step_count},{"rejectedCount",c.rejected_step_count},{"growthCount",c.controller_consecutive_growth_headroom_steps},{"cooldown",c.controller_certificate_cost_cooldown_remaining},{"histories",published(c.histories)}};
-  if(r.surface_geometry) {
-    Array boundaries; std::vector<std::shared_ptr<const SurfaceEvolutionEvidence>> chain;
-    if(!c.histories.empty())for(auto p=c.histories.front().surface_evidence;p;p=p->previous())chain.push_back(p);
+  if(r.error_bound_checking=="none") {
+    out["providerState"]=Object{{"schema","exploratory-point/v1"},{"errorBoundChecking","none"}};
+  } else if(retained_publication_required(r)) {
+    Array boundaries; std::vector<std::shared_ptr<const RetainedEvolutionEvidence>> chain;
+    if(!c.histories.empty())for(auto p=c.histories.front().validated_evidence;p;p=p->previous())chain.push_back(p);
     std::reverse(chain.begin(),chain.end());
-    for(auto& p:chain) {if(p->model_identity()!=surface_request_identity(r))fail("checkpoint_model_mismatch","Surface carrier mismatch");const auto& records=p->solutions();if(records.empty())fail("invalid_checkpoint","empty solution carrier");boundaries.push_back(Array{records.front().start_time,records.back().end_time});}
-    out["providerState"]=Object{{"schema","surface-revalidate-publication/v1"},{"boundaries",boundaries}};
+    for(auto& p:chain) {if(p->model_identity()!=retained_request_identity(r))fail("checkpoint_model_mismatch","Surface carrier mismatch");const auto& records=p->solutions();if(records.empty())fail("invalid_checkpoint","empty solution carrier");boundaries.push_back(Array{records.front().start_time,records.back().end_time});}
+    out["providerState"]=Object{{"schema",r.surface_geometry?"surface-revalidate-publication/v1":"logarithmic-revalidate-publication/v1"},{"boundaries",boundaries}};
   } else {
     auto legacy=r;legacy.equation_selection.reset();legacy.continuation_histories.clear();
     // Persist the accepted prefix even if the invocation ends in rejected
@@ -281,9 +286,19 @@ NativeCoupledEvolutionCertificate resume_provider_checkpoint(const NativeCoupled
   resumed.initial_accepted_step_count=count(cp.at("acceptedCount"));resumed.initial_rejected_step_count=count(cp.at("rejectedCount"));
   resumed.initial_consecutive_growth_headroom_steps=count(cp.at("growthCount"));resumed.certificate_cost_initial_cooldown_steps=count(cp.at("cooldown"));
   const auto& state=object(cp.at("providerState"));
-  if(r.surface_geometry) {
+  if(r.error_bound_checking=="none") {
+    keys(state,{"schema","errorBoundChecking"});
+    if(string(state.at("schema"))!="exploratory-point/v1" || string(state.at("errorBoundChecking"))!="none")fail("checkpoint_provider_state_mismatch","exploratory checkpoint required");
+    HistoryBudget budget{static_cast<std::size_t>(std::min<std::uint64_t>(100000,r.memory_budget_bytes/4096))};
+    const auto& records=array(cp.at("histories"));if(records.size()!=r.paths.size())fail("invalid_checkpoint","checkpoint population mismatch");
+    for(std::size_t i=0;i<records.size();++i){const auto& item=object(records[i]);keys(item,{"pathId","fingerprint","segments"});const auto id=string(item.at("pathId"));if(id!=r.paths[i].path_id)fail("invalid_checkpoint","checkpoint path order changed");RetainedHistory history(id,decode_segments(item.at("segments"),budget));
+      // Restore analytical preparation provenance by appending only the stored future.
+      auto restored=r.paths[i].history;for(const auto& segment:history.segments())if(segment.t_end()>restored.t_end())restored=restored.appended(segment);
+      if(canonical(segments(restored))!=canonical(segments(history))||restored.provenance_fingerprint()!=string(item.at("fingerprint"))||equation_decimal_identity(restored.segments().back().t_end_token())!=equation_decimal_identity(resumed.start_time))fail("checkpoint_history_mismatch","exploratory checkpoint prefix/endpoint/fingerprint mismatch");
+      resumed.continuation_histories.push_back({id,std::move(restored)});}
+  } else if(retained_publication_required(r)) {
     keys(state,{"schema","boundaries"});
-    if(string(state.at("schema"))!="surface-revalidate-publication/v1")fail("checkpoint_provider_state_mismatch","Surface state schema mismatch");
+    if(string(state.at("schema"))!=(r.surface_geometry?"surface-revalidate-publication/v1":"logarithmic-revalidate-publication/v1"))fail("checkpoint_provider_state_mismatch","Surface state schema mismatch");
     std::vector<NativePublishedPath> current;for(auto& p:r.paths)current.push_back({p.path_id,p.history});
     const auto& records=array(cp.at("histories"));if(records.size()!=r.paths.size())fail("invalid_checkpoint","checkpoint population mismatch");
     std::vector<std::vector<CubicHistorySegment>> full;
@@ -294,14 +309,14 @@ NativeCoupledEvolutionCertificate resume_provider_checkpoint(const NativeCoupled
       const auto& times=array(row);if(times.size()!=2)fail("invalid_checkpoint","invalid publication boundary");const auto start=token(times[0]),stop=token(times[1]);
       std::vector<NativePublishedPath> candidates=current;
       for(std::size_t i=0;i<full.size();++i)for(const auto& segment:full[i])if(segment.t_end()>current[i].history.t_end() && segment.t_end()<=parse_finite_double(stop,"boundary"))candidates[i].history=candidates[i].history.appended(segment);
-      const auto proof=certify_surface_publication(r,current,candidates,start,stop);
+      const auto proof=certify_retained_publication(r,current,candidates,start,stop);
       if(!proof.certified)fail("checkpoint_revalidation_failed",proof.failure_code);
       for(std::size_t i=0;i<proof.histories.size();++i)if(proof.histories[i].history.provenance_fingerprint()!=candidates[i].history.provenance_fingerprint())fail("checkpoint_revalidation_changed_history","restoration would change persisted errors or coefficients");
       current=proof.histories;
     }
     for(std::size_t i=0;i<current.size();++i)if(canonical(segments(current[i].history))!=canonical(object(records[i]).at("segments")) || current[i].history.provenance_fingerprint()!=string(object(records[i]).at("fingerprint")) || equation_decimal_identity(current[i].history.segments().back().t_end_token())!=equation_decimal_identity(resumed.start_time))fail("checkpoint_history_mismatch","checkpoint history/coverage mismatch");
     resumed.continuation_histories=std::move(current);
-    if(resumed.continuation_histories.front().surface_evidence==nullptr)resumed.continuation_histories.clear();
+    if(resumed.continuation_histories.front().validated_evidence==nullptr)resumed.continuation_histories.clear();
   } else {
     keys(state,{"schema","legacyBytes"});
     if(string(state.at("schema"))!="canonical-v7-inside-v8/v1")fail("checkpoint_provider_state_mismatch","canonical state schema mismatch");
@@ -597,6 +612,7 @@ NativeCoupledEvolutionRequest decode_request_v3(const j::value& value) {
   v2.erase("execution");
   v2["schema"] = "eom_evolution_request/v2";
   auto r = decode_request(v2);
+  if(r.error_bound_checking!="strict")fail("unsupported_execution_policy","v3 validated execution requires strict error-bound checking");
   const auto present = [&](const char* section, const char* key) {
     return o.contains(section) && object(o.at(section)).contains(key);
   };
@@ -661,7 +677,7 @@ Object v3_resources(const NativeCoupledEvolutionRequest& r, std::uint64_t estima
 }
 }  // namespace
 
-std::string execute_eom_v2_request(const std::string& text,const std::string& checkpoint_file,std::function<bool()> cancel,std::function<void(std::size_t,const std::string&)> progress) {
+std::string execute_eom_v2_request(const std::string& text,const std::string& checkpoint_file,std::function<bool()> cancel,std::function<void(std::size_t,const std::string&)> progress,std::function<void(const std::string&)> paths) {
   try {
     const auto input=parse(text);const auto& o=object(input);keys(o,{"operation","request","checkpoint","endTime","runtime"});const auto operation=string(o.at("operation"));
     if(operation=="capabilities"){if(o.size()!=1)fail("unknown_request_field","capabilities takes no request");return equation_capabilities_json();}
@@ -689,13 +705,26 @@ std::string execute_eom_v2_request(const std::string& text,const std::string& ch
           {"growthBoundBytes",bound.growth_bytes},{"memoryBudgetBytes",r.memory_budget_bytes},
           {"estimateKind","admission bound with stated allowances, not a measured resident-set cost"}}}});
     }
-    if(operation=="inspect"){if(o.size()!=2)fail("unknown_request_field","inspect takes operation and request only");return canonical(Object{{"schema","eom_inspection/v2"},{"modelDigest",model.digest},{"resolvedModel",parse(model.canonical_json)}});}
+    if(operation=="inspect"){if(o.size()!=2)fail("unknown_request_field","inspect takes operation and request only");return canonical(Object{{"schema","eom_inspection/v2"},{"errorBoundChecking",r.error_bound_checking},{"modelDigest",model.digest},{"resolvedModel",parse(model.canonical_json)}});}
     if(operation!="evolve" && operation!="resume")fail("unsupported_operation","unknown v2 operation");
     if(o.size()!=(operation=="evolve"?2U:(o.contains("runtime")?5U:4U)))fail("unknown_request_field","operation fields mismatch");
     if(r.paths.empty() || !object(o.at("request")).contains("interval") || !object(o.at("request")).contains("runId"))fail("invalid_request","evolution requires runId, interval and paths");
     r.cancellation_requested=std::move(cancel);r.accepted_step_callback=std::move(progress);
+    std::string delivered=r.start_time;
+    if(paths && operation=="resume")delivered=token(object(o.at("checkpoint")).at("acceptedTime"));
+    std::size_t path_sequence=0;
+    const auto deliver=[&](std::size_t count,const std::string& time,const std::vector<NativePublishedPath>& histories,bool flush) {
+      if(!paths || time==delivered)return;
+      if(!flush && parse_finite_double(time,"stream time")-parse_finite_double(delivered,"stream start")<0.5)return;
+      paths(canonical(Object{{"schema","eom_paths/v1"},{"runId",r.run_id},{"modelDigest",model.digest},{"errorBoundChecking",r.error_bound_checking},
+        {"sequence",++path_sequence},{"acceptedStepCount",count},{"acceptedCoverage",Object{{"start",delivered},{"end",time}}},
+        {"publishedExtensions",extensions(histories,delivered)},{"durable",false}}));
+      delivered=time;
+    };
+    if(paths)r.accepted_paths_callback=[&](std::size_t count,const std::string& time,const std::vector<NativePublishedPath>& histories){deliver(count,time,histories,false);};
     std::optional<ValidatedProviderResume> restored;
     if(v3) {
+      if(r.error_bound_checking!="strict")fail("unsupported_execution_policy","v3 validated execution requires strict error-bound checking");
       const NativeValidatedBound bound=native_validated_bound(r);
       if(bound.growth_bytes>r.memory_budget_bytes)fail("request_budget_exhausted","the v3 bound of "+std::to_string(bound.growth_bytes)+" bytes for maximumAcceptedSteps "+std::to_string(r.diagnostic_maximum_accepted_steps)+" exceeds resources.memoryBytes "+std::to_string(r.memory_budget_bytes));
       if(operation=="resume") {
@@ -713,18 +742,19 @@ std::string execute_eom_v2_request(const std::string& text,const std::string& ch
     for(auto& step:c.steps){steps.push_back(Object{{"status",step.status},{"start",step.attempted_start},{"end",step.attempted_end},{"acceptedTime",step.accepted_time},{"failureCode",step.failure_code},{"atomic",step.publication_atomic}});
       if(step.accepted_snapshot)point_roots.push_back(root_ledger(*step.accepted_snapshot));
       if(step.recertification_snapshot)point_roots.push_back(root_ledger(*step.recertification_snapshot));
-      for(auto& s:step.surface_solutions){
+      for(auto& s:step.retained_solutions){
         Array geometry;
         for(const auto& g:s.geometry)geometry.push_back(Object{{"start",g.start_time},{"end",g.end_time},{"certified",g.certified},{"failureCode",g.failure_code},{"visitedCells",g.visited_cells},{"maximumDistance",finite_double_token(g.maximum_distance)},{"maximumTangentVelocity",finite_double_token(g.maximum_tangent_velocity)},{"minimumGradientSquared",finite_double_token(g.minimum_gradient_squared)}});
         solutions.push_back(Object{{"pathId",s.path_id},{"start",s.start_time},{"end",s.end_time},{"certified",s.certified},{"failureCode",s.failure_code},{"positionError",vector(s.position_error)},{"velocityError",vector(s.velocity_error)},{"accelerationBound",vector(s.acceleration_bound)},{"contractionBound",finite_double_token(s.contraction_bound)},{"solutionSpeedUpper",finite_double_token(s.solution_speed_upper)},{"selfAccounting",s.self_accounting},{"geometry",geometry}});
         for(auto& d:s.diagnostics)diagnostics.push_back(Object{{"pathId",d.path_id},{"reception",Array{d.reception_lower,d.reception_upper}},{"netInteraction",vector(d.net_interaction)},{"tangentInteraction",vector(d.tangent_interaction)},{"discardedNormal",vector(d.discarded_normal)},{"curvature",vector(d.curvature)},{"support",vector(d.support)},{"totalAcceleration",vector(d.total_acceleration)}});
         for(auto& root:s.partner_roots)roots.push_back(Object{{"receiverPathId",s.path_id},{"transmitterPathId",root.transmitter_path_id},{"sourceHistoryFingerprint",root.transmitter_history_fingerprint},{"reception",Array{finite_double_token(root.reception.lower()),finite_double_token(root.reception.upper())}},{"emission",Array{finite_double_token(root.emission.lower()),finite_double_token(root.emission.upper())}},{"factor",Array{finite_double_token(root.transmitter_factor.lower()),finite_double_token(root.transmitter_factor.upper())}},{"analyticSourceAcceleration",root.analytic_source_acceleration}});}
     }
+    for(const auto& d:c.exploratory_surface_diagnostics)diagnostics.push_back(Object{{"pathId",d.path_id},{"reception",Array{d.reception_lower,d.reception_upper}},{"netInteraction",vector(d.net_interaction)},{"tangentInteraction",vector(d.tangent_interaction)},{"discardedNormal",vector(d.discarded_normal)},{"curvature",vector(d.curvature)},{"support",vector(d.support)},{"totalAcceleration",vector(d.total_acceleration)}});
     Object halt{{"code",c.halt_code},{"boundaryMeaning","attempted slab is possible boundary/uncertainty coverage; no exact contact is claimed"}};
     if(!c.steps.empty() && c.steps.back().status=="rejected")halt["possibleBoundaryInterval"]=Array{c.steps.back().attempted_start,c.steps.back().attempted_end};
-    Object response{{"schema","eom_evolution_response/v2"},{"contractId","eom_evolution_contract/v2"},{"runId",c.run_id},{"status",c.status},{"modelDigest",model.digest},{"resolvedModel",parse(model.canonical_json)},
+    Object response{{"schema","eom_evolution_response/v2"},{"errorBoundChecking",r.error_bound_checking},{"contractId","eom_evolution_contract/v2"},{"runId",c.run_id},{"status",c.status},{"modelDigest",model.digest},{"resolvedModel",parse(model.canonical_json)},
       {"acceptedCoverage",Object{{"start",c.start_time},{"end",c.accepted_end_time}}},{"acceptedStepCount",c.accepted_step_count},{"rejectedStepCount",c.rejected_step_count},{"publishedExtensions",extensions(c.histories,c.start_time)},
-      {"ledgers",Object{{"steps",steps},{"partnerRoots",roots},{"pointRoots",point_roots},{"surfaceSolutions",solutions}}},{"surfaceDiagnostics",diagnostics},{"evidence",Object{{"method","numerical"},{"constraint",r.surface_geometry?"artificial-surface":"none"},{"numericalAcceptance",c.evidence_status},{"scientificAcceptance",false}}},
+      {"ledgers",Object{{"steps",steps},{"partnerRoots",roots},{"pointRoots",point_roots},{logarithmic_equation_selected(r)?"ordinarySolutions":"surfaceSolutions",solutions}}},{"surfaceDiagnostics",diagnostics},{"evidence",Object{{"method","numerical"},{"constraint",r.surface_geometry?"artificial-surface":"none"},{"numericalAcceptance",r.error_bound_checking=="none"?"display-only":c.evidence_status},{"errorBoundChecking",r.error_bound_checking},{"scientificAcceptance",false}}},
       {"halt",halt},{"checkpoint",Object{{"schema","eom_provider_checkpoint/v8"},{"digest",checkpoint.empty()?"":string(object(parse(checkpoint)).at("digest"))},{"durable",durable},{"acceptedTime",c.accepted_end_time},{"storageFailure",storage_failure},{"data",checkpoint.empty()?j::value(nullptr):parse(checkpoint)}}}};
     if(v3) {
       // v3: every v2 field keeps its meaning; the execution, the validated
@@ -750,12 +780,14 @@ std::string execute_eom_v2_request(const std::string& text,const std::string& ch
       response["validated"]=validated;
       response["resources"]=v3_resources(r,c.memory_estimate_bytes,c.memory_budget_bytes);
     }
+    deliver(c.accepted_step_count,c.accepted_end_time,c.histories,true);
     return canonical(response);
   } catch(const EquationAdmissionError& error){return canonical(Object{{"schema","eom_error/v2"},{"status","rejected"},{"code",error.code()},{"error",error.what()}});}
     catch(const std::exception& error){return canonical(Object{{"schema","eom_error/v2"},{"status","rejected"},{"code","invalid_request"},{"error",error.what()}});}
 }
 int run_eom_v2_cli(int argc,char** argv) {
-  std::string file; if(argc==4 && std::string(argv[2])=="--checkpoint-file")file=argv[3];else if(argc!=2)throw std::invalid_argument("v2 usage: eom-v2|eom-v2-server [--checkpoint-file PATH]");
+  std::string file;bool stream_paths=false;
+  for(int i=2;i<argc;++i){const std::string option=argv[i];if(option=="--checkpoint-file" && i+1<argc)file=argv[++i];else if(option=="--stream-paths")stream_paths=true;else throw std::invalid_argument("v2 usage: eom-v2|eom-v2-server [--checkpoint-file PATH] [--stream-paths]");}
   std::signal(SIGUSR1,cancel_signal);const bool server=std::string(argv[1])=="eom-v2-server";
   do {
     cancellation_flag=0;
@@ -767,7 +799,7 @@ int run_eom_v2_cli(int argc,char** argv) {
       if(line.size()>32U*1024U*1024U){std::cout<<execute_eom_v2_request(line)<<'\n';return 0;}
     }
     if(line.empty() && !std::cin)break;
-    const auto result=execute_eom_v2_request(line,file,[]{return cancellation_flag!=0;},[](std::size_t count,const std::string& time){std::cerr<<"{\"schema\":\"eom_progress/v2\",\"acceptedStepCount\":"<<count<<",\"acceptedTime\":"<<equation_json_quote(time)<<"}\n"<<std::flush;});
+    const auto result=execute_eom_v2_request(line,file,[]{return cancellation_flag!=0;},[](std::size_t count,const std::string& time){std::cerr<<"{\"schema\":\"eom_progress/v2\",\"acceptedStepCount\":"<<count<<",\"acceptedTime\":"<<equation_json_quote(time)<<"}\n"<<std::flush;},stream_paths?std::function<void(const std::string&)>([](const std::string& paths){std::cerr<<paths<<'\n'<<std::flush;}):std::function<void(const std::string&)>{});
     std::cout<<result<<'\n'<<std::flush;if(!server)break;
   }while(server && std::cin);return 0;
 }

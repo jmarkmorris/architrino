@@ -48,7 +48,7 @@ Explain what the returned histories, root ledgers, error records and execution p
 
 ## 9. Equation modes and precise analytical methods
 
-The operator selected a shared EOM capability on 2026-10-10: support explicitly selectable alternative Master Equations and speed regimes while retaining **the canonical Master Equation with no speed limit as the default**. Numerical evolution uses the standard EOM solver. Surface, Borg and headless consumers must select the same solver-owned definitions rather than implement alternative acceleration laws locally. This is an accepted design requirement; it is not an implemented capability or an amendment to the frozen canonical contract.
+The operator selected a shared EOM capability on 2026-10-10: support explicitly selectable alternative Master Equations and speed regimes while retaining **the canonical Master Equation with no speed limit as the default**. Numerical evolution uses the standard EOM solver. Surface, Borg and headless consumers must select the same solver-owned definitions rather than implement alternative acceleration laws locally. The registered provider boundary and v2/v8 transport implement the bounded capabilities described below; neither registration nor numerical qualification adopts an alternative into canon.
 
 Treat the interaction law, speed regime and optional geometric constraint as separate parts of a resolved run mode:
 
@@ -60,7 +60,7 @@ Treat the interaction law, speed regime and optional geometric constraint as sep
 
 No speed limit means the solver imposes no speed ceiling; it does not guarantee that acceleration is defined on every possible history. Canonical treatment of roots, singular geometry and events still applies. A selected restricted regime changes the declared domain or response and must retain its own definition. The [equation-variant registry](../master-equation-closure/equation-variants/README.md) owns scientific definitions and investigation scope; adding a selector does not establish a law's correctness or expand that scope.
 
-Resolve and validate the mode before execution. Requests, outputs, checkpoints and restarts must preserve the complete equation/speed/geometry identity. A changed mode starts a new run or an explicitly recorded branch. Unsupported combinations reject before advancing. Alternative-law and supported-surface outputs retain distinguishable authority and do not inherit the canonical evidence label. The completed [implementation design](contracts/equation-provider-design-v1.md) recommends a v2 successor for selectable providers and surface support, preserving the existing [canonical contract](contracts/evolution-contract-v1.md) and its v1 consumers. It specifies capability negotiation, valid combinations, evaluation plans, events and restart semantics, with [Surface](../app-surface/manuscript.md#shared-solver-modes) as a concrete consumer. These are proposed contract identifiers; implementation and independent acceptance remain open.
+Resolve and validate the mode before execution. Requests, outputs, checkpoints and restarts must preserve the complete equation/speed/geometry identity. A changed mode starts a new run or an explicitly recorded branch. Unsupported combinations reject before advancing. Alternative-law and supported-surface outputs retain distinguishable authority and do not inherit the canonical evidence label. The completed [implementation design](contracts/equation-provider-design-v1.md) recommends a v2 successor for selectable providers and surface support, preserving the existing [canonical contract](contracts/evolution-contract-v1.md) and its v1 consumers. It specifies capability negotiation, valid combinations, evaluation plans, events and restart semantics, with [Surface](../app-surface/manuscript.md#shared-solver-modes) as a concrete consumer. The v2 request/response and v8 checkpoint identifiers are implemented at the Stage C boundary below; each additional composition retains its own qualification domain.
 
 The operator also permits analytical methods where they are precise and far less expensive than numerical evolution. An independently checked derivation can supply an analytical result directly; reproducing it numerically is required only when a current verification question needs that comparison. Exact formulas or proved reductions can also reduce work within EOM, provided their domain includes the selected law, speed regime, geometry and complete causal history relevant to the claim. Record assumptions, root completeness where required, domain, exactness or controlled error, and an explicit fallback or halt outside the proved domain. An analytical candidate path with an unchecked delayed residual remains a candidate.
 
@@ -74,7 +74,7 @@ The operator selected a **general equation-provider interface** on 2026-10-10. N
 
 | Arrangement | What it provides | Main design obligation | Disposition |
 | --- | --- | --- | --- |
-| Built-in registered providers | Modules compiled with EOM and discovered through the selected general interface, with named definitions and explicitly supported compositions. | Specify each provider's roots, response order, events, errors and checkpoint identity; preserve canonical behavior. | Recommended first delivery of the selected interface; not implemented support. |
+| Built-in registered providers | Modules compiled with EOM and discovered through the selected general interface, with named definitions and explicitly supported compositions. | Specify each provider's roots, response order, events, errors and checkpoint identity; preserve canonical behavior. | Implemented for canonical, canonical-with-surface and bounded logarithmic compositions. |
 | Dynamically loaded providers | Separately packaged modules loaded into EOM through a versioned provider boundary. | In addition to the mathematical obligations, define binary compatibility, precision ownership, deterministic/thread-safe execution, module lifetime and reproducible restart availability. | Packaging proposal; runtime loading is not selected or implemented by choosing the general interface. |
 
 **Claim grade: inferred.** Starting with registered built-in providers is expected to make the selected general interface concrete while preserving reproducible definitions. Focused equation, speed and geometry modules compose behind one request boundary; they do not require a separate integrator for each variant. Reconsider this arrangement if concrete providers require duplicated evolution machinery or their root/event obligations cannot fit the common boundary. Arbitrary user-entered equations are not selected by this proposal.
@@ -128,7 +128,7 @@ Surface publication additionally validates a time-slab integral map. Whole-slab 
 
 The first numerical chart requires coherent exact paths below wake speed, ordinary sharp interaction and partner roots in already accepted history. The speed selector remains unrestricted and velocities are never altered to satisfy this chart. A coherent subwake path has no positive-delay self roots; the independent review proves this solution-domain reduction, while point snapshots preserve the canonical self/partner root ledger. Surface-consistent preparation is currently restricted to exactly admitted circular-factory families with matching exact domain endpoints. A separate Hermite reconstruction proof validates their token-defined analytic past over every segment; small nominal residuals or unverified factory roundoff do not substitute for it.
 
-The [Stage B record](analysis/equation-provider-stage-b-2026-10-10.md) owns focused qualification and its falsifiers. Independent exact-circle controls establish the geometry-only inclusion boundary, while small interacting runs exercise the route without supplying independent interacting scientific acceptance. Surface remains unavailable through Borg v1 and v7 checkpoints, including cross-request attempts to save a Surface result as canonical. Stage C supplies separate v2 transport, v8 persistence and restricted-domain halt policies. Joint/finite-width Surface event maps and the Surface app remain later work. Artificial support establishes no free confinement, stable assembly or energy law.
+The [Stage B record](analysis/equation-provider-stage-b-2026-10-10.md) owns focused qualification and its falsifiers. Independent exact-circle controls establish the geometry-only inclusion boundary, while small interacting runs exercise the route without supplying independent interacting scientific acceptance. Surface remains unavailable through Borg v1 and v7 checkpoints, including cross-request attempts to save a Surface result as canonical. Stage C supplies separate v2 transport, v8 persistence and restricted-domain halt policies. Joint/finite-width Surface event maps remain unavailable; Stage E below supplies the bounded Surface app. Artificial support establishes no free confinement, stable assembly or energy law.
 
 ### Stage C domains, consumer transport and restart
 
@@ -153,3 +153,97 @@ The [Stage D calculation](analysis/equation-provider-stage-d-2026-10-11.md) uses
 The dedicated Surface page prepares bounded fixed-sphere experiments and consumes the same EOM solver through shared provider-aware record routes. Start, Pause, Resume and Reset retain accepted-boundary ownership. Returned manifests match inspection; any preparation edit invalidates readiness. The shared cubic history evaluator displays accepted extensions without browser dynamics. Receiver-total interval diagnostics distinguish tangent interaction, discarded normal, curvature, artificial support and total acceleration. Source/JSON controls and real EOM/browser observations are recorded in the [delivery receipt](analysis/equation-provider-stage-e-2026-10-11.md) and [separate review](analysis/equation-provider-stage-e-review-2026-10-11.md).
 
 Opt-in record routes write bounded complete raw responses to disk and return a bounded presentation projection containing full published histories, checkpoint and model, sampled diagnostics and raw provenance. Partial/budget/storage failure retains evidence and reports its identity rather than claiming complete export. Existing direct consumer routes keep their own response path. Pinned Stage D records retain their exact independent qualification; fresh numerical and imported unverified records have distinct labels. Native chooser automation has the stated round-trip verification gap. These are engineering consumer guarantees; the [bounded oblate case](../app-surface/analysis/oblate-qualification-2026-10-12.md) now has independently checked root/kernel, geometry/tangency/support, refinement and q=1 sphere recovery. Its scientific scope is the declared off-equator preparation over [0,0.15], with conditional older-tail exclusion and production validated inclusion as its existence premise. The [oblate consumer extension](../app-surface/evidence/oblate-app-delivery-2026-10-12.md) is implemented with independent consumer/source checks and checked-run browser loading/export; [actual fresh browser lifecycle, chooser import and desktop/narrow verification](../app-surface/evidence/oblate-app-browser-delivery-2026-10-14.md) are complete with independent engineering review. The separately reviewed [inner/outer ring-torus calculation](../app-surface/analysis/torus-qualification-2026-10-14.md) now qualifies six bounded numerical cases through time 0.15 with delayed-root/kernel/support, dense geometry and four refinement checks. Each member’s endpoint meridional displacement is resolved beyond its emitted radius. Qualification binds its retained current build and stated history/domain/existence premises; the [bounded torus app delivery](../app-surface/evidence/torus-app-delivery-2026-10-15.md) now passes checked loading, fresh EOM lifecycle, real exported-file import and desktop/narrow observations. Physical retention and general EOM application delivery remain open.
+
+### Logarithmic provider and its bounded ordinary-root domain
+
+The registered `logarithmic/v1` provider implements the [scientific owner's inverse-distance replacement](../master-equation-closure/equation-variants/logarithmic-potential/manuscript.md#master-equation-before-and-after-a-logarithmic-replacement) through the shared EOM solver. Write $\mathbf d=\mathbf X_i(T)-\mathbf X_j(S)$, $r=\lVert\mathbf d\rVert$, $\mathbf n=\mathbf d/r$, $D=1-\mathbf n\cdot\mathbf V_j(S)$ and $C=\kappa_{\log}q_iq_j$, with normalized $c_f=1$. A simple positive-delay hit contributes
+
+$$
+\mathbf A=C\frac{\mathbf d}{r^2|D|},
+\qquad S<T,\qquad r=T-S.
+$$
+
+The wire parameter `model.coupling` means $\kappa_{\log}>0$ for this composition. Its charge-weighted dimensions are $L^2T^{-2}$; canonical coupling has charge-weighted dimensions $L^3T^{-2}$. Matching them at a comparison length $L_*$ means $\kappa_{\log}=\kappa/L_*$ and is an explicit comparison choice, not an automatic conversion. The arbitrary reference radius of a logarithmic scalar is absent from this acceleration and from the parameter schema. Polarity products retain like-polarity repulsion and opposite-polarity attraction. There is no receiver multiplier, surface support, speed response, omitted-root prescription or contact continuation.
+
+The implemented evolution domain is finite retained history with a coherent continuously differentiable path, certified speed strictly below one, positive delayed separation and a transmitter factor bounded away from zero. Initial histories are either one exact affine cubic segment with zero higher coefficients and zero reconstruction errors, or a history produced by the existing certified circular factory. General cubic uncertainty tubes do not establish the continuity of an underlying preparation and are refused. Computed extensions acquire their coherence and acceleration bounds from the shared publication proof. This is a numerical chart restriction: an unrestricted selection imposes no physical speed ceiling, yet this implementation declines a calculation whose true-solution tube cannot be certified wholly below one.
+
+Each partner root on a proposed step must lie strictly before that step's accepted start. For a coherent source with speed below one, $f(S)=T-S-\lVert\mathbf X_i(T)-\mathbf X_j(S)\rVert$ is strictly decreasing. Uniform opposite signs at the retained lower boundary and the accepted step start prove exactly one partner root throughout the reception/state slab. Two sign-preserving bisections enclose the entire root family, rather than only its center. Failure of either boundary sign, separation, factor clearance or history coverage prevents publication. Thus this first route requires sufficient retained history for every partner; it does not extend to arbitrary root-free partner geometries or negative-$D$ branches.
+
+No positive-delay self hit exists on this coherent below-wake-speed domain: integration of the speed bound gives $\lVert\mathbf X_i(T)-\mathbf X_i(S)\rVert<T-S$ for every $S<T$. The full point-root ledger still enumerates self relationships and excludes the same-time endpoint. The slab proof's self exclusion follows from this inequality; it is not a changed self-channel clause. Superwake self hits remain part of the scientific law outside this implementation domain.
+
+#### Derivatives required by publication
+
+The derivative used by the host includes the implicit change in emission time. For a variation $\delta\mathbf x$ of receiver position, holding the source history fixed, differentiating the causal equation gives
+
+$$
+\delta S=-\frac{\mathbf n\cdot\delta\mathbf x}{D},
+\qquad
+\delta\mathbf d=\delta\mathbf x-\mathbf V_j\delta S,
+\qquad
+\delta\mathbf V_j=\mathbf A_j\delta S.
+$$
+
+Here $\mathbf A_j$ is the source's actual acceleration at emission. It is zero on an affine preparation, comes from the circular factory's analytical enclosure on its preparation interval, and comes from an immutable previously validated acceleration carrier on computed history. The remaining chain rule is
+
+$$
+\delta r=\mathbf n\cdot\delta\mathbf d,
+\qquad
+\delta\mathbf n=\frac{\delta\mathbf d-\mathbf n\delta r}{r},
+\qquad
+\delta D=-\delta\mathbf n\cdot\mathbf V_j-\mathbf n\cdot\delta\mathbf V_j,
+$$
+
+$$
+\delta\mathbf A=\frac{C}{|D|}
+\left(
+\frac{\delta\mathbf d}{r^2}
+-\frac{2\mathbf d(\mathbf d\cdot\delta\mathbf d)}{r^4}
+-\frac{\mathbf d}{r^2}\frac{\delta D}{D}
+\right).
+$$
+
+These identities hold on any connected simple-root chart with fixed sign of $D$. Outward interval evaluation encloses them over the whole slab. The logarithmic radial derivative has coefficient two and denominator $r^4$; the canonical derivative has coefficient three and denominator $r^5$. Replacing only the acceleration value would leave the host's derivative certificate wrong. The shared sensitivity service selects the named radial response explicitly; its default remains canonical. No logarithmic implicit solve or joint-affine evolution is advertised by this derivative calculation.
+
+The shared host proposes and corrects cubic segments and compares one full step with two half steps. Its retained-publication service then proves an enclosure of the continuous solution around those candidates. Let $p$ be the nominal cubic, let $h$ be its duration, and let $R_x,R_v$ bound initial position and velocity mismatch. If the entire proposed tube bounds $\lVert\mathbf A-p''\rVert_\infty$ by $M$, sufficient componentwise inclusion conditions are
+
+$$
+R_x+hR_v+\tfrac12h^2M\le\rho_x,
+\qquad R_v+hM\le\rho_v.
+$$
+
+The radii $\rho_x,\rho_v$ are the candidate's retained position and velocity error bounds. The validator covers the entire segment by 64 time cells, expands these radii within a bounded iteration, and rejects any expansion exceeding the selected EOM tolerances. It also bounds position and velocity Jacobian row sums by $L_x,L_v$. For the second-order integral map, using the norm $\max(\lVert\delta x\rVert_\infty/h,\lVert\delta v\rVert_\infty)$, a sufficient contraction bound is $q=h^2L_x+hL_v<1$. For unconstrained logarithmic evolution $L_v=0$, because reception velocity is absent from the acceleration. Source derivatives and uncertainty remain included through the delayed history. Inclusion, contraction, complete slab roots and the speed chart are all required before atomic publication. This service also serves Surface; the latter adds its own geometric transform and geometry certificate.
+
+Claim grade: derived for the displayed causal derivative, self exclusion and integral-map conditions under their stated continuity, separation and history assumptions. A coherent path satisfying the speed bound but having a positive-delay self hit, a differentiated ordinary-root row disagreeing with the chain rule, or a solution leaving an admitted integral-map tube falsifies the corresponding claim. These are local numerical-solution conditions, not a derivation of the logarithmic hypothesis from emitted-sphere accounting.
+
+#### Independent controls and interpretation
+
+Three analytical controls distinguish the new kernel from deterministic replay. With a stationary source and $C=1$ at displacement $(2,0,0)$, acceleration is $(1/2,0,0)$ and its position Jacobian is $\operatorname{diag}(-1/4,1/4,1/4)$. The canonical acceleration at this displacement is $(1/4,0,0)$. For source $\mathbf X_j(S)=(0,0.6S,0)$, receiver position $(1,0,0)$ and reception time zero, the exact causal root is $S=-1.25$, separation is $1.25$, transmitter factor is $0.64$, and the logarithmic contribution with $C=1$ is $(1,0.75,0)$. Its receiver-position Jacobian is $[[-1,-0.75,0],[-0.75,1,0],[0,0,1]]$, obtained by differentiating the closed-form positive root $r=(0.6y+\sqrt{y^2+0.64x^2+0.64z^2})/0.64$ at $(x,y,z)=(1,0,0)$. Changing only receiver velocity to $(0.6,0,0)$ in the stationary-source unit-separation case leaves acceleration $(1,0,0)$ unchanged. These values follow directly from the causal equation and displayed response; no research solver supplies the expected values.
+
+A separate scalar comparison bounds the coupled opposite-polarity pair prepared at rest at $\pm0.1$, with $\kappa_{\log}=10^{-4}$ and unit charge magnitudes, through time $0.25$. Write its inward displacement as $y(T)$, with $y=0$ in the past. By symmetry, its delayed acceleration is
+
+$$
+y''(T)=\frac{10^{-4}}{[0.2-y(T)-y(S)][1-y'(S)]}.
+$$
+
+On the bootstrap box $0\le y\le0.000016$ and $0\le y'\le0.000126$, this lies between $0.0005$ and $10^{-4}/[(0.2-0.000032)(1-0.000126)]<0.000501$. Integrating the upper bound to $0.25$ gives $y\le0.00001565625$ and $y'\le0.00012525$, strictly inside the bootstrap box. Continuity therefore closes the bound across the interval, with strictly positive separated roots and below-wake-speed motion. The right endpoint lies in
+
+$$
+0.1-\tfrac12(0.000501)(0.25)^2\le X_{\mathrm{right}}(0.25)
+\le0.1-\tfrac12(0.0005)(0.25)^2,
+$$
+
+$$
+-0.000501(0.25)\le V_{\mathrm{right}}(0.25)\le-0.0005(0.25).
+$$
+
+Claim grade: derived for this comparison box and its first-exit argument under the specified preparation and law. A violation of the scalar reduction, denominator bounds or integrated strict margins falsifies it. The explicit-use C++ fixture checks analytical acceleration/Jacobian cases before coupled evolution, then checks intersection with this independent endpoint enclosure, computed-history consumption, narrowing under step refinement and checkpoint replay. Intersection is a consistency control; the continuous enclosure claim comes from the full-slab publication theorem and its checked obligations, not from intersection alone. Replay establishes continuity of persistence, not independent mathematical correctness.
+
+#### Selection, identity and refusals
+
+Select `model.compositionId: "logarithmic/v1"` in an `eom_evolution_request/v2`, with numerical method, no constraint, $c_f=1$, positive logarithmic coupling and strict error-bound checking. Omission continues to select canonical/unrestricted behavior. The capability record and both shared Node/browser clients expose `modelOptions()` and `selectModel()`; filters select compatible constraints and methods without app-local equation lists. Surface's geometry-specific consumer remains canonical-with-surface because no logarithmic surface composition is registered. These helpers discover supported controls; the EOM provider still admits the actual preparation and numerical chart.
+
+Unrestricted, strict/halt and inclusive/halt selections share the unchanged logarithmic acceleration. Restricted selections add the existing certified domain check and never a clamp. Their supported numerical domain is still the strictly-below-one chart above; inclusive selection does not qualify equality-speed evolution. Unsupported Surface combinations, finite-width/fold/contact charts, general cubic preparations, joint/implicit evolution, optional multirate/quarter-step publication, canonical far-field/grouped bounds, v3 validated far-step execution and exploratory point evolution are explicitly refused. Root geometry may use the existing precision escalation; logarithmic acceleration uses outward binary64 intervals and halts if they cannot meet the budget. The canonical implicit-root mean-value acceleration optimization is bypassed for logarithmic rows. Causal-only traversal, root contraction, warm root exclusion and root-free history-prefix bounds reuse unchanged geometry.
+
+The resolved manifest binds the provider, scientific source digest, mathematical plan, coupling, normalized field speed, selected domains, source/build configuration and numerical profile. Snapshot identity additionally binds the original preparation and charge/path identities. V8 binds the complete original request and controls. Its `logarithmic-revalidate-publication/v1` state reconstructs chronological publication proofs, including computed-source acceleration carriers; uploaded checksums or booleans cannot certify a trajectory. Changed model, preparation or controls refuse continuation. V7 remains canonical-only. Evolution reports `ordinary_solution_enclosure`, separate `ordinarySolutions` records, and `scientificAcceptance: false`; retained record projections summarize the ordinary certificates while retaining complete ledgers on the host. A halt preserves only the previously accepted prefix and its durability receipt.
+
+The [solver README](../../../src/eom/README.md#logarithmic-provider) gives reproduction commands. The [work log](work-log.md#logarithmic-provider-qualification--2026-11-01) records the measured qualification, exact run receipts and limitations. This increment establishes an executable bounded alternative equation, not its adoption into canon, an energy account, a stable assembly or a physical solution outside the selected preparation/domain.

@@ -633,10 +633,10 @@ test("Borg path-history renderer joins replay rows without visual smoothing curv
   assert.doesNotMatch(htmlSource, /<section[^>]*aria-label="Initial condition fields"/);
   assert.match(htmlSource, /id="borg-eom-history-status"/);
   assert.match(htmlSource, /id="borg-eom-authority"[^>]*data-grade="display"/);
-  assert.match(htmlSource, /id="borg-eom-authority-label"[^>]*>Run grade</);
+  assert.match(htmlSource, /id="borg-eom-authority-label"[^>]*>Error bound checking</);
   assert.match(
     htmlSource,
-    /id="borg-eom-run-grade"[^>]*class="borg-radio-group"[\s\S]*type="radio" name="borg-eom-run-grade" value="display" checked[\s\S]*Display grade[\s\S]*type="radio" name="borg-eom-run-grade" value="certified"[\s\S]*Claim grade/,
+    /id="borg-eom-run-grade"[^>]*class="borg-radio-group"[\s\S]*type="radio" name="borg-eom-run-grade" value="display" checked[\s\S]*None[\s\S]*type="radio" name="borg-eom-run-grade" value="certified"[\s\S]*Strict/,
   );
   assert.doesNotMatch(htmlSource, /<select id="borg-eom-run-grade"/);
   assert.match(htmlSource, /id="borg-eom-authority-detail"/);
@@ -667,8 +667,8 @@ test("Borg path-history renderer joins replay rows without visual smoothing curv
   assert.match(runSessionSource, /maximumStep: certifiedBudget\.allocations\.controller\.maximumStep/);
   assert.match(panelRowsSource, /Forward EOM chunks/);
   assert.match(runtimeSource, /state\.eomRunGrade === BORG_EOM_RUN_GRADE_DISPLAY/);
-  assert.match(runtimeSource, /point-projected input history at T=0/);
-  assert.match(runtimeSource, /It never changes to display grade/);
+  assert.match(runtimeSource, /Error bound checking: none/);
+  assert.match(runtimeSource, /Error bound checking: strict/);
   assert.match(runSessionSource, /runtimeControls\.runGrade \?\? configured\.runGrade/);
   assert.doesNotMatch(runtimeSource, /Claim grade through T=/);
   assert.match(

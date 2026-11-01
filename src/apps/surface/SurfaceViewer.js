@@ -5,7 +5,7 @@ import {borgPolarityColor} from '../borg/BorgOrbitTrails.mjs';
 import {isSixPoleReplay,sixPoleBounds,nearestSixPoleSample,sixPoleFrame,SIX_POLE_MEMBERS} from './SurfaceSixPoleReplay.js';
 // Geometry/camera and retained-history display only. Borg's live controller is
 // coupled to its assembly simulation; Surface reuses the shared cubic evaluator.
-// Markers are rescaled each frame by camera distance so every architrino keeps one screen size.
+// Camera-facing markers keep a fixed 28 CSS-pixel diameter at every depth and zoom.
 export function createSurfaceViewer(host) {
   const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));host.append(renderer.domElement);
   const scene=new THREE.Scene(), camera=new THREE.PerspectiveCamera(38,1,0.001,100);camera.up.set(0,0,1);
@@ -26,7 +26,7 @@ export function createSurfaceViewer(host) {
     for(const p of request.paths){const color=borgPolarityColor(Math.sign(Number(p.charge)));const h=p.history;
       const point=t=>h.kind==='stationary'?new THREE.Vector3(...h.position.map(Number)):new THREE.Vector3(Number(h.radius)*Math.cos(Number(h.phase)+Number(h.angularSpeed)*t),Number(h.radius)*Math.sin(Number(h.phase)+Number(h.angularSpeed)*t),Number(h.height));
       if(h.kind!=='stationary')line(Array.from({length:81},(_,i)=>point(Number(h.start)+(Number(h.end)-Number(h.start))*i/80)),color,.35,true);
-      const marker=new THREE.Mesh(new THREE.SphereGeometry(radius*.06,20,14),new THREE.MeshBasicMaterial({color}));marker.position.copy(point(Number(h.end)));group.add(marker);
+      const marker=new THREE.Mesh(new THREE.CircleGeometry(1,32),new THREE.MeshBasicMaterial({color}));marker.position.copy(point(Number(h.end)));group.add(marker);
       const label=document.createElement('span');label.className='member-label';label.textContent=names.get(p.pathId);host.append(label);labels.push(label);objects.push({pathId:p.pathId,marker,label,color,trail:null});
     }
   }
@@ -36,6 +36,28 @@ export function createSurfaceViewer(host) {
       o.trail=line(points,o.color);o.times=times;
     }setTime(isSixPoleReplay(record)?sixPoleBounds(record).end:Number(record.results.at(-1).acceptedCoverage.end));
   }
+  function beginLive(next,previous){
+    setExperiment(next);
+    histories=next.paths.map(p=>({pathId:p.pathId,charge:Number(p.charge),coverage:{start:Number(next.interval.start),end:Number(next.interval.start)},segments:[]}));
+    if(previous)appendPaths({acceptedCoverage:{end:previous.results.at(-1).acceptedCoverage.end},publishedExtensions:retainedHistories(previous)});
+  }
+  function appendPaths(event){
+    for(const row of event.publishedExtensions){
+      const h=histories.find(p=>p.pathId===row.pathId),o=objects.find(p=>p.pathId===row.pathId);
+      const additions=row.segments.map(s=>({...s,startTime:s.start,endTime:s.end}));h.segments.push(...additions);h.coverage.end=Number(event.acceptedCoverage.end);
+      if(!additions.length)continue;
+      if(!o.trail){o.trail=line([],o.color);o.times=[];o.liveCapacity=256;o.livePositions=new Float32Array(o.liveCapacity*3);o.liveCount=0;}
+      const point=(segment,t)=>{const dt=t-Number(segment.start);return segment.coefficients.map(c=>Number(c[0])+dt*(Number(c[1])+dt*(Number(c[2])+dt*Number(c[3]))));};
+      const add=(p,t)=>{if(o.liveCount>=o.liveCapacity){o.liveCapacity*=2;const grown=new Float32Array(o.liveCapacity*3);grown.set(o.livePositions);o.livePositions=grown;}o.livePositions.set(p,o.liveCount*3);o.liveCount++;o.times.push(t);};
+      for(const segment of additions)for(let i=0;i<4;i++){const t=Number(segment.start)+(Number(segment.end)-Number(segment.start))*i/4;add(point(segment,t),t);}
+      const last=additions.at(-1),t=Number(last.end);add(point(last,t),t);
+      let attribute=o.trail.geometry.getAttribute('position');
+      if(attribute?.array!==o.livePositions){attribute=new THREE.BufferAttribute(o.livePositions,3);attribute.setUsage(THREE.DynamicDrawUsage);o.trail.geometry.setAttribute('position',attribute);}
+      attribute.needsUpdate=true;o.trail.geometry.computeBoundingSphere();
+    }
+    setTime(time);
+  }
+  function finishLive(next){record=next;histories=retainedHistories(next);setTime(time);}
   function setTime(next){time=next;
     for(const o of objects){const h=histories.find(p=>p.pathId===o.pathId);if(!h?.segments.length)continue;const p=evaluateSurfacePath(h,time).position;o.marker.position.set(p.x,p.y,p.z);const i=o.times.findIndex(t=>t>time);o.trail.geometry.setDrawRange(0,i<0?o.times.length:i);}
     for(const a of arrows){group.remove(a);a.dispose();}arrows=[];
@@ -50,6 +72,6 @@ export function createSurfaceViewer(host) {
     }
   }
   let dragging=false,last;renderer.domElement.addEventListener('pointerdown',e=>{dragging=true;last=[e.clientX,e.clientY];renderer.domElement.setPointerCapture(e.pointerId);});renderer.domElement.addEventListener('pointermove',e=>{if(!dragging)return;yaw-=(e.clientX-last[0])*.006;pitch=Math.max(-1.35,Math.min(1.35,pitch+(e.clientY-last[1])*.006));last=[e.clientX,e.clientY];});renderer.domElement.addEventListener('pointerup',()=>dragging=false);renderer.domElement.addEventListener('pointercancel',()=>dragging=false);renderer.domElement.addEventListener('wheel',e=>{e.preventDefault();zoom=Math.max(2.4,Math.min(8,zoom+e.deltaY*.002));},{passive:false});renderer.domElement.tabIndex=0;renderer.domElement.setAttribute('aria-label','Sphere and architrino paths. Drag to rotate; scroll to zoom. Arrow keys rotate.');renderer.domElement.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key))return;e.preventDefault();yaw+=e.key==='ArrowLeft'?-.1:e.key==='ArrowRight'?.1:0;pitch=Math.max(-1.35,Math.min(1.35,pitch+(e.key==='ArrowUp'?.1:e.key==='ArrowDown'?-.1:0)));});
-  let frame;function draw(){const w=host.clientWidth,h=host.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.near=radius*.001;camera.far=radius*100;camera.position.set(radius*zoom*Math.cos(pitch)*Math.sin(yaw),radius*zoom*Math.cos(pitch)*Math.cos(yaw),radius*zoom*Math.sin(pitch));camera.lookAt(0,0,0);camera.updateProjectionMatrix();for(const o of objects){const active=o.pathId===(highlighted??selected);o.marker.scale.setScalar(camera.position.distanceTo(o.marker.position)/(radius*zoom)*(active?1.25:1));o.label.classList.toggle('is-active',active);}renderer.render(scene,camera);for(const o of objects){const p=o.marker.position.clone().project(camera);o.label.style.transform=`translate(${(p.x+1)*w/2}px,${(1-p.y)*h/2}px) translate(-50%,-50%)`;}frame=requestAnimationFrame(draw);}draw();
-  return {setExperiment,setRecord,setTime,select(id){selected=id;highlighted=null;},highlight(id){highlighted=id;},setArrows(value){showArrows=value;setTime(time);},resetCamera(){yaw=.5;pitch=request?.model.geometry.kind==='ring-torus'?.85:.45;zoom=3.7;},dispose(){cancelAnimationFrame(frame);clear();renderer.dispose();renderer.domElement.remove();}};
+  let frame;function draw(){const w=host.clientWidth,h=host.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.near=radius*.001;camera.far=radius*100;camera.position.set(radius*zoom*Math.cos(pitch)*Math.sin(yaw),radius*zoom*Math.cos(pitch)*Math.cos(yaw),radius*zoom*Math.sin(pitch));camera.lookAt(0,0,0);camera.updateProjectionMatrix();const forward=camera.getWorldDirection(new THREE.Vector3());for(const o of objects){const active=o.pathId===(highlighted??selected);const depth=o.marker.position.clone().sub(camera.position).dot(forward);o.marker.quaternion.copy(camera.quaternion);o.marker.scale.setScalar(28*depth*Math.tan(camera.fov*Math.PI/360)/Math.max(1,h));o.label.classList.toggle('is-active',active);}renderer.render(scene,camera);for(const o of objects){const p=o.marker.position.clone().project(camera);o.label.style.transform=`translate(${(p.x+1)*w/2}px,${(1-p.y)*h/2}px) translate(-50%,-50%)`;}frame=requestAnimationFrame(draw);}draw();
+  return {setExperiment,setRecord,beginLive,appendPaths,finishLive,setTime,select(id){selected=id;highlighted=null;},highlight(id){highlighted=id;},setArrows(value){showArrows=value;setTime(time);},resetCamera(){yaw=.5;pitch=request?.model.geometry.kind==='ring-torus'?.85:.45;zoom=3.7;},dispose(){cancelAnimationFrame(frame);clear();renderer.dispose();renderer.domElement.remove();}};
 }

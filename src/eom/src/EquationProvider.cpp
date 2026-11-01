@@ -1,10 +1,11 @@
 #include "architrino/eom/EquationRegistry.hpp"
-#include "CanonicalEquationEvaluation.hpp"
+#include "RetainedEquationEvaluation.hpp"
 #include "EquationSourceIdentity.hpp"
 #include <algorithm>
 #include "architrino/eom/SpeedDomain.hpp"
 
 namespace architrino::eom {
+const EquationProvider& require_logarithmic_equation_provider(const NativeCoupledEvolutionRequest&);
 const EquationProvider& require_surface_equation_provider(const NativeCoupledEvolutionRequest&);
 namespace {
 
@@ -63,6 +64,7 @@ class CanonicalEquationProvider final : public EquationProvider {
       throw EquationAdmissionError("unsupported_model_combination",
                                    "unknown canonical chart policy");
     }
+    if(request.error_bound_checking=="none")return;
     for (const auto& path : request.paths) require_prepared_speed_domain(path.history, selection);
   }
 
@@ -70,9 +72,9 @@ class CanonicalEquationProvider final : public EquationProvider {
       const EquationEvaluationContext& context) const override {
     admit(context.request);
     if (std::any_of(context.histories.begin(), context.histories.end(),
-        [](const auto& path) { return path.surface_evidence != nullptr; }))
+        [](const auto& path) { return path.validated_evidence != nullptr; }))
       throw EquationAdmissionError("unsupported_model_combination", "canonical provider cannot implicitly consume Surface continuation carriers");
-    auto result = detail::certify_canonical_acceleration_snapshot(
+    auto result = detail::certify_retained_acceleration_snapshot(
         context.request, context.histories, context.reception_time,
         context.warm_snapshot, context.warm_histories,
         context.defer_root_precision_escalation);
@@ -94,6 +96,7 @@ class CanonicalEquationProvider final : public EquationProvider {
 
 const EquationProvider& require_equation_provider(
     const NativeCoupledEvolutionRequest& request) {
+  if (logarithmic_equation_selected(request)) return require_logarithmic_equation_provider(request);
   if (request.equation_selection && request.equation_selection->composition_id == "canonical-surface/v1")
     return require_surface_equation_provider(request);
   static const CanonicalEquationProvider provider;

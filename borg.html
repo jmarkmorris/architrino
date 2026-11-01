@@ -1581,7 +1581,8 @@
           transition: none;
         }
       }
-    </style>
+    .borg-initial-control[hidden]{display:none!important}
+</style>
   </head>
   <body>
     <div id="scene-hud-tools" class="borg-webapp-navigation"></div>
@@ -1623,20 +1624,20 @@
           </fieldset>
           <div class="borg-mode-copy">
             <strong id="borg-mode-label">Random initial conditions</strong>
-            <span id="borg-mode-detail" role="status">Display- or Claim-grade EOM simulation is available after Play.</span>
+            <span id="borg-mode-detail" role="status">Choose error bound checking, then Play to calculate motion.</span>
           </div>
         </div>
         <div id="borg-eom-authority" class="borg-eom-authority" data-grade="display">
-          <strong id="borg-eom-authority-label">Run grade</strong>
+          <strong id="borg-eom-authority-label">Error bound checking</strong>
           <fieldset id="borg-eom-run-grade" class="borg-radio-group" aria-labelledby="borg-eom-authority-label">
             <div class="borg-radio-options is-inline">
               <label class="borg-radio-choice">
                 <input type="radio" name="borg-eom-run-grade" value="display" checked />
-                <span>Display grade</span>
+                <span>None</span>
               </label>
               <label class="borg-radio-choice">
                 <input type="radio" name="borg-eom-run-grade" value="certified" />
-                <span>Claim grade</span>
+                <span>Strict</span>
               </label>
             </div>
           </fieldset>

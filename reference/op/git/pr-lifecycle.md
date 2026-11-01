@@ -14,13 +14,13 @@ An explicit operator instruction selecting an invocation mode below, or `run pr-
 
 Every PR mode must display the actual PR title and description in the right-hand rendered Markdown preview, including full-lifecycle mode without a review pause. Display before publication/merge and refresh it if the write-up changes; absence of a pause never waives display. Do not claim the preview appeared unless the presentation action succeeded.
 
-These modes apply equally to Claude and Codex. The operator selects the review pause and merge authority for one scoped candidate; discussion or general trust alone does not invoke publication.
+These modes apply equally to Claude and Codex. An instruction to run this procedure defaults to the complete lifecycle for one scoped candidate, including guarded merge, cleanup and successor rollover, without a routine approval pause. Pause for PR approval only when the operator requests it; mandatory stop conditions and host permission controls still apply. Discussion or general trust alone does not invoke publication.
 
 | Operator directive | Runner behavior |
 | --- | --- |
 | **Prepare the PR for my review** | Prepare the candidate and intentional title/body. Show the write-up in rendered Markdown preview in the right-hand panel, with relevant changes and validation status accessible. Pause before publication for approval, rejection or edits. Approval to finish that candidate authorizes publication, checks, ordinary merge, cleanup and successor preparation. |
-| **Complete the entire PR lifecycle without a review pause** | Explicitly delegates merge and post-merge authority for the scoped candidate. Run all required validation, publish, merge, verify cleanup and prepare the successor without another routine review pause. |
-| **Open a PR** | Publish and verify a ready PR, then stop before merging. This remains the default for a plain instruction to run this procedure. |
+| **Run pr-lifecycle.md**, including its equivalent linked-file instruction, or **Complete the entire PR lifecycle without a review pause** | Delegates merge and post-merge authority for the scoped candidate. Run all required validation, publish, merge, verify cleanup and prepare the successor without a routine review pause. This is the default invocation. |
+| **Open a PR** | Publish and verify a ready PR, then stop before merging. This explicitly narrower request does not invoke the default full lifecycle. |
 
 A commit-and-push request retains its narrower stopping point. In review mode, “go ahead” authorizes completion only when it clearly refers to the presented candidate and full lifecycle. Rejection stops publication and preserves the work. Requested edits update the preview; material candidate changes after approval require renewed approval. Delegation does not extend to later PRs or unrelated work.
 
@@ -90,7 +90,7 @@ Before any authenticated publication action, apply the [route-diagnosis and publ
 
 ## Merge Method and Repository Settings
 
-Use ordinary merge commits for future PRs. The operator may select **Create a merge commit** or explicitly delegate the guarded merge through the invocation modes above. Default publication authority does not include merging. Preserve individual branch commits and their identities in main's ancestry; do not squash, rebase, rewrite existing history, or enable automatic merging as part of this procedure.
+Use ordinary merge commits for future PRs. The default lifecycle invocation delegates the guarded merge through the invocation modes above. A narrower publication-only request does not include merging; requested review-pause mode waits for candidate approval. Preserve individual branch commits and their identities in main's ancestry; do not squash, rebase, rewrite existing history, or enable automatic merging as part of this procedure.
 
 Required repository settings: merge commits enabled; squash and rebase merging disabled; automatic head-branch deletion disabled. Preserve PR requirements, force-push protection, and deletion protection. A linear-history requirement conflicts with this method and requires an explicit operator decision rather than a bypass. Verify settings through the assigned repository credential route before the review handoff.
 
@@ -119,13 +119,13 @@ Research-size `REVIEW` warnings are advisory. Record their scoped assessment and
 
 ### Routine authority after Op invocation
 
-Once Op explicitly instructs a specific agent to run this procedure, that invocation authorizes the healthy path all the way to the operator's PR-review handoff. Do not re-ask for approval for routine inspection, deterministic whitespace or generated-file repair, validation and retry, deliberate staging of the declared branch-tip scope, commit, ordinary non-force push, PR title/body preparation, PR creation or update, draft-to-ready transition, remote-check watching, or mergeability verification.
+Once Op explicitly instructs a specific agent to run this procedure, that invocation authorizes the healthy path through guarded merge, verified cleanup and successor rollover, unless Op requests a review pause or a narrower stopping point. Do not re-ask for approval for routine inspection, deterministic whitespace or generated-file repair, validation and retry, deliberate staging of the declared branch-tip scope, commit, ordinary non-force push, PR title/body preparation, PR creation or update, draft-to-ready transition, remote-check watching, mergeability verification, or the authorized merge and rollover steps.
 
 Ask only for a new decision: a semantic or product-design change not already directed, uncertain file ownership or destructive overlap, a non-deterministic validation failure, force push/history rewrite/rebase/reset/stash/discard, branch deletion outside the verified post-merge path, or merging the PR without explicit delegated authority. Host permission dialogs remain host-controlled; request the narrow reusable approval needed by the documented command rather than asking the operator to re-authorize the repository step.
 
 ## Two-Handoff Invocation Contract
 
-This procedure is designed to run with two operator/developer handoffs and no routine confirmation prompts between them.
+This procedure retains two evidence checkpoints: ready-PR publication and post-merge rollover. Under the default invocation, record both receipts and continue between them without an operator handoff or approval pause. An operator-requested review pause or narrower stopping point changes when control returns to the operator.
 
 ### First handoff: publish a ready PR
 
@@ -141,15 +141,15 @@ The explicit instruction `run pr-lifecycle.md`, including the equivalent linked-
 - move an intentionally complete draft PR to ready status;
 - wait for required remote checks and verify mergeability; and
 - capture the PR number, URL, branch name, `headRefOid`, base SHA, and final validation state as the publish handoff receipt; and
-- return to the operator/developer only when the PR is ready for review or a stop condition has been reached.
+- continue through guarded merge and the second handoff by default; return at the requested review pause or narrower stopping point, or when a stop condition has been reached.
 
 This authorization covers routine retry after a transient, non-semantic failure, such as refreshing stale remote refs and repeating a check against the new refs. It does not authorize changing theory, EOM solver semantics, evidence authority, canon policy, or product design merely to make a check pass.
 
-The operator remains the source of merge authority. This default invocation does not authorize merging, closing or abandoning the PR; the explicit full-lifecycle modes additionally authorize guarded merge and the second handoff.
+The operator remains the source of merge authority: the default instruction to run this procedure delegates guarded merge and the second handoff for this scoped candidate. A requested review pause requires candidate approval before continuing, and an explicit publication-only request stops before merge. No mode authorizes closing or abandoning the PR without a separate instruction.
 
 ### Second handoff: verify, clean up, and roll over
 
-After the operator/developer merges the PR, either explicit instruction `merged, continue` or `merged, complete` is standing authorization to execute the complete guarded post-merge and rollover path in this document:
+Under the default full-lifecycle invocation, continue automatically after the guarded merge is verified. If the operator/developer instead merges the PR following a narrower invocation, either explicit instruction `merged, continue` or `merged, complete` is standing authorization to execute the complete guarded post-merge and rollover path in this document:
 
 - verify the PR state, merge time, merged head, and absence of post-merge branch commits;
 - fast-forward local `main` to current `origin/main` and verify equality;
@@ -815,7 +815,7 @@ The detailed sections above own the commands. This table defines the allowed sta
 | --- | --- | --- |
 | Scoped working branch | Intended files identified; ambient edits isolated; required local gate passes | Stage intended paths, commit, and push the literal branch |
 | Published branch tip | Local `HEAD` equals `origin/<current-branch>`; branch has commits beyond `origin/main`; `git merge-tree --write-tree` passes | Create or update the intentionally titled and described PR |
-| Ready review handoff | Remote checks pass; GitHub reports mergeable; publish handoff receipt is recorded | Return the exact PR for the default merge decision, or perform the explicitly delegated guarded merge and second handoff |
+| Ready review handoff | Remote checks pass; GitHub reports mergeable; publish handoff receipt is recorded | Perform the guarded merge and second handoff by default; return to the operator only at a requested review pause or narrower stopping point |
 | Verified merged PR | Exact PR reports `MERGED`; branch name and base match; local branch tip equals `headRefOid` | Fast-forward and verify local `main` |
 | Synchronized `main` | Local `main` equals `origin/main`; exact merged branch identity remains verified | Delete only that local and remote branch |
 | Retired merged branch | Previous branch is absent locally and remotely; next registry token is unambiguous | Create the successor from synchronized `main`, publish it, and set its upstream |

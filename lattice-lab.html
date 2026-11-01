@@ -308,7 +308,9 @@
             <label>One-site displacement (fraction of spacing)<input id="disturbance-amplitude" type="number" min="0" max="0.2" step="0.01" value="0.02"></label>
             <label>Displacement axis<select id="disturbance-axis"><option>x</option><option>y</option><option>z</option></select></label>
             <label>Future duration (initial-spacing crossing times)<input id="disturbance-duration" type="number" min="0.01" max="4" step="0.25" value="1.5"></label>
-            <label>Numerical quality<select id="disturbance-quality"><option value="display">Display · declared error budgets</option><option value="refined">Refined · budgets four times tighter</option></select></label>
+            <fieldset class="disturbance-checking"><legend>Error bound checking</legend><label><input type="radio" name="disturbance-checking" value="none" checked> None</label><label><input type="radio" name="disturbance-checking" value="strict"> Strict</label></fieldset>
+            <p>None calculates exploratory motion without acceleration or path error bounds. Strict checks the declared error budgets.</p>
+            <label>Numerical quality<select id="disturbance-quality"><option value="display">Display · standard precision</option><option value="refined">Refined · tighter precision</option></select></label>
           </fieldset>
           <p id="disturbance-population"></p><p id="disturbance-past"></p>
           <p>Coupling 16 · wake speed 1. Spacing is an explicit scenario parameter. Larger spacing gives delayed arrivals more time before the finite patch contracts. The pulse is prescribed preparation, not unforced motion; all members evolve after release.</p>

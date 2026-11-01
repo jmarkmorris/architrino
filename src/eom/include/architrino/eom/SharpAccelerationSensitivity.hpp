@@ -1,5 +1,7 @@
 #pragma once
 
+#include "architrino/eom/RadialKernel.hpp"
+
 #include "architrino/eom/DelayedRootSensitivity.hpp"
 
 #include <span>
@@ -8,7 +10,7 @@
 
 namespace architrino::eom {
 
-// Interval Jacobian rows for one current sharp-root acceleration row.  The
+// Interval Jacobian rows for one selected sharp-root acceleration row.  The
 // coefficient registries are aligned and describe fixed-time path responses.
 struct SharpAccelerationSensitivityRequest {
   IntervalVector displacement;
@@ -20,6 +22,7 @@ struct SharpAccelerationSensitivityRequest {
   std::span<const IntervalVector> receiver_position_coefficients;
   std::span<const IntervalVector> transmitter_position_coefficients;
   std::span<const IntervalVector> transmitter_velocity_coefficients;
+  RadialKernel radial_kernel = RadialKernel::canonical_inverse_square;
 };
 
 struct SharpAccelerationSensitivityCertificate {
@@ -36,7 +39,7 @@ struct SharpAccelerationSensitivityCertificate {
   std::vector<IntervalVector> acceleration_coefficients;
 };
 
-// Differentiates the current sharp-root acceleration kernel, including the
+// Differentiates the named sharp-root radial acceleration kernel, including the
 // delayed emission-time response.  It certifies only the supplied interval
 // row; upstream state inclusion and multi-row summation remain separate gates.
 [[nodiscard]] SharpAccelerationSensitivityCertificate

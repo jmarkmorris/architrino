@@ -1,7 +1,7 @@
 // Explicit-use Stage E consumer checks; not recurring scientific test enrollment.
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {createEomResponseView,EOM_RECORD_VIEW_LIMIT} from '../EomResponseRecord.mjs';
+import {createEomResponseView} from '../EomResponseRecord.mjs';
 import {evaluateEomCubicHistoryAtTime} from '../../../src/apps/shared/EomCubicHistoryEvaluation.mjs';
 import {createSurfaceExperiment,isQualifiedPreparation} from '../../../src/apps/surface/SurfaceExperiment.js';
 import {validateSurfaceRecord,validateSurfaceRequest,retainedHistories} from '../../../src/apps/surface/SurfaceRecord.js';
@@ -20,7 +20,7 @@ let absentCalls=0;const absent=createEomV2HttpClient({fetchImpl:async()=>{absent
 console.log('Known display interpolation/velocity/coverage, bounded-view and exact circular-preparation controls pass BEFORE target reads.');
 const root='.local-data/eom/surface-stage-d-2026-10-11';
 const request=JSON.parse(fs.readFileSync(root+'/base.request.json'));const result=createEomResponseView(JSON.parse(fs.readFileSync(root+'/base.response.json')),{sha256:'7a62c923420a04c22926588399c0ae9d8dc1417b51c3e934327f3dc2109294e4'});
-const record={schema:'surface_playback_record/v1',request,results:[result]};validateSurfaceRecord(record);assert.ok(Buffer.byteLength(JSON.stringify(result))<EOM_RECORD_VIEW_LIMIT);assert.equal(retainedHistories(record).length,6);
+const record={schema:'surface_playback_record/v1',request,results:[result]};validateSurfaceRecord(record);assert.equal(retainedHistories(record).length,6);
 const negatives=[r=>r.request.paths[0].history.phase='0.2',r=>r.request.numerics.rootTolerance='1e-3',r=>r.results[0].acceptedCoverage.end='0.3',r=>r.results[0].publishedExtensions[0].segments[0].start='0.001',r=>r.results[0].publishedExtensions[0].pathId='unknown',r=>r.results[0].resolvedModel.parameters.coupling='1e-3',r=>r.request.paths[0].charge=true,r=>r.results[0].surfaceDiagnostics[0].reception=['0.1','0'],r=>r.results[0].surfaceDiagnostics[0].reception=['-0.1','0'],r=>r.results[0].record.acceptedSurface.certifiedCount=0];
 for(const change of negatives){const bad=structuredClone(record);change(bad);assert.throws(()=>validateSurfaceRecord(bad));}
 const altered=createSurfaceExperiment();altered.model.coupling='0.00000100000000000000000000000000000001';assert.equal(isQualifiedPreparation(altered),false);

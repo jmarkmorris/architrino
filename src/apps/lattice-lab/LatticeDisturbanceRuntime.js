@@ -1,6 +1,7 @@
+import { errorBoundChecking } from '../shared/ErrorBoundChecking.js';
 import { createEomV2HttpClient } from '../shared/EomV2HttpClient.js';
 import { createStandaloneAppNavigationRuntime } from '../navigator/StandaloneAppNavigationRuntime.js';
-import { createLatticeDisturbanceExperiment, validateLatticePatchRecord, compactLatticeResult, latticeRecordEnd, latticeRecordResult, latticeRecordStart, LATTICE_PATCH_RECORD_SCHEMA, LATTICE_PATCH_RECORD_LIMIT } from './LatticeDisturbanceExperiment.js';
+import { createLatticeDisturbanceExperiment, validateLatticePatchRecord, compactLatticeResult, latticeRecordEnd, latticeRecordResult, latticeRecordStart, LATTICE_PATCH_RECORD_SCHEMA } from './LatticeDisturbanceExperiment.js';
 import { createLatticeDisturbanceViewer } from './LatticeDisturbanceViewer.js';
 
 export function mountLatticeDisturbance() {
@@ -25,7 +26,7 @@ export function mountLatticeDisturbance() {
     $('stop').disabled=!busy||!controller;$('export').disabled=busy||!record||!(record.parts?.length||record.control?.parts.length||record.result);$('import').disabled=busy;$('saved').disabled=busy;
     const motion=record && latticeRecordEnd(record)>0;$('play').disabled=!motion||busy;$('timeline').disabled=!motion||busy;
   }
-  function values(){return {side:Number($('side').value),spacing:Number($('spacing').value),amplitude:$('amplitude').value.trim(),axis:$('axis').value,duration:$('duration').value.trim(),preparation:$('preparation').value,quality:$('quality').value};}
+  function values(){return {errorBoundChecking:document.querySelector('input[name="disturbance-checking"]:checked').value,side:Number($('side').value),spacing:Number($('spacing').value),amplitude:$('amplitude').value.trim(),axis:$('axis').value,duration:$('duration').value.trim(),preparation:$('preparation').value,quality:$('quality').value};}
   function showRaw(){
     $('raw').replaceChildren();if(!record)return;
     if(importedRecords.has(record)){$('raw').textContent='Imported playback; complete evidence and continuation checkpoints remain on the original solver host.';return;}
@@ -36,15 +37,16 @@ export function mountLatticeDisturbance() {
     const spacing=settings.spacing??1, positive=request.paths.filter(p=>p.charge==='1').length;
     $('population').textContent=`${request.paths.length} moving members · ${positive} positrinos, ${request.paths.length-positive} electrinos · spacing ${spacing}`;
     $('past').textContent=settings.preparation==='pulse'?`Prescribed preparation: all sites start at rest. One member moves smoothly from T=${-spacing/4} to 0, then stops. The EOM solver advances all members from release at T=0. Pulse onset is T=${-spacing/4}.`:`Held displacement throughout the supplied past from T=${request.paths[0].history.segments[0].start} to 0; release at T=0. This is not a newly launched pulse.`;
+    for (const radio of document.querySelectorAll('input[name="disturbance-checking"]')) radio.checked=radio.value===errorBoundChecking(request);
     $('request').textContent=JSON.stringify(request,null,2);
-    $('model').textContent='Canonical Master Equation · coupling 16 · wake speed 1 · no surface constraint';
+    $('model').textContent='Canonical Master Equation · coupling 16 · wake speed 1 · no surface constraint · error bound checking: '+errorBoundChecking(request);
   }
   function displayTime(next){
     time=next;$('timeline').value=String(time);const spacing=settings.spacing??1;
     $('time').textContent=`T = ${time.toFixed(4)} · ${(time/spacing).toFixed(3)} initial-spacing crossing times · ${time<0?'prescribed preparation':'EOM evolution'}`;
     const m=viewer?.setTime(time);
     if(time<0){$('metrics').textContent='Prescribed preparation only. The magnified response-since-release view begins at T=0.';return;}
-    if(m)$('metrics').textContent=`Maximum motion since release: ${(m.displacement/spacing).toExponential(3)} spacings. ${m.addedMotion===null?'':`Control-subtracted added motion: ${(m.addedMotion/spacing).toExponential(3)} spacings. `}Maximum speed: ${m.speed.toExponential(3)}. Recorded component error bound: ${m.uncertainty.toExponential(2)}.`;
+    if(m)$('metrics').textContent=`Maximum motion since release: ${(m.displacement/spacing).toExponential(3)} spacings. ${m.addedMotion===null?'':`Control-subtracted added motion: ${(m.addedMotion/spacing).toExponential(3)} spacings. `}Maximum speed: ${m.speed.toExponential(3)}. ${errorBoundChecking(request)==='none'?'Exploratory motion; acceleration and path error bounds were not calculated.':`Recorded component error bound: ${m.uncertainty.toExponential(2)}.`}`;
   }
   function showPreparation(){
     $('magnified-caption').textContent='Response since release. Requires the paired EOM calculation.';
@@ -59,14 +61,14 @@ export function mountLatticeDisturbance() {
     $('timeline').min=String(latticeRecordStart(record));$('timeline').max=String(end);
     const result=latticeRecordResult(record)??record.control?.parts.at(-1);
     $('coverage').textContent=record.schema===LATTICE_PATCH_RECORD_SCHEMA?`Run accepted through T=${end}; comparison through T=${controlEnd}; requested T=${request.interval.end}. ${result?.status??'Comparison only'}${result?.halt?.code?' · '+result.halt.code:''}.`:`Accepted coverage: 0 to ${end} of ${request.interval.end}; ${result.status}. No comparison in this older record.`;
-    if(result)$('model').textContent=`Canonical Master Equation · coupling 16 · wake speed 1 · model ${result.modelDigest.slice(0,12)}`;
+    if(result)$('model').textContent=`Canonical Master Equation · coupling 16 · wake speed 1 · model ${result.modelDigest.slice(0,12)} · error bound checking: ${errorBoundChecking(request)}`;
     $('magnified-caption').textContent=record.schema===LATTICE_PATCH_RECORD_SCHEMA?'Added motion since release; undisplaced motion subtracted. Display magnification only.':'Motion since release. No comparison is present in this older record.';
     if(record.schema!==LATTICE_PATCH_RECORD_SCHEMA){$('gain').value='10';$('gain-value').textContent='×10';$('magnified-title').textContent='Magnified motion ×10';}
     viewer?.setGain(Number($('gain').value));showRaw();displayTime(end);controls();
   }
   function remember(next){
     const size=new TextEncoder().encode(JSON.stringify(next)).length;
-    if(size>LATTICE_PATCH_RECORD_LIMIT || saved.reduce((n,r)=>n+new TextEncoder().encode(JSON.stringify(r)).length,0)+(saved.includes(next)?0:size)>32*1024*1024)throw new Error('Playback storage limit reached. Complete solver evidence is retained; export saved records before another run.');
+    if(saved.reduce((n,r)=>n+new TextEncoder().encode(JSON.stringify(r)).length,0)+(saved.includes(next)?0:size)>32*1024*1024)throw new Error('Playback storage limit reached. Complete solver evidence is retained; export saved records before another run.');
     if(!saved.includes(next)){saved.push(next);const option=document.createElement('option');option.value=String(saved.length-1);$('saved').append(option);}
     const index=saved.indexOf(next),option=$('saved').options[index+1];option.textContent=`${next.settings.side}³ · ${next.settings.preparation??'held'} · T=${latticeRecordEnd(next)}`;$('saved').value=String(index);
   }
@@ -105,7 +107,7 @@ export function mountLatticeDisturbance() {
   $('play').onclick=()=>{if(playing){stopPlayback();return;}const end=latticeRecordEnd(record),fullStart=latticeRecordStart(record),start=$('replay-window').value==='response'&&settings.preparation==='pulse'&&end>(settings.spacing??1)*.75?(settings.spacing??1)/2:fullStart;if(!(end>0))return;if(time>=end||time<start)displayTime(start);playing=true;const seconds=Number($('replay-seconds').value);playStart=performance.now()-(time-start)/(end-start)*seconds*1000;$('play').textContent='Pause replay';const tick=now=>{if(!playing)return;const t=Math.min(end,start+(now-playStart)/(seconds*1000)*(end-start));displayTime(t);if(t>=end)stopPlayback();else frame=requestAnimationFrame(tick);};frame=requestAnimationFrame(tick);};
   $('saved').onchange=()=>{const next=saved[Number($('saved').value)];if($('saved').value===''||!next)return;record=next;request=record.request;settings=record.settings;inspection=null;dirty=false;for(const key of ['side','amplitude','axis','duration','spacing','preparation','quality'])if(settings[key]!==undefined)$(key).value=String(settings[key]);if(!settings.preparation){$('preparation').value='held';$('spacing').value='1';$('quality').value='display';}updateRecordView();message(importedRecords.has(record)?'Imported playback; continuation requires its original solver host.':'Saved numerical run loaded.');};
   $('export').onclick=()=>{if(!record)return;const url=URL.createObjectURL(new Blob([JSON.stringify(record)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download=`${record.request.runId}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
-  $('import').onchange=async()=>{const file=$('import').files?.[0];if(!file||busy)return;try{if(file.size>LATTICE_PATCH_RECORD_LIMIT)throw new Error('Choose an exported record no larger than 12 MiB.');const next=validateLatticePatchRecord(JSON.parse(await file.text()));importedRecords.add(next);remember(next);$('saved').onchange();}catch(error){message(error.message);}finally{$('import').value='';}};
+  $('import').onchange=async()=>{const file=$('import').files?.[0];if(!file||busy)return;try{const next=validateLatticePatchRecord(JSON.parse(await file.text()));importedRecords.add(next);remember(next);$('saved').onchange();}catch(error){message(error.message);}finally{$('import').value='';}};
   $('back').onclick=e=>{if(busy){e.preventDefault();message('Stop the active calculation before switching sections.');}};
   window.addEventListener('beforeunload',e=>{if(busy){e.preventDefault();e.returnValue='';}});
   window.addEventListener('pagehide',()=>{controller?.abort();stopPlayback();viewer?.dispose();navigation.destroy?.();client.dispose().catch(console.error);},{once:true});

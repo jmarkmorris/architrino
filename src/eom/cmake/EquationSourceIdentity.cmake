@@ -25,6 +25,8 @@ set(EOM_SURFACE_SOURCE
   "${CMAKE_CURRENT_SOURCE_DIR}/../../reference/priorities/master-equation-closure/equation-variants/surface-constraint/definition.md")
 file(SHA256 "${EOM_BINDING_SOURCE}" EOM_CANONICAL_DEFINITION_DIGEST)
 file(SHA256 "${EOM_SURFACE_SOURCE}" EOM_SURFACE_DEFINITION_DIGEST)
+set(EOM_LOGARITHMIC_SOURCE "${CMAKE_CURRENT_SOURCE_DIR}/../../reference/priorities/master-equation-closure/equation-variants/logarithmic-potential/manuscript.md")
+file(SHA256 "${EOM_LOGARITHMIC_SOURCE}" EOM_LOGARITHMIC_DEFINITION_DIGEST)
 find_path(EOM_GMP_INCLUDE_DIR gmp.h HINTS "${MPFR_INCLUDE_DIR}" REQUIRED)
 file(SHA256 "${MPFR_LIBRARY}" EOM_MPFR_LIBRARY_DIGEST)
 file(SHA256 "${GMP_LIBRARY}" EOM_GMP_LIBRARY_DIGEST)
@@ -36,7 +38,7 @@ file(SHA256 "${EOM_BOOST_INCLUDE_DIR}/boost/property_tree/json_parser.hpp" EOM_B
 file(SHA256 "${EOM_BOOST_INCLUDE_DIR}/boost/version.hpp" EOM_BOOST_VERSION_DIGEST)
 file(SHA256 "${CMAKE_CXX_COMPILER}" EOM_COMPILER_DIGEST)
 set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS
-  ${EOM_IDENTITY_INPUTS} "${EOM_BINDING_SOURCE}" "${EOM_SURFACE_SOURCE}"
+  ${EOM_IDENTITY_INPUTS} "${EOM_BINDING_SOURCE}" "${EOM_SURFACE_SOURCE}" "${EOM_LOGARITHMIC_SOURCE}"
   "${MPFR_LIBRARY}" "${GMP_LIBRARY}" "${MPFR_INCLUDE_DIR}/mpfr.h"
   "${EOM_GMP_INCLUDE_DIR}/gmp.h" "${CMAKE_CXX_COMPILER}")
 set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS "${EOM_BOOST_JSON_LIBRARY}" "${EOM_BOOST_INCLUDE_DIR}/boost/json.hpp" "${EOM_BOOST_INCLUDE_DIR}/boost/property_tree/json_parser.hpp" "${EOM_BOOST_INCLUDE_DIR}/boost/version.hpp")
@@ -68,5 +70,5 @@ foreach(EOM_IDENTITY_CONFIG IN LISTS EOM_IDENTITY_CONFIGS)
   file(WRITE "${EOM_IDENTITY_OUTPUT}/equation-configuration-identity.inputs"
     "${EOM_CONFIG_PREIMAGE}")
   file(WRITE "${EOM_IDENTITY_OUTPUT}/EquationSourceIdentity.hpp"
-    "#pragma once\nnamespace architrino::eom::detail {\ninline constexpr const char* kEquationSourceDigest = \"${EOM_SOURCE_DIGEST}\";\ninline constexpr const char* kEquationConfigurationDigest = \"${EOM_CONFIGURATION_DIGEST}\";\ninline constexpr const char* kEquationBuildDigest = \"${EOM_BUILD_DIGEST}\";\ninline constexpr const char* kCanonicalDefinitionDigest = \"${EOM_CANONICAL_DEFINITION_DIGEST}\";\ninline constexpr const char* kSurfaceDefinitionDigest = \"${EOM_SURFACE_DEFINITION_DIGEST}\";\n}\n")
+    "#pragma once\nnamespace architrino::eom::detail {\ninline constexpr const char* kEquationSourceDigest = \"${EOM_SOURCE_DIGEST}\";\ninline constexpr const char* kEquationConfigurationDigest = \"${EOM_CONFIGURATION_DIGEST}\";\ninline constexpr const char* kEquationBuildDigest = \"${EOM_BUILD_DIGEST}\";\ninline constexpr const char* kCanonicalDefinitionDigest = \"${EOM_CANONICAL_DEFINITION_DIGEST}\";\ninline constexpr const char* kSurfaceDefinitionDigest = \"${EOM_SURFACE_DEFINITION_DIGEST}\";\ninline constexpr const char* kLogarithmicDefinitionDigest = \"${EOM_LOGARITHMIC_DEFINITION_DIGEST}\";\n}\n")
 endforeach()

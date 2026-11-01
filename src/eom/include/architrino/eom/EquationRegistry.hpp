@@ -3,6 +3,11 @@
 #include "architrino/eom/EquationProvider.hpp"
 
 namespace architrino::eom {
+class RetainedHistory;
+
+[[nodiscard]] bool logarithmic_equation_selected(const NativeCoupledEvolutionRequest&);
+[[nodiscard]] bool retained_publication_required(const NativeCoupledEvolutionRequest&);
+void admit_logarithmic_preparation(const RetainedHistory&);
 
 struct ResolvedEquationModel {
   const std::string canonical_json;

@@ -40,6 +40,7 @@ add_library(eom_native STATIC
   src/CoupledEvolution.cpp
   src/DelayedRootSensitivity.cpp
   src/DisplayEvaluation.cpp
+  src/DisplayEvolution.cpp
   src/JointState.cpp
   src/JointAffineHistory.cpp
   src/JointAccelerationSnapshot.cpp
@@ -56,7 +57,8 @@ add_library(eom_native STATIC
   src/EquationRegistry.cpp
   src/SurfaceGeometry.cpp
   src/SurfaceConstraint.cpp
-  src/SurfacePublication.cpp
+  src/RetainedPublication.cpp
+  src/LogarithmicEquationProvider.cpp
   src/SurfaceEquationProvider.cpp
   src/SpeedDomain.cpp
   src/ProviderTransport.cpp
@@ -243,3 +245,12 @@ target_include_directories(eom_validated_persistence_fixture_cli
   PRIVATE ${EOM_BOOST_INCLUDE_DIR})
 target_compile_options(eom_validated_persistence_fixture_cli
   PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)
+
+# Explicit-use logarithmic qualification; no recurring test enrollment.
+add_executable(eom_logarithmic_fixture_cli native/eom_logarithmic_fixture_cli.cpp)
+target_link_libraries(eom_logarithmic_fixture_cli PRIVATE eom_native)
+target_compile_options(eom_logarithmic_fixture_cli PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)
+
+# Explicit-use independent control for exploratory acceleration weighting.
+add_executable(eom_error_bound_choice_fixture_cli native/eom_error_bound_choice_fixture_cli.cpp)
+target_link_libraries(eom_error_bound_choice_fixture_cli PRIVATE eom_native)
