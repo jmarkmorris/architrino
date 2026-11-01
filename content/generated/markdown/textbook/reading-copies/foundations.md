@@ -343,7 +343,7 @@ The analogy stops at the water. A pond ripple is a disturbance *in* something â€
 
 The word **transceiver** covers both halves at once: an architrino continuously transmits its own wake and admits every other architrino's contribution whenever a causal root reaches it, without tuning or an off state.
 
-### Why the delay is the whole idea
+### Why Causal Delay Matters
 
 A wake travels outward at a finite speed, written $c_f$, and it never travels faster. So when an architrino is affected by another one, it is not responding to where that other architrino *is*. It is responding to where that other architrino *was*, at whatever earlier moment emitted the particular wake sphere that is arriving right now.
 
@@ -351,7 +351,7 @@ This is worth pausing on, because almost everything distinctive about $\mathbb{A
 
 A single receiver may be hearing many past moments of the same transmitter at once, if that transmitter's motion arranged it so. Working out which past moments those are, and what each contributes, is the business of the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). This chapter states only what must exist before that calculation can begin.
 
-### What an architrino is not
+### Architrinos and Effective Particles
 
 An architrino is not a particle in the sense used by the **Standard Model** â€” the well-tested catalogue of established physics listing electrons, quarks, photons, and the rest, each with its own mass, charge, and spin already attached as basic properties.
 
@@ -377,7 +377,7 @@ Architrinos live in [absolute timespace](../../../../markdown/aaa/foundations/ab
 
 The architrino has no internal structure, no volume, no intrinsic spin in the classical sense, and no particle-specific inertial mass. Its complete primitive state is its identity, position, velocity, polarity, and path-history record.
 
-#### No mass means no force
+#### No Mass Means No Force
 
 Here is a consequence that surprises most readers, and it changes the shape of every equation that follows.
 
@@ -412,7 +412,7 @@ $D_{t,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_j(T_t)$ is the **transmitter-s
 
 The strength of the acceleration depends on $D_t$ only. The receiver-side factor does not set how hard the receiver is pushed; it appears in the separate question of how the root moves as time advances, through the signed playback derivative $m_{ij}=D_{r,ij}/D_{t,ij}$, which along with root-counting data is dynamics-level material owned by the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#the-master-equation-canonical-form).
 
-#### The condition that picks out a causal root
+#### The Causal-Root Condition
 
 The requirement "the wake sphere has just now reached the receiver" can be written as an equation that must equal zero. In length units it is $g_{ij}=r_{ij}-c_f(T_r-T_t)$, written this way in the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#the-master-equation-canonical-form) and as $F_{ij}$ in these foundations pages. It carries a floor, $\lvert\partial_{T_t}g_{ij}\rvert \ge \kappa_{\mathrm{hit}} > 0$, whose purpose is explained below. For a time-valued version, divide through by the wake speed: $\tilde F_{ij}=F_{ij}/c_f$.
 
@@ -1256,7 +1256,7 @@ The **Euclidean void** is the fixed space that everything in $\mathbb{A}\mathbb{
 
 The void is a stage, and it is a stage that never moves.
 
-### Three layers that get confused
+### Void, Noether Sea, and Effective Spacetime
 
 Almost every mistake in this area comes from collapsing three different things into one word. Keeping them apart is the whole point of this chapter.
 
@@ -3579,7 +3579,7 @@ Relativity of simultaneity and time dilation are emergent observer-level effects
 
 The closure burden is therefore not to remove the preferred foliation. It is to derive clock, ruler, and signal behavior that bounds leakage to the required precision.
 
-### Falsifiability Wall
+### Conditions That Would Falsify the Model
 
 The defense fails in three specific ways, and none is a matter of interpretation.
 

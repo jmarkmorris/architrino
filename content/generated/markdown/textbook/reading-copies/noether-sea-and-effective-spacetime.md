@@ -1243,7 +1243,7 @@ Use these terms consistently:
 
 Avoid using **vacuum** alone. It is ambiguous between empty substrate, QFT vacuum language, and the actual Noether sea. If the intended meaning is the physical substrate contents, use **Noether sea**.
 
-### Ownership Boundary
+### Scope and Related Chapters
 
 This page owns:
 
@@ -1353,7 +1353,7 @@ If the local Noether sea is assembled from balanced pro/anti Noether braid popul
 
 This is consistent with the framework's broader assemblies-first stance. Equations are read as effective descriptors of deeper assembly dynamics, and the medium response is carried by organized Noether braid populations rather than by the Euclidean void itself.
 
-### Related descriptions
+### Related Descriptions
 
 The following pages provide the surrounding descriptions:
 
@@ -1972,7 +1972,7 @@ This is not an optional rhetorical claim. It is a closure burden distributed acr
 - [Constraint Ledger](../../../../markdown/aaa/validation/constraint-ledger.md) for empirical thresholds,
 - and [Known Tensions](../../../../markdown/aaa/validation/known-tensions.md) for the current unresolved burden.
 
-### Ownership Boundary
+### Scope and Related Chapters
 
 This chapter owns:
 
@@ -5827,7 +5827,7 @@ Primary theory anchors:
 6. [validation/constraint-ledger.md](../../../../markdown/aaa/validation/constraint-ledger.md)
 7. [validation/no-go-theorems.md](../../../../markdown/aaa/validation/no-go-theorems.md)
 
-### Source notes
+### Source Notes
 
 The experimental comparisons above are observer-level constraints, not premises for the primitive acceleration law. M. Nagel and collaborators, *Direct Terrestrial Test of Lorentz Symmetry in Electrodynamics to $10^{-18}$* (2015), [arXiv:1412.6954](https://arxiv.org/abs/1412.6954), reports an orientation-dependent resonator-frequency null comparison. That experiment constrains its apparatus channel, not every component of this chapter's residual budget. Clifford M. Will, *The Confrontation between General Relativity and Experiment* (2014), [arXiv:1403.7377](https://arxiv.org/abs/1403.7377), supplies the comparison context for distinct clock, local-Lorentz, and weak-gravity tests; it does not supply a current universal numerical tolerance.
 
@@ -6698,7 +6698,7 @@ $$
 
 with $\gamma_{\mathrm{PPN}}$ the observer-level refraction/spatial-compliance coefficient extracted from the same constitutive record whose Shapiro-delay and lensing projections are tested in [ppn-parameters](../../../../markdown/aaa/spacetime/ppn-parameters.md#explicit-weak-field-noether-sea-delay-map-ppn-gamma).
 
-### Closure Program Interface (metric constitutive map)
+### Closure Program Interface (Metric Constitutive Map)
 
 This chapter is the constitutive anchor for the gravity-side closure:
 $$

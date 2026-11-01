@@ -3925,7 +3925,7 @@ Epoch labels in the mapped chronology below are effective reaction-stage names. 
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Hadron Epoch: Assemblies with Coupled Quarks Emerge):** Multi-braid association is the proposed route to hadron analogs. It requires a demonstrated stabilization mechanism and a phase and response history supporting the proposed composites before nuclear binding can be inferred.
 
-### Lepton Epoch (incl. neutrino decoupling) ($\sim 1$ to $\sim 10$ s)
+### Lepton Epoch (incl. Neutrino Decoupling) ($\sim 1$ to $\sim 10$ s)
 
 - Time window: $\sim 1$ to $\sim 10$ s.
 - Regime: leptons and anti-leptons are abundant.
@@ -3956,7 +3956,7 @@ Epoch labels in the mapped chronology below are effective reaction-stage names. 
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (BBN: Protons (15:21) and Neutrons (18:18) Associate):** The proposed proton and neutron inventories count negative and positive polarity sites, respectively: $15\epsilon_-+21\epsilon_+$ gives effective charge $+e$, and $18\epsilon_-+18\epsilon_+$ is neutral when $\epsilon=|e|/6$. This arithmetic does not establish the particle branches, nuclear binding, reaction cross sections, or abundance evolution. Those are the linked recovery targets in [BBN Constraints](../../../../markdown/aaa/cosmology/BBN-constraints.md).
 
-### Acoustic Peak Seeding (pre-recombination)
+### Acoustic Peak Seeding (Pre-Recombination)
 
 - Time window: late photon epoch prior to recombination.
 - Regime: standing-wave modes imprint a harmonic ladder.
@@ -3976,7 +3976,7 @@ Epoch labels in the mapped chronology below are effective reaction-stage names. 
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Recombination: Coaxial Contra-Rotating Photon Assemblies Decouple):** Association of electron-like and nuclear assemblies must yield the neutral matter states and opacity history required for photon decoupling. A coaxial attachment geometry or a reduced scattering cross section cannot be inferred from neutrality alone. The candidate photon carriers must then preserve the previously established thermal spectrum through the measured last-scattering window.
 
-### Dark Ages ($\sim 3.8\times10^5$ years to first light)
+### Dark Ages ($\sim 3.8\times10^5$ years to First Light)
 
 - Time window: $\sim 3.8\times10^5$ years to first light.
 - Regime: neutral medium with no luminous sources.

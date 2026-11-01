@@ -154,11 +154,13 @@ approaches $c^5/G$ when $M$ is estimated by the Planck mass, but that substituti
 - In this chapter, "$v_{\text{trans}} \to c_f$" and "$v_{\text{orb}}^{\text{tan}} \to c_f$" are component-speed saturation statements in the terminal alignment regime.
 - The statement "$v_{\text{eff}} > c_f$" refers to the **total instantaneous velocity**, combining axial translation and transverse orbital motion used for Mach-wedge causal geometry, not a claim that either component speed is individually $> c_f$.
 - Neither a missing update nor a tangent root follows from a current speed threshold. Each requires solving the admitted causal-root equation; a constant-direction Mach cone additionally requires the straight-source approximation.
-- The CFT-exterior role label "binary 3 $v < c_f$" remains valid away from the terminal/horizon regime (see the regime map in [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../../noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation)).
+- An exterior binary role with $v < c_f$ may be considered away from the terminal/horizon regime, but its member index must come from the same retained branch record. The persistent index 3 does not assign that role in advance (see [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../../noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation)).
 
 ---
 
-## What Planck Units Imply About the binary 3
+## Planck Units and the Proposed Alignment Geometry
+
+The comparison below uses a declared reference binary from the retained branch record. It does not assign the alignment geometry to a fixed persistent member index.
 
 We treat the Planck relations as constraints on a **specific alignment geometry**, not as abstract dimensional coincidences. Define the comparison cadence $f_P=1/t_P$ so $f_P\ell_P=c$. This is a cycles-per-time convention; the standard Planck energy is $E_P=\hbar/t_P$, hence $hf_P=2\pi E_P$. Under the optional A-cf-match comparison and the circular orbit relation $v = 2\pi R f$, the aligned state ($v_{\text{align}} = c_f$, $f_{\text{align}} = f_P$) gives:
 $$
@@ -185,14 +187,14 @@ This leaves three coherent origin stories to keep in view:
 2. **Two-constant ontology:** $c_f$ (signal speed) and $h$ (action-per-cycle) are primitive; $G$ is an emergent bookkeeping constant fixed by a universal alignment geometry.
 3. **Three-constant ontology:** $c_f$, $h$, and $G$ are independent; the proportional form is a dimensional coincidence or a near-alignment approximation. We keep these as open threads while we test whether alignment alone can lock the scale.
 
-### Planck Units as binary-3 Mappings (Alignment State)
+### Planck-Unit Mappings for the Proposed Alignment State
 
-| Planck Unit | Expression | Cascade | binary-3 mapping (alignment interpretation) |
+| Planck Unit | Expression | Cascade | Proposed Alignment Mapping |
 | --- | --- | --- | --- |
 | Frequency $f_P$ | $f_P$ | Start from measurable cadence; sets the clock | Alignment orbital cadence in Hz (cycles per second). |
 | Energy $E_P$ | $E_P=\hbar f_P=hf_P/(2\pi)$ | Standard Planck energy | The assumed one-$h$ alignment cycle instead has $E_{\text{align}}=2\pi E_P$. |
-| Length $\ell_P$ | $\ell_P = c/f_P$ | Convert period ($t_P = 1/f_P$) to length using $c \approx c_f$ | binary-3 **circumference** at alignment ($R_{\text{align}} = \ell_P / 2\pi$). |
-| Radius $R_{\text{align}}$ | $R_{\text{align}} = \ell_P / (2\pi)$ | Convert circumference to radius | Alignment radius of the binary 3. |
+| Length $\ell_P$ | $\ell_P = c/f_P$ | Convert period ($t_P = 1/f_P$) to length using $c \approx c_f$ | Reference-binary **circumference** at alignment ($R_{\text{align}} = \ell_P / 2\pi$). |
+| Radius $R_{\text{align}}$ | $R_{\text{align}} = \ell_P / (2\pi)$ | Convert circumference to radius | Alignment radius of the declared reference binary. |
 | Alignment geometry $A_{\text{align}}$ | $A_{\text{align}} = R_{\text{align}}^2$ | Square of the alignment radius | Planar alignment area scale. |
 | Gravitation $G$ | $G \propto c_f^3 A_{\text{align}} / h$ | Express in terms of $A_{\text{align}}$ and $h$ | Medium compliance tied to the alignment geometry scale ($A_{\text{align}}$). |
 | Force $F_P$ | $F_P = c^4 / G$ | Response scale from $c$ and $G$ | Heuristic assembly-response scale; no maximal native acceleration or force has been derived. |
@@ -212,7 +214,7 @@ This leaves three coherent origin stories to keep in view:
 
 ### Effective Forward Speed (Proposed Diagnostic)
 
-For an architrino on the forward edge of the binary 3, define
+For an architrino on the forward edge of the declared reference binary, define
 
 $$
 v_{\text{eff}}(\theta) \;=\; \bigl|\mathbf{v}_{\text{trans}} + \mathbf{v}_{\text{orb}}^{\text{tan}}(\theta)\bigr|

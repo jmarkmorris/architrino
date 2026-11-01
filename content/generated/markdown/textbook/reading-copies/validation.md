@@ -3829,7 +3829,7 @@ We work in normalized wake-speed units with $c_f=1$ throughout; the symbol $c_f$
 
 ---
 
-#### Constant per-wavefront emission
+#### Constant Per-Wavefront Emission
 
 - What we assume:
   - Emission cadence and per-wavefront amplitude are constant at the transmitter.
@@ -3859,7 +3859,7 @@ We work in normalized wake-speed units with $c_f=1$ throughout; the symbol $c_f$
 
 ---
 
-#### Superposition with causal wake surfaces and $\eta$-regularization
+#### Superposition with Causal Wake Surfaces and $\eta$-Regularization
 
 - What we assume:
   - All wake contributions superpose linearly at the level of distributions (causal wake surfaces add).
@@ -3906,7 +3906,7 @@ We work in normalized wake-speed units with $c_f=1$ throughout; the symbol $c_f$
 
 ---
 
-#### What the model explicitly does not use
+#### What the Model Explicitly Does Not Use
 
 - No Lorentzian spacetime metric, the four-dimensional metric of relativity that combines time and space in one line element, at the fundamental level (the background is [absolute time](../../../../markdown/aaa/foundations/absolute-time.md) and the [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md), the fixed flat spatial container; emergent cones are effective, not kinematic).
 - No right-hand-rule magnetism or $\mathbf V\times\mathbf B$ acceleration term at the substrate level; every per-hit acceleration is along $\hat{\mathbf{r}}$.
@@ -3914,7 +3914,7 @@ We work in normalized wake-speed units with $c_f=1$ throughout; the symbol $c_f$
 
 ---
 
-#### Validation and next steps (concrete)
+#### Validation and Next Steps (Concrete)
 
 1) Far-field cancellation and the zero-potential axis
 - Compute the time-averaged multipole expansion of a high-frequency binary; show leading terms cancel along the rotation axis and decay rapidly off-axis. For an equal-radius opposite-polarity binary and a receiver at rest on the axis, the on-axis cancellation of the potential is exact at every instant, not only in leading order: every point of the orbit circle is at the same distance from an axis point, so both transmitters have the same emission time and the same transmitter-side factor $D_t=c_f$, and their contributions are equal and opposite.
@@ -3932,7 +3932,7 @@ We work in normalized wake-speed units with $c_f=1$ throughout; the symbol $c_f$
 
 ---
 
-#### Comparisons and falsifiable edges
+#### Comparisons and Falsifiable Edges
 
 - Classical electromagnetism:
   - Recovery target: reproduce declared far-zone radiation observables from retained coherent assemblies, then test whether near-zone residuals differ near transmitter-side folds or admitted self-hit windows.
@@ -3953,7 +3953,7 @@ Radial hits, causal delay, constant per-wavefront amplitude, and admitted self-h
 
 ---
 
-#### Effective observables and states (quantum-like layer)
+#### Effective Observables and States (Quantum-Like Layer)
 
 Premise: single-hit information is sparse. At an instant, the receiver-local dynamical datum is the signed acceleration vector $\mathbf A$. That vector fixes the net acceleration direction but not the transmitter ray and polarity assignment: attraction from one ray and repulsion from the opposite ray can produce the same $\mathbf A$. The corresponding unoriented axis is therefore an inference quotient over transmitter hypotheses, not the raw received datum. The $\mathbb{U}_{\text{now}}$ universe-state perspective, the complete state of every architrino on one absolute-time slice, can include the full transmitter-tagged emission ledger as complete-state bookkeeping, but a local receiver or Physical Observer, an assembly inside the Noether sea whose detectors are themselves dynamical outputs, cannot infer that hidden ledger from a single hit.
 
@@ -3992,7 +3992,7 @@ Consequence: embedded observers and synthetic detector records must reason stati
 
 ---
 
-#### Single-transmitter multi-hit nuance vs universal superposition
+#### Single-Transmitter Multi-Hit Nuance vs Universal Superposition
 
 Even for a single transmitter, the receiver cannot be sure that a given acceleration did not come from multiple distinct emission times $T_t\in\mathcal{C}_{r\leftarrow t}(T_r)$ on that same transmitter, where $\mathcal{C}_{r\leftarrow t}(T_r)$ is the causal set of emission times of transmitter $t$ whose wakes reach receiver $r$ at $T_r$, the set written $\mathcal{C}_{aa}(T_r)$ above when transmitter and receiver are the same architrino. Several roots of $r=c_f(T_r-T_t)$ may occur when the delayed geometry permits them; a super-field-speed interval is not itself sufficient. An everywhere strictly sub-field-speed transmitter has $D_t>0$ throughout the retained interval, so the root function is strictly monotone and curvature alone cannot create multiple roots. Distinct roots can have distinct lines of action, contributing separate per-hit accelerations whose emission-time origins are not recoverable from the net vector alone.
 
@@ -4000,7 +4000,7 @@ However, this is not the dominant practical difficulty. The governing issue is g
 
 ---
 
-#### Operational noncommutativity and contextuality (emergent)
+#### Operational Noncommutativity and Contextuality (Emergent)
 
 Measurement procedures are interventions that condition future hit histories:
 - Let $F,G$ be experimental contexts (e.g., planar-mode analyzers, path blockers, timing gates), where a planar mode is the coaxial contra-rotating polarity-conjugate planar pair proposed as the photon carrier in [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md#photon-referent-status), a referent whose acceleration-balance closure remains open. Because they modify trajectories and thus the set of future causal roots, their composition can satisfy $F\circ G\ne G\circ F$ for a specified preparation and readout. That order effect must be measured or derived for those interventions; it does not follow from their labels alone.
@@ -4032,7 +4032,7 @@ Instantaneous inversion is ill-posed; reconstruction is temporal, multi-view, an
 
 ---
 
-#### Worked micro-to-effective examples
+#### Worked Micro-to-Effective Examples
 
 - Two-planar-mode interference:
   - Setup: two coherent photon planar modes reach a screen. Their geometric overlap and path-history phase define a candidate complex-amplitude map. An observed intensity proportional to its squared norm is obtained only if the independently specified detector and ensemble record passes the Born-like closure residual above.
@@ -4046,7 +4046,7 @@ Instantaneous inversion is ill-posed; reconstruction is temporal, multi-view, an
 
 ---
 
-#### Falsifiable edges and tests (observability-focused)
+#### Falsifiable Edges and Tests (Observability-Focused)
 
 - Context order test: demonstrate order-dependent transmission with sequential analyzers on coherent planar modes; quantify the asymmetry $F\circ G$ vs. $G\circ F$.
 - Planar-mode interference robustness: map how partial decoherence (deliberate jitter in transmitter paths) suppresses the overlap term; compare to predicted $|A_{\mathrm{mode}}|^2$ decay with coherence length.
@@ -8244,7 +8244,11 @@ The $\Delta$ column is computed as the latest dated $\mathbb{A}\mathbb{A}\mathbb
 
 The displayed totals are whole-number rounded weighted means: the raw values are 86.45, 56.43, 45.82 and 67.90 in table-column order. The displayed total deficit -18 is the difference of displayed totals 68 and 86; the weighted mean of the individual deficit entries is -18.55. Neither convention changes the historical row scores.
 
-### 2026-06-28 Comparator and $\mathbb{A}\mathbb{A}\mathbb{A}$ Rescore Notes
+### Appendix: Historical Assessments
+
+The following dated assessments preserve the scoring record and its stated limitations. They are historical observations, not a fresh assessment of the current corpus.
+
+#### 2026-06-28 Comparator and $\mathbb{A}\mathbb{A}\mathbb{A}$ Rescore Notes
 
 The 2026-06-28 comparator rescore changes the Modern Physics Operational column from `88` to `86` and the Modern Physics Mechanism column from `67` to `56`. The prior comparator overcredited the mechanism column by letting sector-by-sector operational success stand in for a unified foundational mechanism. Under the challenger-theory lens, the inherited stack remains extremely strong operationally, but its mechanism score is lower because GR, QFT, the Standard Model, and Lambda-CDM do not yet form one ontic dynamics with fixed constants, a shared quantum-gravity bridge, a solved measurement mechanism, or a single dark-sector account.
 
@@ -8254,7 +8258,7 @@ The reweighting keeps incumbent recovery dominant. Empirical Precision+Benchmark
 
 The latest $\mathbb{A}\mathbb{A}\mathbb{A}$ column is also replaced with the 2026-06-28 anti-ratchet rescore. Conservation+Invariant Closure rises from `74` to `75`, Cross-Regime Bridge rises from `73` to `74`, Internal Constituent Dynamics rises from `81` to `82`, and Falsification Gates rises from `97` to `98`; all other latest-row scores remain unchanged. The latest $\mathbb{A}\mathbb{A}\mathbb{A}$ weighted total remains displayed as `68` with raw value `67.90`, and the comparator adjustment changes the displayed total deficit from `-20` to `-18`. The row-level advantage is still concentrated in Axiom+Notation and Theory Architecture+Ontic Logic; the major deficits remain Empirical Precision+Benchmark Validation, Formula+Coefficient Recovery, Parameter+Scale Closure, Conservation+Invariant Closure, Potential+Action Closure, UV/IR+Regularization Completion, and Discriminating Predictions+Anomaly Discipline.
 
-### 2026-06-26 Assessment Notes
+#### 2026-06-26 Assessment Notes
 
 *Historical assessment: the corresponding dated column is not included in the summary table.*
 
@@ -8268,7 +8272,7 @@ Parameter+Scale Closure rises modestly because the Parameter Ledger now separate
 
 The score is still held below modern operational closure by the same central blockers. No single accepted native record yet supplies the first certified braid, the mass map, Lorentz/PPN coefficients, Born/Bell measures, Standard Model mixing and mass rows, radiation spectra, public gravitational-wave residuals, BBN/CMB/growth fits, or a shared cosmology observation record inside declared tolerances. The recent work makes the failure boundary more explicit and the proof route more mathematical; it does not erase the need for one branch-derived, same-record coefficient and benchmark recovery stack.
 
-### 2026-06-20 Assessment Notes
+#### 2026-06-20 Assessment Notes
 
 *Historical assessment: the corresponding dated column is not included in the summary table.*
 
@@ -8280,7 +8284,7 @@ Formula, parameter, and empirical rows remain the main drag on the total. The co
 
 Falsification and coverage now score near modern-operational levels because the corpus contains explicit sector acceptance sets, null-result residuals, failure conditions, benchmark protocols, and cross-regime packet schemas. That does not make the total near modern physics. Architecture and ontology remain very strong, but their limited score weight prevents coherence from compensating for missing derivations, missing coefficients, unfixed parameters, and unvalidated benchmark recovery.
 
-### 2026-05-22 Assessment Notes
+#### 2026-05-22 Assessment Notes
 
 *Historical assessment: this note compares the May 22 result with an intermediate score of `59`; neither intermediate column is included in the summary table.*
 
@@ -8337,7 +8341,7 @@ Executable neutral-braid diagnostics add negative evidence and sharper first-fai
 
 The total remains far below modern operational closure for the same reason as the prior assessments. The theory stack has stronger taxonomy, residual surfaces, and diagnostics required before advancement, but not the decisive retained branch. Until a single native record supplies $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, $\mathcal{M}_{\text{sea}}^{ab}$, Lorentz/PPN recovery, photon-channel recovery, quantum source measures, Standard Model mapping coefficients, and shared cosmology fits, architecture and auditability must not inflate the validated-closure total.
 
-### 2026-05-19 Assessment Notes
+#### 2026-05-19 Assessment Notes
 
 *Historical assessment: the corresponding dated column is not included in the summary table.*
 
@@ -8349,7 +8353,7 @@ Formula, parameter, and cross-regime scores also rise because the corpus now sep
 
 The total remains far below modern operational closure because the decisive derivations are still open. The first certified $A_0$ branch has not passed; $\zeta(A_0)$, $E_{\text{internal}}(A_0)$, and $\mathcal{M}_{\text{sea}}^{ab}$ are not accepted outputs; Lorentz, PPN, redshift, and photon-channel coefficients still lack one accepted Noether sea constitutive map; Born/Bell closure still has negative controls and measure targets rather than a positive pair-provenance theorem; Standard Model mixing and mass formulas remain shared-record theorem targets; and cosmology has a shared residual scaffold but not a fit to SN, BAO, CMB, growth, BBN, and pre-BBN rows with one $\theta_{\mathrm{sea}}$.
 
-### 2026-05-16 Assessment Notes
+#### 2026-05-16 Assessment Notes
 
 The 2026-05-16 assessment is rescored under the validated-closure lens. The previous $\mathbb{A}\mathbb{A}\mathbb{A}$ columns were removed because they used a softer equal-weight closure lens that allowed architecture, coverage, and auditability to dominate the total.
 

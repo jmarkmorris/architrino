@@ -74,7 +74,7 @@ A Noether braid is a candidate way for a declared neutral architrino inventory t
 
 That is why labels are never evidence. An exact identity and characteristic row identify a configuration; neither implies stability, mass response, photon behavior, or Noether sea dominance. Those claims require retained branch certificates and downstream export rows.
 
-### Document Role
+### How to Read This Chapter
 
 This chapter is the overview and reading map for the Noether braid stack. It defines the word **braid**, routes the coordinate taxonomy, and explains why factual geometry descriptions are not retained-branch results.
 
@@ -113,7 +113,7 @@ Stating the requirements realization-independently protects the proof order. A r
 
 Nothing in this chapter is a retained-branch result. Every row below is an obligation — a theorem target, closure target, or comparison target at its stated level — and proof dispositions are not carried in this chapter.
 
-### Document Role
+### How to Read This Chapter
 
 This chapter owns the realization-independent statement of the braid proof burden: the retained-branch certificate row structure, the first-failure reporting discipline, the ordered proof-burden ladder, and the full recovery-target inventory consumed by the downstream theory. It deliberately owns no geometry and no evidence. The neutral six-body base lives in [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md#neutral-braid-base); prescribed member definitions live in [Braid Taxonomy](../../../../markdown/aaa/noether-braid/braid-taxonomy.md), [Braid orthogonal-axis three-binary configurations](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md), and [Braid coincident-axis three-binary configurations](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md). The shared mathematical machinery lives in [Braid Mathematics](../../../../markdown/aaa/noether-braid/braid-mathematics.md). Proof dispositions are not carried in this chapter; broader diagnostic axes live in [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md).
 
@@ -2818,7 +2818,7 @@ This specialist chapter carries the retention, phase-closure, cadence-retuning, 
 
 Nothing in this chapter establishes that the EOM solver retains such a branch. Derived identities, conditional results, hypotheses, and observer-level mappings keep their stated claim grades.
 
-### Claim-Ownership Classification
+### Geometry, Hypotheses, and Evidence
 
 The claims in this chapter have three distinct scopes: hypotheses specific to the coincident-midpoint configuration, family-general recovery requirements expressed in its coordinates, and physical assignments not established for it. The table classifies scope, not truth.
 
@@ -4373,7 +4373,7 @@ Configuration space is the menu of possible branch records, not a list of alread
 
 This distinction prevents premature naming. A three-row branch is valuable because three independent angular-momentum rows can supply a full internal frame in Euclidean space. It is not valuable because three rows sound elegant. The solver still has to prove that the energies, phases, orientations, root ledgers, and group velocity belong to one retained record.
 
-### Document Role
+### How to Read This Chapter
 
 This chapter owns the rank-three angular-momentum-frame search variables: unordered layer labels, angular-momentum two-form rows, the plane-frame determinant, group velocity, energy/frequency/speed/radius ledgers, role assignment, and permutation accounting. It is the place to ask whether a candidate branch supplies three retained angular-momentum rows with enough conditioning to form a volumetric internal frame.
 
@@ -5056,7 +5056,7 @@ $$
 
 while degeneration toward $D_{\mathrm{plane}}=0$ may produce large framing anisotropy even with nearly equal weights. Orthogonality suppresses the non-orthogonal-frame contribution; near-degenerate retained spectral weights, shielding, or averaging must separately suppress the weight-anisotropy contribution. If both parts are proved for a retained branch class, the same geometric row would suppress Lorentz period anisotropy, clock-orientation leakage, Hughes-Drever-type inertial anisotropy, and scalar-mass anisotropy. Both parts remain theorem targets; no measured family comparison currently bears on them.
 
-### Relation To The Doubling-frequency Chapter
+### Relation to the Doubling-Frequency Chapter
 
 [axially separated 4:2:1 reference Doubling-Frequency Resonance Lock](../../../../markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md) studies one restricted member inside this broader configuration space. It asks whether the indexed axially separated orthogonal-axis locus frequency triplet, especially the axially separated 4:2:1 reference relation $f_1:f_2:f_3=4:2:1$, can close as an integer phase-bundle lock with a stable return map and controlled caustic behavior. The coincident-midpoint 4:2:1 reference chart inherits the same frequency relation on the zero-axial-offset locus.
 
@@ -5086,7 +5086,7 @@ Six architrinos interacting through delayed causal wakes form a hard dynamical p
 
 The results divide by strength, and the division is stated with each result. Exact derivations include the constant-lag reduction of the rotating-wave ansatz and the algebraic consequences of a declared transverse speed-budget premise. Scoped negative results include the anti-damping family, which rejects specific fixed-coordinate charts without rejecting the braid program. The causal-root event analysis distinguishes integer root counts from physical action amounts. The Accessory Configuration moment analysis remains a hypothesis, and the eigen-braid spectrum system remains a theorem target. Claim levels travel with their statements throughout. The phase-compensated equal-geometry locus-specific invariant channels, two-ring geometry, dipole identity, momentum-screw alignment, and return-response analysis live in [Coordinate-Axis Six-Point Symmetry and Return Response](../../../../markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md).
 
-### Document Role
+### How to Read This Chapter
 
 This chapter owns the shared mathematical machinery of the braid family: the substrate levels and speed hierarchy with the transverse speed-budget lemmas, the spiral-helical motion picture and mass thesis, the hinge equation sketch, the bounded-weight inverse-square escape lemma, the acceleration-gradient comparison, the scoped anti-damping negative results, the eigen-braid spectrum framing, the distinction between root events and action amounts, and the Accessory Configuration moment analysis. The neutral six-body base lives in [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md#neutral-braid-base); prescribed coordinates and definitions live in [Braid Taxonomy](../../../../markdown/aaa/noether-braid/braid-taxonomy.md), [Braid orthogonal-axis three-binary configurations](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md), and [Braid coincident-axis three-binary configurations](../../../../markdown/aaa/noether-braid/3d-braid-assemblies.md). The realization-independent proof obligations live in [Braid Recovery Requirements](../../../../markdown/aaa/noether-braid/braid-recovery-requirements.md). Realization chapters state which of this machinery their configurations inherit and what fixture-specific evidence they add.
 
@@ -6457,7 +6457,7 @@ A Noether braid is not a static object. It is a dynamic system of six architrino
 
 That is why this geometry matters downstream. Pressure, packing, clock/ruler response, effective metric behavior, and Noether sea density are all coarse readings of many such envelopes and their deformations. The page therefore keeps the geometric export rows separate from the proof that the branch itself is retained.
 
-### Document Role
+### How to Read This Chapter
 
 This chapter is the envelope and export-interface chapter for braid geometry. It owns:
 
@@ -7628,7 +7628,7 @@ This is a definition and closure target, not a completed classification theorem.
 
 In the terminology of [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md#candidate-and-certified-braids), a candidate for certified-braid promotion is the dynamical return-map status of the full retained branch. The assembly topological charge is the branch-intrinsic topological label carried by that candidate. It is not a Lorentz-dressed observer component: moving-assembly export may transform energy-momentum and angular-momentum readouts, but $[\mathfrak B]_{\mathrm{top}}$ changes only when the retained branch crosses a fold, reconnection, or declared surgery event.
 
-### Document Role
+### How to Read This Chapter
 
 This chapter is the downstream classifier for retained Noether braid branch charts. It owns $[\mathfrak B]_{\mathrm{top}}$, the signed-degree refinement, invariance conditions, allowed transitions, and simulation extraction order for the topological label.
 

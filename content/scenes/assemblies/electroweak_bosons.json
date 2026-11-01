@@ -3,6 +3,11 @@
   "scene": {
     "id": "assemblies__electroweak_bosons",
     "title": "Electroweak Bosons",
+    "textbookToc": {
+      "sectionTitles": {
+        "the photon gamma coaxial contra rotating polarity conjugate planar pair": "Photon Architecture"
+      }
+    },
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,

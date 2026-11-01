@@ -7528,7 +7528,7 @@ We compare three frameworks: (1) a time-domain PDE source term, (2) an integral/
 
 ---
 
-#### Time-based PDE (wave equation with a moving point source term)
+#### Time-Based PDE (Wave Equation with a Moving Point Source Term)
 
 **Physical idea:** keep the mathematical source term as an injection per unit time at the transmitter location, put that into a PDE surrogate for causal wake propagation at speed $c_f$, and let the PDE produce expanding spherical causal wake surfaces. This is a standard grid formulation; its cost and accuracy still have to be measured for the declared domain and resolution.
 
@@ -7586,7 +7586,7 @@ Here $q(T)$ has units “amplitude per unit time.” The finite-speed wave opera
 
 ---
 
-#### Integral (Green’s function / path-history potential) approach
+#### Integral (Green’s Function / Path-History Potential) Approach
 
 **Physical idea:** instead of evolving a PDE in time, write the solution as the sum of contributions from every past emission. For the wave equation the contribution from an impulse emitted at time $T_t$ and place $\mathbf X_t(T_t)$ arrives at a field point $\mathbf X$ only at the **path-history time** when the causal wake surface reaches $\mathbf X$. The Green’s function neatly encodes the expanding causal wake surface.
 
@@ -7697,7 +7697,7 @@ If $\mathbf X_t(T_t)=\mathbf X_0$ (transmitter fixed) and $q(T_t)=Q\,\delta(T_t-
 
 ---
 
-#### Event-driven Radial-Transport + Per-Hit EOM (Canonical Method)
+#### Event-Driven Radial-Transport + Per-Hit EOM (Canonical Method)
 
 Physical idea: represent emission as a conserved, razor-thin causal wake surface (a measure on the emission-labeled surface), then drive particle motion by summing line-of-action per-hit accelerations with transmitter-side acceleration weight at causal intersection times. Numerical instantiations use $c_f=1$; symbolic derivations retain $c_f$ where its dependence matters.
 
@@ -7816,7 +7816,7 @@ Practical implementation notes (concise)
 
 ---
 
-#### Differential analysis (criteria-by-criteria)
+#### Comparison of Evaluation Methods
 
 Axiomatic fidelity (delayed-only, line-of-action, constant transmitter emission)
 - Method 1: Partially aligned. The PDE yields $1/(4\pi r)$ wave amplitudes; mapping to $1/r^2$ per-hit accelerations requires a declared observable map, gradients, and conventions. Radial-only action is not built-in.
@@ -7863,7 +7863,7 @@ Operational guidance — when to use which method
 - Method 2 (Path history integral): use this for closed forms, analytic insight, or sparse probe evaluation; enforce the path-history condition $T-T_t=\|\mathbf X-\mathbf X_t(T_t)\|/c_f$ and handle the geometric factor $1-\mathbf{n}\cdot\mathbf V_t/c_f$ in evaluation; solve one root per observer-time pair in slow-motion, more if transmitters move fast.
 - Method 3 (Event-driven canonical): use the causal-root acceleration sum for production many-body dynamics. An auxiliary mollified calculation must retain its approximation grade until error control or a recovery argument connects the claimed result to the Master Equation.
 
-#### Pros and cons (comparative)
+#### Advantages and Limitations of the Methods
 
 Method 1 — Time-based PDE (wave equation)
 - Pros
@@ -7897,7 +7897,7 @@ Method 3 — Event-driven radial-transport + per-hit EOM (canonical)
 
 ---
 
-#### Recommendation
+#### Choosing an Evaluation Method
 
 - Use Method 3 as the primary engine for architrino and assembly dynamics. It directly implements radial-only action and constant emission cadence.
 - Adopt Method 2 as an analytic comparison instrument for the scalar-wave surrogate. Fix normalization on the stationary-transmitter case, then define and verify any moving-source observable map separately; the wave-potential Jacobian does not automatically become the canonical $W^{\mathrm{acc}}$. Agreement under a declared map is implementation parity rather than an independent oracle.
@@ -7912,7 +7912,7 @@ Method 3 — Event-driven radial-transport + per-hit EOM (canonical)
 
 The event-driven radial method governs dynamics, the path-history integral checks the declared comparison map, and the PDE supplies whole-field pictures or explicitly modeled comparison media.
 
-#### Implementation Summary
+#### Evaluation Method Summary
 - Model the transmitter through the source term $S(\mathbf X,T)=q(T)\,\delta\!\big(\mathbf X-\mathbf X_t(T)\big)$ (time-based emission density).
 - Method 1: generally simplest for grid-based whole-field runs on a declared domain and resolution; wake surfaces emerge at speed $c_f$.
 - Method 2: exact path-history formula; contributions occur only when $T-T_t=\|\mathbf X-\mathbf X_t(T_t)\|/c_f$, with amplitude decaying as $1/(4\pi r)$ and a geometric $1-\mathbf{n}\cdot\mathbf V_t/c_f$ factor in evaluation.
@@ -8162,7 +8162,7 @@ Solution techniques (toolbox for delayed, radial DDEs):
 - A posteriori error control: use defect/residual of collocation, step halving with history re-interpolation, and event-time error estimates for adaptive step and tolerance selection.
 - Fixed-point frameworks: establish local existence/uniqueness by contraction on history spaces $C([-\Delta T_{\max},0])$ (or their mollified variants); use Picard iterations as a solver preconditioner.
 
-#### Deliverables
+#### Results and Limitations
 - Precise DDE forms and causal-root conditions for use in analysis and computation.
 - Cross-references to sections with receiver-side baseline equations and status notes.
 - A minimal benchmark ladder for closure tests:
@@ -8292,7 +8292,7 @@ For the ordered one-dimensional chart $X_1(T)>X_2(T)$, define the signed separat
 
   [View →](../../../../../equation-mapping.html#corpus-equation-e0defb4c22d7efd2)
 
-#### Deliverables
+#### Results and Limitations
 - The equations and causal-root definitions above specify the native partner-attraction comparison on its declared history chart; a complete computational treatment must also account for any admitted same-transmitter roots.
 - Solvability status: no closed-form solution is supplied for the fully coupled delayed system. Numerical integration requires complete-history coverage, robust root-finding, and event-aware stepping; no evolved stability, collision, caustic, or conservation result is claimed here.
 
@@ -9205,13 +9205,13 @@ An [architrino](../../../../markdown/aaa/foundations/architrino.md) is a primiti
 
 Here a candidate self-energy means the same-transmitter part of an independently constructed history-energy account, with its reference value, retained history, and boundaries declared. Its existence and allocation remain open under the [Energy construction](../../../../markdown/aaa/dynamics/energy.md#energy-conservation-and-exchange). Self-acceleration, work delivered by self-hits, and stored self-history energy are different quantities. This chapter establishes bounded acceleration and work on stated regular domains and explains why those bounds do not prove finite physical self-energy or a regulator-independent limit.
 
-#### Classical self-energy pathology (contrast)
+#### Classical Self-Energy Pathology (Contrast)
 
 In the classical comparison, electrostatic self-energy is the energy assigned to a charge's own electric field. The electric field $\mathbf E$ measures the local electric response per test charge. A point-source potential proportional to $1/r$ gives $\|\mathbf E\|\propto1/r^2$, and the classical energy-density rule is proportional to $\|\mathbf E\|^2$. With inner cutoff $b>0$ and fixed outer radius $R>b$, the radial energy integral is proportional to $\int_b^R r^{-2}\,dr=1/b-1/R$, which diverges as $b\to0^+$. The factor $r^2$ in the three-dimensional volume element supplies the reduction from $r^{-4}$ to $r^{-2}$.
 
 That calculation follows from the classical field-energy rule and its point-source extrapolation; it is not a substrate premise. A source-dependent scalar proportional to $1/r$ can also describe a regular receiver chart in this theory, but that fact does not supply the classical squared-gradient energy density. The distinction concerns the energy construction, not a prohibition on inverse-distance scalars. The source note below identifies the classical comparison.
 
-#### Why the zero-radius divergence is quarantined here
+#### Why the Zero-Radius Divergence Is Quarantined Here
 
 ##### Single Emissions and Continuous History
 
@@ -9286,7 +9286,7 @@ A simple nontrivial self-root also requires motion faster than $c_f$ somewhere b
 
 Claim grade: derived for the displayed emission identities, counterexample, kernel maximum, and regular-root bound on their stated domains. A violation with those domains and normalizations unchanged would refute the corresponding result. None establishes regulator convergence, a physical self-energy, or stability.
 
-#### Practical guidance (numerics and analysis)
+#### Practical Guidance (Numerics and Analysis)
 
 Choose the wake width relative to resolved path curvature and separations, but establish the integration-domain or core bound independently. Compare complete root identities and omitted contributions under time-step, history-depth, and regulator refinement. On a common regular chart, the [two-stage recovery target](../../../../markdown/aaa/dynamics/master-equation.md#auxiliary-dual-mollified-regulator-for-proof-and-computation) first takes $\eta\to0^+$ at fixed $\epsilon_c$, then $\epsilon_c\to0^+$ while separations remain positive. A different joint limit needs its own proof. Weak convergence of a selector alone does not control its product with a singular amplitude or an unbounded energy integrand.
 
@@ -9315,7 +9315,7 @@ Moving-transmitter and self-hit branches need the [history-aware construction ro
 
 The [regularization analysis](../../../../markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md) states the continuation and refinement obligations. Finite self-energy, a regulator-independent subtraction defining a renormalized quantity, conserved total energy, and assembly mass recovery remain open until one construction supplies their values and boundaries. A surviving dependence on core scale, wake width, history cutoff, or subtraction convention rejects the corresponding regulator-independent claim.
 
-#### Sign-resolved bookkeeping
+#### Sign-Resolved Bookkeeping
 
 An assembly is an organized collection of architrinos; the [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) is the proposed ambient population of neutral assemblies. Their positive- and negative-polarity wake contributions can cancel in a declared far-wake response. A small signed sum does not bound the separate magnitudes: contributions $a$ and $-a$ have zero sum and total magnitude $2|a|$. This derived algebraic fact supports recording signed acceleration, signed power, and magnitudes separately.
 

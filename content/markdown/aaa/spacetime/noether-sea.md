@@ -1241,7 +1241,7 @@ Use these terms consistently:
 
 Avoid using **vacuum** alone. It is ambiguous between empty substrate, QFT vacuum language, and the actual Noether sea. If the intended meaning is the physical substrate contents, use **Noether sea**.
 
-## Ownership Boundary
+## Scope and Related Chapters
 
 This page owns:
 

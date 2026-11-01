@@ -360,6 +360,7 @@ export function createMarkdownRuntime(deps) {
         (child) => child.tagName === "UL" || child.tagName === "OL"
       ) ?? null;
 
+    let branchOrdinal = 0;
     const markListLevel = (list, level) => {
       list.dataset.tocLevel = String(level);
       [...list.children].forEach((item) => {
@@ -371,8 +372,24 @@ export function createMarkdownRuntime(deps) {
         delete item.dataset.tocExpanded;
         const branchList = findDirectChildList(item);
         if (branchList) {
-          branchList.hidden = false;
           markListLevel(branchList, level + 1);
+          const collapsible = level >= 2 && documentLike?.createElement;
+          branchList.hidden = Boolean(collapsible);
+          if (collapsible) {
+            const primaryLink = [...item.children].find((child) => child.tagName === "A");
+            const label = primaryLink?.textContent?.trim() || "sections";
+            const toggle = documentLike.createElement("button");
+            toggle.type = "button";
+            toggle.className = "toc-branch-toggle";
+            toggle.textContent = "+";
+            toggle.setAttribute("aria-label", `Expand ${label}`);
+            toggle.setAttribute("aria-expanded", "false");
+            branchList.id = `textbook-toc-branch-${++branchOrdinal}`;
+            toggle.setAttribute("aria-controls", branchList.id);
+            item.insertBefore(toggle, item.firstChild);
+            item.classList.add("toc-collapsible", "is-collapsed");
+            item.dataset.tocExpanded = "false";
+          }
         }
       });
     };
@@ -802,37 +819,28 @@ export function createMarkdownRuntime(deps) {
       const toggle = event.target?.closest?.(".toc-branch-toggle");
       if (toggle && isTextbookTocPath(activeMarkdownSourcePath)) {
         event.preventDefault();
-        const owningItem = toggle.closest("li[data-toc-level=\"2\"]");
+        const owningItem = toggle.closest("li.toc-collapsible");
         if (!owningItem) {
           return;
         }
-        const level2Items = [
-          ...markdownBody.querySelectorAll("li[data-toc-level=\"2\"].toc-collapsible"),
-        ];
-        const shouldExpand = owningItem.dataset.tocExpanded !== "true";
-        level2Items.forEach((item) => {
-          const branchList = [...item.children].find(
-            (child) => child.tagName === "UL" || child.tagName === "OL"
-          );
-          const branchToggle = item.querySelector(":scope > .toc-branch-toggle");
-          if (!branchList || !branchToggle) {
-            return;
-          }
-          const expanded = shouldExpand && item === owningItem;
-          item.classList.toggle("is-expanded", expanded);
-          item.classList.toggle("is-collapsed", !expanded);
-          item.dataset.tocExpanded = expanded ? "true" : "false";
-          branchList.hidden = !expanded;
-          branchToggle.setAttribute("aria-expanded", expanded ? "true" : "false");
-          branchToggle.textContent = expanded ? "−" : "+";
-          const primaryLink = item.querySelector(":scope > a");
-          if (primaryLink) {
-            branchToggle.setAttribute(
-              "aria-label",
-              `${expanded ? "Collapse" : "Expand"} ${primaryLink.textContent.trim()}`
-            );
-          }
-        });
+        const branchList = [...owningItem.children].find(
+          (child) => child.tagName === "UL" || child.tagName === "OL"
+        );
+        if (!branchList) {
+          return;
+        }
+        const expanded = owningItem.dataset.tocExpanded !== "true";
+        owningItem.classList.toggle("is-expanded", expanded);
+        owningItem.classList.toggle("is-collapsed", !expanded);
+        owningItem.dataset.tocExpanded = expanded ? "true" : "false";
+        branchList.hidden = !expanded;
+        toggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+        toggle.textContent = expanded ? "−" : "+";
+        const primaryLink = [...owningItem.children].find((child) => child.tagName === "A");
+        toggle.setAttribute(
+          "aria-label",
+          `${expanded ? "Collapse" : "Expand"} ${primaryLink?.textContent?.trim() || "sections"}`
+        );
         return;
       }
       const link = event.target?.closest?.("a[href]");

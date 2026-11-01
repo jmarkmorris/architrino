@@ -23,7 +23,7 @@ We work in normalized wake-speed units with $c_f=1$ throughout; the symbol $c_f$
 
 ---
 
-## Constant per-wavefront emission
+## Constant Per-Wavefront Emission
 
 - What we assume:
   - Emission cadence and per-wavefront amplitude are constant at the transmitter.
@@ -53,7 +53,7 @@ We work in normalized wake-speed units with $c_f=1$ throughout; the symbol $c_f$
 
 ---
 
-## Superposition with causal wake surfaces and $\eta$-regularization
+## Superposition with Causal Wake Surfaces and $\eta$-Regularization
 
 - What we assume:
   - All wake contributions superpose linearly at the level of distributions (causal wake surfaces add).
@@ -100,7 +100,7 @@ We work in normalized wake-speed units with $c_f=1$ throughout; the symbol $c_f$
 
 ---
 
-## What the model explicitly does not use
+## What the Model Explicitly Does Not Use
 
 - No Lorentzian spacetime metric, the four-dimensional metric of relativity that combines time and space in one line element, at the fundamental level (the background is [absolute time](../../foundations/absolute-time.md) and the [Euclidean void](../../foundations/euclidean-void.md), the fixed flat spatial container; emergent cones are effective, not kinematic).
 - No right-hand-rule magnetism or $\mathbf V\times\mathbf B$ acceleration term at the substrate level; every per-hit acceleration is along $\hat{\mathbf{r}}$.
@@ -108,7 +108,7 @@ We work in normalized wake-speed units with $c_f=1$ throughout; the symbol $c_f$
 
 ---
 
-## Validation and next steps (concrete)
+## Validation and Next Steps (Concrete)
 
 1) Far-field cancellation and the zero-potential axis
 - Compute the time-averaged multipole expansion of a high-frequency binary; show leading terms cancel along the rotation axis and decay rapidly off-axis. For an equal-radius opposite-polarity binary and a receiver at rest on the axis, the on-axis cancellation of the potential is exact at every instant, not only in leading order: every point of the orbit circle is at the same distance from an axis point, so both transmitters have the same emission time and the same transmitter-side factor $D_t=c_f$, and their contributions are equal and opposite.
@@ -126,7 +126,7 @@ We work in normalized wake-speed units with $c_f=1$ throughout; the symbol $c_f$
 
 ---
 
-## Comparisons and falsifiable edges
+## Comparisons and Falsifiable Edges
 
 - Classical electromagnetism:
   - Recovery target: reproduce declared far-zone radiation observables from retained coherent assemblies, then test whether near-zone residuals differ near transmitter-side folds or admitted self-hit windows.
@@ -147,7 +147,7 @@ Radial hits, causal delay, constant per-wavefront amplitude, and admitted self-h
 
 ---
 
-## Effective observables and states (quantum-like layer)
+## Effective Observables and States (Quantum-Like Layer)
 
 Premise: single-hit information is sparse. At an instant, the receiver-local dynamical datum is the signed acceleration vector $\mathbf A$. That vector fixes the net acceleration direction but not the transmitter ray and polarity assignment: attraction from one ray and repulsion from the opposite ray can produce the same $\mathbf A$. The corresponding unoriented axis is therefore an inference quotient over transmitter hypotheses, not the raw received datum. The $\mathbb{U}_{\text{now}}$ universe-state perspective, the complete state of every architrino on one absolute-time slice, can include the full transmitter-tagged emission ledger as complete-state bookkeeping, but a local receiver or Physical Observer, an assembly inside the Noether sea whose detectors are themselves dynamical outputs, cannot infer that hidden ledger from a single hit.
 
@@ -187,7 +187,7 @@ Consequence: embedded observers and synthetic detector records must reason stati
 
 ---
 
-## Single-transmitter multi-hit nuance vs universal superposition
+## Single-Transmitter Multi-Hit Nuance vs Universal Superposition
 
 Even for a single transmitter, the receiver cannot be sure that a given acceleration did not come from multiple distinct emission times $T_t\in\mathcal{C}_{r\leftarrow t}(T_r)$ on that same transmitter, where $\mathcal{C}_{r\leftarrow t}(T_r)$ is the causal set of emission times of transmitter $t$ whose wakes reach receiver $r$ at $T_r$, the set written $\mathcal{C}_{aa}(T_r)$ above when transmitter and receiver are the same architrino. Several roots of $r=c_f(T_r-T_t)$ may occur when the delayed geometry permits them; a super-field-speed interval is not itself sufficient. An everywhere strictly sub-field-speed transmitter has $D_t>0$ throughout the retained interval, so the root function is strictly monotone and curvature alone cannot create multiple roots. Distinct roots can have distinct lines of action, contributing separate per-hit accelerations whose emission-time origins are not recoverable from the net vector alone.
 
@@ -195,7 +195,7 @@ However, this is not the dominant practical difficulty. The governing issue is g
 
 ---
 
-## Operational noncommutativity and contextuality (emergent)
+## Operational Noncommutativity and Contextuality (Emergent)
 
 Measurement procedures are interventions that condition future hit histories:
 - Let $F,G$ be experimental contexts (e.g., planar-mode analyzers, path blockers, timing gates), where a planar mode is the coaxial contra-rotating polarity-conjugate planar pair proposed as the photon carrier in [Electroweak Bosons](../../assemblies/bosons/electroweak-bosons.md#photon-referent-status), a referent whose acceleration-balance closure remains open. Because they modify trajectories and thus the set of future causal roots, their composition can satisfy $F\circ G\ne G\circ F$ for a specified preparation and readout. That order effect must be measured or derived for those interventions; it does not follow from their labels alone.
@@ -227,7 +227,7 @@ Instantaneous inversion is ill-posed; reconstruction is temporal, multi-view, an
 
 ---
 
-## Worked micro-to-effective examples
+## Worked Micro-to-Effective Examples
 
 - Two-planar-mode interference:
   - Setup: two coherent photon planar modes reach a screen. Their geometric overlap and path-history phase define a candidate complex-amplitude map. An observed intensity proportional to its squared norm is obtained only if the independently specified detector and ensemble record passes the Born-like closure residual above.
@@ -241,7 +241,7 @@ Instantaneous inversion is ill-posed; reconstruction is temporal, multi-view, an
 
 ---
 
-## Falsifiable edges and tests (observability-focused)
+## Falsifiable Edges and Tests (Observability-Focused)
 
 - Context order test: demonstrate order-dependent transmission with sequential analyzers on coherent planar modes; quantify the asymmetry $F\circ G$ vs. $G\circ F$.
 - Planar-mode interference robustness: map how partial decoherence (deliberate jitter in transmitter paths) suppresses the overlap term; compare to predicted $|A_{\mathrm{mode}}|^2$ decay with coherence length.

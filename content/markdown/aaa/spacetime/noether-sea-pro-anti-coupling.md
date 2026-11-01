@@ -79,7 +79,7 @@ If the local Noether sea is assembled from balanced pro/anti Noether braid popul
 
 This is consistent with the framework's broader assemblies-first stance. Equations are read as effective descriptors of deeper assembly dynamics, and the medium response is carried by organized Noether braid populations rather than by the Euclidean void itself.
 
-## Related descriptions
+## Related Descriptions
 
 The following pages provide the surrounding descriptions:
 

@@ -12,7 +12,7 @@ The bridge claim is not that special relativity is discarded. The claim is that 
 
 The named Return-Cycle Lorentz Quantization program seeks a common Lorentz response across admissible causal-root ledger classes. A discrete class label can coexist with continuously varying speed, radii, frequencies, and action within a class. Neither discrete allowed velocities nor a quantum of action follows from that label; both require independent dynamical or action-ledger results.
 
-## Ownership Boundary
+## Scope and Related Chapters
 
 This chapter owns:
 

@@ -26,7 +26,7 @@ We compare three frameworks: (1) a time-domain PDE source term, (2) an integral/
 
 ---
 
-## Time-based PDE (wave equation with a moving point source term)
+## Time-Based PDE (Wave Equation with a Moving Point Source Term)
 
 **Physical idea:** keep the mathematical source term as an injection per unit time at the transmitter location, put that into a PDE surrogate for causal wake propagation at speed $c_f$, and let the PDE produce expanding spherical causal wake surfaces. This is a standard grid formulation; its cost and accuracy still have to be measured for the declared domain and resolution.
 
@@ -84,7 +84,7 @@ Here $q(T)$ has units “amplitude per unit time.” The finite-speed wave opera
 
 ---
 
-## Integral (Green’s function / path-history potential) approach
+## Integral (Green’s Function / Path-History Potential) Approach
 
 **Physical idea:** instead of evolving a PDE in time, write the solution as the sum of contributions from every past emission. For the wave equation the contribution from an impulse emitted at time $T_t$ and place $\mathbf X_t(T_t)$ arrives at a field point $\mathbf X$ only at the **path-history time** when the causal wake surface reaches $\mathbf X$. The Green’s function neatly encodes the expanding causal wake surface.
 
@@ -199,7 +199,7 @@ If $\mathbf X_t(T_t)=\mathbf X_0$ (transmitter fixed) and $q(T_t)=Q\,\delta(T_t-
 
 
 
-## Event-driven Radial-Transport + Per-Hit EOM (Canonical Method)
+## Event-Driven Radial-Transport + Per-Hit EOM (Canonical Method)
 
 Physical idea: represent emission as a conserved, razor-thin causal wake surface (a measure on the emission-labeled surface), then drive particle motion by summing line-of-action per-hit accelerations with transmitter-side acceleration weight at causal intersection times. Numerical instantiations use $c_f=1$; symbolic derivations retain $c_f$ where its dependence matters.
 
@@ -318,7 +318,7 @@ Practical implementation notes (concise)
 
 ---
 
-## Differential analysis (criteria-by-criteria)
+## Comparison of Evaluation Methods
 
 Axiomatic fidelity (delayed-only, line-of-action, constant transmitter emission)
 - Method 1: Partially aligned. The PDE yields $1/(4\pi r)$ wave amplitudes; mapping to $1/r^2$ per-hit accelerations requires a declared observable map, gradients, and conventions. Radial-only action is not built-in.
@@ -365,7 +365,7 @@ Operational guidance — when to use which method
 - Method 2 (Path history integral): use this for closed forms, analytic insight, or sparse probe evaluation; enforce the path-history condition $T-T_t=\|\mathbf X-\mathbf X_t(T_t)\|/c_f$ and handle the geometric factor $1-\mathbf{n}\cdot\mathbf V_t/c_f$ in evaluation; solve one root per observer-time pair in slow-motion, more if transmitters move fast.
 - Method 3 (Event-driven canonical): use the causal-root acceleration sum for production many-body dynamics. An auxiliary mollified calculation must retain its approximation grade until error control or a recovery argument connects the claimed result to the Master Equation.
 
-## Pros and cons (comparative)
+## Advantages and Limitations of the Methods
 
 Method 1 — Time-based PDE (wave equation)
 - Pros
@@ -399,7 +399,7 @@ Method 3 — Event-driven radial-transport + per-hit EOM (canonical)
 
 ---
 
-## Recommendation
+## Choosing an Evaluation Method
 
 - Use Method 3 as the primary engine for architrino and assembly dynamics. It directly implements radial-only action and constant emission cadence.
 - Adopt Method 2 as an analytic comparison instrument for the scalar-wave surrogate. Fix normalization on the stationary-transmitter case, then define and verify any moving-source observable map separately; the wave-potential Jacobian does not automatically become the canonical $W^{\mathrm{acc}}$. Agreement under a declared map is implementation parity rather than an independent oracle.
@@ -414,7 +414,7 @@ Method 3 — Event-driven radial-transport + per-hit EOM (canonical)
 
 The event-driven radial method governs dynamics, the path-history integral checks the declared comparison map, and the PDE supplies whole-field pictures or explicitly modeled comparison media.
 
-## Implementation Summary
+## Evaluation Method Summary
 - Model the transmitter through the source term $S(\mathbf X,T)=q(T)\,\delta\!\big(\mathbf X-\mathbf X_t(T)\big)$ (time-based emission density).
 - Method 1: generally simplest for grid-based whole-field runs on a declared domain and resolution; wake surfaces emerge at speed $c_f$.
 - Method 2: exact path-history formula; contributions occur only when $T-T_t=\|\mathbf X-\mathbf X_t(T_t)\|/c_f$, with amplitude decaying as $1/(4\pi r)$ and a geometric $1-\mathbf{n}\cdot\mathbf V_t/c_f$ factor in evaluation.

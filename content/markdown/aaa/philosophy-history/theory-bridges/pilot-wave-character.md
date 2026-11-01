@@ -526,7 +526,7 @@ The comparison warning is that a preferred foliation is not disqualifying by its
 - If the phase-locking quantization condition yields energy levels that deviate from observed atomic spectra outside the declared combined theoretical and experimental uncertainty, the specific self-consistent loop mechanism is falsified.
 - If a derived observable prediction violates an applicable Lorentz-symmetry test after its measurement and model uncertainties are included, that realization is excluded; a universal dimensionless anisotropy bound on all assembly dynamics is not supplied here.
 
-## Closure Program Integration (quantum chain)
+## Closure Program Integration (Quantum Chain)
 
 This chapter is the primary synthesis for quantum closure in $\mathbb{A}\mathbb{A}\mathbb{A}$.
 

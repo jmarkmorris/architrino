@@ -4,7 +4,7 @@ This specialist chapter carries the retention, phase-closure, cadence-retuning, 
 
 Nothing in this chapter establishes that the EOM solver retains such a branch. Derived identities, conditional results, hypotheses, and observer-level mappings keep their stated claim grades.
 
-## Claim-Ownership Classification
+## Geometry, Hypotheses, and Evidence
 
 The claims in this chapter have three distinct scopes: hypotheses specific to the coincident-midpoint configuration, family-general recovery requirements expressed in its coordinates, and physical assignments not established for it. The table classifies scope, not truth.
 

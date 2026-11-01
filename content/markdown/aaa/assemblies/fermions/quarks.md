@@ -70,7 +70,7 @@ The polarity-dyad labels refer only to that one polar dyad. They do not mean tha
 
 The dictionary assigns colorlessness to equivalent dyad classes and quark color to one exceptional axis. These are proposed observer assignments; dyad-class equality or inequality alone does not establish a physical color response.
 
-## Charge classes and axis-exceptionality
+## Charge Classes and Axis-Exceptionality
 
 ### Up-type template
 
@@ -309,7 +309,7 @@ What makes this useful is not merely that it reproduces the standard charge form
 
 This should still be treated cautiously. The table supports a candidate mapping to the standard electroweak plane, but it does not yet derive the Weinberg-angle mixing itself from quark microgeometry. In other words, the map looks structurally compatible with that plane, but it is not yet a closure proof for electroweak mixing.
 
-## Six-flavor catalog
+## Six-Flavor Catalog
 
 ### Canonical flavor table
 
@@ -356,7 +356,7 @@ The counts above determine no quark mass. As [Particle Masses](../particle-masse
 
 A candidate mass map must first derive retained assembly behavior, energy accounting, exposure, and medium response, then specify the hadronic observable and scheme-matching procedure used for comparison. A mismatch with an independently determined mass in that same scheme and scale would falsify the map. Neither adding the constituent counts nor assigning a separate fitted mass to each flavor performs that derivation.
 
-## Color assignments
+## Color Assignments
 
 ### Color as exceptional-axis phase
 
@@ -457,7 +457,7 @@ In the effective SU(3) comparison, the fundamental quark triplet has no invarian
 
 The closed nine-axis network with one occurrence of each exceptional-axis label is a proposed geometric realization. Its observer export must supply the antisymmetric color singlet $6^{-1/2}\sum_{a,b,c=1}^3\varepsilon_{abc}|abc\rangle$, where $\varepsilon_{abc}$ is the Levi-Civita antisymmetric tensor. This state is invariant because it transforms by $\det U=1$. A single assignment $|123\rangle$ is not invariant under general color rotations. The corresponding meson singlet is $3^{-1/2}\sum_{a=1}^3|a\bar a\rangle$. These conditional representation identities, developed in [Color Charge and SU(3)](color-charge-su3.md), do not prove network retention or spatial screening. They also do not exclude larger color-singlet composites.
 
-## Coupling rules to gluons
+## Coupling Rules to Gluons
 
 ### What a gluon is in this catalog
 
@@ -567,7 +567,7 @@ $$
 
 Here $\Gamma_{\mathrm{coll}}$ denotes the retained collision history and its preparation and sea boundaries; $I_{\mathrm{had}}$ specifies the reaction route; $\mathcal L_{E\mathbf p\mathbf J}$ denotes the candidate energy, momentum, and angular-momentum accounts; and $\Theta_{\mathrm{decay}}$ contains the weak-reaction and detector calibration, acceptance, background, and feed-down model. The symbol $\mathcal P_{\mathrm{had}}$ names the response map still to be derived. The observer separation $\Delta R=\sqrt{(\Delta y)^2+(\Delta\phi)^2}$ combines rapidity and azimuth differences; it is not a distance in the Euclidean void. Agreement must use the experimental bins and uncertainties. A fixed predicted correlation outside those uncertainties, after the stated response corrections, falsifies that map; assigning the measured correlation as its output tests nothing.
 
-## What is fixed and what remains open
+## What Is Fixed and What Remains Open
 
 ### Catalog conventions and hypotheses
 
@@ -595,7 +595,7 @@ Several important derivations are not yet closed and should remain marked as ope
 
 The catalog therefore fixes a testable dictionary. It establishes neither a retained quark assembly nor complete quark-sector recovery.
 
-## Cross-links
+## Cross-Links
 
 - Charge, weak-isospin, and hypercharge bookkeeping: [quantum-number-mapping.md](./quantum-number-mapping.md)
 - Color-space construction and SU(3) closure: [color-charge-su3.md](./color-charge-su3.md)

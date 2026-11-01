@@ -82,7 +82,11 @@ The $\Delta$ column is computed as the latest dated $\mathbb{A}\mathbb{A}\mathbb
 
 The displayed totals are whole-number rounded weighted means: the raw values are 86.45, 56.43, 45.82 and 67.90 in table-column order. The displayed total deficit -18 is the difference of displayed totals 68 and 86; the weighted mean of the individual deficit entries is -18.55. Neither convention changes the historical row scores.
 
-## 2026-06-28 Comparator and $\mathbb{A}\mathbb{A}\mathbb{A}$ Rescore Notes
+## Appendix: Historical Assessments
+
+The following dated assessments preserve the scoring record and its stated limitations. They are historical observations, not a fresh assessment of the current corpus.
+
+### 2026-06-28 Comparator and $\mathbb{A}\mathbb{A}\mathbb{A}$ Rescore Notes
 
 The 2026-06-28 comparator rescore changes the Modern Physics Operational column from `88` to `86` and the Modern Physics Mechanism column from `67` to `56`. The prior comparator overcredited the mechanism column by letting sector-by-sector operational success stand in for a unified foundational mechanism. Under the challenger-theory lens, the inherited stack remains extremely strong operationally, but its mechanism score is lower because GR, QFT, the Standard Model, and Lambda-CDM do not yet form one ontic dynamics with fixed constants, a shared quantum-gravity bridge, a solved measurement mechanism, or a single dark-sector account.
 
@@ -92,7 +96,7 @@ The reweighting keeps incumbent recovery dominant. Empirical Precision+Benchmark
 
 The latest $\mathbb{A}\mathbb{A}\mathbb{A}$ column is also replaced with the 2026-06-28 anti-ratchet rescore. Conservation+Invariant Closure rises from `74` to `75`, Cross-Regime Bridge rises from `73` to `74`, Internal Constituent Dynamics rises from `81` to `82`, and Falsification Gates rises from `97` to `98`; all other latest-row scores remain unchanged. The latest $\mathbb{A}\mathbb{A}\mathbb{A}$ weighted total remains displayed as `68` with raw value `67.90`, and the comparator adjustment changes the displayed total deficit from `-20` to `-18`. The row-level advantage is still concentrated in Axiom+Notation and Theory Architecture+Ontic Logic; the major deficits remain Empirical Precision+Benchmark Validation, Formula+Coefficient Recovery, Parameter+Scale Closure, Conservation+Invariant Closure, Potential+Action Closure, UV/IR+Regularization Completion, and Discriminating Predictions+Anomaly Discipline.
 
-## 2026-06-26 Assessment Notes
+### 2026-06-26 Assessment Notes
 
 *Historical assessment: the corresponding dated column is not included in the summary table.*
 
@@ -106,7 +110,7 @@ Parameter+Scale Closure rises modestly because the Parameter Ledger now separate
 
 The score is still held below modern operational closure by the same central blockers. No single accepted native record yet supplies the first certified braid, the mass map, Lorentz/PPN coefficients, Born/Bell measures, Standard Model mixing and mass rows, radiation spectra, public gravitational-wave residuals, BBN/CMB/growth fits, or a shared cosmology observation record inside declared tolerances. The recent work makes the failure boundary more explicit and the proof route more mathematical; it does not erase the need for one branch-derived, same-record coefficient and benchmark recovery stack.
 
-## 2026-06-20 Assessment Notes
+### 2026-06-20 Assessment Notes
 
 *Historical assessment: the corresponding dated column is not included in the summary table.*
 
@@ -118,7 +122,7 @@ Formula, parameter, and empirical rows remain the main drag on the total. The co
 
 Falsification and coverage now score near modern-operational levels because the corpus contains explicit sector acceptance sets, null-result residuals, failure conditions, benchmark protocols, and cross-regime packet schemas. That does not make the total near modern physics. Architecture and ontology remain very strong, but their limited score weight prevents coherence from compensating for missing derivations, missing coefficients, unfixed parameters, and unvalidated benchmark recovery.
 
-## 2026-05-22 Assessment Notes
+### 2026-05-22 Assessment Notes
 
 *Historical assessment: this note compares the May 22 result with an intermediate score of `59`; neither intermediate column is included in the summary table.*
 
@@ -175,7 +179,7 @@ Executable neutral-braid diagnostics add negative evidence and sharper first-fai
 
 The total remains far below modern operational closure for the same reason as the prior assessments. The theory stack has stronger taxonomy, residual surfaces, and diagnostics required before advancement, but not the decisive retained branch. Until a single native record supplies $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, $\mathcal{M}_{\text{sea}}^{ab}$, Lorentz/PPN recovery, photon-channel recovery, quantum source measures, Standard Model mapping coefficients, and shared cosmology fits, architecture and auditability must not inflate the validated-closure total.
 
-## 2026-05-19 Assessment Notes
+### 2026-05-19 Assessment Notes
 
 *Historical assessment: the corresponding dated column is not included in the summary table.*
 
@@ -187,7 +191,7 @@ Formula, parameter, and cross-regime scores also rise because the corpus now sep
 
 The total remains far below modern operational closure because the decisive derivations are still open. The first certified $A_0$ branch has not passed; $\zeta(A_0)$, $E_{\text{internal}}(A_0)$, and $\mathcal{M}_{\text{sea}}^{ab}$ are not accepted outputs; Lorentz, PPN, redshift, and photon-channel coefficients still lack one accepted Noether sea constitutive map; Born/Bell closure still has negative controls and measure targets rather than a positive pair-provenance theorem; Standard Model mixing and mass formulas remain shared-record theorem targets; and cosmology has a shared residual scaffold but not a fit to SN, BAO, CMB, growth, BBN, and pre-BBN rows with one $\theta_{\mathrm{sea}}$.
 
-## 2026-05-16 Assessment Notes
+### 2026-05-16 Assessment Notes
 
 The 2026-05-16 assessment is rescored under the validated-closure lens. The previous $\mathbb{A}\mathbb{A}\mathbb{A}$ columns were removed because they used a softer equal-weight closure lens that allowed architecture, coverage, and auditability to dominate the total.
 

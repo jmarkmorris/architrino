@@ -863,7 +863,7 @@ $$
 
 with $\gamma_{\mathrm{PPN}}$ the observer-level refraction/spatial-compliance coefficient extracted from the same constitutive record whose Shapiro-delay and lensing projections are tested in [ppn-parameters](./ppn-parameters.md#explicit-weak-field-noether-sea-delay-map-ppn-gamma).
 
-## Closure Program Interface (metric constitutive map)
+## Closure Program Interface (Metric Constitutive Map)
 
 This chapter is the constitutive anchor for the gravity-side closure:
 $$

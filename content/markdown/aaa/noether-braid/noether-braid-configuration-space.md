@@ -8,7 +8,7 @@ Configuration space is the menu of possible branch records, not a list of alread
 
 This distinction prevents premature naming. A three-row branch is valuable because three independent angular-momentum rows can supply a full internal frame in Euclidean space. It is not valuable because three rows sound elegant. The solver still has to prove that the energies, phases, orientations, root ledgers, and group velocity belong to one retained record.
 
-## Document Role
+## How to Read This Chapter
 
 This chapter owns the rank-three angular-momentum-frame search variables: unordered layer labels, angular-momentum two-form rows, the plane-frame determinant, group velocity, energy/frequency/speed/radius ledgers, role assignment, and permutation accounting. It is the place to ask whether a candidate branch supplies three retained angular-momentum rows with enough conditioning to form a volumetric internal frame.
 
@@ -695,7 +695,7 @@ $$
 
 while degeneration toward $D_{\mathrm{plane}}=0$ may produce large framing anisotropy even with nearly equal weights. Orthogonality suppresses the non-orthogonal-frame contribution; near-degenerate retained spectral weights, shielding, or averaging must separately suppress the weight-anisotropy contribution. If both parts are proved for a retained branch class, the same geometric row would suppress Lorentz period anisotropy, clock-orientation leakage, Hughes-Drever-type inertial anisotropy, and scalar-mass anisotropy. Both parts remain theorem targets; no measured family comparison currently bears on them.
 
-## Relation To The Doubling-frequency Chapter
+## Relation to the Doubling-Frequency Chapter
 
 [axially separated 4:2:1 reference Doubling-Frequency Resonance Lock](three-binary-4-2-1-frequency-lock.md) studies one restricted member inside this broader configuration space. It asks whether the indexed axially separated orthogonal-axis locus frequency triplet, especially the axially separated 4:2:1 reference relation $f_1:f_2:f_3=4:2:1$, can close as an integer phase-bundle lock with a stable return map and controlled caustic behavior. The coincident-midpoint 4:2:1 reference chart inherits the same frequency relation on the zero-axial-offset locus.
 

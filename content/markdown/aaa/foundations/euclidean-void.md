@@ -6,7 +6,7 @@ The **Euclidean void** is the fixed space that everything in $\mathbb{A}\mathbb{
 
 The void is a stage, and it is a stage that never moves.
 
-## Three layers that get confused
+## Void, Noether Sea, and Effective Spacetime
 
 Almost every mistake in this area comes from collapsing three different things into one word. Keeping them apart is the whole point of this chapter.
 
