@@ -37,14 +37,15 @@ certify_sharp_acceleration_sensitivity(
       result.delayed_root.transmitter_factor;
   result.acceleration_weight =
       request.field_speed / interval_absolute(transmitter_factor);
-  const Interval inverse_r3 = Interval::point(1.0) /
-      (interval_square(separation) * separation);
-  const Interval inverse_r5 = inverse_r3 / interval_square(separation);
-  const IntervalVector inverse_square_direction =
-      scale(inverse_r3, request.displacement);
+  const bool logarithmic = request.radial_kernel == RadialKernel::logarithmic_inverse_distance;
+  const Interval inverse_radial_power = Interval::point(1.0) /
+      (logarithmic ? interval_square(separation) : interval_square(separation) * separation);
+  const Interval inverse_radial_power_plus_two = inverse_radial_power / interval_square(separation);
+  const IntervalVector radial_direction =
+      scale(inverse_radial_power, request.displacement);
   result.acceleration = scale(
       request.signed_coupling * result.acceleration_weight,
-      inverse_square_direction);
+      radial_direction);
 
   result.effective_transmitter_velocity_coefficients.reserve(symbol_count);
   result.transmitter_factor_coefficients.reserve(symbol_count);
@@ -73,20 +74,20 @@ certify_sharp_acceleration_sensitivity(
         Interval::point(0.0) -
         result.acceleration_weight * transmitter_factor_coefficient /
             transmitter_factor;
-    const IntervalVector inverse_square_direction_coefficient = subtract(
-        scale(inverse_r3, displacement_coefficient),
+    const IntervalVector radial_direction_coefficient = subtract(
+        scale(inverse_radial_power, displacement_coefficient),
         scale(
-            Interval::point(3.0) *
+            Interval::point(logarithmic ? 2.0 : 3.0) *
                 dot(request.displacement, displacement_coefficient) *
-                inverse_r5,
+                inverse_radial_power_plus_two,
             request.displacement));
     const IntervalVector acceleration_coefficient = scale(
         request.signed_coupling,
         add(
             scale(acceleration_weight_coefficient,
-                  inverse_square_direction),
+                  radial_direction),
             scale(result.acceleration_weight,
-                  inverse_square_direction_coefficient)));
+                  radial_direction_coefficient)));
 
     result.effective_transmitter_velocity_coefficients.push_back(
         effective_transmitter_velocity_coefficient);

@@ -51,6 +51,7 @@ export function surfaceNormalBox(g,p){
   return gradient.map(v=>div(v,length));
 }
 export function projectSurfaceSupport(g,position,support){
+  if(g.kind==='parallel-rings')return norm(support);
   const normal=surfaceNormalBox(g,position);if(!normal)return null;
   const value=normal.map((v,i)=>mul(v,support[i])).reduce(add,[0,0]);
   return finitePair(value)?value:null;
@@ -78,8 +79,8 @@ export function buildSurfaceSupportData(record){
     }
     return {pathId:p.pathId,label:names.get(p.pathId),charge:Number(p.charge),rows};
   });
-  const kind=replay?'sample':'slab';
-  const data={members,domain,kind};
+  const kind=replay||request.numerics?.errorBoundChecking==='none'?'sample':'slab';
+  const data={members,domain,kind,curveConstraint:request.model.geometry.kind==='parallel-rings',unchecked:request.numerics?.errorBoundChecking==='none'};
   data.total=kind==='sample'?sampleTotals(members):slabTotals(members,domain);
   return data;
 }

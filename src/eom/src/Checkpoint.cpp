@@ -669,12 +669,14 @@ std::string native_evolution_model_fingerprint(
 NativeEvolutionCheckpoint create_native_evolution_checkpoint(
     const NativeCoupledEvolutionRequest& request,
     const NativeCoupledEvolutionCertificate& certificate) {
+  if(request.error_bound_checking!="strict")
+    throw std::invalid_argument("exploratory evolution requires a mode-bound provider checkpoint, not a strict legacy checkpoint");
   require_native_ordinary_method(request, "the v7 checkpoint");
   require_legacy_checkpoint_equation(request);
   if (certificate.schema == "eom_surface_coupled_evolution_certificate/v1" ||
       certificate.evidence_status == "constrained_solution_enclosure" ||
       std::any_of(certificate.histories.begin(), certificate.histories.end(),
-          [](const auto& path) { return path.surface_evidence != nullptr; }))
+          [](const auto& path) { return path.validated_evidence != nullptr; }))
     throw EquationAdmissionError("unsupported_model_combination", "v7 cannot serialize a Surface result under a canonical request");
   if (certificate.run_id != request.run_id ||
       certificate.histories.size() != request.paths.size() ||

@@ -1,3 +1,5 @@
+import { createEomPathBuffer } from '../../src/apps/shared/EomPathBuffer.js';
+import { eomModelOptions, selectEomModel } from '../../src/apps/shared/EomModelSelection.js';
 import { spawn, spawnSync } from 'node:child_process';
 import { mkdirSync, readFileSync, existsSync, openSync, closeSync, statSync, createReadStream, readdirSync, fsyncSync, writeFileSync, writeSync } from 'node:fs';
 import { resolve, join } from 'node:path';
@@ -26,11 +28,14 @@ export function createEomV2ProcessClient({ binaryPath, checkpointRoot, recordRoo
     state.cancelled = true;
     return state.ready ? state.worker.kill('SIGUSR1') : true;
   }
-  function execute(raw, { runId = randomUUID(), onProgress = () => {}, retainRecord = false, checkpointMode = "inline" } = {}) {
+  function execute(raw, { runId = randomUUID(), onProgress = () => {}, retainRecord = false, checkpointMode = "inline", onPaths } = {}) {
     if (!["inline", "reference"].includes(checkpointMode) || (checkpointMode === "reference" && !retainRecord)) throw new TypeError("Checkpoint references require a retained record operation.");
     if (active.has(runId)) throw new Error('This run is already active.');
     if (disposing || active.size >= 4) throw Object.assign(new Error('EOM worker admission unavailable.'), { code: 'worker_budget_exhausted' });
     if (typeof raw !== 'string' || Buffer.byteLength(raw) > 32 * 1024 * 1024) throw new TypeError('One bounded JSON document required.');
+    if(onPaths!==undefined && typeof onPaths!=='function')throw new TypeError('Path observer must be a function.');
+    const envelope=onPaths?JSON.parse(raw):null;
+    if(onPaths && !['evolve','resume'].includes(envelope.operation))throw new Error('Path delivery requires evolution.');
     if (retainRecord) {
       const retainedBytes = readdirSync(recordRoot).filter(name => name.endsWith('.json')).reduce((sum, name) => sum + statSync(join(recordRoot, name)).size, 0);
       const reservations = [...active.values()].filter(state => state.retaining).length + 1;
@@ -41,7 +46,7 @@ export function createEomV2ProcessClient({ binaryPath, checkpointRoot, recordRoo
     return new Promise((resolveResult, reject) => {
       const artifactPath = join(recordRoot, `${checkpointId}.json`);
       const artifactFd = retainRecord ? openSync(artifactPath, 'wx', 0o600) : undefined;
-      const worker = spawn(binaryPath, ['eom-v2', '--checkpoint-file', path], { stdio: ['pipe', 'pipe', 'pipe'] });
+      const worker = spawn(binaryPath, ['eom-v2', '--checkpoint-file', path, ...(onPaths ? ['--stream-paths'] : [])], { stdio: ['pipe', 'pipe', 'pipe'] });
       const state = { worker, ready: false, cancelled: false, progress: null, retaining: retainRecord };
       active.set(runId, state);
       let output = '', errors = '', progressBuffer = '', failure = null;
@@ -67,22 +72,28 @@ export function createEomV2ProcessClient({ binaryPath, checkpointRoot, recordRoo
           if (text.length > remaining) stop(Object.assign(new Error('EOM raw record exceeds 256 MiB; partial evidence retained.'), { code: 'record_size_exhausted' }));
         } else { output += text; if (Buffer.byteLength(output) > 64 * 1024 * 1024) stop(new Error('EOM response size budget exceeded.')); }
       });
-      worker.stderr.on('data', text => {
+      let pathBuffer;
+      const stderrReading=(async()=>{for await(const text of worker.stderr) {
         errors = (errors + text).slice(-8192); progressBuffer += text;
-        if (progressBuffer.length > 65536) progressBuffer = progressBuffer.slice(-65536);
+        if (progressBuffer.length > 32*1024*1024) { stop(new Error("EOM path event exceeds transport budget.")); return; }
         let end;
         while ((end = progressBuffer.indexOf('\n')) >= 0) {
           const line = progressBuffer.slice(0, end); progressBuffer = progressBuffer.slice(end + 1);
-          try {
-            const event = JSON.parse(line);
+          let event; try { event=JSON.parse(line); } catch { continue; }
+          {
             if (event.schema === 'eom_ready/v2') { state.ready = true; if (state.cancelled) worker.kill('SIGUSR1'); }
             if (event.schema === 'eom_progress/v2') { state.progress = event; onProgress(event); }
-          } catch {}
+            if(event.schema==='eom_paths/v1' && onPaths){
+              pathBuffer??=createEomPathBuffer(envelope.request,event.modelDigest,{start:envelope.operation==='resume'?envelope.checkpoint.acceptedTime:envelope.request.interval.start,end:envelope.endTime??envelope.request.interval.end});
+              pathBuffer.accept(event);await onPaths(event);
+            }
+          }
         }
-      });
+      }})().catch(error=>stop(error));
       worker.on('error', error => { failure ??= error; });
       worker.stdin.on('error', error => { failure ??= error; });
-      worker.on('close', code => {
+      worker.on('close', async code => {
+        await stderrReading;
         clearTimeout(deadline); clearTimeout(stopTimer); clearTimeout(graceTimer); active.delete(runId);
         if (artifactFd !== undefined) { try { fsyncSync(artifactFd); } catch (error) { failure ??= error; } finally { closeSync(artifactFd); } }
         if (!failure && code !== 0) failure = new Error(`EOM process exited ${code}: ${errors}`);
@@ -100,6 +111,7 @@ export function createEomV2ProcessClient({ binaryPath, checkpointRoot, recordRoo
           const payload = JSON.parse(output);
           assertEomResponseSchema(raw, payload);
           assertEomExecutionBinding(raw, payload);
+          if(onPaths && payload.schema!=='eom_error/v2'){pathBuffer??=createEomPathBuffer(envelope.request,payload.modelDigest,{start:payload.acceptedCoverage.start,end:envelope.endTime??envelope.request.interval.end});pathBuffer.reconcile(payload);}
           if (payload.checkpoint?.durable) {
             const retained = JSON.parse(readFileSync(path, 'utf8'));
             if (retained.digest !== payload.checkpoint.digest || retained.acceptedTime !== payload.checkpoint.acceptedTime) throw new Error('Durable checkpoint receipt mismatch.');
@@ -118,8 +130,11 @@ export function createEomV2ProcessClient({ binaryPath, checkpointRoot, recordRoo
       worker.stdin.end(`${raw}\n`);
     });
   }
+  const capabilities = () => execute(JSON.stringify({ operation: 'capabilities' }));
   return Object.freeze({
-    execute, cancel,
+    execute, cancel, capabilities,
+    async modelOptions(filter) { return eomModelOptions(await capabilities(), filter); },
+    async selectModel(selection) { return selectEomModel(await capabilities(), selection); },
     progress(runId) { return active.get(runId)?.progress ?? null; },
     rawRecord(id) { checkpointPath(id); const path = join(recordRoot, `${id}.json`); const marker = join(recordRoot, `${id}.complete.json`); if (!existsSync(path) || !existsSync(marker)) throw new Error('Complete EOM record unavailable.'); const retained = JSON.parse(readFileSync(marker)); if (retained.complete !== true || retained.bytes !== statSync(path).size) throw new Error('EOM raw record receipt mismatch.'); return { stream: createReadStream(path), bytes: statSync(path).size }; },
     validateCancel(raw) {

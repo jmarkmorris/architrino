@@ -919,3 +919,6 @@ button {
 
 #disturbance-navigation.top-dynamic-control-bar { width:auto; flex-wrap:nowrap; }
 .disturbance-view-labels > div { padding-top:58px; }
+
+.disturbance-controls .disturbance-checking { margin-top:12px; }
+.disturbance-controls .disturbance-checking label { display:inline-flex; align-items:center; gap:6px; margin:8px 16px 0 0; }

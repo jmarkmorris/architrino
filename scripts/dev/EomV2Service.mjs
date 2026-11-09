@@ -53,7 +53,8 @@ export function createEomV2Service(options) {
         const data = getClient().validateCancel(raw);
         send(response, 200, { cancellationRequested: cancel(data.runId,data.executionId), durable: false }); return true;
       }
-      const operations = { '/api/eom/v2/inspect': 'inspect', '/api/eom/v2/evolve': 'evolve', '/api/eom/v2/resume': 'resume', '/api/eom/v2/evolve-record': 'evolve', '/api/eom/v2/resume-record': 'resume' };
+      const streaming = ['/api/eom/v2/evolve-stream-record','/api/eom/v2/resume-stream-record'].includes(path);
+      const operations = { '/api/eom/v2/evolve-stream-record':'evolve', '/api/eom/v2/resume-stream-record':'resume', '/api/eom/v2/inspect': 'inspect', '/api/eom/v2/evolve': 'evolve', '/api/eom/v2/resume': 'resume', '/api/eom/v2/evolve-record': 'evolve', '/api/eom/v2/resume-record': 'resume' };
       const operation = operations[path];
       if (!operation) { send(response, 404, { code: 'unsupported_operation' }); return true; }
       // Forward raw user JSON to C++: JSON.parse must not strip duplicate keys.
@@ -65,16 +66,23 @@ export function createEomV2Service(options) {
       if (executionId !== undefined && (typeof executionId !== 'string' || !executionId.length || executionId.length>128)) throw new Error('Invalid execution identity.');
       const cancelled = () => { if (!response.writableEnded && typeof runId === 'string') cancel(runId,executionId); };
       response.once('close', cancelled);
+      const writeEvent=(type,payload)=>new Promise((resolve,reject)=>{
+        if(response.destroyed){reject(new Error('Path stream disconnected.'));return;}
+        if(!response.headersSent)response.writeHead(200,{'Content-Type':'application/x-ndjson; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'});
+        if(response.write(JSON.stringify({type,payload})+'\n')){resolve();return;}
+        const stalled=setTimeout(()=>response.destroy(),15000);
+        const done=()=>{clearTimeout(stalled);response.off('close',closed);resolve();},closed=()=>{clearTimeout(stalled);response.off('drain',done);reject(new Error('Path stream disconnected.'));};response.once('drain',done);response.once('close',closed);
+      });
       try {
-        const result = getClient().execute(wire, { runId, retainRecord: path.endsWith('-record'), checkpointMode });
+        const result = getClient().execute(wire, { runId, retainRecord: path.endsWith('-record'), checkpointMode, ...(streaming?{onPaths:event=>writeEvent('paths',event)}:{}) });
         if(operation!=='inspect')generations.set(runId,executionId);
         const pendingKey = `${runId}\0${executionId}`;
         const expiry = pending.get(pendingKey); pending.delete(pendingKey);
         if (expiry >= Date.now()) getClient().cancel(runId);
         const payload = await result;
-        if (!response.destroyed) send(response, payload.schema === 'eom_error/v2' ? 400 : 200, payload);
+        if (!response.destroyed) {if(streaming){await writeEvent(payload.schema==='eom_error/v2'?'error':'result',payload);response.end();}else send(response, payload.schema === 'eom_error/v2' ? 400 : 200, payload);}
       } finally { if(generations.get(runId)===executionId)generations.delete(runId);response.off('close', cancelled); }
-    } catch (error) { if (!response.destroyed) send(response, 400, { schema: 'eom_error/v2', code: error.code ?? 'invalid_request', error: error.message, ...(error.recordId ? { retainedFailure: { recordId:error.recordId, rawBytes:error.rawBytes ?? error.partialBytes, acceptedTime:error.acceptedTime ?? null, checkpointId:error.checkpointId ?? null, completeExport:false } } : {}) }); }
+    } catch (error) { if (!response.destroyed) {const payload= { schema: 'eom_error/v2', code: error.code ?? 'invalid_request', error: error.message, ...(error.recordId ? { retainedFailure: { recordId:error.recordId, rawBytes:error.rawBytes ?? error.partialBytes, acceptedTime:error.acceptedTime ?? null, checkpointId:error.checkpointId ?? null, completeExport:false } } : {}) };if(response.headersSent){response.end(JSON.stringify({type:'error',payload})+'\n');}else send(response,400,payload);} }
     return true;
   }
   return Object.freeze({ serve, dispose: () => client?.dispose() });

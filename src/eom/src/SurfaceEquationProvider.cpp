@@ -1,35 +1,47 @@
 #include "architrino/eom/EquationRegistry.hpp"
 #include "architrino/eom/SurfaceConstraint.hpp"
-#include "CanonicalEquationEvaluation.hpp"
+#include "RetainedEquationEvaluation.hpp"
 #include "EquationSourceIdentity.hpp"
 
 #include <algorithm>
 #include <set>
+#include <cmath>
+#include "architrino/eom/Decimal.hpp"
 #include "architrino/eom/SpeedDomain.hpp"
 
 namespace architrino::eom {
 namespace {
 class SurfaceEquationProvider final : public EquationProvider {
  public:
+  explicit SurfaceEquationProvider(bool logarithmic=false): logarithmic_(logarithmic), descriptor_{
+    logarithmic?"logarithmic-surface/v1":"canonical-surface/v1",
+    logarithmic?"Logarithmic-potential Master Equation with a surface constraint":"Canonical Master Equation with a surface constraint",
+    logarithmic?"reference/priorities/master-equation-closure/equation-variants/surface-constraint/logarithmic-definition.md":"reference/priorities/master-equation-closure/equation-variants/surface-constraint/definition.md",
+    logarithmic?equation_identity_sha256(std::string(detail::kLogarithmicSurfaceDefinitionDigest)+"|"+detail::kLogarithmicDefinitionDigest+"|"+detail::kSurfaceDefinitionDigest):detail::kSurfaceDefinitionDigest,
+    logarithmic?"logarithmic-surface-ordinary-sharp-method-of-steps/v1":"surface-ordinary-sharp-method-of-steps/v1",
+    "Artificial normal support; strict checking requires coherent subwake histories, strictly past roots and full-slab inclusion. None is exploratory point evolution without error bounds. No physical confinement or stability claim."} {}
   const EquationProviderDescriptor& descriptor() const noexcept override { return descriptor_; }
   const EquationPlan& plan() const override {
-    static const EquationPlan plan{"canonical-surface-acceleration-plan/v1", {
+    const auto make=[](bool logarithmic){return EquationPlan{logarithmic?"logarithmic-surface-acceleration-plan/v1":"canonical-surface-acceleration-plan/v1", {
       {"roots", "canonical-euclidean-roots/v1", "retained-history", "complete-root-ledger", {}},
-      {"interaction", "canonical-interaction/v1", "complete-root-ledger", "acceleration-contributions", {"roots"}},
+      {"interaction", logarithmic?"logarithmic-inverse-distance/v1":"canonical-interaction/v1", "complete-root-ledger", "acceleration-contributions", {"roots"}},
       {"reduction", "fixed-pairwise-reduction/v1", "acceleration-contributions", "receiver-total", {"interaction"}},
       {"response", "identity-response/v1", "receiver-total", "receiver-total", {"reduction"}},
-      {"speed", "unrestricted-speed/v1", "receiver-total", "receiver-total", {"response"}},
+      {"speed", logarithmic?"shared-speed-domain-halt/v1":"unrestricted-speed/v1", "receiver-total", "receiver-total", {"response"}},
       {"constraint", "fixed-surface-normal-support/v1", "receiver-total", "acceleration-snapshot", {"speed"}}}};
-    return plan;
+    };
+    static const EquationPlan canonical=make(false), logarithmic=make(true);
+    return logarithmic_?logarithmic:canonical;
   }
   void admit(const NativeCoupledEvolutionRequest& r) const override {
     const auto& s = r.equation_selection;
-    if (!s || s->composition_id != "canonical-surface/v1" || s->constraint != "surface" ||
+    if (!s || s->composition_id != descriptor_.id || s->constraint != "surface" ||
         s->method != "numerical")
-      throw EquationAdmissionError("unsupported_model_combination", "Surface requires canonical-surface/v1, surface constraint and numerical method with a supported speed-domain policy");
+      throw EquationAdmissionError("unsupported_model_combination", "Surface requires a registered surface interaction, surface constraint and numerical method with a supported speed-domain policy");
     admit_speed_selection(*s);
     if (equation_decimal_identity(r.field_speed) != "1e0")
       throw EquationAdmissionError("invalid_normalized_field_speed", "Surface requires exact field_speed=1");
+    if (logarithmic_ && !(Interval::decimal_token(r.coupling).lower()>0))throw EquationAdmissionError("invalid_logarithmic_coupling","logarithmic Surface coupling must be positive");
     if (!r.surface_geometry) throw EquationAdmissionError("invalid_geometry", "Surface requires a fixed geometry definition");
     const SurfaceGeometry shape(*r.surface_geometry);
     if (r.chart_policy != "sharp" || !r.joint_histories.empty() || !r.joint_root_point_states.empty() ||
@@ -41,6 +53,12 @@ class SurfaceEquationProvider final : public EquationProvider {
         !(Interval::decimal_token(r.surface_numerics.tangent_velocity_tolerance).lower() > 0) ||
         r.surface_numerics.maximum_cells == 0 || r.surface_numerics.maximum_depth == 0)
       throw EquationAdmissionError("invalid_surface_numerics", "surface tolerances/depth/cell budgets must be positive");
+    if(r.surface_geometry->kind=="parallel-rings"){
+      if(r.error_bound_checking!="none")throw EquationAdmissionError("unsupported_model_combination","two vertical rings currently require None checking; no certified curve publication is claimed");
+      const auto& d=*r.surface_geometry;const double radius=parse_finite_double(d.radius,"ring radius"),gap=parse_finite_double(d.separation,"ring separation"),t=parse_finite_double(r.start_time,"release time"),tol=1e-9*std::max({1.0,radius,gap});
+      for(const auto& path:r.paths){const auto x=path.history.nominal_position(t),v=path.history.nominal_velocity(t);if(std::min(std::abs(x[0]-gap/2),std::abs(x[0]+gap/2))>tol||std::abs(std::hypot(x[1],x[2])-radius)>tol||std::abs(v[0])>tol||std::abs(x[1]*v[1]+x[2]*v[2])>tol)throw EquationAdmissionError("invalid_curve_preparation","release positions and velocities must lie on their assigned vertical rings");}
+    }
+    if(r.error_bound_checking=="none")return;
     for (const auto& path : r.paths) {
       admit_surface_preparation(shape, path.history);
       require_prepared_speed_domain(path.history, *s);
@@ -56,7 +74,7 @@ class SurfaceEquationProvider final : public EquationProvider {
     };
     if (c.request.paths.empty() || ids(c.request.paths) != ids(c.histories))
       throw EquationAdmissionError("surface_history_identity_mismatch", "Surface snapshot population differs from its bound request");
-    auto snapshot = detail::certify_canonical_acceleration_snapshot(c.request, c.histories,
+    auto snapshot = detail::certify_retained_acceleration_snapshot(c.request, c.histories,
         c.reception_time, c.warm_snapshot, c.warm_histories, c.defer_root_precision_escalation);
     snapshot.schema = "eom_surface_acceleration_snapshot/v1";
     snapshot.selected_model_identity = surface_request_identity(c.request);
@@ -85,14 +103,16 @@ class SurfaceEquationProvider final : public EquationProvider {
     return snapshot;
   }
  private:
-  const EquationProviderDescriptor descriptor_{
-      "canonical-surface/v1", "Canonical Master Equation with a surface constraint",
-      "reference/priorities/master-equation-closure/equation-variants/surface-constraint/definition.md",
-      detail::kSurfaceDefinitionDigest, "surface-ordinary-sharp-method-of-steps/v1",
-      "Artificial normal support; full dense integral-map inclusion, coherent subwake solution and strictly past partner roots required. Unsupported charts halt. No physical confinement or stable assembly claim."};
+  const bool logarithmic_;
+  const EquationProviderDescriptor descriptor_;
 };
 }
 const EquationProvider& require_surface_equation_provider(const NativeCoupledEvolutionRequest& r) {
-  static const SurfaceEquationProvider provider; provider.admit(r); return provider;
+  static const SurfaceEquationProvider canonical, logarithmic(true);
+  const auto& provider=logarithmic_equation_selected(r)?logarithmic:canonical;provider.admit(r);return provider;
 }
+}
+
+namespace architrino::eom {
+std::string logarithmic_surface_capability_json(){const SurfaceEquationProvider provider(true);return "{\"id\":\"logarithmic-surface/v1\",\"name\":\"Logarithmic-potential Master Equation with a surface constraint\",\"implemented\":true,\"independentlyAccepted\":false,\"scientificAcceptance\":false,\"constraint\":\"surface\",\"method\":\"numerical\",\"speedDomains\":[\"unrestricted\",\"inclusive\",\"strict\"],\"defaultSpeedDomain\":\"unrestricted\",\"errorBoundChecking\":[\"none\",\"strict\"],\"geometries\":[\"sphere\",\"oblate\",\"ring-torus\",\"parallel-rings\"],\"speedModification\":false,\"definitionDigest\":"+equation_json_quote(provider.descriptor().definition_digest)+",\"wireEvolution\":\"v2\",\"preparation\":\"exactly-admitted-circular-factory-family\",\"solutionDomain\":\"Strict: coherent subwake, strictly-past ordinary roots and integral-map inclusion; None: exploratory points\"}";}
 }

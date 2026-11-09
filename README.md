@@ -4,6 +4,37 @@ Architrino is the source repository for `architrino.com`. It combines the $\math
 
 The repo is intentionally content-heavy. Most public pages are not handwritten HTML pages; they are scene JSON files that point to markdown, generated graph manifests, and browser runtimes.
 
+## macOS Dependencies
+
+The project [Brewfile](Brewfile) declares Homebrew packages for local development, EOM solver builds, and textbook PDF work. It includes Node 22 (matching GitHub CI), ripgrep for source inventory checks, Python 3.13 for the shared environment, CMake and the Boost/GMP/MPFR libraries required by [the EOM build](src/eom/CMakeLists.txt), and Poppler for PDF merging, text extraction, and rendering. Ordinary web serving needs only Node; the full bundle supports these additional project workflows.
+
+Install [Homebrew](https://brew.sh/) and Apple's Command Line Tools (or Xcode) first. From the repository root, install missing packages while skipping routine upgrades of already installed entries:
+
+```bash
+brew bundle install --file=Brewfile --no-upgrade
+```
+
+Check the declared packages without installing anything:
+
+```bash
+brew bundle check --file=Brewfile --no-upgrade --verbose
+```
+
+The versioned Node formula is keg-only. For a shell running the commands below, put it on PATH:
+
+```bash
+export PATH="$(brew --prefix node@22)/bin:$PATH"
+node --version
+```
+
+The bundle supplies system tools, not the JavaScript or Python package environments. Use `npm ci --ignore-scripts --no-audit --no-fund` when a workflow needs the locked npm dependencies; ordinary local serving does not require that step. Python work uses the existing shared venv at `$AAA_VENV`, falling back to `../.venv`, with packages declared in [requirements.txt](requirements.txt). Installing the Python formula does not create or repair that environment. If its interpreter is unavailable, stop the Python step rather than substituting a system interpreter.
+
+PDF export also needs an installed supported browser, selected by the exporter or through `PDF_BROWSER_PATH`; see [the PDF exporter](scripts/build-textbook-review-pdfs.mjs) and [export procedure](reference/op/textbook-review-exports.md). Browser applications are managed separately from this bundle.
+
+Keep the Brewfile curated to direct project requirements and document the consumer when adding an entry. Personal apps, editor preferences, machine backup tools, and unrelated packages belong outside it; avoid overwriting it with `brew bundle dump`. Do not use `brew bundle cleanup` with this project list, because other packages on a shared Mac can be intentionally unrelated. The [Homebrew Bundle documentation](https://docs.brew.sh/Brew-Bundle-and-Brewfile) describes these commands and their options.
+
+A Brewfile declares packages and selected major/minor version lines; it does not lock exact versions or reproduce a complete scientific environment. `--no-upgrade` skips routine upgrades, although installing a missing package can still require Homebrew to upgrade its dependencies. Deliberate upgrades can use the install command without that flag. Retain the npm lockfile, Python requirements, and compiler/library provenance for the workflows that use them.
+
 ## Run Locally
 
 Use the local web server so browser ES modules, JSON, markdown, images, and WASM assets load with the same path model as the deployed site.

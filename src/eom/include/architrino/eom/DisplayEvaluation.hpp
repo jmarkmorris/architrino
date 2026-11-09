@@ -1,6 +1,7 @@
 #pragma once
 
 #include "architrino/eom/History.hpp"
+#include "architrino/eom/RadialKernel.hpp"
 
 #include <array>
 #include <cstddef>
@@ -26,6 +27,8 @@ struct DisplayEvaluationRequest {
   double causal_width = 0.0;
   double core_scale = 0.0;
   std::size_t thread_count = 1U;
+  bool allow_regulation = true;
+  RadialKernel radial_kernel = RadialKernel::canonical_inverse_square;
 };
 
 struct DisplayReceiverAcceleration {

@@ -21,6 +21,7 @@ struct SurfaceGeometryDefinition {
   SurfaceFrameTokens orientation{{{"1", "0", "0"},
                                   {"0", "1", "0"},
                                   {"0", "0", "1"}}};
+  std::string separation = "0.02";
 };
 
 struct SurfaceGeometryEvaluation {

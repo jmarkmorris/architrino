@@ -22,7 +22,9 @@ Maintain Borg as an app-facing surface for EOM-solver simulation and sealed-reco
 
 ## Current Decisions
 
-1. The EOM solver is Borg’s only forward engine; ordinary startup remains idle until explicit Start.
+The November 8 scoped UI implementation adds independent canonical/logarithmic equation and three-domain speed menus for new experiments, with optional Library examples and automatic buffered Play. [The manuscript](manuscript.md#direct-experiment-controls-and-buffered-calculation) states the ordinary-provider scope and logarithmic admission/resource limits. Broader research proposals and the workstream ranking are unchanged.
+
+1. The EOM solver is Borg’s only forward engine; ordinary startup remains idle until Play performs admission and buffered calculation.
 2. Simulation workspace and assembly-view replay are distinct: replay is record-only and exposes no run or mutation controls.
 3. Borg displays a finite spherical envelope and central observation ball, with path and wake history owned by solver outputs and manifests.
 4. Missing wake, interaction, residual, or boundary-shell rows remain fail-closed or display-only; the app must not fill gaps with visual tuning.

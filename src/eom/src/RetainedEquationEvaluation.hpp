@@ -6,7 +6,7 @@ namespace architrino::eom::detail {
 
 // Private implementation seam. Public model-bound APIs perform admission.
 [[nodiscard]] NativeAccelerationSnapshotCertificate
-certify_canonical_acceleration_snapshot(
+certify_retained_acceleration_snapshot(
     const NativeCoupledEvolutionRequest& request,
     const std::vector<NativePublishedPath>& histories,
     const std::string& reception_time,

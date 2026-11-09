@@ -109,17 +109,17 @@ int main() {
       contains(endpoint.velocity[0], -radius * omega * std::sin(omega * 0.04), "exact circle vx inclusion");
       contains(endpoint.velocity[1], radius * omega * std::cos(omega * 0.04), "exact circle vy inclusion");
       for (const auto& step : result.steps) if (step.status == "accepted") {
-        check(!step.surface_solutions.empty(), "missing dense solution certificates");
-        for (const auto& solution : step.surface_solutions)
+        check(!step.retained_solutions.empty(), "missing dense solution certificates");
+        for (const auto& solution : step.retained_solutions)
           check(solution.certified && solution.contraction_bound < 1 && !solution.geometry.empty(), "invalid integral-map certificate");
       }
       rejects("unsupported_model_combination", [&] { (void)e::native_evolution_model_fingerprint(r); });
       rejects("unsupported_model_combination", [&] { (void)e::create_native_evolution_checkpoint(r, result); });
-      auto stripped = result.histories; stripped[0].surface_evidence.reset();
-      const auto missing = e::certify_surface_publication(r, stripped, result.histories, "0.04", "0.05");
+      auto stripped = result.histories; stripped[0].validated_evidence.reset();
+      const auto missing = e::certify_retained_publication(r, stripped, result.histories, "0.04", "0.05");
       check(!missing.certified && missing.histories.empty() && missing.failure_code == "surface_solution_provenance_not_certified", "missing continuation carrier admitted");
       auto changed = r; changed.coupling = "2";
-      const auto mismatch = e::certify_surface_publication(changed, result.histories, result.histories, "0.04", "0.05");
+      const auto mismatch = e::certify_retained_publication(changed, result.histories, result.histories, "0.04", "0.05");
       check(!mismatch.certified && mismatch.failure_code == "surface_solution_provenance_not_certified", "changed-model carrier admitted");
       r.chart_policy = "finite_width";
       rejects("unsupported_model_combination", [&] { (void)e::evolve_native_coupled_histories(r); });
@@ -149,7 +149,7 @@ int main() {
     rejects("unsupported_model_combination", [&] { (void)e::create_native_evolution_checkpoint(canonical, interacting); });
     rejects("unsupported_model_combination", [&] { (void)e::certify_native_acceleration_snapshot(canonical, interacting.histories, "0.04"); });
     auto duplicate = initial; duplicate[1] = duplicate[0];
-    const auto wrong_population = e::certify_surface_publication(r, duplicate, duplicate, "0", "0.02");
+    const auto wrong_population = e::certify_retained_publication(r, duplicate, duplicate, "0", "0.02");
     check(!wrong_population.certified && wrong_population.histories.empty() && wrong_population.failure_code == "surface_history_identity_mismatch", "duplicate/missing population admitted");
     rejects("surface_history_identity_mismatch", [&] {
       (void)e::require_equation_provider(r).evaluate({r, duplicate, r.start_time}); });
@@ -182,7 +182,7 @@ int main() {
     const auto carrier_run = e::evolve_native_coupled_histories(continued);
     if (carrier_run.status != "completed") throw std::runtime_error("computed-source carrier smoke halted: " + carrier_run.halt_code + " / " + carrier_run.steps.back().failure_code);
     bool used_computed_source = false;
-    for (const auto& step : carrier_run.steps) for (const auto& solution : step.surface_solutions)
+    for (const auto& step : carrier_run.steps) for (const auto& solution : step.retained_solutions)
       for (const auto& root : solution.partner_roots) {
         check(root.lower_residual.lower() > 0 && root.upper_residual.upper() < 0 && root.transmitter_factor.lower() > 0,
             "whole-slab root signs/ordinary domain");

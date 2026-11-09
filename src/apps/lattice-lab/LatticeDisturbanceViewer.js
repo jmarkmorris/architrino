@@ -61,5 +61,5 @@ export function createLatticeDisturbanceViewer(host) {
     }
     frame=requestAnimationFrame(draw);
   }draw();
-  return {setPreparation,setRecord,setTime,setGain(value){gain=value;setTime(time);},dispose(){cancelAnimationFrame(frame);clear();sphere.dispose();renderer.dispose();canvas.remove();}};
+  return {setPreparation,setRecord,setTime,beginLive(record){setPreparation(record.request,record.settings);histories=latticePatchHistories(record);baseline=latticePatchHistories(record,true);},appendPaths(event){for(const row of event.publishedExtensions){const h=histories.find(h=>h.pathId===row.pathId);h.segments.push(...row.segments.map(s=>({...s,startTime:s.start,endTime:s.end})));h.coverage.end=Number(event.acceptedCoverage.end);}},setGain(value){gain=value;setTime(time);},dispose(){cancelAnimationFrame(frame);clear();sphere.dispose();renderer.dispose();canvas.remove();}};
 }

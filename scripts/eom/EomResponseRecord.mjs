@@ -1,7 +1,7 @@
+import {errorBoundChecking} from '../../src/apps/shared/ErrorBoundChecking.js';
 // Presentation projection of a retained EOM result. No numerical evolution.
 import { createHash } from 'node:crypto';
 import { EOM_V3_REQUEST, canonicalJson, eomRequestVersion, expectedEomExecution } from '../../src/apps/shared/EomExecutionIdentity.js';
-export const EOM_RECORD_VIEW_LIMIT = 12 * 1024 * 1024;
 // Supported documents that are not evolution responses pass through
 // unchanged. Any other schema is refused; its raw bytes stay retained.
 const EOM_PASSTHROUGH_SCHEMAS = new Set(['eom_error/v2', 'eom_inspection/v2', 'eom_inspection/v3', 'eom_equation_capabilities/v1', 'eom_cancel_request/v2']);
@@ -26,7 +26,6 @@ function createEomV3View(payload, artifact, options) {
   const view = projectEvolution({ ...payload, validated: { ...payload.validated, attempts: shown } }, artifact, options);
   view.record.validatedAttempts = { originalCount: attempts.length, displayedCount: shown.length,
     sampling: 'stride sample of the complete attempt log; never interpolated; last row kept; complete log retained in the raw artifact' };
-  if (Buffer.byteLength(JSON.stringify(view)) > EOM_RECORD_VIEW_LIMIT) throw Object.assign(new Error('EOM playback view exceeds 12 MiB; complete raw evidence remains retained.'), { code: 'record_view_budget_exhausted' });
   return view;
 }
 // The supported response schemas of each operation, by request version.
@@ -54,11 +53,15 @@ export function assertEomResponseSchema(rawRequest, payload) {
 // its v3 request declares, every default included, with that execution's
 // digest and the declared per-invocation limit.
 export function assertEomExecutionBinding(rawRequest, payload) {
+  // A rejected malformed request has no admitted execution to bind. Preserve
+  // the host's named rejection; successful documents still require binding.
+  if (payload?.schema === 'eom_error/v2') return;
   const fail = message => { throw Object.assign(new Error(`EOM execution binding: ${message}.`), { code: 'execution_binding_mismatch' }); };
   let request;
   let operation;
   try { const envelope = JSON.parse(rawRequest); request = envelope?.request; operation = envelope?.operation; } catch { fail('the request is not readable JSON'); }
   if (['evolve', 'resume', 'inspect'].includes(operation)) { try { eomRequestVersion(request); } catch (error) { fail(error.message); } }
+  if(payload?.schema!=='eom_error/v2' && ['evolve','resume','inspect'].includes(operation) && (payload?.errorBoundChecking??'strict')!==errorBoundChecking(request))fail('error-bound checking differs from the request');
   const v3Response = payload?.schema === 'eom_evolution_response/v3' || payload?.schema === 'eom_inspection/v3';
   if (request?.schema !== EOM_V3_REQUEST) { if (v3Response) fail('a v3 document answers a request that is not v3'); return; }
   if (payload?.schema === 'eom_error/v2') return;
@@ -82,18 +85,19 @@ function projectEvolution(payload, artifact, options) {
   }
   const { ledgers, surfaceDiagnostics, ...rest } = payload;
   const solutions = ledgers?.surfaceSolutions ?? [];
+  const ordinary = ledgers?.ordinarySolutions ?? [];
   const geometry = solutions.flatMap(row => row.geometry ?? []);
   const maximum = (rows,key) => rows.length ? rows.reduce((value,row)=>Math.max(value,Number(row[key])),0).toString() : null;
   if (options.checkpointMode === "reference" && rest.checkpoint?.durable && rest.checkpoint.id) {
     rest.checkpoint = { ...rest.checkpoint, data: null, retrieval: "solver-host", href: `/api/eom/v2/checkpoints/${encodeURIComponent(rest.checkpoint.id)}` };
   }
   const view = { ...rest, surfaceDiagnostics: diagnostics,
-    record: { schema: 'eom_record_view/v1', artifact, diagnostics: 'sampled receiver-total interval records; never interpolated',
+    record: { schema: 'eom_record_view/v1', artifact, diagnostics: payload.errorBoundChecking==='none'?'exploratory receiver-total point samples; no error bounds':'sampled receiver-total interval records; never interpolated',
+      ...(ordinary.length ? { acceptedOrdinary: { certificateCount: ordinary.length, certifiedCount: ordinary.filter(row => row.certified).length, maximumContractionBound: maximum(ordinary, 'contractionBound') } } : {}),
       acceptedSurface: {certificateCount:solutions.length, certifiedCount:solutions.filter(row=>row.certified && (row.geometry ?? []).every(g=>g.certified)).length,
         maximumDistance:maximum(geometry,'maximumDistance'),maximumTangentVelocity:maximum(geometry,'maximumTangentVelocity')},
       originalDiagnosticCount: surfaceDiagnostics?.length ?? 0, displayedDiagnosticCount: diagnostics.length,
       ledgerCounts: Object.fromEntries(Object.entries(ledgers ?? {}).map(([key, rows]) => [key, rows.length])),
       ledgerPolicy: 'complete ledgers retained in the raw artifact; omitted from playback view' } };
-  if (Buffer.byteLength(JSON.stringify(view)) > EOM_RECORD_VIEW_LIMIT) throw Object.assign(new Error('EOM playback view exceeds 12 MiB; complete raw evidence remains retained.'), { code: 'record_view_budget_exhausted' });
   return view;
 }

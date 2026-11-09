@@ -7,13 +7,13 @@ const physicalTime=p=>p.map(x=>Number(decimalProduct(x,'10')).toFixed(6)).join('
 export function createSixPolePanel({$,jump}){
   const pair=(label,value)=>{const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=label;dd.textContent=value;$('diagnostics').append(dt,dd);};
   function preparation(request){
-    $('preset').value=SIX_POLE_CASE;$('duration-label').textContent='Replay coverage (physical T)';$('latitude').querySelector('option[value="custom"]').textContent='Six coordinate poles';$('resume-end').disabled=true;
+    $('duration-label').textContent='Replay coverage (physical T)';$('latitude').querySelector('option[value="custom"]').textContent='Six coordinate poles';$('resume-end').disabled=true;
     $('radius').value='10';$('speed').value='0';$('coupling').value='1';$('population').value='6';$('shape').value='sphere';$('latitude').value='custom';$('duration').value='0';$('speed-domain').value='strict';$('step').value='0.01';
     $('flattening-label').hidden=true;$('major-radius-label').hidden=true;$('radius-label').textContent='Sphere radius';
     $('reference-case').value=SIX_POLE_CASE;$('analytical-note').hidden=false;$('analytical-events').hidden=true;$('class-account').hidden=true;
     $('request-detail').textContent=JSON.stringify(request,null,2);
     $('shape-brief').textContent='Six coordinate poles: positrinos at +X,+Y,+Z; electrinos at −X,−Y,−Z. Radius stays fixed by artificial normal support.';
-    $('preparation-summary').textContent='Release from rest at T = 0 after a complete stationary past. All six follow their symmetric great-circle paths; this is not rigid rotation. These exact settings are read-only. Select a ring preset to prepare an EOM experiment.';
+    $('preparation-summary').textContent='Release from rest at T = 0 after a complete stationary past. All six follow their symmetric great-circle paths; this is not rigid rotation. These exact settings are read-only. Choose New experiment to prepare an EOM experiment.';
     $('stage-description').textContent='Six poles · radius 10 · stationary past · release from rest.';
     $('evidence').textContent='Analytical research preparation. Load its reviewed history below. This is not an admitted EOM request, a live solver run or a solver restart.';
     $('timeline-note').textContent='The exact release is shown. Load reviewed history to replay the recorded observations.';

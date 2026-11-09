@@ -1,5 +1,73 @@
 # Noether sea research brainstorming
 
+## Uniform populations and the incoming wake fluctuations
+
+This discussion studies how a statistically uniform Noether sea can retain microscopic rotating assembly structure and continuing incoming emissions. The substrate remains Euclidean void and absolute time. Effective observer spacetime is a downstream readout, not the simulation container. The baseline is the unchanged canonical [Master Equation](../../../../content/markdown/aaa/dynamics/master-equation.md#the-master-equation-canonical-form), with no added damping, pressure term, speed ceiling, root exclusion, or selected equation variation. Numerical instantiations use $c_f=1$. This is a representation proposal, not an execution selection or an equilibrium claim.
+
+### Assembly structure and the meaning of uniform
+
+The [Noether braid account](../../../../content/markdown/aaa/noether-braid/noether-braid.md) defines a neutral six-architrino base without requiring three exact binary partnerships. For the specific three-binary candidate, the current term is **orthogonal-axis three-binary Noether braid**; its constituent binaries, phases and axes are additional declared structure. Their emitted distributed structure is the **path-history wake**. Calling these objects fluid vortices would add an unproved ontology. Internal rotating paths can exist in a preparation whose assembly centers have zero mean motion. A coarse center-flow vorticity, defined as the curl of a specified smoothed center velocity, need not detect that internal rotation. A circulation diagnostic must name its averaged quantity, curve and smoothing scale before being related to constituent histories.
+
+Statistical homogeneity means that the probability law of complete histories is unchanged by spatial translations. Isotropy adds rotational invariance; stationarity adds invariance under absolute-time translations. These are independent assumptions. Constant mean braid number density alone implies none of the other conditions. Equal-time random centers and phases prepare a candidate ensemble; they do not establish a stationary ensemble of solutions. A perfectly repeated lattice is another preparation, with its own correlations and preferred directions.
+
+The relevant interpretation of a uniform background is therefore homogeneous statistics with resolved fluctuations. It does not demand identical instantaneous incoming contributions at every point. Even a zero vector mean requires the appropriate symmetry of the weighted history ensemble and existence of the mean; neutrality or homogeneity alone does not establish it.
+
+### The incoming superposition at a receiver event
+
+At a location $\mathbf x$ and absolute time $T$, evaluate the arriving wakes using a diagnostic receiver of polarity $q$. This defines a polarity-dependent acceleration query, not a new physical probe whose backreaction has been evolved. For source architrino $j$, let $\mathcal C_j(\mathbf x,T)$ contain every admitted positive-separation simple root $s<T$ of
+
+$$
+\|\mathbf x-\mathbf X_j(s)\|=T-s.
+$$
+
+Write $r_j=\|\mathbf x-\mathbf X_j(s)\|$, $\hat{\mathbf r}_j=(\mathbf x-\mathbf X_j(s))/r_j$, and $D_{t,j}=1-\hat{\mathbf r}_j\cdot\mathbf V_j(s)$. The canonical incoming acceleration is
+
+$$
+\mathbf a_q(\mathbf x,T)
+=\kappa\sum_j\sum_{s\in\mathcal C_j(\mathbf x,T)}
+q q_j\,\frac{\hat{\mathbf r}_j}{r_j^2|D_{t,j}|}.
+$$
+
+Here $q_j$ is source polarity and $\kappa$ is the canonical coupling. The identity $q q_j=\operatorname{sign}(q q_j)|q q_j|$ gives the canonical sign convention. At an actual receiver, evaluate this expression on its current position and include admitted noncoincident self-history roots as well as partner roots. Fold or coincidence events require their own declared treatment; this simple-root expression does not extend across them by assertion. For an infinite population, the sum also needs a specified ordering and convergence justification. It is not automatically defined at every event by writing the summation symbol.
+
+This formula is a direct restatement of the canonical law on its regular domain. It shows why centers and net polarity do not suffice: constituent emission positions, velocities, phases, orientations and root multiplicities determine the received contribution. At fixed supplied histories contributions add linearly, but a freely evolving population is coupled because those contributions change subsequent histories. Receiver velocity governs signed root playback through $D_r/D_t$, with $D_r=1-\hat{\mathbf r}_j\cdot\mathbf V_r(T)$; it does not multiply the instantaneous per-hit acceleration.
+
+### A zero mean retains a nonzero hum
+
+For a declared measure on histories, define $\bar{\mathbf a}_q=\mathbb E\mathbf a_q$ and $\delta\mathbf a_q=\mathbf a_q-\bar{\mathbf a}_q$. A two-event covariance is
+
+$$
+C_{ab}(\mathbf r,\tau)
+=\mathbb E\!\left[
+\delta a_{q,a}(\mathbf x,T)
+\delta a_{q,b}(\mathbf x+\mathbf r,T+\tau)
+\right],
+$$
+
+where $a,b$ denote Cartesian components and $\mathbf r,\tau$ are spatial and absolute-time offsets. Under homogeneity and stationarity it depends only on these offsets. At zero offset its trace is $\mathbb E\|\delta\mathbf a_q\|^2$, which need not vanish when $\bar{\mathbf a}_q=0$. For a purely algebraic illustration, $h(T)=A\cos(\omega T+\phi)$ with uniform phase $\phi$ has zero mean and variance $A^2/2$. This is not a derived braid trajectory or a physical noise spectrum.
+
+The variance of a sum includes cross-source covariances; independent phases cannot be assumed after mutual evolution. Replacing the background by its mean loses temporal memory, spatial correlations, coherent phase relationships, rare large root-weight events and phase-sensitive differential acceleration across an embedded assembly. A covariance retains more information but generally does not determine higher correlations or nonlinear receiver response. No white-noise or Gaussian law follows from zero mean. The proposed hum is a readout of unresolved deterministic histories, not a new primitive random interaction or an independently postulated energy reservoir.
+
+The [canonical sea chapter's shell argument](../../../../content/markdown/aaa/spacetime/noether-sea.md) derives conditional mean-square convergence from bounds on weighted cell moments and within- and cross-shell covariances. It retains fluctuations. Its assumptions include root multiplicity and $1/|D_t|$ behavior; equal-time neutrality and short spatial correlations alone do not supply them. The argument neither establishes an actual stationary sea nor proves an arbitrary infinite summation or a uniform bound over all receiver events.
+
+### Candidate numerical representations
+
+| Representation | Retained information and legitimate scope | Unresolved condition |
+| --- | --- | --- |
+| Explicit finite population, with an interior readout region | All constituent histories and reciprocal interactions in the modeled population; root-resolved fluctuation measurements on the admitted interval | The preparation may disrupt; finite-population and boundary effects need separate comparison |
+| Explicit local population plus supplied exterior source histories | Incoming contributions with correlated arrival times and directions, evaluated by the same causal kernel | Prescribed exterior motion is an open-environment approximation; omitted reciprocal response needs a bound before physical interpretation |
+| Certified distant contribution or matched-pair enclosure | Conservative acceleration intervals and logical source identities within the EOM solver's admitted domains | An uncertainty interval alone does not reconstruct the omitted realization or its temporal covariance; the diagnostic error must be smaller than the fluctuation being investigated |
+| Periodic copies | A specified repeated population and repeated emission histories | Copies impose long-range phase coherence; image sums and history coverage need justification, and results describe that preparation rather than a generic homogeneous sea |
+| History-derived statistical exterior | Potentially a correlated boundary process calibrated from resolved histories | Guessed closure until memory, higher-order errors and receiver-conditioned feedback are bounded on independently checked histories |
+
+The [EOM far-field contract](../../app-solver/contracts/far-field-contribution-enclosure.md) encloses complete retained ordered-pair contributions only when its separation, transmitter-speed and budget tests pass; other pairs fall back to root resolution. Its simple sufficient speed floor is $1-v_j^+>0$ in normalized units. Rotating candidate histories do not automatically satisfy it, and proximity to a tangent root cannot be classified as negligible by distance alone. Reading `certify_far_field_enclosure` and its snapshot caller in `src/eom/src/CoupledEvolution.cpp` confirms the speed-floor test, symmetric acceleration interval, budget check and exact-root fallback in that inspected path; this is source inspection, not an execution measurement. The bounded matched-pair route has its own [accepted integration scope](../../app-solver/contracts/matched-pair-enclosure-integration-scope.md); it is not a general sea-scale closure or permission to cancel arbitrary opposite polarities. No runtime cost advantage is inferred here.
+
+The recommended starting model is an explicit finite population of neutral six-constituent candidates, using the three-binary chart only where it is deliberately part of the preparation, with a smaller interior readout region and an explicit exterior contribution account. Preserve persistent identities, complete required pasts, constituent phase and orientation correlations, every admitted root, signed playback and numerical uncertainty. Prepare homogeneous population statistics as an input hypothesis; allow subsequent motion to determine whether the preparation persists. A deterministic supplied-history calculation can first inspect the incoming pattern, but it remains a kinematic diagnostic until reciprocal EOM evolution and branch qualification are established. Spatial boundaries do not reset emitted wakes, and earlier emissions from a source that later leaves the region must remain in the account. At $c_f=1$, a root at emission separation $r$ samples time $T-r$; a spatial guard region alone therefore does not replace the required source past or exterior emission data.
+
+**Claim level and grade:** the superposition and mean/variance distinctions are derived on the declared regular and integrable domain; physical realization of a stationary homogeneous braid population and any statistical exterior closure are guessed. The finite-population starting model is an inferred diagnostic recommendation, not an accepted equilibrium or sea response. The existing retained-population blocker remains unchanged. A counterexample to the moment identities would defeat the algebra; histories violating the shell moment bounds defeat that convergence application; loss of constituent organization defeats that particular retained-population preparation. Dependence of the interior covariance, differential acceleration or root-weight statistics beyond declared errors on enlarging the explicit population, supplying more past, changing exterior preparation or numerical refinement would defeat a claimed converged hum representation. Mean cancellation alone cannot pass that comparison.
+
+**○ Proposed, not selected — next mathematical artifact.** Specify one finite population history preparation and its exterior data, together with the interior acceleration covariance and differential-acceleration readouts and separate bounds for numerical and omitted-source errors. Identify the constituent retention assumption before interpreting the result as sea behavior. Any later promotion belongs in the Noether sea and sea-research treatments after the relevant history, branch and boundary obligations are satisfied. This discussion launches no simulation and adds no execution task.
+
 ## Dense braid populations and matter-containing regions
 
 The operator proposes a high-density population of high-energy scaled braids surrounding pockets containing standard-model particle assemblies. This is a candidate preparation, not a derived equilibrium. The [manuscript](manuscript.md#1-the-population-being-investigated) explains the distinction between constituent qualification, populated histories and collective response.
