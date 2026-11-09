@@ -84,8 +84,10 @@ export function createSurfaceSupportPlots({host,jump,select,highlight}){
     const shown=data.members.filter(m=>!hidden.has(m.pathId));
     let magnitude=0;for(const m of shown)for(const r of visibleRows(m.rows))if(r.value)magnitude=Math.max(magnitude,Math.abs(r.value[0]),Math.abs(r.value[1]));
     magnitude=magnitude?magnitude*1.12:1;
-    const sy=axes(signed,-magnitude,magnitude,'Normal support acceleration. Positive outward; negative inward.');
-    signed.append(svgElement('text',{x:L+6,y:TOP+12},'+ outward'),svgElement('text',{x:L+6,y:H-BOTTOM-5},'− inward'));
+    $('.support-heading h2').textContent=data.curveConstraint?'Ring constraint support magnitude':'Normal support acceleration';$('.support-heading p').textContent=data.curveConstraint?'Full added acceleration needed to keep each member on its assigned ring, including axial and radial components. Direction arrows and diagnostics retain the three-dimensional vectors.':'Additional acceleration needed to keep each path on the surface. Positive is outward; negative is inward along the local surface normal.';
+    signed.setAttribute('aria-label',(data.curveConstraint?'Ring constraint support magnitude':'Signed normal support acceleration')+' versus animation seconds. Click to seek; left and right arrows move playback.');
+    const sy=axes(signed,data.curveConstraint?0:-magnitude,magnitude,data.curveConstraint?'Magnitude of full ring constraint support acceleration.':'Normal support acceleration. Positive outward; negative inward.');
+    if(!data.curveConstraint)signed.append(svgElement('text',{x:L+6,y:TOP+12},'+ outward'),svgElement('text',{x:L+6,y:H-BOTTOM-5},'− inward'));
     shown.forEach(m=>drawRows(signed,visibleRows(m.rows),sy,borgPolarityCss(m.charge),dash[data.members.indexOf(m)%dash.length],m.pathId));
     let maximum=0;for(const r of visibleRows(data.total))if(r.value)maximum=Math.max(maximum,r.value[1]);
     const ty=axes(total,0,maximum?maximum*1.12:1,'Sum of support magnitudes for the complete population.');

@@ -254,3 +254,8 @@ target_compile_options(eom_logarithmic_fixture_cli PRIVATE -Wall -Wextra -Wpedan
 # Explicit-use independent control for exploratory acceleration weighting.
 add_executable(eom_error_bound_choice_fixture_cli native/eom_error_bound_choice_fixture_cli.cpp)
 target_link_libraries(eom_error_bound_choice_fixture_cli PRIVATE eom_native)
+
+# Explicit-use equation/surface composition control; no recurring enrollment.
+add_executable(eom_surface_variants_fixture_cli native/eom_surface_variants_fixture_cli.cpp)
+target_link_libraries(eom_surface_variants_fixture_cli PRIVATE eom_native)
+target_compile_options(eom_surface_variants_fixture_cli PRIVATE -Wall -Wextra -Wpedantic -ffp-contract=off)

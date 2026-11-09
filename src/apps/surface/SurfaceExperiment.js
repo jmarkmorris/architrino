@@ -1,16 +1,16 @@
+import {surfaceEquationVariant} from './SurfaceEquationSelection.js';
 import {ERROR_BOUND_CHECKING_DEFAULT,errorBoundChecking} from '../shared/ErrorBoundChecking.js';
-import {decimalProduct,decimalRatio,decimalSum,decimalScale,sameDecimal,validateSurfaceGeometry} from './SurfaceGeometry.js';
+import {decimalProduct,decimalRatio,decimalSum,decimalScale,sameDecimal,validateSurfaceGeometry,surfaceExtent} from './SurfaceGeometry.js';
 export const PHASES = Object.freeze(['0','1.0471975511965977461542144610931676','2.0943951023931954923084289221863353','3.1415926535897932384626433832795029','4.1887902047863909846168578443726705','5.2359877559829887307710723054658381']);
-export const SURFACE_PRESETS=Object.freeze({
+export const SURFACE_REFERENCE_CASES=Object.freeze({
   sphere:{name:'Sphere · equatorial ring',shape:'sphere',latitude:'equator',radius:'0.1',speed:'0.01',coupling:'0.000001',duration:'0.25',step:'0.01',population:6,speedDomain:'unrestricted'},
   oblate:{name:'Oblate spheroid · northern ring',shape:'oblate',latitude:'north',flattening:'0.6',radius:'0.1',speed:'0.006',coupling:'0.000001',duration:'0.15',step:'0.01',population:6,speedDomain:'unrestricted'},
   'torus-outer':{name:'Ring torus · outer northern ring',shape:'ring-torus',latitude:'north',radius:'0.05',majorRadius:'0.1',speed:'0.013',coupling:'0.000001',duration:'0.15',step:'0.01',population:6,speedDomain:'unrestricted'},
   'torus-inner':{name:'Ring torus · inner northern ring',shape:'ring-torus',latitude:'inner',radius:'0.05',majorRadius:'0.1',speed:'0.007',coupling:'0.000001',duration:'0.15',step:'0.01',population:6,speedDomain:'unrestricted'},
-  'sphere-latitude':{name:'Sphere · matched northern ring',shape:'sphere',latitude:'north',radius:'0.1',speed:'0.006',coupling:'0.000001',duration:'0.15',step:'0.01',population:6,speedDomain:'unrestricted'},
-  // Watchable motion: the fastest initial speed whose 0→0.25 run completes under the current surface tolerances. No checked reference exists.
-  'sphere-watch':{name:'Sphere · watchable speed',shape:'sphere',latitude:'equator',radius:'0.1',speed:'0.05',coupling:'0.000001',duration:'0.25',step:'0.01',population:6,speedDomain:'unrestricted',unchecked:true}
+  'sphere-latitude':{name:'Sphere · matched northern ring',shape:'sphere',latitude:'north',radius:'0.1',speed:'0.006',coupling:'0.000001',duration:'0.15',step:'0.01',population:6,speedDomain:'unrestricted'}
 });
-export function createSurfaceExperiment({ radius='0.1', speed='0.01', coupling='0.000001', duration='0.25', step='0.01', population=6, speedDomain='unrestricted',shape='sphere',latitude='equator',flattening='0.6',majorRadius='0.2',errorBoundChecking:checking=ERROR_BOUND_CHECKING_DEFAULT } = {}) {
+export function createSurfaceExperiment({ radius='0.1', speed='0.01', coupling='0.000001', duration='0.25', step='0.01', population=6, speedDomain='unrestricted',shape='sphere',latitude='equator',flattening='0.6',majorRadius='0.3',errorBoundChecking:checking=ERROR_BOUND_CHECKING_DEFAULT,compositionId='canonical-surface/v1' } = {}) {
+  surfaceEquationVariant(compositionId);
   if(!['none','strict'].includes(checking))throw new Error('Error bound checking must be none or strict.');
   if (!Number.isInteger(population) || population < 2 || population > 12 || population % 2) throw new Error('Choose an even population from 2 to 12.');
   for (const [name, token] of Object.entries({radius,speed,coupling,duration,step})) if (!Number.isFinite(Number(token)) || Number(token)<=0) throw new Error(`${name} must be positive and finite.`);
@@ -21,12 +21,12 @@ export function createSurfaceExperiment({ radius='0.1', speed='0.01', coupling='
   const geometry=shape==='oblate'?{kind:shape,radius,flattening}:shape==='ring-torus'?{kind:shape,radius,majorRadius}:{kind:shape,radius};
   const {rho,height}=preparationCircle(geometry,latitude);
   validateSurfaceGeometry(geometry);
-  return {schema:'eom_evolution_request/v2',runId:`surface-${crypto.randomUUID()}`,model:{compositionId:'canonical-surface/v1',constraint:'surface',speedDomain,boundaryPolicy:speedDomain==='unrestricted'?'none':'halt',fieldSpeed:'1',coupling,geometry},interval:{start:'0',end:duration},paths:Array.from({length:population},(_,i)=>({pathId:`p${i}`,charge:i%2?'-1':'1',history:{kind:'uniform-circular',start:'-0.5',end:'0',maximumSegmentStep:'0.02',radius:rho,height,angularSpeed:decimalRatio(speed,rho),speed,phase:population===6?PHASES[i]:String(i*2*Math.PI/population)}})),numerics:{errorBoundChecking:checking,initialStep:step,maximumStep:step,minimumStep:String(Number(step)/8),rootTolerance:'1e-5',accelerationTolerance:'1e-4',positionTolerance:'1e-4',velocityTolerance:'1e-4',correctionTolerance:'1e-4',surfacePositionTolerance:'1e-4',surfaceTangentVelocityTolerance:'1e-4',maxStepAttempts:checking==='none'?10000:80,maxRejectedSteps:20},resources:{memoryBytes:2147483648}};
+  return {schema:'eom_evolution_request/v2',runId:`surface-${crypto.randomUUID()}`,model:{compositionId,constraint:'surface',speedDomain,boundaryPolicy:speedDomain==='unrestricted'?'none':'halt',fieldSpeed:'1',coupling,geometry},interval:{start:'0',end:duration},paths:Array.from({length:population},(_,i)=>({pathId:`p${i}`,charge:i%2?'-1':'1',history:{kind:'uniform-circular',start:String(-Math.max(.5,Math.ceil((2*surfaceExtent(geometry)+.1)*4)/4)),end:'0',maximumSegmentStep:'0.02',radius:rho,height,angularSpeed:decimalRatio(speed,rho),speed,phase:population===6?PHASES[i]:String(i*2*Math.PI/population)}})),numerics:{errorBoundChecking:checking,initialStep:step,maximumStep:step,minimumStep:String(Number(step)/8),rootTolerance:'1e-5',accelerationTolerance:'1e-4',positionTolerance:'1e-4',velocityTolerance:'1e-4',correctionTolerance:'1e-4',surfacePositionTolerance:'1e-4',surfaceTangentVelocityTolerance:'1e-4',maxStepAttempts:checking==='none'?10000:80,maxRejectedSteps:20},resources:{memoryBytes:2147483648}};
 }
 export function qualifiedPreparationId(request) {
   const m=request?.model,paths=request?.paths;
   if(m?.compositionId!=='canonical-surface/v1'||m.constraint!=='surface'||m.speedDomain!=='unrestricted'||m.boundaryPolicy!=='none'||!sameDecimal(m.fieldSpeed,'1')||m.coupling!=='0.000001'||!m.geometry||m.geometry.center||m.geometry.orientation||!sameDecimal(request.interval?.start,'0')||paths?.length!==6) return null;
-  for(const [id,preset] of Object.entries(SURFACE_PRESETS)){
+  for(const [id,preset] of Object.entries(SURFACE_REFERENCE_CASES)){
     if(preset.unchecked) continue;
     const g=m.geometry;
     if(g.kind!==preset.shape||g.radius!==preset.radius||g.kind==='oblate'&&g.flattening!==preset.flattening||g.kind==='ring-torus'&&g.majorRadius!==preset.majorRadius) continue;
@@ -48,7 +48,7 @@ export function updateSurfaceExperiment(original,field,value) {
   const mapGeometry=next=>{
     validateSurfaceGeometry(next);
     if(g.kind==='ring-torus'){
-      if(next.kind!=='ring-torus')throw new Error('Use a preset to switch between a torus and a sphere or spheroid.');
+      if(next.kind!=='ring-torus')throw new Error('Use the surface selector to change topology.');
       for(const p of r.paths){const h=p.history,speed=speedOf(h),negative=Number(h.angularSpeed)<0;
         const offset=decimalSum(h.radius,decimalProduct(g.majorRadius,'-1'));
         h.radius=decimalSum(next.majorRadius,decimalScale(offset,next.radius,g.radius));
@@ -65,12 +65,22 @@ export function updateSurfaceExperiment(original,field,value) {
     }
     r.model.geometry=next;
   };
-  if(field==='radius'){positive();mapGeometry({...g,radius:value});}
+  if(field==='equation-variant'){surfaceEquationVariant(value);r.model.compositionId=value;}
+  else if(field==='radius'){positive();mapGeometry({...g,radius:value});}
   else if(field==='major-radius'){positive();if(g.kind!=='ring-torus')throw new Error('Major radius applies to a ring torus.');mapGeometry({...g,majorRadius:value});}
-  else if(field==='shape'){if(value===g.kind)return r;if(g.kind==='ring-torus'||value==='ring-torus')throw new Error('Use a preset to switch between a torus and a sphere or spheroid.');if(!['sphere','oblate'].includes(value))throw new Error('Unknown shape.');mapGeometry(value==='oblate'?{...g,kind:value,flattening:g.flattening??'0.6'}:{kind:value,radius:g.radius,...(g.center?{center:g.center}:{}),...(g.orientation?{orientation:g.orientation}:{})});}
+  else if(field==='shape'){
+    if(value===g.kind)return r;
+    if(!['sphere','oblate','ring-torus'].includes(value))throw new Error('Unknown surface.');
+    if(g.kind==='ring-torus'||value==='ring-torus'){
+      const next={kind:value,radius:g.radius,...(value==='ring-torus'?{majorRadius:decimalProduct(g.radius,'3')}:value==='oblate'?{flattening:'0.6'}:{})};
+      validateSurfaceGeometry(next);const {rho,height}=preparationCircle(next,'equator');
+      for(const p of r.paths){const h=p.history,speed=speedOf(h),negative=Number(h.angularSpeed)<0;h.radius=rho;h.height=height;h.angularSpeed=decimalRatio(speed,rho);if(negative)h.angularSpeed='-'+h.angularSpeed;}
+      r.model.geometry=next;
+    }else mapGeometry(value==='oblate'?{...g,kind:value,flattening:g.flattening??'0.6'}:{kind:value,radius:g.radius,...(g.center?{center:g.center}:{}),...(g.orientation?{orientation:g.orientation}:{})});
+  }
   else if(field==='flattening')mapGeometry({...g,flattening:value});
   else if(field==='latitude'){
-    if(!['equator','north',...(g.kind==='ring-torus'?['inner','inner-equator']:[])].includes(value))throw new Error('Use a supported preparation circle or a preset.');
+    if(!['equator','north',...(g.kind==='ring-torus'?['inner','inner-equator']:[])].includes(value))throw new Error('Choose a supported preparation circle.');
     const {rho,height}=preparationCircle(g,value);
     for(const p of r.paths){const h=p.history,speed=speedOf(h),negative=Number(h.angularSpeed)<0;h.radius=rho;h.height=height;h.angularSpeed=decimalRatio(speed,rho);if(negative)h.angularSpeed='-'+h.angularSpeed;}
   }

@@ -362,6 +362,7 @@ Interval evaluate_cubic_velocity(
 
 const char* integration_method(
     const NativeCoupledEvolutionRequest& request) {
+  if (request.surface_geometry && logarithmic_equation_selected(request)) return "coupled_cubic_corrector_with_validated_logarithmic_surface_tube/v1";
   if (logarithmic_equation_selected(request)) return "coupled_cubic_corrector_with_validated_logarithmic_tube/v1";
   if (request.surface_geometry) return "coupled_cubic_corrector_with_validated_surface_tube/v1";
   if (request.use_synchronized_multirate_publication) {

@@ -67,7 +67,7 @@ int main() {
   check(e::equation_snapshot_identity(r)!=e::equation_snapshot_identity(canonical),"model cache collision");
   refuses([&]{auto q=r;q.use_quarter_step_publication=true;(void)e::require_equation_provider(q);});
   refuses([&]{auto q=r;q.joint_state_fallback_already_applied=true;(void)e::require_equation_provider(q);});
-  refuses([&]{auto q=r;q.error_bound_checking="none";(void)e::require_equation_provider(q);});
+  refuses([&]{auto q=r;q.error_bound_checking="invalid";(void)e::require_equation_provider(q);});
   refuses([&]{auto q=r;q.chart_policy="finite_width";(void)e::require_equation_provider(q);});
   refuses([&]{auto q=r;q.far_field_enclosure_fraction="0.1";(void)e::require_equation_provider(q);});
   refuses([&]{auto q=r;q.equation_selection->constraint="surface";(void)e::require_equation_provider(q);});

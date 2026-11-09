@@ -1,3 +1,4 @@
+import {createBorgEquationRunner} from './BorgEquationRunner.js';
 import * as THREE from "../../../vendor/three/three.module.js";
 import {
   TRANSPORT_CONTROL_ICON,
@@ -200,6 +201,8 @@ const LAYER_TITLES = Object.freeze({
 });
 
 const SOLVER_FAILURE_BANNERS = Object.freeze({
+  "eom-preparation-rejected": "Calculation did not start. Check the preparation and equation settings.",
+  "halted-eom-run": "Calculation stopped at an accepted boundary. Buffered paths remain playable.",
   "eom-run-error":
     "Computing stopped. The solver failed part-way; everything after the last good frame is missing.",
   "record-replay-error":
@@ -684,7 +687,7 @@ export function mountBorgApp(options = {}) {
   setPlayButtonPresentation(false);
   setTransportControlButtonPresentation(dom.startButton, {
     kind: TRANSPORT_CONTROL_ICON.FIRST_FRAME,
-    label: "First frame",
+    label: "Reset",
   });
   resize();
   if (autoStartEom) {
@@ -1295,7 +1298,7 @@ export function mountBorgApp(options = {}) {
         : "Random initial conditions";
       dom.modeDetail.textContent = activePrescribedDisplayBranch
         ? `New non-promotable EOM branch from ${activePrescribedDisplayBranch.sourceRecordId} at T=${activePrescribedDisplayBranch.selectedCutTime}.`
-        : "Choose error bound checking, then Play to calculate motion.";
+        : "Play checks the preparation and calculates buffered motion.";
       return;
     }
     assemblyViewControls?.dispose?.();
@@ -2047,6 +2050,9 @@ export function mountBorgApp(options = {}) {
     dom.timelineRange.disabled = presentation.disabled;
     dom.timelineRange.dataset.mode = presentation.mode;
     dom.timelineRange.title = presentation.title;
+    documentLike.getElementById('borg-equation-controls').hidden=replayActive||!!activePrescribedDisplayBranch;
+    for(const id of ['borg-equation-variant','borg-speed-domain'])documentLike.getElementById(id).disabled=replayActive||!!activePrescribedDisplayBranch;
+    documentLike.getElementById('borg-stop-calculation').hidden=!state.dynamicRunner?.calculating;
     dom.playButton.disabled = frameSets.length < 2 && !(
       isEomSimulationActive()
     );
@@ -2062,6 +2068,8 @@ export function mountBorgApp(options = {}) {
       stopPlayback();
       updateFrame(requestedFrameIndex);
     });
+    for(const id of ['borg-equation-variant','borg-speed-domain'])listen(documentLike.getElementById(id),'change',()=>{if(replayActive||activePrescribedDisplayBranch)return;stopPlayback();disposeDynamicRunner();resetDynamicRunState();setSimulationReadyForPlay('Selection changed; Play inspects and calculates buffered motion.');});
+    listen(documentLike.getElementById('borg-stop-calculation'),'click',()=>{state.dynamicRunner?.stop?.();});
     listen(dom.playButton, "click", () => {
       togglePlayback();
     });
@@ -2982,6 +2990,7 @@ export function mountBorgApp(options = {}) {
           },
         }
       : options;
+    if(eomRunnerOptions){eomRunnerOptions.compositionId=documentLike.getElementById('borg-equation-variant').value;eomRunnerOptions.speedDomain=documentLike.getElementById('borg-speed-domain').value;}
     const runnerOptions = eomRunnerOptions ?? createDefaultEomRecordReplayOptions(
       replayOptions,
       preset,
@@ -2996,9 +3005,10 @@ export function mountBorgApp(options = {}) {
       return null;
     }
     const generation = state.dynamicRunGeneration;
+    if(eomRunnerOptions)eomRunnerOptions.onCalculationStatus=()=>{if(generation===state.dynamicRunGeneration)updateTimelineBounds();};
     try {
       state.dynamicRunner = eomRunnerOptions
-        ? createBorgEomShadowRunner(manifest, runnerOptions)
+        ? (activePrescribedDisplayBranch?createBorgEomShadowRunner(manifest, runnerOptions):createBorgEquationRunner(manifest, runnerOptions))
         : createBorgEomRecordReplayRunner(runnerOptions.record, runnerOptions);
     } catch (error) {
       if (eomRunnerOptions) {
@@ -3008,7 +3018,7 @@ export function mountBorgApp(options = {}) {
         resetPolarityDiagnosticsHistory();
         state.sourceMode = "accepted-eom-seed-history";
       }
-      state.dynamicRunnerStatus = "eom-run-error";
+      state.dynamicRunnerStatus = "eom-preparation-rejected";
       state.dynamicRunnerMessage = error?.message ?? "live runner failed";
       state.dynamicRunnerKind = eomRunnerOptions ? "eom-shadow-failed" : "eom-record-replay-failed";
       updateSourceStatusPresentation();
@@ -3050,7 +3060,7 @@ export function mountBorgApp(options = {}) {
   }
 
   function getPlaybackPrefillTargetFrameSetCount() {
-    const ordinaryTarget = getBorgPlaybackPrefillTargetFrameSetCount({
+    const ordinaryTarget = state.dynamicRunner?.streaming ? Math.ceil(1/activeSampleInterval()) : getBorgPlaybackPrefillTargetFrameSetCount({
       playbackRate: BORG_MAX_REALTIME_PLAYBACK_RATE,
       sampleInterval: activeSampleInterval(),
       maximumRetainedFrameSetCount:
@@ -3184,9 +3194,9 @@ export function mountBorgApp(options = {}) {
         const firstReplayRows = Boolean(
           replayActive && previousFrameRowCount === 0 && chunk.frames?.length > 0,
         );
-        const replaceCurrentFrames = replaceInitialRows || replaceDisplayedSeed || firstReplayRows;
+        const replaceCurrentFrames = (replaceInitialRows || replaceDisplayedSeed || firstReplayRows) && chunk.frames.length > 0;
         if (eomSimulation) {
-          state.eomDisplayStarted = true;
+          if(chunk.frames.length)state.eomDisplayStarted = true;
           state.dynamicRunnerKind = "eom-shadow";
           state.eomEvolutionClaimLevel = chunk.evolutionClaimLevel;
           state.eomCoreScale = chunk.coreScale;
@@ -3207,7 +3217,7 @@ export function mountBorgApp(options = {}) {
               ? "completed-eom-run"
               : "completed-recorded-replay";
         state.dynamicRunnerMessage = chunk.terminalHalt
-            ? `${chunk.runGrade} prefix through T=${chunk.endTime}; failed candidate rejected (${chunk.terminalHalt.code})`
+            ? `${chunk.runGrade} prefix through T=${chunk.endTime}; calculation stopped (${chunk.terminalHalt.code})`
           : `chunk ${chunk.chunkIndex} ready`;
         if (replaceCurrentFrames) {
           currentFrames = [...chunk.frames];

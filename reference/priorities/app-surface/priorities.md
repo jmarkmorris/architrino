@@ -1,5 +1,7 @@
 # Surface App
 
+**✓ Delivered November 8 — independent equation and speed selections.** Numerical preparations now select canonical or experimental logarithmic interaction separately from unrestricted, inclusive or strict speed domain. Both choices support None/Strict checking and are preserved independently across edits and numerical presets. The [live composition contract](../app-solver/contracts/evolution-contract-v2.md#independent-surface-interaction-and-speed-selections) and [work log](work-log.md) record bounded known-case, 12-combination, restart/isolation and browser verification. This does not transfer canonical scientific qualifications or establish general unchecked accuracy.
+
 ## Workstream Metadata
 
 - Kind: `priority-app`

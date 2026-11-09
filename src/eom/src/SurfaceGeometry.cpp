@@ -11,11 +11,15 @@ SurfaceMatrix admitted_frame(const SurfaceGeometryDefinition& d) {
   using detail::SurfaceRational;
   const SurfaceRational zero, one("1");
   const SurfaceRational radius(d.radius), q(d.flattening), major(d.major_radius);
-  if (d.kind != "sphere" && d.kind != "oblate" && d.kind != "ring-torus")
+  if (d.kind != "sphere" && d.kind != "oblate" && d.kind != "ring-torus" && d.kind != "parallel-rings")
     throw EquationAdmissionError("invalid_geometry", "unknown fixed surface kind");
   if (!(zero < radius) || (d.kind == "oblate" && (!(zero < q) || one < q)) ||
       (d.kind == "ring-torus" && !(radius < major)))
     throw EquationAdmissionError("invalid_geometry", "invalid surface dimensions");
+  if(d.kind=="parallel-rings"){
+    if(!(zero<SurfaceRational(d.separation)))throw EquationAdmissionError("invalid_geometry","ring separation must be positive");
+    for(std::size_t i=0;i<3;++i){if(!(SurfaceRational(d.center[i])==zero))throw EquationAdmissionError("invalid_geometry","parallel rings require centered coordinates");for(std::size_t j=0;j<3;++j)if(!(SurfaceRational(d.orientation[i][j])==(i==j?one:zero)))throw EquationAdmissionError("invalid_geometry","parallel rings use vertical YZ planes");}
+  }
   for (const auto& token : d.center) {
     (void)SurfaceRational(token);
     (void)Interval::decimal_token(token);
@@ -39,8 +43,8 @@ std::string geometry_json(const SurfaceGeometryDefinition& d) {
     frame += '[' + n(d.orientation[i][0]) + ',' + n(d.orientation[i][1]) + ',' + n(d.orientation[i][2]) + ']';
   }
   frame += ']';
-  return "{\"center\":[" + n(d.center[0]) + ',' + n(d.center[1]) + ',' + n(d.center[2]) +
-      "],\"definition\":\"polynomial-implicit/v1\",\"flattening\":" + n(d.flattening) +
+  return (d.kind=="parallel-rings"?"{\"separation\":"+n(d.separation)+",":"{")+"\"center\":[" + n(d.center[0]) + ',' + n(d.center[1]) + ',' + n(d.center[2]) +
+      "],\"definition\":" + equation_json_quote(d.kind=="parallel-rings"?"two-parallel-circles/v1":"polynomial-implicit/v1") + ",\"flattening\":" + n(d.flattening) +
       ",\"kind\":" + equation_json_quote(d.kind) + ",\"majorRadius\":" + n(d.major_radius) +
       ",\"orientation\":" + frame + ",\"radius\":" + n(d.radius) + '}';
 }
@@ -67,6 +71,7 @@ IntervalVector SurfaceGeometry::world_vector(const IntervalVector& y) const {
 }
 
 SurfaceGeometryEvaluation SurfaceGeometry::evaluate(const IntervalVector& x) const {
+  if(definition_.kind=="parallel-rings")throw EquationAdmissionError("unsupported_geometry_certificate","two-circle constraints require the exploratory curve route");
   const auto y = body_position(x);
   const Interval radius = Interval::decimal_token(definition_.radius);
   const Interval one = Interval::point(1), two = Interval::point(2), four = Interval::point(4), eight = Interval::point(8);

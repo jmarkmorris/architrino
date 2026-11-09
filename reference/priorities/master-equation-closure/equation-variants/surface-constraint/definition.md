@@ -27,3 +27,16 @@ Use the existing [three speed options](../manuscript.md#three-speed-options): un
 The [examined inclusive response](../manuscript.md#the-examined-inclusive-response) removes the net speed-increasing component after summation on a finite ordinary equality input and separately specifies zero self response. Reusing that model requires explicitly selecting those clauses, their ordering relative to surface support and a compatible history/event domain. Surface confinement alone retains the canonical self policy and selects neither that response nor its zero-self clause. The strict domain excludes equality but supplies no continuing acceleration there; halt where its declared domain or equation ceases to apply unless a further rule is explicitly selected.
 
 Composition with another interaction law remains a separately identified complete specification, for example a logarithmic response with a surface constraint. The family name does not transfer a law's authorization to new geometries or history classes. The design/review obligation SURFACE-001 is complete; target calculations and independently accepted solver support remain open in the [Surface queue](../../../app-surface/work-queue.md) and [staged EOM design](../../../app-solver/contracts/equation-provider-design-v1.md#11-delivery-sequence-and-acceptance).
+
+## Exploratory two-circle constraint
+
+The operator-selected `parallel-rings` geometry consists of the two disjoint vertical circles $X=\pm d/2$, $Y^2+Z^2=r^2$, with positive radius $r$ and separation $d$. Each member remains assigned to its initial plane. This is a curve constraint with two normal directions, carried by the existing Surface transport, rather than a regular level surface with one normal. Its initial implementation selects None checking only; the single-gradient Strict surface certificate is not applicable.
+
+At a computed ring point, the unit tangent is $\mathbf t=(0,-Z/r,Y/r)$. Write the complete selected interaction acceleration as $\mathbf A$, and the tangent velocity as $\mathbf V$. Differentiating the two defining constraints gives $V_X=0$, $YV_Y+ZV_Z=0$, $A_{\mathrm{total},X}=0$ and $Y A_{\mathrm{total},Y}+Z A_{\mathrm{total},Z}=-\|\mathbf V\|^2$. The constrained acceleration and additional support are therefore
+
+$$
+\mathbf A_{\mathrm{total}}=(\mathbf t\cdot\mathbf A)\mathbf t-\frac{\|\mathbf V\|^2}{r^2}(0,Y,Z),\qquad
+\mathbf S=\mathbf A_{\mathrm{total}}-\mathbf A.
+$$
+
+These formulas preserve the complete tangent interaction and supply the required radial curvature and axial cancellation. No physical mass or force law is introduced. The EOM point route records the interaction, tangent part, discarded normal-plane part, curvature, full support and total acceleration. It projects numerical endpoints and endpoint velocities onto the assigned circle and tangent. Published cubics remain unchecked approximations between endpoints; this does not establish a continuous curve-error certificate. The app draws those retained cubics without a display-only repair. Since support has both axial and radial components, its plot shows the full vector magnitude; arrows and per-member diagnostics retain direction. A nonzero plane-normal component must not be discarded by a scalar radial projection.

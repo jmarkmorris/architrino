@@ -8,6 +8,8 @@ Derive a common response of a specified ambient braid population and its embedde
 
 ## Current
 
+**Discussion proposal — uniform populations with incoming wake fluctuations.** The [representation account](brainstorming.md#uniform-populations-and-the-incoming-wake-fluctuations) distinguishes homogeneous history statistics from a constant instantaneous background, and retains constituent paths, phases, orientations, causal roots and exterior emissions. It recommends an explicit finite population with interior readouts and a controlled exterior account; mean-only cancellation loses the covariance and differential acceleration under investigation. The canonical law supplies the regular-domain superposition, while a stationary retained population and any statistical exterior closure remain unestablished. This is a diagnostic proposal, with no selected execution or change to the retained-population blocker.
+
 **✓ Six-pole post-turn campaign closed early on October 21: a soundness defect was found and repaired, the six-pole events were recomputed and re-certified, and the return path was continued to step 688.**
 - **Defect.** The reconstruction's slice-resume writer had dropped every sign since October. It was found when the first step past 570 was refused for disjoint enclosures. The serializer was repaired (signed format, round-trip and split-versus-uninterrupted controls). The history was recomputed from the step-154 anchor and independently audited.
 - **Re-certified on the sound records:**

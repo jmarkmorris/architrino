@@ -27,8 +27,8 @@ try {
  const caps=await client.capabilities();
  const choices=await client.modelOptions();assert(choices.some(o=>o.id==='logarithmic/v1'));
  assert(!eomModelOptions(caps,{constraint:'surface'}).some(o=>o.id==='logarithmic/v1'));
- assert(!eomModelOptions(caps,{errorBoundChecking:'none'}).some(o=>o.id==='logarithmic/v1'));
- assert.throws(()=>selectEomModel(caps,{compositionId:'logarithmic/v1',errorBoundChecking:'none'}));
+ assert(eomModelOptions(caps,{errorBoundChecking:'none'}).some(o=>o.id==='logarithmic/v1'));
+ assert.equal(selectEomModel(caps,{compositionId:'logarithmic/v1',errorBoundChecking:'none'}).compositionId,'logarithmic/v1');
  assert.equal((await client.selectModel()).compositionId,'canonical/v1');
  assert.equal(selectEomModel(caps,{compositionId:'logarithmic/v1'}).speedDomain,'unrestricted');
  assert.throws(()=>selectEomModel(caps,{compositionId:'logarithmic/v1',constraint:'surface'}));
@@ -60,7 +60,7 @@ try {
  denied(await execute('resume',r,{checkpoint:seal(corrupted),endTime:'0.3125'}));
  const wrongState=structuredClone(result.checkpoint.data);wrongState.providerState.schema='canonical-v7-inside-v8/v1';
  denied(await execute('resume',r,{checkpoint:seal(wrongState),endTime:'0.3125'}));
- for(const change of [q=>q.model.constraint='surface',q=>q.model.method='analytical',q=>q.numerics.errorBoundChecking='none',q=>q.model.fieldSpeed='2',q=>q.paths[0].history.segments[0].positionErrors[0]='1e-10',q=>q.paths[0].history.segments[0].coefficients[0][1]='1']) {
+ for(const change of [q=>q.model.constraint='surface',q=>q.model.method='analytical',q=>q.numerics.errorBoundChecking='invalid',q=>q.model.fieldSpeed='2',q=>q.paths[0].history.segments[0].positionErrors[0]='1e-10',q=>q.paths[0].history.segments[0].coefficients[0][1]='1']) {
   const changed=structuredClone(r);change(changed);denied(await execute('inspect',changed));
  }
  const shallow=structuredClone(r);for(const p of shallow.paths)p.history.segments[0].start='-0.1';

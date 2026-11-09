@@ -1,3 +1,4 @@
+import {unconstrainedEquationSelection} from '../shared/UnconstrainedEquationSelection.js';
 import { ERROR_BOUND_CHECKING_DEFAULT, errorBoundChecking } from '../shared/ErrorBoundChecking.js';
 import { pulsePreparation, scaledDecimal } from './LatticePulsePreparation.js';
 import { canonicalJson } from '../shared/EomExecutionIdentity.js';
@@ -26,7 +27,7 @@ export function createLatticeDisturbanceExperiment(settings = {}, runId = `latti
   }
   return {
     schema: 'eom_evolution_request/v2', runId,
-    model: { compositionId: 'canonical/v1', constraint: 'none', speedDomain: 'unrestricted', boundaryPolicy: 'none', fieldSpeed: '1', coupling: '16' },
+    model: { ...unconstrainedEquationSelection(settings), fieldSpeed: '1', coupling: '16' },
     interval: { start: '0', end: duration }, paths,
     numerics: { errorBoundChecking: settings.errorBoundChecking ?? ERROR_BOUND_CHECKING_DEFAULT, initialStep: '0.002', maximumStep: '0.002', minimumStep: '0.00003125', rootTolerance: '1e-7', accelerationTolerance: '0.001', positionTolerance: '0.00001', velocityTolerance: '0.0001', correctionTolerance: '0.0001', maxStepAttempts: 120, maxRejectedSteps: 30 },
     resources: { memoryBytes: 536870912 },
@@ -50,7 +51,7 @@ export function validateLatticePatchRecord(record) {
   const model = result.resolvedModel;
   // The model manifest uses the engine's canonical decimal tokens, not the
   // spelling of the request's input tokens.
-  if (model?.compositionId !== 'canonical/v1' || model.selection?.constraint !== 'none' || model.selection?.speedDomain !== 'unrestricted' || model.selection?.boundaryPolicy !== 'none' || model.parameters?.fieldSpeed !== '1e0' || model.parameters?.coupling !== '16e0') throw new Error('The record does not use this section’s normalized canonical equation.');
+  if (model?.compositionId !== request.model.compositionId || model.selection?.constraint !== 'none' || model.selection?.speedDomain !== request.model.speedDomain || model.selection?.boundaryPolicy !== request.model.boundaryPolicy || model.parameters?.fieldSpeed !== '1e0' || model.parameters?.coupling !== '16e0') throw new Error('The record does not use this section’s normalized canonical equation.');
   const end = Number(result.acceptedCoverage?.end);
   if (result.acceptedCoverage?.start !== '0' || !decimal(result.acceptedCoverage?.end) || end < 0 || end > Number(request.interval.end)) throw new Error('Accepted coverage is outside the requested interval.');
   const histories = result.publishedExtensions;
@@ -81,11 +82,11 @@ function createPulseExperiment(settings, runId) {
   if (typeof runId !== 'string' || !/^lattice-patch-[a-zA-Z0-9-]{1,100}$/.test(runId)) throw new Error('Invalid finite-patch run identity.');
   const refinement = quality === 'refined' ? 4 : 1;
   return { schema:'eom_evolution_request/v2', runId,
-    model:{ compositionId:'canonical/v1', constraint:'none', speedDomain:'unrestricted', boundaryPolicy:'none', fieldSpeed:'1', coupling:'16' },
+    model:{ ...unconstrainedEquationSelection(settings), fieldSpeed:'1', coupling:'16' },
     interval:{start:'0',end:scaledDecimal(duration,spacing)},
     paths:pulsePreparation({side,spacing,amplitude,axis,preparation}),
-    numerics:{ errorBoundChecking: settings.errorBoundChecking ?? ERROR_BOUND_CHECKING_DEFAULT, initialStep:String(spacing/100), maximumStep:String(spacing/20), minimumStep:String(spacing/262144), rootTolerance:String(spacing*.0001/refinement), accelerationTolerance:String(.000001/refinement), positionTolerance:String(spacing*.00001/refinement), velocityTolerance:String(.0001/refinement), correctionTolerance:String(.0001/refinement), continuousAdaptive:true, adaptiveGrowth:true, threadCount:4, maxStepAttempts:2000, maxRejectedSteps:100 },
-    resources:{memoryBytes:536870912} };
+    numerics:{ errorBoundChecking: settings.errorBoundChecking ?? ERROR_BOUND_CHECKING_DEFAULT, initialStep:String(spacing/100), maximumStep:String(spacing/20), minimumStep:String(spacing/262144), rootTolerance:String(spacing*.0001/refinement), accelerationTolerance:String(.000001/refinement), positionTolerance:String(spacing*.00001/refinement), velocityTolerance:String(.0001/refinement), correctionTolerance:String(.0001/refinement), continuousAdaptive:true, adaptiveGrowth:true, threadCount:4, maxStepAttempts:settings.compositionId==='logarithmic/v1'&&settings.errorBoundChecking==='strict'?(side===2?8:1):2000, maxRejectedSteps:100 },
+    resources:{memoryBytes:settings.compositionId==='logarithmic/v1'?2147483648:536870912} };
 }
 export function compactLatticeResult(result) {
   const copy = structuredClone(result);
@@ -105,7 +106,7 @@ function validatePartSeries(request, parts, digest) {
     if (result.schema!=='eom_evolution_response/v2' || !['completed','halted','cancelled'].includes(result.status) || result.runId!==request.runId || result.modelDigest!==digest || !/^[a-f0-9]{64}$/.test(digest)) throw new Error('Continuation identity differs.');
     validateChecking(request, result);
     const model=result.resolvedModel;
-    if (model?.compositionId!=='canonical/v1' || model.selection?.constraint!=='none' || model.selection?.speedDomain!=='unrestricted' || model.selection?.boundaryPolicy!=='none' || model.parameters?.fieldSpeed!=='1e0' || model.parameters?.coupling!=='16e0') throw new Error('Wrong normalized canonical model.');
+    if (model?.compositionId!==request.model.compositionId || model.selection?.constraint!=='none' || model.selection?.speedDomain!==request.model.speedDomain || model.selection?.boundaryPolicy!==request.model.boundaryPolicy || model.parameters?.fieldSpeed!=='1e0' || model.parameters?.coupling!=='16e0') throw new Error('Wrong normalized canonical model.');
     const start=Number(result.acceptedCoverage?.start), end=Number(result.acceptedCoverage?.end);
     if(start!==time || !Number.isFinite(end) || end<start || end>Number(request.interval.end))throw new Error('Continuation coverage has a gap or exceeds the request.');
     const hs=result.publishedExtensions;

@@ -96,9 +96,9 @@ class CanonicalEquationProvider final : public EquationProvider {
 
 const EquationProvider& require_equation_provider(
     const NativeCoupledEvolutionRequest& request) {
-  if (logarithmic_equation_selected(request)) return require_logarithmic_equation_provider(request);
-  if (request.equation_selection && request.equation_selection->composition_id == "canonical-surface/v1")
+  if (request.equation_selection && (request.equation_selection->composition_id == "canonical-surface/v1" || request.equation_selection->composition_id == "logarithmic-surface/v1"))
     return require_surface_equation_provider(request);
+  if (logarithmic_equation_selected(request)) return require_logarithmic_equation_provider(request);
   static const CanonicalEquationProvider provider;
   provider.admit(request);
   return provider;

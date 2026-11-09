@@ -258,8 +258,8 @@ std::string retained_request_identity(const NativeCoupledEvolutionRequest& r) {
 std::string surface_request_identity(const NativeCoupledEvolutionRequest& r) {
   if (!r.surface_geometry) throw EquationAdmissionError("invalid_geometry", "surface definition is required");
   std::string identity = "{\"build\":" + equation_json_quote(detail::kEquationBuildDigest) +
-      ",\"canonicalDefinition\":" + equation_json_quote(detail::kCanonicalDefinitionDigest) +
-      ",\"composition\":\"canonical-surface/v1\",\"coupling\":" + equation_json_quote(equation_decimal_identity(r.coupling)) +
+      (logarithmic_equation_selected(r)?",\"logarithmicDefinition\":"+equation_json_quote(equation_identity_sha256(std::string(detail::kLogarithmicSurfaceDefinitionDigest)+"|"+detail::kLogarithmicDefinitionDigest+"|"+detail::kSurfaceDefinitionDigest)):",\"canonicalDefinition\":"+equation_json_quote(detail::kCanonicalDefinitionDigest)) +
+      ",\"composition\":"+equation_json_quote(r.equation_selection->composition_id)+",\"coupling\":" + equation_json_quote(equation_decimal_identity(r.coupling)) +
       ",\"fieldSpeed\":" + equation_json_quote(equation_decimal_identity(r.field_speed)) +
       ",\"geometry\":" + SurfaceGeometry(*r.surface_geometry).canonical_json() + ",\"paths\":[";
   bool first = true;
@@ -343,7 +343,7 @@ RetainedPublicationCertificate certify_retained_publication(const NativeCoupledE
     result.certified = true;
   } catch (const EquationAdmissionError& error) {
     result.failure_code = error.code();
-    if (logarithmic_equation_selected(r) && result.failure_code.starts_with("surface_"))
+    if (!r.surface_geometry && logarithmic_equation_selected(r) && result.failure_code.starts_with("surface_"))
       result.failure_code.replace(0, 8, "logarithmic_");
     result.histories.clear(); result.solutions.clear();
   }

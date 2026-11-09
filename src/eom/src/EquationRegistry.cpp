@@ -4,6 +4,7 @@
 
 namespace architrino::eom {
 std::string logarithmic_capability_json();
+std::string logarithmic_surface_capability_json();
 
 void require_canonical_equation_operation(const NativeCoupledEvolutionRequest& r) {
   const auto& p = require_equation_provider(r);
@@ -40,8 +41,8 @@ ResolvedEquationModel inspect_equation_model(
   const auto number = [](const std::string& token) {
     return equation_json_quote(equation_decimal_identity(token));
   };
-  const bool surface = descriptor.id == "canonical-surface/v1";
-  const bool logarithmic = descriptor.id == "logarithmic/v1";
+  const bool surface = request.surface_geometry.has_value();
+  const bool logarithmic = logarithmic_equation_selected(request);
   const bool legacy = descriptor.id == "canonical/v1" && selected.speed_domain == "unrestricted";
   const std::string json =
       "{\"build\":" + equation_build_identity_json() +
@@ -55,7 +56,7 @@ ResolvedEquationModel inspect_equation_model(
       ",\"identityScope\":\"resolved-model-bound-by-v8-with-original-preparation-and-numerics;v7-unchanged\"" +
       ",\"legacyModelFingerprint\":" +
       (legacy ? equation_json_quote(native_evolution_model_fingerprint(request)) : "null") +
-      (surface ? ",\"modelBindingId\":\"master_equation_surface/v1\"" : logarithmic ? ",\"modelBindingId\":\"logarithmic-potential/v1\"" : ",\"modelBindingId\":\"master_eom_binding/v1\"") +
+      (surface ? (logarithmic?",\"modelBindingId\":\"logarithmic_surface/v1\"":",\"modelBindingId\":\"master_equation_surface/v1\"") : logarithmic ? ",\"modelBindingId\":\"logarithmic-potential/v1\"" : ",\"modelBindingId\":\"master_eom_binding/v1\"") +
       ",\"parameters\":{\"causalWidth\":" + number(request.causal_width) +
       ",\"chartPolicy\":" + equation_json_quote(request.chart_policy) +
       ",\"coreScale\":" + number(request.core_scale) +
@@ -100,14 +101,14 @@ std::string equation_capabilities_json() {
       equation_json_quote(detail::kSurfaceDefinitionDigest) +
       ",\"id\":\"canonical-surface/v1\",\"implemented\":true"
       ",\"independentlyAccepted\":false,"
-      "\"name\":\"Canonical Master Equation with a surface constraint\""
+      "\"name\":\"Canonical Master Equation with a surface constraint\",\"errorBoundChecking\":[\"none\",\"strict\"]"
       ",\"numericRoutes\":{\"ordinaryInterval\":\"validated-sharp-method-of-steps\",\"jointAffine\":false,\"finiteWidthEvents\":false}"
-      ",\"geometries\":[\"sphere\",\"oblate\",\"ring-torus\"]"
+      ",\"geometries\":[\"sphere\",\"oblate\",\"ring-torus\",\"parallel-rings\"]"
       ",\"preparation\":\"exactly-admitted-circular-factory-family\""
       ",\"solutionDomain\":\"coherent-subwake-paths-and-strictly-past-partner-roots\""
       ",\"speedDomains\":[\"unrestricted\",\"inclusive\",\"strict\"],\"speedModification\":false"
       ",\"checkpoint\":\"v8-revalidated-publication\",\"wireEvolution\":\"v2\""
-      ",\"reason\":\"Full-slab root, derivative, inclusion, contraction and dense geometry gates; coherent subwake chart remains required\"}," + logarithmic_capability_json() + "]"
+      ",\"reason\":\"Full-slab root, derivative, inclusion, contraction and dense geometry gates; coherent subwake chart remains required\"}," + logarithmic_capability_json() + "," + logarithmic_surface_capability_json() + "]"
       ",\"executionMethods\":[{\"method\":\"ordinary\",\"default\":true,\"requestSchema\":\"eom_evolution_request/v2\""
       ",\"responseSchema\":\"eom_evolution_response/v2\",\"checkpointSchema\":\"eom_provider_checkpoint/v8\"},"
       "{\"method\":\"canonical_validated_far_step_evolution/v1\",\"default\":false,\"optIn\":\"execution.method\""

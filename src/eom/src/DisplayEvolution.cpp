@@ -14,6 +14,10 @@ namespace {
 bool is_exact_history_storage_failure(const std::string& s){return s.find("exact history")!=std::string::npos||s.find("exact_history")!=std::string::npos;}
 IntervalVector point_box(const std::array<double,3>& x){return {Interval::point(x[0]),Interval::point(x[1]),Interval::point(x[2])};}
 void project_surface(const SurfaceGeometryDefinition& definition,std::array<double,3>& x,std::array<double,3>& v){
+  if(definition.kind=="parallel-rings"){
+    const double radius=parse_finite_double(definition.radius,"ring radius"),gap=parse_finite_double(definition.separation,"ring separation"),rho=std::hypot(x[1],x[2]);if(!(rho>0))throw std::runtime_error("display_ring_singular_chart");
+    x[0]=x[0]<0?-gap/2:gap/2;x[1]*=radius/rho;x[2]*=radius/rho;v[0]=0;const double radial=(x[1]*v[1]+x[2]*v[2])/(radius*radius);v[1]-=radial*x[1];v[2]-=radial*x[2];return;
+  }
   const SurfaceGeometry shape(definition);
   for(unsigned iteration=0;iteration<8;++iteration){const auto g=shape.evaluate(point_box(x));const double denominator=g.gradient_squared.midpoint();if(!(denominator>0))throw std::runtime_error("display_surface_singular_chart");const double correction=g.defining_value.midpoint()/denominator;for(std::size_t i=0;i<3;++i)x[i]-=correction*g.gradient[i].midpoint();}
   const auto g=shape.evaluate(point_box(x));double dot=0;for(std::size_t i=0;i<3;++i)dot+=v[i]*g.gradient[i].midpoint();
@@ -176,10 +180,18 @@ eom::NativeCoupledEvolutionCertificate evolve_display_point_histories(
       const auto velocity = path.history.nominal_velocity(current_time);
       auto acceleration=found->second;
       if(request.surface_geometry){
-        const SurfaceGeometry shape(*request.surface_geometry);
-        const auto constrained=evaluate_surface_constraint(shape, point_box(position),point_box(velocity),point_box(acceleration),{point_box({0,0,0}),point_box({0,0,0}),point_box({0,0,0})});
-        for(std::size_t axis=0;axis<3;++axis)acceleration[axis]=constrained.diagnostic.total_acceleration[axis].midpoint();
-        auto row=constrained.diagnostic;row.path_id=path.path_id;row.reception_lower=current_time_token;row.reception_upper=current_time_token;step_diagnostics.push_back(std::move(row));
+        if(request.surface_geometry->kind=="parallel-rings"){
+          const double radius=parse_finite_double(request.surface_geometry->radius,"ring radius"),rho=std::hypot(position[1],position[2]);
+          const std::array<double,3> tangent{0,-position[2]/rho,position[1]/rho};double component=0,speed2=0;for(std::size_t k=0;k<3;++k){component+=acceleration[k]*tangent[k];speed2+=velocity[k]*velocity[k];}
+          std::array<double,3> along{},discarded{},curvature{0,-speed2*position[1]/(radius*radius),-speed2*position[2]/(radius*radius)},support{},total{};
+          for(std::size_t k=0;k<3;++k){along[k]=component*tangent[k];discarded[k]=acceleration[k]-along[k];support[k]=curvature[k]-discarded[k];total[k]=along[k]+curvature[k];}
+          SurfaceReceiverDiagnostic row{path.path_id,current_time_token,current_time_token,point_box(acceleration),point_box(along),point_box(discarded),point_box(curvature),point_box(support),point_box(total),Interval::point(0)};step_diagnostics.push_back(std::move(row));acceleration=total;
+        }else{
+          const SurfaceGeometry shape(*request.surface_geometry);
+          const auto constrained=evaluate_surface_constraint(shape, point_box(position),point_box(velocity),point_box(acceleration),{point_box({0,0,0}),point_box({0,0,0}),point_box({0,0,0})});
+          for(std::size_t axis=0;axis<3;++axis)acceleration[axis]=constrained.diagnostic.total_acceleration[axis].midpoint();
+          auto row=constrained.diagnostic;row.path_id=path.path_id;row.reception_lower=current_time_token;row.reception_upper=current_time_token;step_diagnostics.push_back(std::move(row));
+        }
       }
       eom::CubicCoefficientTokens coefficients{};
       double position_scale = 1.0;

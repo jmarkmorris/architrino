@@ -142,7 +142,8 @@ NativeCoupledEvolutionRequest decode_request(const j::value& value) {
     if(m.contains("constraint"))s.constraint=string(m.at("constraint")); if(m.contains("method"))s.method=string(m.at("method"));
     if(m.contains("fieldSpeed"))r.field_speed=token(m.at("fieldSpeed")); if(m.contains("coupling"))r.coupling=token(m.at("coupling"));
     if(m.contains("geometry")) {
-      r.surface_geometry.emplace();auto& g=*r.surface_geometry;const auto& h=object(m.at("geometry"));keys(h,{"kind","radius","flattening","majorRadius","center","orientation"});
+      r.surface_geometry.emplace();auto& g=*r.surface_geometry;const auto& h=object(m.at("geometry"));keys(h,{"kind","radius","flattening","majorRadius","separation","center","orientation"});
+      if(h.contains("separation"))g.separation=token(h.at("separation"));
       if(h.contains("kind"))g.kind=string(h.at("kind")); if(h.contains("radius"))g.radius=token(h.at("radius")); if(h.contains("flattening"))g.flattening=token(h.at("flattening")); if(h.contains("majorRadius"))g.major_radius=token(h.at("majorRadius"));
       if(h.contains("center")){const auto& a=array(h.at("center"));if(a.size()!=3)fail("invalid_geometry","three center coordinates required");for(std::size_t i=0;i<3;++i)g.center[i]=token(a[i]);}
       if(h.contains("orientation")){const auto& a=array(h.at("orientation"));if(a.size()!=3)fail("invalid_geometry","3x3 frame required");for(std::size_t i=0;i<3;++i){const auto& row=array(a[i]);if(row.size()!=3)fail("invalid_geometry","3x3 frame required");for(std::size_t k=0;k<3;++k)g.orientation[i][k]=token(row[k]);}}
@@ -177,7 +178,7 @@ NativeCoupledEvolutionRequest decode_request(const j::value& value) {
 Object encode_request(const NativeCoupledEvolutionRequest& r) {
   const auto s=r.equation_selection.value_or(EquationSelection{});
   Object model{{"compositionId",s.composition_id},{"speedDomain",s.speed_domain},{"boundaryPolicy",s.boundary_policy},{"constraint",s.constraint},{"method",s.method},{"fieldSpeed",r.field_speed},{"coupling",r.coupling}};
-  if(r.surface_geometry){const auto& g=*r.surface_geometry;Array center,rotation;for(auto& v:g.center)center.emplace_back(v);for(auto& row:g.orientation){Array a;for(auto& v:row)a.emplace_back(v);rotation.push_back(a);}model["geometry"]=Object{{"kind",g.kind},{"radius",g.radius},{"flattening",g.flattening},{"majorRadius",g.major_radius},{"center",center},{"orientation",rotation}};}
+  if(r.surface_geometry){const auto& g=*r.surface_geometry;Array center,rotation;for(auto& v:g.center)center.emplace_back(v);for(auto& row:g.orientation){Array a;for(auto& v:row)a.emplace_back(v);rotation.push_back(a);}Object geometry{{"kind",g.kind},{"radius",g.radius},{"flattening",g.flattening},{"majorRadius",g.major_radius},{"center",center},{"orientation",rotation}};if(g.kind=="parallel-rings")geometry["separation"]=g.separation;model["geometry"]=geometry;}
   Object n;for(auto& f:decimals)n[f.name]=r.*f.member;for(auto& f:counts)n[f.name]=r.*f.member;
   n["errorBoundChecking"]=r.error_bound_checking;
   n["adaptiveGrowth"]=r.use_adaptive_step_growth;n["continuousAdaptive"]=r.use_continuous_adaptive_step;
@@ -754,7 +755,7 @@ std::string execute_eom_v2_request(const std::string& text,const std::string& ch
     if(!c.steps.empty() && c.steps.back().status=="rejected")halt["possibleBoundaryInterval"]=Array{c.steps.back().attempted_start,c.steps.back().attempted_end};
     Object response{{"schema","eom_evolution_response/v2"},{"errorBoundChecking",r.error_bound_checking},{"contractId","eom_evolution_contract/v2"},{"runId",c.run_id},{"status",c.status},{"modelDigest",model.digest},{"resolvedModel",parse(model.canonical_json)},
       {"acceptedCoverage",Object{{"start",c.start_time},{"end",c.accepted_end_time}}},{"acceptedStepCount",c.accepted_step_count},{"rejectedStepCount",c.rejected_step_count},{"publishedExtensions",extensions(c.histories,c.start_time)},
-      {"ledgers",Object{{"steps",steps},{"partnerRoots",roots},{"pointRoots",point_roots},{logarithmic_equation_selected(r)?"ordinarySolutions":"surfaceSolutions",solutions}}},{"surfaceDiagnostics",diagnostics},{"evidence",Object{{"method","numerical"},{"constraint",r.surface_geometry?"artificial-surface":"none"},{"numericalAcceptance",r.error_bound_checking=="none"?"display-only":c.evidence_status},{"errorBoundChecking",r.error_bound_checking},{"scientificAcceptance",false}}},
+      {"ledgers",Object{{"steps",steps},{"partnerRoots",roots},{"pointRoots",point_roots},{!r.surface_geometry && logarithmic_equation_selected(r)?"ordinarySolutions":"surfaceSolutions",solutions}}},{"surfaceDiagnostics",diagnostics},{"evidence",Object{{"method","numerical"},{"constraint",r.surface_geometry?"artificial-surface":"none"},{"numericalAcceptance",r.error_bound_checking=="none"?"display-only":c.evidence_status},{"errorBoundChecking",r.error_bound_checking},{"scientificAcceptance",false}}},
       {"halt",halt},{"checkpoint",Object{{"schema","eom_provider_checkpoint/v8"},{"digest",checkpoint.empty()?"":string(object(parse(checkpoint)).at("digest"))},{"durable",durable},{"acceptedTime",c.accepted_end_time},{"storageFailure",storage_failure},{"data",checkpoint.empty()?j::value(nullptr):parse(checkpoint)}}}};
     if(v3) {
       // v3: every v2 field keeps its meaning; the execution, the validated

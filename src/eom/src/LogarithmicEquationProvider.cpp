@@ -10,7 +10,7 @@
 namespace architrino::eom {
 
 bool logarithmic_equation_selected(const NativeCoupledEvolutionRequest& r) {
-  return r.equation_selection && r.equation_selection->composition_id == "logarithmic/v1";
+  return r.equation_selection && (r.equation_selection->composition_id == "logarithmic/v1" || r.equation_selection->composition_id == "logarithmic-surface/v1");
 }
 bool retained_publication_required(const NativeCoupledEvolutionRequest& r) {
   return r.surface_geometry.has_value() || logarithmic_equation_selected(r);
@@ -47,11 +47,11 @@ class LogarithmicEquationProvider final : public EquationProvider {
     return p;
   }
   void admit(const NativeCoupledEvolutionRequest& r) const override {
-    if (!logarithmic_equation_selected(r)) throw EquationAdmissionError("unknown_provider", "logarithmic/v1 required");
+    if (!r.equation_selection || r.equation_selection->composition_id != "logarithmic/v1") throw EquationAdmissionError("unknown_provider", "logarithmic/v1 required");
     const auto& s = *r.equation_selection;
     admit_speed_selection(s);
-    if (r.error_bound_checking != "strict")
-      throw EquationAdmissionError("unsupported_model_combination", "logarithmic/v1 currently requires strict error-bound checking; exploratory point evolution is not qualified by this provider");
+    if (r.error_bound_checking != "strict" && r.error_bound_checking != "none")
+      throw EquationAdmissionError("invalid_error_bound_checking", "error-bound checking must be none or strict");
     if (s.constraint != "none" || s.method != "numerical" || r.surface_geometry ||
         r.integration_method != kOrdinaryIntegrationSelection || r.chart_policy != "sharp" ||
         !r.joint_histories.empty() || !r.joint_root_point_states.empty() ||
@@ -65,6 +65,9 @@ class LogarithmicEquationProvider final : public EquationProvider {
       throw EquationAdmissionError("invalid_normalized_field_speed", "logarithmic/v1 requires exact field_speed=1");
     if (!(Interval::decimal_token(r.coupling).lower() > 0))
       throw EquationAdmissionError("invalid_logarithmic_coupling", "coupling is positive kappa_log in normalized units");
+    // None evaluates supplied point histories without claiming certified
+    // preparation or trajectory bounds. Shared transport/root checks remain.
+    if (r.error_bound_checking == "none") return;
     for (const auto& path : r.paths) {
       admit_logarithmic_preparation(path.history);
       require_prepared_speed_domain(path.history, s);
@@ -107,11 +110,11 @@ std::string logarithmic_capability_json() {
     ",\"acceptanceBoundary\":" + equation_json_quote(d.acceptance_boundary) +
     ",\"constraint\":\"none\",\"method\":\"numerical\",\"defaultSpeedDomain\":\"unrestricted\""
     ",\"speedDomains\":[\"unrestricted\",\"inclusive\",\"strict\"],\"speedModification\":false"
-    ",\"executionMethods\":[\"ordinary\"],\"errorBoundChecking\":[\"strict\"],\"chartPolicies\":[\"sharp\"]"
+    ",\"executionMethods\":[\"ordinary\"],\"errorBoundChecking\":[\"none\",\"strict\"],\"chartPolicies\":[\"sharp\"]"
     ",\"parameters\":{\"fieldSpeed\":\"exactly-1\",\"coupling\":\"positive-kappa-log;units-length-squared-per-time-squared-per-charge-product\",\"referenceRadius\":\"absent-from-acceleration\"}"
     ",\"numericRoutes\":{\"ordinaryInterval\":\"full-slab-validated-method-of-steps\",\"jointAffine\":false,\"implicitResidual\":false,\"finiteWidthEvents\":false,\"canonicalFarFieldBounds\":false,\"accelerationMpfr\":false,\"rootMpfr\":true}"
-    ",\"preparation\":\"one-exact-affine-segment-or-certified-circular-factory;coherent-speed-strictly-below-1\""
-    ",\"solutionDomain\":\"bounded-separated-ordinary-roots;coherent-speed-strictly-below-1;partner-emissions-strictly-before-step-start\""
+    ",\"preparation\":\"Strict: one-exact-affine-segment-or-certified-circular-factory;coherent-speed-strictly-below-1; None: supplied-point-histories\""
+    ",\"solutionDomain\":\"Strict: bounded-separated-ordinary-roots;coherent-speed-strictly-below-1;partner-emissions-strictly-before-step-start; None: exploratory-points-without-error-bounds\""
     ",\"checkpoint\":\"v8-revalidated-publication\",\"wireEvolution\":\"v2\"}";
 }
 }
